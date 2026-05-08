@@ -1,0 +1,156 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  SCHOOL
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+enum PlanType {
+  LIFETIME
+  TRIAL
+  STARTER
+  PRO
+}
+
+enum PaymentProvider {
+  PAYSTACK
+  STRIPE
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model User {
+  id           String     @id
+  email        String     @unique
+  passwordHash String
+  role         UserRole
+  status       UserStatus @default(ACTIVE)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  school School?
+  audit  AuditLog[] @relation("AuditActor")
+}
+
+model School {
+  id         String   @id
+  ownerId    String   @unique
+  owner      User     @relation(fields: [ownerId], references: [id])
+  name       String
+  abbr       String
+  address    String?
+  contact    String?
+  motto      String?
+  principal  String?
+  session    String?
+  term       String?
+  nextTerm   String?
+  ca1Max     Int      @default(10)
+  ca2Max     Int      @default(10)
+  examMax    Int      @default(80)
+  subjects   Json     @default("[]")
+  grades     Json     @default("[]")
+  plan       PlanType @default(LIFETIME)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  students    Student[]
+  scoreSheets ScoreSheet[]
+  payments    Payment[]
+  audit       AuditLog[]
+
+  @@index([ownerId])
+  @@index([plan])
+  @@index([createdAt])
+}
+
+model Student {
+  id          String   @id
+  schoolId    String
+  school      School   @relation(fields: [schoolId], references: [id])
+  name        String
+  admissionNo String
+  gender      String?
+  className   String?
+  dob         DateTime?
+  house       String?
+  parent      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  scoreSheets ScoreSheet[]
+
+  @@unique([schoolId, admissionNo])
+  @@index([schoolId])
+  @@index([schoolId, className])
+  @@index([schoolId, name])
+}
+
+model ScoreSheet {
+  id        String   @id
+  schoolId  String
+  school    School   @relation(fields: [schoolId], references: [id])
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id])
+  data      Json     @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([schoolId, studentId])
+  @@index([schoolId])
+  @@index([studentId])
+  @@index([updatedAt])
+}
+
+model Payment {
+  id         String          @id
+  schoolId   String
+  school     School          @relation(fields: [schoolId], references: [id])
+  provider   PaymentProvider
+  status     PaymentStatus   @default(PENDING)
+  amountKobo Int
+  currency   String          @default("NGN")
+  reference  String          @unique
+  metadata   Json            @default("{}")
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  @@index([schoolId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id        String   @id
+  action    String
+  actorId   String?
+  actor     User?    @relation("AuditActor", fields: [actorId], references: [id])
+  schoolId  String?
+  school    School?  @relation(fields: [schoolId], references: [id])
+  ip        String?
+  userAgent String?
+  data      Json     @default("{}")
+  createdAt DateTime @default(now())
+
+  @@index([actorId])
+  @@index([schoolId])
+  @@index([createdAt])
+}
+

@@ -1,0 +1,51 @@
+name: ci
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        db: [sqlite, postgres]
+    env:
+      DATABASE_URL: ${{ matrix.db == 'sqlite' && 'file:./test.db' || 'postgresql://edureport:edureport@localhost:5432/edureport_test?schema=public' }}
+      JWT_SECRET: ci_jwt_secret_ci_jwt_secret_ci_jwt_1234
+      COOKIE_SECRET: ci_cookie_secret_ci_cookie_secret_ci_1234
+      CORS_ORIGIN: http://localhost:8080
+      NODE_ENV: test
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: edureport
+          POSTGRES_PASSWORD: edureport
+          POSTGRES_DB: edureport_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U edureport -d edureport_test"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install
+        working-directory: backend
+        run: npm install
+      - name: Prisma generate
+        working-directory: backend
+        run: npx prisma generate --schema prisma/schema.${{ matrix.db }}.prisma
+      - name: Prisma db push
+        working-directory: backend
+        run: npx prisma db push --schema prisma/schema.${{ matrix.db }}.prisma
+      - name: Test
+        working-directory: backend
+        run: npm test

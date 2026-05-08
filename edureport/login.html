@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — EduReport NG</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+body { display: flex; min-height: 100vh; }
+
+.auth-left {
+  width: 420px; flex-shrink: 0;
+  background: var(--white);
+  padding: 3rem 2.5rem;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--border);
+  position: relative; z-index: 1;
+}
+.auth-logo { font-family: var(--font-display); font-size: 1.6rem; font-weight: 900; color: var(--green); margin-bottom: 0.3rem; }
+.auth-logo em { font-style: normal; color: var(--gold); }
+.auth-tag { font-size: 0.8rem; color: var(--muted); margin-bottom: 2.5rem; }
+.auth-title { font-family: var(--font-display); font-size: 1.8rem; font-weight: 900; margin-bottom: 0.4rem; }
+.auth-sub { font-size: 0.86rem; color: var(--ink2); margin-bottom: 2rem; }
+
+.auth-divider { display: flex; align-items: center; gap: 1rem; margin: 1.2rem 0; }
+.auth-divider::before, .auth-divider::after { content:''; flex:1; height:1px; background: var(--border); }
+.auth-divider span { font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+
+.auth-footer { margin-top: 1.5rem; text-align: center; font-size: 0.83rem; color: var(--muted); }
+.auth-footer a { color: var(--green); font-weight: 600; text-decoration: none; }
+.auth-footer a:hover { text-decoration: underline; }
+
+.demo-card { background: var(--green4); border: 1px solid rgba(26,107,60,0.18); border-radius: 10px; padding: 12px 14px; margin-bottom: 1.4rem; }
+.demo-card p { font-size: 0.78rem; color: var(--green3); line-height: 1.6; }
+.demo-card strong { font-weight: 700; }
+.demo-btn { font-size: 0.75rem; color: var(--green); font-weight: 600; background: none; border: none; cursor: pointer; text-decoration: underline; margin-top: 4px; display: block; }
+
+.auth-right {
+  flex: 1;
+  background: linear-gradient(135deg, var(--green3) 0%, var(--green) 60%, #2d9b5a 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 3rem;
+  position: relative; overflow: hidden;
+}
+.auth-right::before { content:''; position:absolute; top:-30%; right:-10%; width:500px; height:500px; border-radius:50%; background:rgba(255,255,255,0.04); }
+.auth-right::after { content:''; position:absolute; bottom:-20%; left:-5%; width:380px; height:380px; border-radius:50%; background:rgba(200,144,42,0.07); }
+.ar-inner { position: relative; z-index: 1; text-align: center; max-width: 420px; }
+.ar-title { font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 1rem; }
+.ar-title em { font-style: italic; color: var(--gold2); }
+.ar-sub { color: rgba(255,255,255,0.75); font-size: 0.93rem; line-height: 1.7; margin-bottom: 2rem; }
+.ar-features { display: flex; flex-direction: column; gap: 0.8rem; text-align: left; }
+.ar-feat { display: flex; align-items: flex-start; gap: 10px; color: rgba(255,255,255,0.88); font-size: 0.87rem; }
+.ar-feat-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.price-highlight { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 1.2rem; margin-top: 2rem; color: #fff; text-align: center; }
+.ph-amount { font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: var(--gold2); }
+.ph-label { font-size: 0.8rem; opacity: 0.7; }
+
+@media (max-width: 768px) { .auth-right { display: none; } .auth-left { width: 100%; border-right: none; } }
+</style>
+</head>
+<body>
+
+<div class="auth-left">
+  <div class="auth-logo">EduReport<em>NG</em></div>
+  <div class="auth-tag">Nigerian School Report Card System</div>
+  <div class="auth-title">Welcome back</div>
+  <div class="auth-sub">Sign in to your school dashboard</div>
+
+  <div id="login-alert" class="alert alert-err"></div>
+
+  <div class="field">
+    <label>Email Address</label>
+    <input type="email" id="email" placeholder="principal@yourschool.com" autocomplete="email">
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+  </div>
+  <div class="field">
+    <label>2FA Code (if enabled)</label>
+    <input type="text" id="totp" placeholder="123456" inputmode="numeric" autocomplete="one-time-code">
+  </div>
+
+  <button class="btn btn-primary btn-full btn-lg" onclick="handleLogin()" id="login-btn" style="margin-top:0.5rem;">
+    Sign In to Dashboard
+  </button>
+
+  <div class="auth-footer" style="margin-top:1.2rem;">
+    Don't have an account? <a href="register.html">Register your school →</a>
+  </div>
+  <div class="auth-footer" style="margin-top:0.5rem;">
+    <a href="index.html">← Back to homepage</a>
+  </div>
+</div>
+
+<div class="auth-right">
+  <div class="ar-inner">
+    <h2 class="ar-title">Report cards in<br><em>minutes,</em> not days.</h2>
+    <p class="ar-sub">Everything your school needs to generate professional, print-ready report cards — automatically.</p>
+    <div class="ar-features">
+      <div class="ar-feat"><span class="ar-feat-icon">✅</span><span>Automatic grade computation — zero arithmetic errors</span></div>
+      <div class="ar-feat"><span class="ar-feat-icon">🖨️</span><span>Print all 40 students' reports in one click</span></div>
+      <div class="ar-feat"><span class="ar-feat-icon">📊</span><span>Professional A4 report sheets with school watermark</span></div>
+      <div class="ar-feat"><span class="ar-feat-icon">🔐</span><span>Your data is private — fully isolated per school</span></div>
+    </div>
+    <div class="price-highlight">
+      <div class="ph-amount">₦25,000</div>
+      <div class="ph-label">Lifetime access — no subscriptions, no renewals</div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script>
+async function handleLogin() {
+  const email    = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const totp     = document.getElementById('totp').value.trim();
+  const alert    = document.getElementById('login-alert');
+  const btn      = document.getElementById('login-btn');
+  alert.classList.remove('show');
+
+  if (!email || !password) { alert.textContent = 'Please enter your email and password.'; alert.classList.add('show'); return; }
+
+  btn.innerHTML = '<span class="spinner"></span> Signing in…';
+  btn.disabled = true;
+
+  try {
+    const result = await Auth.login({ email, password, totp });
+    showToast('✅ Welcome back!', 'ok');
+    setTimeout(() => {
+      const r = result?.user?.role;
+      if (r === 'ADMIN' || r === 'STAFF') window.location.href = 'admin.html';
+      else if (r === 'TEACHER') window.location.href = 'teacher.html';
+      else if (r === 'PARENT' || r === 'STUDENT') window.location.href = 'portal.html';
+      else window.location.href = 'app.html';
+    }, 600);
+  } catch (e) {
+    alert.textContent = e?.message || 'Sign in failed.';
+    alert.classList.add('show');
+    btn.innerHTML = 'Sign In to Dashboard';
+    btn.disabled = false;
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
+
+// Auto redirect if already logged in
+const session = Auth.getSession();
+if (session) {
+  const r = session.role;
+  if (r === 'ADMIN' || r === 'STAFF') window.location.href = 'admin.html';
+  else if (r === 'TEACHER') window.location.href = 'teacher.html';
+  else if (r === 'PARENT' || r === 'STUDENT') window.location.href = 'portal.html';
+  else window.location.href = 'app.html';
+}
+</script>
+</body>
+</html>

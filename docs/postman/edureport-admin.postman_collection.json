@@ -1,0 +1,200 @@
+{
+  "info": {
+    "_postman_id": "c0a7d2e5-2fdf-4f66-bc27-1a2c8b58b8c1",
+    "name": "EduReport Admin API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:3010" },
+    { "key": "adminToken", "value": "PASTE_ADMIN_BEARER_TOKEN_HERE" }
+  ],
+  "item": [
+    {
+      "name": "Admin Tokens",
+      "item": [
+        {
+          "name": "Create Token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/admin/tokens", "host": ["{{baseUrl}}"], "path": ["admin", "tokens"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"postman\",\n  \"scopes\": [\"admin\"],\n  \"expiresDays\": 90\n}"
+            }
+          }
+        },
+        {
+          "name": "List Tokens",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/tokens", "host": ["{{baseUrl}}"], "path": ["admin", "tokens"] }
+          }
+        },
+        {
+          "name": "Revoke Token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/tokens/{{tokenId}}/revoke", "host": ["{{baseUrl}}"], "path": ["admin", "tokens", "{{tokenId}}", "revoke"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "Get Maintenance",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/system/maintenance", "host": ["{{baseUrl}}"], "path": ["admin", "system", "maintenance"] }
+          }
+        },
+        {
+          "name": "Set Maintenance",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/admin/system/maintenance", "host": ["{{baseUrl}}"], "path": ["admin", "system", "maintenance"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": false,\n  \"message\": \"Maintenance in progress\",\n  \"allowIps\": [\"127.0.0.1\"]\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "List Gateways",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/payment-gateways", "host": ["{{baseUrl}}"], "path": ["admin", "payment-gateways"] }
+          }
+        },
+        {
+          "name": "Set Gateway Key",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/admin/payment-gateways/key", "host": ["{{baseUrl}}"], "path": ["admin", "payment-gateways", "key"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gateway\": \"PAYSTACK\",\n  \"environment\": \"SANDBOX\",\n  \"keyName\": \"secret\",\n  \"value\": \"sk_test_xxx\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Set Webhook",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/admin/payment-gateways/webhook", "host": ["{{baseUrl}}"], "path": ["admin", "payment-gateways", "webhook"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gateway\": \"PAYSTACK\",\n  \"environment\": \"SANDBOX\",\n  \"url\": \"https://example.com/webhook\",\n  \"secret\": \"optional\",\n  \"enabled\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Test Webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/admin/payment-gateways/webhook/test", "host": ["{{baseUrl}}"], "path": ["admin", "payment-gateways", "webhook", "test"] },
+            "body": { "mode": "raw", "raw": "{\n  \"gateway\": \"PAYSTACK\",\n  \"environment\": \"SANDBOX\"\n}" }
+          }
+        },
+        {
+          "name": "List Transactions",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/admin/transactions?limit=100",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "transactions"],
+              "query": [{ "key": "limit", "value": "100" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Plans",
+      "item": [
+        {
+          "name": "List Plans",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/plans", "host": ["{{baseUrl}}"], "path": ["admin", "plans"] }
+          }
+        },
+        {
+          "name": "Create Plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/admin/plans", "host": ["{{baseUrl}}"], "path": ["admin", "plans"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"starter\",\n  \"name\": \"Starter\",\n  \"description\": \"Basic plan\",\n  \"config\": {\n    \"billing\": {\"currency\": \"NGN\", \"monthlyKobo\": 1500000, \"annualKobo\": 15000000, \"setupFeeKobo\": 0},\n    \"trialDays\": 14,\n    \"features\": [\"Reports\"],\n    \"limits\": {\"students\": 300, \"staff\": 20, \"storageMb\": 1024, \"smsCredits\": 200},\n    \"proration\": {\"mode\": \"NONE\"}\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Schools",
+      "item": [
+        {
+          "name": "Create School",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/admin/schools/create", "host": ["{{baseUrl}}"], "path": ["admin", "schools", "create"] },
+            "body": { "mode": "raw", "raw": "{\n  \"schoolName\": \"Harmony College\",\n  \"email\": \"admin@harmony.edu.ng\",\n  \"phone\": \"+2348012345678\",\n  \"plan\": \"PRO\",\n  \"address\": \"Lagos\",\n  \"subdomain\": \"harmony\",\n  \"logoUrl\": \"\"\n}" }
+          }
+        },
+        {
+          "name": "Import Schools CSV",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/admin/schools/import-csv", "host": ["{{baseUrl}}"], "path": ["admin", "schools", "import-csv"] },
+            "body": { "mode": "raw", "raw": "{\n  \"csv\": \"Harmony College, admin@harmony.edu.ng, PRO, +2348012345678, Lagos\"\n}" }
+          }
+        }
+      ]
+    }
+  ]
+}
+

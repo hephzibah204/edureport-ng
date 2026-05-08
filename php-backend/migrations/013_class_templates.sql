@@ -1,0 +1,2 @@
+ALTER TABLE schools
+  ADD COLUMN class_templates VARCHAR(2000) NOT NULL DEFAULT '{}';

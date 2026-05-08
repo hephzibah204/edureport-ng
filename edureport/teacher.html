@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher — EduReport NG</title>
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    body { display: flex; flex-direction: column; }
+    .topbar { background: var(--green3); height: 58px; display:flex; align-items:center; justify-content:space-between; padding:0 1.4rem; position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 16px rgba(0,0,0,0.22); }
+    .tb-brand { font-family: var(--font-display); font-size: 1.3rem; font-weight: 900; color: var(--gold2); letter-spacing: -0.02em; }
+    .tb-brand span { color: rgba(255,255,255,0.65); font-weight: 400; font-size: 1rem; }
+    .tb-right { display:flex; align-items:center; gap: 10px; }
+    .tb-chip { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); font-size: 0.8rem; font-weight: 500; padding: 5px 13px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.18); max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tb-btn { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.18); padding: 5px 13px; border-radius: 7px; font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+    .tb-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+
+    .app-body { display:flex; flex: 1; overflow: hidden; height: calc(100vh - 58px); }
+    .sidebar { width: 230px; background: var(--white); border-right: 1px solid var(--border); display:flex; flex-direction:column; flex-shrink: 0; overflow-y:auto; }
+    .sb-section { padding: 1.1rem 0.7rem 0.4rem; }
+    .sb-lbl { font-size: 0.66rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.13em; color: var(--muted); padding: 0 0.6rem; margin-bottom: 0.4rem; }
+    .nav-item { display:flex; align-items:center; gap: 9px; padding: 9px 11px; border-radius: 8px; font-size: 0.84rem; font-weight: 500; color: var(--ink2); cursor:pointer; border:none; background:none; width: 100%; text-align:left; transition: all 0.14s; }
+    .nav-item:hover { background: var(--panel); color: var(--ink); }
+    .nav-item.active { background: var(--green); color: #fff; font-weight: 600; }
+    .nav-item .ni { font-size: 0.95rem; width: 18px; text-align: center; }
+    .sb-divider { height: 1px; background: var(--border); margin: 0.5rem 0.8rem; }
+    .sb-footer { margin-top: auto; padding: 1rem 0.8rem; border-top: 1px solid var(--border); }
+    .hint { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; font-size: 0.78rem; color: var(--muted); }
+
+    .main { flex: 1; overflow-y: auto; padding: 1.6rem; }
+    .page { display:none; }
+    .page.active { display:block; }
+    .pg-hdr { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 1rem; }
+    .pg-title { font-family: var(--font-display); font-size: 1.55rem; font-weight: 900; color: var(--ink); line-height: 1.15; }
+    .pg-title small { display:block; font-family: var(--font); font-size: 0.78rem; font-weight: 400; color: var(--muted); margin-top: 3px; }
+
+    .kpi { display:grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-bottom: 1.2rem; }
+    .kpi .stat-card { margin: 0; }
+
+    .att-toolbar { display:flex; gap: 8px; flex-wrap: wrap; align-items:center; }
+    .att-toolbar input, .att-toolbar select { padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 9px; font-family: var(--font); outline: none; }
+    .badge { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; font-size:0.74rem; font-weight:800; letter-spacing:0.02em; }
+    .badge.draft { background: rgba(200,144,42,0.12); color: var(--gold); border: 1px solid rgba(200,144,42,0.18); }
+    .badge.submitted { background: var(--green4); color: var(--green); border: 1px solid rgba(26,107,60,0.18); }
+    .roster { width: 100%; border-collapse: collapse; }
+    .roster th { position: sticky; top: 0; background: var(--panel); text-align:left; padding: 10px 12px; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+    .roster td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 0.86rem; }
+    .seg { display:inline-flex; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .seg button { border: none; background: #fff; padding: 7px 10px; font-weight: 800; font-size: 0.74rem; cursor: pointer; color: var(--muted); }
+    .seg button.active { background: var(--green); color: #fff; }
+    .seg button.warn.active { background: var(--gold); }
+    .seg button.danger.active { background: var(--red); }
+    .muted { color: var(--muted); }
+    .two { display:grid; grid-template-columns: 1.2fr 0.8fr; gap: 1rem; }
+
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display:none; align-items:center; justify-content:center; z-index: 999; padding: 16px; }
+    .overlay.open { display:flex; }
+    .modal { background: #fff; border-radius: 14px; width: 920px; max-width: 100%; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 20px 80px rgba(0,0,0,0.25); overflow:hidden; }
+    .modal .hdr { display:flex; align-items:flex-start; justify-content:space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--border); background: var(--panel); }
+    .modal .hdr strong { font-family: var(--font-display); font-size: 1.1rem; }
+    .modal .body { padding: 14px 16px; }
+    .modal .footer { padding: 14px 16px; border-top: 1px solid var(--border); display:flex; justify-content:flex-end; gap: 8px; }
+    .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .field label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 800; color: var(--muted); }
+    .field .val { font-weight: 700; padding-top: 4px; }
+    @media (max-width: 980px) { .kpi { grid-template-columns: repeat(2,1fr); } .two { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="tb-brand">EduReport<span> Teacher</span></div>
+    <div class="tb-right">
+      <div class="tb-chip" id="tb-school">Loading…</div>
+      <button class="tb-btn" onclick="window.location.href='index.html'">🏠 Home</button>
+      <button class="tb-btn" onclick="Auth.logout('login.html')">Sign Out</button>
+    </div>
+  </div>
+
+  <div class="app-body">
+    <div class="sidebar">
+      <div class="sb-section">
+        <div class="sb-lbl">Teacher</div>
+        <button class="nav-item active" onclick="showPage('pg-dashboard')"><span class="ni">📊</span> Dashboard</button>
+        <button class="nav-item" onclick="showPage('pg-attendance')"><span class="ni">🗓️</span> Attendance</button>
+      </div>
+      <div class="sb-divider"></div>
+      <div class="sb-section">
+        <div class="sb-lbl">My Classes</div>
+        <div id="sb-classes"><div style="padding:0 0.6rem;font-size:0.8rem;color:var(--muted);">Loading…</div></div>
+      </div>
+      <div class="sb-footer">
+        <div class="hint">Use Attendance to mark presence. Submitted sessions are locked.</div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="page active" id="pg-dashboard">
+        <div class="pg-hdr">
+          <div class="pg-title">Dashboard<small id="dash-sub">Loading…</small></div>
+          <div class="att-toolbar">
+            <button class="btn btn-ghost btn-sm" onclick="refreshAll()">↻ Refresh</button>
+            <button class="btn btn-primary btn-sm" onclick="showPage('pg-attendance')">Take Attendance</button>
+          </div>
+        </div>
+        <div class="kpi">
+          <div class="stat-card"><div class="stat-lbl">My Classes</div><div class="stat-val" id="kpi-classes">—</div><div class="stat-sub">assigned</div></div>
+          <div class="stat-card"><div class="stat-lbl">Today</div><div class="stat-val" id="kpi-today">—</div><div class="stat-sub">date</div></div>
+          <div class="stat-card"><div class="stat-lbl">Attendance Done</div><div class="stat-val" id="kpi-done">—</div><div class="stat-sub">today</div></div>
+          <div class="stat-card"><div class="stat-lbl">Pending</div><div class="stat-val" id="kpi-pending">—</div><div class="stat-sub">today</div></div>
+        </div>
+        <div class="tbl-wrap">
+          <div class="tbl-toolbar"><strong style="font-size:0.88rem;">Today’s Classes</strong><span class="muted" id="today-note"></span></div>
+          <table>
+            <thead><tr><th>Class</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="dash-classes"><tr class="empty-row"><td colspan="3">No classes assigned.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="page" id="pg-attendance">
+        <div class="pg-hdr">
+          <div class="pg-title">Attendance<small>Mark daily attendance per class</small></div>
+          <div class="att-toolbar">
+            <select id="att-class" onchange="loadAttendance()"></select>
+            <input id="att-date" type="date" onchange="loadAttendance()" />
+            <span id="att-status" class="badge draft">DRAFT</span>
+            <span class="muted" id="att-last"></span>
+            <button class="btn btn-outline btn-sm" onclick="markAll('PRESENT')">Mark all present</button>
+            <button class="btn btn-outline btn-sm" onclick="saveAttendance()" id="btn-save">Save draft</button>
+            <button class="btn btn-primary btn-sm" onclick="submitAttendance()" id="btn-submit">Submit</button>
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="tbl-wrap" style="max-height: calc(100vh - 220px); overflow:auto;">
+            <table class="roster">
+              <thead><tr><th style="width:40%">Student</th><th style="width:30%">Mark</th><th>Note</th></tr></thead>
+              <tbody id="att-tbody"><tr class="empty-row"><td colspan="3">Select a class.</td></tr></tbody>
+            </table>
+          </div>
+          <div>
+            <div class="card" style="margin-bottom: 1rem;">
+              <div class="card-title">Quick Summary</div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+                <div class="stat-card" style="margin:0;"><div class="stat-lbl">Present</div><div class="stat-val" id="sum-present">0</div></div>
+                <div class="stat-card" style="margin:0;"><div class="stat-lbl">Late</div><div class="stat-val" id="sum-late">0</div></div>
+                <div class="stat-card" style="margin:0;"><div class="stat-lbl">Absent</div><div class="stat-val" id="sum-absent">0</div></div>
+              </div>
+              <div style="margin-top:10px;font-size:0.82rem;color:var(--muted);">Saved drafts auto-update “Last saved”. Submitted sessions lock edits.</div>
+            </div>
+            <div class="card">
+              <div class="card-title">History</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+                <input id="his-from" type="date" style="padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--font);outline:none;" />
+                <input id="his-to" type="date" style="padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--font);outline:none;" />
+                <button class="btn btn-ghost btn-sm" onclick="loadHistory()">Load</button>
+              </div>
+              <div id="his-list" style="max-height: 320px; overflow:auto;"><div style="font-size:0.82rem;color:var(--muted);">Pick a class and load history.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="modal-student">
+    <div class="modal">
+      <div class="hdr"><div><strong id="m-title">Student</strong><div class="muted" id="m-sub"></div></div><button class="btn btn-ghost btn-sm" onclick="closeStudent()">✕</button></div>
+      <div class="body">
+        <div class="grid2" id="m-body"></div>
+      </div>
+      <div class="footer"><button class="btn btn-ghost" onclick="closeStudent()">Close</button></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    const SESSION = Auth.requireAuth('teacher');
+    if (!SESSION) throw new Error('Not authenticated');
+
+    let schoolName = SESSION.schoolName || SESSION.email;
+    document.getElementById('tb-school').textContent = schoolName;
+
+    const state = {
+      classes: [],
+      currentClass: '',
+      date: '',
+      roster: [],
+      marks: {},
+      sessionId: null,
+      sessionStatus: 'DRAFT',
+      saving: false,
+      autosaveTimer: null
+    };
+
+    function escapeHtml(v) {
+      return String(v ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      const map = { 'pg-dashboard': 0, 'pg-attendance': 1 };
+      const nav = document.querySelectorAll('.nav-item');
+      if (nav[map[id]]) nav[map[id]].classList.add('active');
+      if (id === 'pg-dashboard') renderDashboard();
+    }
+
+    function setBadge(status) {
+      const el = document.getElementById('att-status');
+      if (!el) return;
+      const s = String(status || 'DRAFT').toUpperCase();
+      el.textContent = s;
+      el.className = 'badge ' + (s === 'SUBMITTED' ? 'submitted' : 'draft');
+    }
+
+    function todayISO() {
+      const d = new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth()+1).padStart(2,'0');
+      const day = String(d.getDate()).padStart(2,'0');
+      return `${y}-${m}-${day}`;
+    }
+
+    async function refreshAll() {
+      await loadClasses();
+      await renderDashboard();
+      if (document.getElementById('pg-attendance').classList.contains('active')) {
+        await loadAttendance();
+      }
+    }
+
+    async function loadClasses() {
+      const out = await apiFetch('/teacher/api/classes', { method: 'GET' });
+      state.classes = Array.isArray(out?.classes) ? out.classes.map(c => String(c.name || '')).filter(Boolean) : [];
+      renderSidebarClasses();
+      renderClassSelect();
+      document.getElementById('kpi-classes').textContent = String(state.classes.length);
+      document.getElementById('kpi-today').textContent = todayISO();
+      document.getElementById('dash-sub').textContent = `${schoolName} · ${SESSION.email}`;
+      document.getElementById('today-note').textContent = `Date: ${todayISO()}`;
+    }
+
+    function renderSidebarClasses() {
+      const el = document.getElementById('sb-classes');
+      if (!el) return;
+      if (!state.classes.length) {
+        el.innerHTML = '<div style="padding:0 0.6rem;font-size:0.8rem;color:var(--muted);">No classes assigned.</div>';
+        return;
+      }
+      el.innerHTML = state.classes.map(c => `
+        <button class="nav-item" style="margin:4px 0;" onclick="quickClass('${escapeHtml(c)}')"><span class="ni">🏷️</span> ${escapeHtml(c)}</button>
+      `).join('');
+    }
+
+    function renderClassSelect() {
+      const el = document.getElementById('att-class');
+      if (!el) return;
+      const cur = state.currentClass;
+      el.innerHTML = state.classes.length
+        ? '<option value="">Select class…</option>' + state.classes.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('')
+        : '<option value="">No classes</option>';
+      if (cur) el.value = cur;
+    }
+
+    function quickClass(c) {
+      showPage('pg-attendance');
+      state.currentClass = c;
+      const sel = document.getElementById('att-class');
+      if (sel) sel.value = c;
+      loadAttendance();
+    }
+
+    async function renderDashboard() {
+      const el = document.getElementById('dash-classes');
+      if (!el) return;
+      if (!state.classes.length) {
+        el.innerHTML = '<tr class="empty-row"><td colspan="3">No classes assigned.</td></tr>';
+        document.getElementById('kpi-done').textContent = '0';
+        document.getElementById('kpi-pending').textContent = '0';
+        return;
+      }
+      const date = todayISO();
+      const checks = await Promise.all(state.classes.map(async (c) => {
+        try {
+          const out = await apiFetch(`/teacher/api/attendance/session?className=${encodeURIComponent(c)}&date=${encodeURIComponent(date)}`, { method: 'GET' });
+          const st = out?.session?.status || null;
+          return { className: c, status: st || '—', sessionId: out?.session?.id || null };
+        } catch {
+          return { className: c, status: '—', sessionId: null };
+        }
+      }));
+      const done = checks.filter(x => String(x.status).toUpperCase() === 'SUBMITTED').length;
+      document.getElementById('kpi-done').textContent = String(done);
+      document.getElementById('kpi-pending').textContent = String(Math.max(0, state.classes.length - done));
+      el.innerHTML = checks.map(x => {
+        const st = String(x.status || 'DRAFT').toUpperCase();
+        const badge = st === 'SUBMITTED' ? '<span class="badge submitted">SUBMITTED</span>' : (st === 'DRAFT' ? '<span class="badge draft">DRAFT</span>' : '<span class="muted">—</span>');
+        return `<tr>
+          <td><strong>${escapeHtml(x.className)}</strong></td>
+          <td>${badge}</td>
+          <td><button class="btn btn-primary btn-sm" onclick="quickClass('${escapeHtml(x.className)}')">Open</button></td>
+        </tr>`;
+      }).join('');
+    }
+
+    async function loadAttendance() {
+      const cls = (document.getElementById('att-class')?.value || '').trim();
+      if (!cls) {
+        state.currentClass = '';
+        document.getElementById('att-tbody').innerHTML = '<tr class="empty-row"><td colspan="3">Select a class.</td></tr>';
+        setBadge('DRAFT');
+        return;
+      }
+      state.currentClass = cls;
+      const dt = document.getElementById('att-date');
+      if (!dt.value) dt.value = todayISO();
+      state.date = dt.value;
+      document.getElementById('att-last').textContent = '';
+      setBadge('DRAFT');
+      const studentsOut = await apiFetch(`/teacher/api/students?className=${encodeURIComponent(cls)}`, { method: 'GET' });
+      state.roster = Array.isArray(studentsOut?.students) ? studentsOut.students : [];
+      state.marks = {};
+      state.sessionId = null;
+      state.sessionStatus = 'DRAFT';
+
+      try {
+        const sessOut = await apiFetch(`/teacher/api/attendance/session?className=${encodeURIComponent(cls)}&date=${encodeURIComponent(state.date)}`, { method: 'GET' });
+        state.sessionId = sessOut?.session?.id || null;
+        state.sessionStatus = sessOut?.session?.status || 'DRAFT';
+        const marksArr = Array.isArray(sessOut?.marks) ? sessOut.marks : [];
+        marksArr.forEach(m => { state.marks[String(m.studentId)] = { mark: String(m.mark||''), note: String(m.note||'') }; });
+        if (sessOut?.session?.updatedAt) {
+          document.getElementById('att-last').textContent = `Last saved: ${String(sessOut.session.updatedAt)}`;
+        }
+      } catch {
+      }
+
+      setBadge(state.sessionStatus);
+      renderRoster();
+      updateSummary();
+      loadHistory();
+      const disable = String(state.sessionStatus).toUpperCase() === 'SUBMITTED';
+      document.getElementById('btn-save').disabled = disable;
+      document.getElementById('btn-submit').disabled = disable;
+    }
+
+    function renderRoster() {
+      const el = document.getElementById('att-tbody');
+      if (!el) return;
+      if (!state.roster.length) {
+        el.innerHTML = '<tr class="empty-row"><td colspan="3">No students in this class.</td></tr>';
+        return;
+      }
+      el.innerHTML = state.roster.map(s => {
+        const id = String(s.id);
+        const cur = state.marks[id]?.mark || '';
+        const note = state.marks[id]?.note || '';
+        const btn = (label, value, cls) => `<button class="${cls} ${String(cur).toUpperCase()===value?'active':''}" onclick="setMark('${escapeHtml(id)}','${value}')">${label}</button>`;
+        return `<tr>
+          <td><button class="btn btn-ghost btn-sm" onclick="openStudent('${escapeHtml(id)}')">${escapeHtml(s.name)} <span class="muted" style="font-weight:600;">· ${escapeHtml(s.admNo||'')} </span></button></td>
+          <td>
+            <div class="seg">
+              ${btn('Present','PRESENT','')}
+              ${btn('Late','LATE','warn')}
+              ${btn('Absent','ABSENT','danger')}
+            </div>
+          </td>
+          <td><input value="${escapeHtml(note)}" placeholder="optional" style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--font);outline:none;" oninput="setNote('${escapeHtml(id)}', this.value)" ${String(state.sessionStatus).toUpperCase()==='SUBMITTED'?'disabled':''}></td>
+        </tr>`;
+      }).join('');
+    }
+
+    function setMark(studentId, mark) {
+      const st = String(state.sessionStatus).toUpperCase();
+      if (st === 'SUBMITTED') return;
+      state.marks[studentId] = state.marks[studentId] || { mark: '', note: '' };
+      state.marks[studentId].mark = mark;
+      renderRoster();
+      updateSummary();
+      queueAutosave();
+    }
+
+    function setNote(studentId, note) {
+      const st = String(state.sessionStatus).toUpperCase();
+      if (st === 'SUBMITTED') return;
+      state.marks[studentId] = state.marks[studentId] || { mark: '', note: '' };
+      state.marks[studentId].note = String(note || '');
+      queueAutosave();
+    }
+
+    function markAll(mark) {
+      const st = String(state.sessionStatus).toUpperCase();
+      if (st === 'SUBMITTED') return;
+      state.roster.forEach(s => {
+        const id = String(s.id);
+        state.marks[id] = state.marks[id] || { mark: '', note: '' };
+        state.marks[id].mark = mark;
+      });
+      renderRoster();
+      updateSummary();
+      queueAutosave();
+    }
+
+    function queueAutosave() {
+      clearTimeout(state.autosaveTimer);
+      state.autosaveTimer = setTimeout(() => saveAttendance(true), 700);
+    }
+
+    function buildMarksPayload() {
+      const arr = [];
+      Object.keys(state.marks).forEach(studentId => {
+        const m = state.marks[studentId];
+        if (!m || !m.mark) return;
+        arr.push({ studentId, mark: String(m.mark).toUpperCase(), note: String(m.note || '') });
+      });
+      return arr;
+    }
+
+    async function saveAttendance(silent) {
+      const st = String(state.sessionStatus).toUpperCase();
+      if (st === 'SUBMITTED') return;
+      const cls = state.currentClass;
+      const date = document.getElementById('att-date')?.value || todayISO();
+      if (!cls) return;
+      const btn = document.getElementById('btn-save');
+      const prev = btn?.textContent;
+      if (btn && !silent) { btn.disabled = true; btn.textContent = 'Saving…'; }
+      try {
+        await apiFetch('/teacher/api/attendance/session', { method: 'PUT', body: JSON.stringify({ className: cls, date, marks: buildMarksPayload() }) });
+        if (!silent) showToast('Saved.', 'ok');
+        document.getElementById('att-last').textContent = `Last saved: ${new Date().toISOString().slice(0,19).replace('T',' ')}`;
+      } catch (e) {
+        if (!silent) showToast(e?.message || 'Save failed', 'err');
+      } finally {
+        if (btn && !silent) { btn.disabled = false; btn.textContent = prev; }
+      }
+    }
+
+    async function submitAttendance() {
+      const st = String(state.sessionStatus).toUpperCase();
+      if (st === 'SUBMITTED') return;
+      if (!confirm('Submit attendance? You will not be able to edit afterwards.')) return;
+      await saveAttendance(true);
+      try {
+        const cls = state.currentClass;
+        const date = document.getElementById('att-date')?.value || todayISO();
+        const out = await apiFetch(`/teacher/api/attendance/session?className=${encodeURIComponent(cls)}&date=${encodeURIComponent(date)}`, { method: 'GET' });
+        const sid = out?.session?.id;
+        if (!sid) throw new Error('Missing attendance session');
+        await apiFetch(`/teacher/api/attendance/submit/${encodeURIComponent(sid)}`, { method: 'POST' });
+        showToast('Submitted.', 'ok');
+        state.sessionStatus = 'SUBMITTED';
+        setBadge('SUBMITTED');
+        document.getElementById('btn-save').disabled = true;
+        document.getElementById('btn-submit').disabled = true;
+        await renderDashboard();
+        await loadHistory();
+      } catch (e) {
+        showToast(e?.message || 'Submit failed', 'err');
+      }
+    }
+
+    function updateSummary() {
+      let p = 0, a = 0, l = 0;
+      Object.values(state.marks).forEach(v => {
+        const mk = String(v?.mark || '').toUpperCase();
+        if (mk === 'PRESENT') p += 1;
+        if (mk === 'ABSENT') a += 1;
+        if (mk === 'LATE') l += 1;
+      });
+      document.getElementById('sum-present').textContent = String(p);
+      document.getElementById('sum-absent').textContent = String(a);
+      document.getElementById('sum-late').textContent = String(l);
+    }
+
+    async function loadHistory() {
+      const cls = state.currentClass;
+      if (!cls) return;
+      const fromEl = document.getElementById('his-from');
+      const toEl = document.getElementById('his-to');
+      if (!toEl.value) toEl.value = todayISO();
+      if (!fromEl.value) {
+        const d = new Date();
+        d.setDate(d.getDate() - 14);
+        fromEl.value = d.toISOString().slice(0,10);
+      }
+      const out = await apiFetch(`/teacher/api/attendance/history?className=${encodeURIComponent(cls)}&from=${encodeURIComponent(fromEl.value)}&to=${encodeURIComponent(toEl.value)}`, { method: 'GET' });
+      const list = Array.isArray(out?.sessions) ? out.sessions : [];
+      const el = document.getElementById('his-list');
+      if (!list.length) {
+        el.innerHTML = '<div style="font-size:0.82rem;color:var(--muted);">No attendance sessions in range.</div>';
+        return;
+      }
+      el.innerHTML = list.map(s => {
+        const st = String(s.status || '').toUpperCase();
+        const badge = st === 'SUBMITTED' ? '<span class="badge submitted">SUBMITTED</span>' : '<span class="badge draft">DRAFT</span>';
+        return `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;margin-bottom:8px;">
+          <div><strong>${escapeHtml(String(s.date||''))}</strong><div class="muted" style="font-size:0.78rem;">${escapeHtml(cls)}</div></div>
+          <div style="display:flex;gap:8px;align-items:center;">${badge}<button class="btn btn-ghost btn-sm" onclick="openHistoryDay('${escapeHtml(String(s.date||''))}')">Open</button></div>
+        </div>`;
+      }).join('');
+    }
+
+    function openHistoryDay(date) {
+      const dt = document.getElementById('att-date');
+      if (dt) dt.value = date;
+      loadAttendance();
+    }
+
+    async function openStudent(studentId) {
+      try {
+        const out = await apiFetch(`/teacher/api/student/${encodeURIComponent(studentId)}`, { method: 'GET' });
+        const s = out?.student;
+        if (!s) throw new Error('Not found');
+        document.getElementById('m-title').textContent = s.name || 'Student';
+        document.getElementById('m-sub').textContent = `${s.admNo || ''} · ${s.cls || ''}`;
+        const fields = [
+          ['Gender', s.gender],
+          ['Date of Birth', s.dob],
+          ['House', s.house],
+          ['Address', s.address],
+          ['Guardian', s.guardianName],
+          ['Guardian Phone', s.guardianPhone],
+          ['Guardian Email', s.guardianEmail],
+          ['Emergency Contact', s.emergencyName],
+          ['Emergency Phone', s.emergencyPhone]
+        ];
+        document.getElementById('m-body').innerHTML = fields.map(([k,v]) => `
+          <div class="field"><label>${escapeHtml(k)}</label><div class="val">${escapeHtml(v || 'Not provided')}</div></div>
+        `).join('');
+        document.getElementById('modal-student').classList.add('open');
+      } catch (e) {
+        showToast(e?.message || 'Failed to load student', 'err');
+      }
+    }
+
+    function closeStudent() {
+      document.getElementById('modal-student').classList.remove('open');
+    }
+
+    (async function init() {
+      try {
+        const me = await apiFetch('/me', { method: 'GET' });
+        if (me?.school?.name) schoolName = me.school.name;
+        document.getElementById('tb-school').textContent = schoolName;
+      } catch {}
+      document.getElementById('att-date').value = todayISO();
+      await loadClasses();
+      await renderDashboard();
+    })().catch(e => showToast(e?.message || 'Init failed', 'err'));
+  </script>
+</body>
+</html>

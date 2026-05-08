@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Exam Maker — EduReport NG</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+body { background: var(--bg); display: flex; height: 100vh; overflow: hidden; }
+.topbar { position: fixed; top: 0; left: 0; width: 100%; height: var(--topbar-h); background: var(--white); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 2rem; z-index: 100; justify-content: space-between; }
+.tb-brand { font-family: var(--font-display); font-size: 1.3rem; font-weight: 900; color: var(--green); letter-spacing: -0.02em; }
+.tb-brand span { font-style: normal; color: var(--gold); }
+.tb-right { display: flex; align-items: center; gap: 1rem; }
+.tb-school { font-size: 0.88rem; font-weight: 600; color: var(--ink); background: var(--bg); padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); }
+
+.app-body { display: flex; margin-top: var(--topbar-h); width: 100%; height: calc(100vh - var(--topbar-h)); }
+.sidebar { width: var(--sidebar-w); background: var(--white); border-right: 1px solid var(--border); flex-shrink: 0; display: flex; flex-direction: column; overflow-y: auto; padding: 1.5rem 1rem; }
+.nav-item { width: 100%; text-align: left; background: none; border: none; padding: 10px 14px; border-radius: 10px; font-size: 0.88rem; font-weight: 600; color: var(--muted); cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s; margin-bottom: 4px; }
+.nav-item:hover { background: var(--bg); color: var(--ink); }
+.nav-item.active { background: var(--green4); color: var(--green); }
+
+.main { flex: 1; overflow-y: auto; padding: 2rem; position: relative; }
+
+.grid-2 { display: grid; grid-template-columns: 350px 1fr; gap: 2rem; height: 100%; }
+.col-left { display: flex; flex-direction: column; gap: 1.5rem; }
+.col-right { background: var(--white); border: 1px solid var(--border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; }
+
+.card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+.card-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 1.2rem; }
+
+.exam-paper { flex: 1; overflow-y: auto; padding: 3rem; background: #fff; color: #000; font-family: 'Times New Roman', serif; }
+.exam-header { text-align: center; margin-bottom: 2rem; border-bottom: 2px solid #000; padding-bottom: 1rem; }
+.exam-school { font-size: 1.5rem; font-weight: bold; text-transform: uppercase; }
+.exam-meta { font-size: 1.1rem; margin-top: 0.5rem; }
+.q-block { margin-bottom: 1.5rem; }
+.q-text { font-weight: bold; font-size: 1.1rem; margin-bottom: 0.5rem; }
+.q-options { list-style: upper-alpha; padding-left: 1.5rem; }
+.q-options li { margin-bottom: 0.3rem; }
+
+.exam-toolbar { padding: 1rem; border-bottom: 1px solid var(--border); background: var(--bg); display: flex; justify-content: space-between; align-items: center; }
+
+@media print {
+  .no-print, .topbar, .sidebar, .col-left, .exam-toolbar { display: none !important; }
+  .main, .grid-2, .col-right { padding: 0 !important; margin: 0 !important; border: none !important; display: block !important; height: auto !important; overflow: visible !important; }
+  .exam-paper { padding: 0 !important; overflow: visible !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar no-print">
+  <div class="tb-brand">EduReport<span> NG</span></div>
+  <div class="tb-right">
+    <div class="tb-school" id="tb-school">Loading…</div>
+    <button class="btn btn-ghost btn-sm" onclick="window.location.href='app.html'">🏠 App</button>
+  </div>
+</div>
+
+<div class="app-body">
+  <div class="sidebar no-print">
+    <button class="nav-item" onclick="window.location.href='app.html'"><span class="ni">🔙</span> Back to App</button>
+    <button class="nav-item active"><span class="ni">📝</span> Generate Exam</button>
+  </div>
+
+  <div class="main">
+    <div class="grid-2">
+      <div class="col-left no-print">
+        <div class="card">
+          <div class="card-title">🤖 AI Exam Generator</div>
+          <div class="field">
+            <label>Subject</label>
+            <input type="text" id="ex-subj" placeholder="e.g. Basic Science">
+          </div>
+          <div class="field">
+            <label>Class Level</label>
+            <input type="text" id="ex-class" placeholder="e.g. JSS 3">
+          </div>
+          <div class="field">
+            <label>Topic / Notes</label>
+            <textarea id="ex-topic" rows="5" placeholder="Paste lesson notes or topic outline here..."></textarea>
+          </div>
+          <div class="field">
+            <label>Number of Questions</label>
+            <input type="number" id="ex-count" value="10" min="1" max="50">
+          </div>
+          <button class="btn btn-primary btn-full" id="btn-generate" onclick="generateExam()">✨ Generate Questions</button>
+          <div id="gen-msg" style="margin-top:10px;font-size:0.8rem;color:var(--muted);text-align:center;"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">📚 Previous Exams</div>
+          <div id="exam-list" style="max-height:200px;overflow-y:auto;font-size:0.85rem;">
+            Loading...
+          </div>
+        </div>
+      </div>
+
+      <div class="col-right">
+        <div class="exam-toolbar no-print">
+          <div style="font-weight:600;" id="paper-title">New Exam</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-outline btn-sm" onclick="toggleAnswers()" id="btn-ans">Show Answers</button>
+            <button class="btn btn-primary btn-sm" onclick="window.print()">🖨️ Print Exam</button>
+          </div>
+        </div>
+        <div class="exam-paper" id="paper-content">
+          <div style="text-align:center;padding:4rem;color:#aaa;font-family:var(--font);">
+            Fill the form on the left to generate a new exam, or select a previous one.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script>
+let schoolName = '';
+let currentExam = null;
+let showingAnswers = false;
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const s = Auth.requireAuth('school');
+  if (!s) return;
+  schoolName = s.schoolName || 'School';
+  document.getElementById('tb-school').textContent = schoolName;
+  loadExams();
+});
+
+async function loadExams() {
+  try {
+    const res = await apiFetch('/ai/exam', { method: 'GET' });
+    const list = document.getElementById('exam-list');
+    if (!res.exams || !res.exams.length) {
+      list.innerHTML = '<div style="color:var(--muted);">No exams generated yet.</div>';
+      return;
+    }
+    list.innerHTML = res.exams.map(e => `
+      <div style="padding:8px; border:1px solid var(--border); border-radius:6px; margin-bottom:6px; cursor:pointer;" onclick="viewExam('${e.id}')">
+        <div style="font-weight:600; color:var(--green);">${escapeHtml(e.subject)}</div>
+        <div style="color:var(--muted); font-size:0.75rem;">${escapeHtml(e.class_level)} • ${new Date(e.created_at).toLocaleDateString()}</div>
+      </div>
+    `).join('');
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+async function generateExam() {
+  const subj = document.getElementById('ex-subj').value.trim();
+  const cls = document.getElementById('ex-class').value.trim();
+  const topic = document.getElementById('ex-topic').value.trim();
+  const count = +document.getElementById('ex-count').value || 10;
+  
+  if(!subj || !cls || !topic) {
+    showToast('Please fill all fields', 'err'); return;
+  }
+  
+  const btn = document.getElementById('btn-generate');
+  const msg = document.getElementById('gen-msg');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Generating...';
+  msg.textContent = 'This may take up to 30 seconds...';
+  
+  try {
+    const res = await apiFetch('/ai/exam/generate', {
+      method: 'POST',
+      body: JSON.stringify({ subject: subj, classLevel: cls, topic: topic, questionCount: count })
+    });
+    showToast('Exam generated successfully!', 'ok');
+    currentExam = { subject: subj, classLevel: cls, questions: res.questions };
+    renderPaper();
+    loadExams();
+  } catch(e) {
+    showToast(e.message || 'Generation failed', 'err');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '✨ Generate Questions';
+    msg.textContent = '';
+  }
+}
+
+async function viewExam(id) {
+  try {
+    const res = await apiFetch('/ai/exam/' + id, { method: 'GET' });
+    currentExam = { subject: res.exam.subject, classLevel: res.exam.class_level, questions: res.exam.questions };
+    renderPaper();
+  } catch (e) {
+    showToast('Failed to load exam', 'err');
+  }
+}
+
+function toggleAnswers() {
+  showingAnswers = !showingAnswers;
+  document.getElementById('btn-ans').textContent = showingAnswers ? 'Hide Answers' : 'Show Answers';
+  renderPaper();
+}
+
+function renderPaper() {
+  if (!currentExam) return;
+  const c = document.getElementById('paper-content');
+  const letters = ['A','B','C','D','E'];
+  
+  let html = `
+    <div class="exam-header">
+      <div class="exam-school">${escapeHtml(schoolName)}</div>
+      <div class="exam-meta"><strong>Subject:</strong> ${escapeHtml(currentExam.subject)} &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Class:</strong> ${escapeHtml(currentExam.classLevel)}</div>
+      <div class="exam-meta"><strong>Time Allowed:</strong> 1 Hour &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Instructions:</strong> Answer all questions</div>
+    </div>
+  `;
+  
+  currentExam.questions.forEach((q, i) => {
+    html += `<div class="q-block">`;
+    html += `<div class="q-text">${i+1}. ${escapeHtml(q.question)}</div>`;
+    html += `<ol class="q-options">`;
+    q.options.forEach((opt, oi) => {
+      const isCorrect = showingAnswers && (oi === q.correctAnswer);
+      html += `<li style="${isCorrect ? 'font-weight:bold;color:green;' : ''}">${escapeHtml(opt)}</li>`;
+    });
+    html += `</ol>`;
+    if (showingAnswers && q.explanation) {
+      html += `<div style="font-size:0.9rem; color:#555; background:#f5f5f5; padding:8px; border-left:3px solid var(--green); margin-top:5px;"><strong>Explanation:</strong> ${escapeHtml(q.explanation)}</div>`;
+    }
+    html += `</div>`;
+  });
+  
+  c.innerHTML = html;
+  document.getElementById('paper-title').textContent = currentExam.subject + ' - ' + currentExam.classLevel;
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/[&<>'"]/g, tag => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+  }[tag]));
+}
+
+function showToast(msg, type = 'ok') {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.className = `show ${type}`;
+  clearTimeout(t._to);
+  t._to = setTimeout(() => t.classList.remove('show'), 3500);
+}
+</script>
+</body>
+</html>

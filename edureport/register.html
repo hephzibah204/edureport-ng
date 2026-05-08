@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register School — EduReport NG</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+body { display: flex; min-height: 100vh; }
+.auth-left {
+  width: 460px; flex-shrink: 0; background: var(--white);
+  padding: 3rem 2.5rem; display: flex; flex-direction: column;
+  justify-content: center; border-right: 1px solid var(--border);
+}
+.auth-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; color: var(--green); margin-bottom: 0.3rem; }
+.auth-logo em { font-style: normal; color: var(--gold); }
+.auth-tag { font-size: 0.78rem; color: var(--muted); margin-bottom: 2rem; }
+.auth-title { font-family: var(--font-display); font-size: 1.7rem; font-weight: 900; margin-bottom: 0.4rem; }
+.auth-sub { font-size: 0.85rem; color: var(--ink2); margin-bottom: 1.6rem; }
+.plan-pills { display: flex; gap: 8px; margin-bottom: 1.4rem; }
+.plan-pill { flex: 1; border: 2px solid var(--border); border-radius: 10px; padding: 10px 8px; text-align: center; cursor: pointer; transition: all 0.2s; }
+.plan-pill.selected { border-color: var(--green); background: var(--green4); }
+.plan-pill .pp-price { font-family: var(--font-display); font-size: 1.1rem; font-weight: 900; color: var(--green); }
+.plan-pill .pp-name { font-size: 0.7rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.plan-pill.selected .pp-name { color: var(--green); }
+.auth-footer { margin-top: 1.2rem; text-align: center; font-size: 0.82rem; color: var(--muted); }
+.auth-footer a { color: var(--green); font-weight: 600; text-decoration: none; }
+
+.auth-right {
+  flex: 1; background: linear-gradient(150deg, var(--green3) 0%, var(--green) 70%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 3rem; position: relative; overflow: hidden;
+}
+.auth-right::before { content:''; position:absolute; top:-30%; right:-10%; width:500px; height:500px; border-radius:50%; background:rgba(255,255,255,0.04); }
+.ar-inner { position: relative; z-index: 1; max-width: 400px; }
+.ar-title { font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 1rem; }
+.ar-title em { font-style: italic; color: var(--gold2); }
+.ar-steps { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+.ar-step { display: flex; align-items: flex-start; gap: 14px; }
+.step-n { width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: #fff; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-text { color: rgba(255,255,255,0.88); font-size: 0.87rem; line-height: 1.6; }
+.step-text strong { color: #fff; }
+.guarantee-box { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 12px; padding: 1rem 1.2rem; margin-top: 2rem; color: rgba(255,255,255,0.85); font-size: 0.83rem; line-height: 1.6; }
+.guarantee-box strong { color: var(--gold2); }
+
+@media (max-width: 768px) { .auth-right { display: none; } .auth-left { width: 100%; } }
+</style>
+</head>
+<body>
+
+<div class="auth-left">
+  <div class="auth-logo">EduReport<em>NG</em></div>
+  <div class="auth-tag">Nigerian School Report Card System</div>
+  <div class="auth-title">Register your school</div>
+  <div class="auth-sub">Get lifetime access in 2 minutes. No card required to start.</div>
+
+  <!-- Plan selector -->
+  <div class="plan-pills" style="grid-template-columns: 1fr 1fr 1fr 1fr; font-size: 0.9rem;">
+    <div class="plan-pill" id="pill-starter" onclick="selectPlan('starter')">
+      <div class="pp-price">₦15,000</div>
+      <div class="pp-name">Starter / Year</div>
+    </div>
+    <div class="plan-pill selected" id="pill-lifetime" onclick="selectPlan('lifetime')">
+      <div class="pp-price">₦25,000</div>
+      <div class="pp-name">⭐ Lifetime</div>
+    </div>
+    <div class="plan-pill" id="pill-pro" onclick="selectPlan('pro')">
+      <div class="pp-price">₦35,000</div>
+      <div class="pp-name">Pro + AI (Lifetime)</div>
+    </div>
+    <div class="plan-pill" id="pill-trial" onclick="selectPlan('trial')">
+      <div class="pp-price">Free</div>
+      <div class="pp-name">7-Day Trial</div>
+    </div>
+  </div>
+  <input type="hidden" id="selected-plan" value="lifetime">
+
+  <div id="reg-alert" class="alert alert-err"></div>
+  <div id="reg-ok" class="alert alert-ok"></div>
+
+  <div class="field">
+    <label>School Name *</label>
+    <input type="text" id="school-name" placeholder="e.g. Hephzibah College, Ijebu Igbo">
+  </div>
+  <div class="form-row">
+    <div class="field">
+      <label>Email Address *</label>
+      <input type="email" id="email" placeholder="admin@yourschool.com">
+    </div>
+    <div class="field">
+      <label>Phone Number</label>
+      <input type="tel" id="phone" placeholder="08012345678">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="field">
+      <label>Password *</label>
+      <input type="password" id="password" placeholder="Min 6 characters">
+    </div>
+    <div class="field">
+      <label>Confirm Password *</label>
+      <input type="password" id="confirm-password" placeholder="Repeat password">
+    </div>
+  </div>
+  <div class="field" id="payment-gateway-field" style="margin-top:0.5rem;">
+    <label>Payment Gateway</label>
+    <select id="payment-gateway">
+      <option value="PAYVESSEL">Payvessel</option>
+      <option value="PAYMENTPOINT">PaymentPoint</option>
+      <option value="PAYSTACK">Paystack</option>
+      <option value="FLUTTERWAVE">Flutterwave</option>
+      <option value="MONNIFY">Monnify</option>
+    </select>
+  </div>
+
+  <!-- Virtual Account Display Container -->
+  <div id="va-container" style="display:none; background:var(--green4); border:1px solid var(--green); border-radius:8px; padding:15px; margin-top:15px; text-align:center;">
+    <h4 style="margin:0 0 10px 0; color:var(--green);">Transfer to your Virtual Account</h4>
+    <div style="font-size:1.5rem; font-family:var(--font-display); font-weight:900; letter-spacing:2px;" id="va-number"></div>
+    <div style="font-weight:bold; margin-top:5px;" id="va-bank"></div>
+    <div style="font-size:0.85rem; color:var(--muted); margin-top:5px;" id="va-name"></div>
+    <div style="font-size:0.85rem; margin-top:10px;">Please transfer the exact amount. Account will be activated automatically.</div>
+    <button class="btn btn-outline" style="margin-top:10px; width:100%;" onclick="window.location.href='app.html'">I have transferred</button>
+  </div>
+
+  <button class="btn btn-primary btn-full btn-lg" onclick="handleRegister()" id="reg-btn" style="margin-top:0.8rem;">
+    Create School Account →
+  </button>
+
+  <div class="auth-footer" style="margin-top:1rem;">
+    Already have an account? <a href="login.html">Sign in here</a>
+  </div>
+  <div class="auth-footer" style="margin-top:0.4rem; font-size:0.75rem;">
+    By registering you agree to our Terms of Service. 7-day money-back guarantee.
+  </div>
+</div>
+
+<div class="auth-right">
+  <div class="ar-inner">
+    <h2 class="ar-title">You're 3 steps away from<br><em>professional</em> report cards.</h2>
+    <div class="ar-steps">
+      <div class="ar-step">
+        <div class="step-n">1</div>
+        <div class="step-text"><strong>Register</strong> — Create your school account in 2 minutes. Free to start.</div>
+      </div>
+      <div class="ar-step">
+        <div class="step-n">2</div>
+        <div class="step-text"><strong>Set up</strong> — Enter your school name, subjects, and grading scale. Takes 5 minutes.</div>
+      </div>
+      <div class="ar-step">
+        <div class="step-n">3</div>
+        <div class="step-text"><strong>Generate</strong> — Add students, enter scores, print professional report cards instantly.</div>
+      </div>
+    </div>
+    <div class="guarantee-box">
+      🛡️ <strong>7-day satisfaction guarantee.</strong> If EduReport NG doesn't work perfectly for your school, we'll refund you in full — no questions asked. WhatsApp us: <strong>08037000456</strong>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script src="https://unpkg.com/payvessel-checkout@latest/dist/index.umd.js"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+// Read plan from URL
+const urlPlan = new URLSearchParams(location.search).get('plan');
+if (urlPlan) selectPlan(urlPlan);
+
+function selectPlan(plan) {
+  document.getElementById('selected-plan').value = plan;
+  ['starter','lifetime','pro','trial'].forEach(p => document.getElementById('pill-'+p).classList.toggle('selected', p === plan));
+  
+  if (plan === 'trial') {
+      document.getElementById('payment-gateway-field').style.display = 'none';
+  } else {
+      document.getElementById('payment-gateway-field').style.display = 'block';
+  }
+}
+
+async function handleRegister() {
+  const schoolName = document.getElementById('school-name').value.trim();
+  const email      = document.getElementById('email').value.trim();
+  const password   = document.getElementById('password').value;
+  const confirm    = document.getElementById('confirm-password').value;
+  const plan       = document.getElementById('selected-plan').value;
+  const errEl      = document.getElementById('reg-alert');
+  const okEl       = document.getElementById('reg-ok');
+  const btn        = document.getElementById('reg-btn');
+
+  errEl.classList.remove('show'); okEl.classList.remove('show');
+
+  if (!schoolName) { errEl.textContent = 'Please enter your school name.'; errEl.classList.add('show'); return; }
+  if (!email)      { errEl.textContent = 'Please enter your email address.'; errEl.classList.add('show'); return; }
+  if (password !== confirm) { errEl.textContent = 'Passwords do not match.'; errEl.classList.add('show'); return; }
+
+  btn.innerHTML = '<span class="spinner"></span> Creating account…';
+  btn.disabled = true;
+
+  try {
+    await Auth.register({ schoolName, email, password, plan });
+    
+    // Now trigger payment initialization
+    try {
+      const gateway = document.getElementById('payment-gateway').value;
+      const init = await apiFetch("/payments/initialize", {
+        method: "POST",
+        body: JSON.stringify({ gateway, planSlug: plan, billingCycle: "MONTHLY" })
+      });
+      
+      if (init && init.amountKobo > 0) {
+        if (gateway === 'PAYVESSEL') {
+          const checkout = PayvesselCheckout.Checkout({ api_key: init.publicKey });
+          await checkout.initializeCheckout({
+            customer_email: email, customer_name: schoolName, amount: (init.amountKobo / 100).toString(), currency: init.currency, channels: ["BANK_TRANSFER", "CARD"],
+            onSuccess: () => {},
+            onSuccessfulOrder: () => window.location.href = 'app.html',
+            onError: () => { errEl.textContent = 'Payment failed'; errEl.classList.add('show'); },
+            onClose: () => window.location.href = 'app.html'
+          });
+          return;
+        } else if (gateway === 'PAYSTACK' && init.publicKey) {
+          const handler = PaystackPop.setup({
+            key: init.publicKey, email: email, amount: init.amountKobo, currency: init.currency, ref: init.reference,
+            callback: () => window.location.href = 'app.html',
+            onClose: () => window.location.href = 'app.html'
+          });
+          handler.openIframe();
+          return;
+        } else if (gateway === 'PAYMENTPOINT' && init.virtualAccount) {
+          document.getElementById('va-container').style.display = 'block';
+          document.getElementById('va-number').textContent = init.virtualAccount.accountNumber;
+          document.getElementById('va-bank').textContent = init.virtualAccount.bankName;
+          document.getElementById('va-name').textContent = init.virtualAccount.accountName;
+          document.getElementById('reg-btn').style.display = 'none';
+          document.getElementById('payment-gateway-field').style.display = 'none';
+          okEl.textContent = `✅ Account created! Please pay to activate.`;
+          okEl.classList.add('show');
+          return;
+        } else if (gateway === 'FLUTTERWAVE' || gateway === 'MONNIFY') {
+          // Typically these return a link to redirect to
+          if (init.checkoutUrl) window.location.href = init.checkoutUrl;
+          else window.location.href = 'app.html';
+          return;
+        }
+      }
+    } catch (payErr) {
+      console.error(payErr);
+      // Registration worked, but payment init failed. Let them into app to pay later.
+    }
+
+    okEl.textContent = `✅ Account created! Welcome to EduReport NG, ${schoolName}!`;
+    okEl.classList.add('show');
+    showToast('✅ Registration successful!', 'ok');
+    setTimeout(() => (window.location.href = 'app.html'), 1200);
+  } catch (e) {
+    errEl.textContent = e?.message || 'Registration failed.';
+    errEl.classList.add('show');
+    btn.innerHTML = 'Create School Account →';
+    btn.disabled = false;
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Enter') handleRegister(); });
+const session = Auth.getSession();
+if (session) window.location.href = session.role === 'ADMIN' ? 'admin.html' : 'app.html';
+</script>
+</body>
+</html>

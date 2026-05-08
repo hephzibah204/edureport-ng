@@ -1,0 +1,6 @@
+php-backend/.env
+php-backend/storage/*.sqlite
+php-backend/storage/*.sqlite-*
+php-backend/storage/ratelimit/
+php-backend/storage/reports/
+
