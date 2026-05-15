@@ -6,6 +6,8 @@ CREATE TABLE IF NOT EXISTS report_extras (
   term VARCHAR(50) NOT NULL,
   attendance JSON NOT NULL,
   traits JSON NOT NULL,
+  comments JSON NOT NULL,
+  promotion VARCHAR(200) NOT NULL DEFAULT '',
   created_at DATETIME NOT NULL,
   updated_at DATETIME NOT NULL,
   UNIQUE KEY uniq_school_student_term (school_id, student_id, session, term),

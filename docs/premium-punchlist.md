@@ -1,4 +1,4 @@
-# EduReport NG – Premium UX & Reliability Punchlist
+﻿# ReportSheet – Premium UX & Reliability Punchlist
 
 This is a practical punchlist focused on school owners: trust, speed, clarity, and “no surprises.”
 

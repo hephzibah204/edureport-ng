@@ -186,6 +186,8 @@ CREATE TABLE IF NOT EXISTS report_extras (
   term TEXT NOT NULL,
   attendance TEXT NOT NULL,
   traits TEXT NOT NULL,
+  comments TEXT NOT NULL DEFAULT '{}',
+  promotion TEXT NOT NULL DEFAULT '',
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL,
   UNIQUE (school_id, student_id, session, term),
@@ -491,3 +493,22 @@ CREATE INDEX IF NOT EXISTS idx_alert_events_created ON alert_events(created_at);
 CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
 CREATE INDEX IF NOT EXISTS idx_users_status ON users(status);
 CREATE INDEX IF NOT EXISTS idx_users_school_id ON users(school_id);
+
+ C R E A T E   T A B L E   I F   N O T   E X I S T S   j o b s   ( 
+     i d   T E X T   P R I M A R Y   K E Y , 
+     s c h o o l _ i d   T E X T   N O T   N U L L , 
+     u s e r _ i d   T E X T   N O T   N U L L , 
+     t y p e   T E X T   N O T   N U L L , 
+     p a y l o a d   T E X T   N O T   N U L L , 
+     s t a t u s   T E X T   N O T   N U L L   D E F A U L T   ' P E N D I N G ' , 
+     p r o g r e s s   I N T E G E R   N O T   N U L L   D E F A U L T   0 , 
+     r e s u l t _ u r l   T E X T   N U L L , 
+     e r r o r   T E X T   N U L L , 
+     c r e a t e d _ a t   T E X T   N O T   N U L L , 
+     u p d a t e d _ a t   T E X T   N O T   N U L L , 
+     F O R E I G N   K E Y   ( s c h o o l _ i d )   R E F E R E N C E S   s c h o o l s ( i d )   O N   D E L E T E   C A S C A D E 
+ ) ; 
+ 
+ C R E A T E   I N D E X   I F   N O T   E X I S T S   i d x _ j o b s _ s c h o o l   O N   j o b s ( s c h o o l _ i d ) ; 
+ C R E A T E   I N D E X   I F   N O T   E X I S T S   i d x _ j o b s _ s t a t u s   O N   j o b s ( s t a t u s ) ;  
+ 

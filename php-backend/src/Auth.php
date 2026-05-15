@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 final class Auth
 {
@@ -14,7 +14,7 @@ final class Auth
             $secure = true;
         }
         ini_set('session.cookie_secure', $secure ? '1' : '0');
-        $name = Config::env('SESSION_NAME', 'EDUREPORTSESSID');
+        $name = Config::env('SESSION_NAME', 'ReportSheetSESSID');
         if (is_string($name) && $name !== '') {
             session_name($name);
         }

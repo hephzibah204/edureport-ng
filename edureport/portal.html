@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Parent/Student — EduReport NG</title>
+  <title>Parent/Student — ReportSheet</title>
   <link rel="stylesheet" href="shared.css" />
   <style>
     body { display:flex; flex-direction: column; }
@@ -55,11 +55,11 @@
 </head>
 <body>
   <div class="topbar">
-    <div class="tb-brand">EduReport<span> Portal</span></div>
+    <div class="tb-brand">Report<span>Sheet Portal</span></div>
     <div class="tb-right">
       <div class="tb-chip" id="tb-school">Loading…</div>
-      <button class="tb-btn" onclick="window.location.href='index.html'">🏠 Home</button>
-      <button class="tb-btn" onclick="Auth.logout('login.html')">Sign Out</button>
+      <button class="tb-btn" onclick="window.location.href='index'">🏠 Home</button>
+      <button class="tb-btn" onclick="Auth.logout('login')">Sign Out</button>
     </div>
   </div>
 
@@ -70,6 +70,7 @@
         <button class="nav-item active" onclick="showPage('pg-dashboard')"><span class="ni">📊</span> Dashboard</button>
         <button class="nav-item" onclick="showPage('pg-attendance')"><span class="ni">🗓️</span> Attendance</button>
         <button class="nav-item" onclick="showPage('pg-profile')"><span class="ni">👤</span> Student Profile</button>
+        <button class="nav-item" onclick="showPage('pg-settings')"><span class="ni">⚙️</span> Settings</button>
       </div>
       <div class="sb-divider"></div>
       <div class="sb-section">
@@ -120,12 +121,47 @@
         <div class="pg-hdr">
           <div class="pg-title">Student Profile<small>Details shared by your school</small></div>
           <div class="toolbar">
+            <button class="btn btn-outline btn-sm" onclick="downloadPdf()">⬇️ Download PDF</button>
             <button class="btn btn-ghost btn-sm" onclick="loadProfile()">↻ Refresh</button>
           </div>
         </div>
         <div class="card">
           <div class="card-title">Profile</div>
           <div id="profile" class="grid2"></div>
+        </div>
+      </div>
+
+      <div class="page" id="pg-settings">
+        <div class="pg-hdr">
+          <div class="pg-title">Settings<small>Update your account details and password</small></div>
+        </div>
+        <div class="card" style="margin-bottom:1rem;">
+          <div class="card-title">Account Details</div>
+          <div style="display:flex; flex-direction:column; gap: 10px; max-width: 400px;">
+            <div>
+              <label style="font-size:0.75rem;font-weight:700;color:var(--muted);">Display Name</label>
+              <input id="set-name" type="text" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--font);outline:none;margin-top:4px;" />
+            </div>
+            <div>
+              <label style="font-size:0.75rem;font-weight:700;color:var(--muted);">Email</label>
+              <input id="set-email" type="email" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--font);outline:none;margin-top:4px;" />
+            </div>
+            <button class="btn btn-primary" onclick="updateProfile()" style="margin-top:10px;align-self:flex-start;">Save Account Details</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Change Password</div>
+          <div style="display:flex; flex-direction:column; gap: 10px; max-width: 400px;">
+            <div>
+              <label style="font-size:0.75rem;font-weight:700;color:var(--muted);">Current Password</label>
+              <input id="set-old-pwd" type="password" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--font);outline:none;margin-top:4px;" />
+            </div>
+            <div>
+              <label style="font-size:0.75rem;font-weight:700;color:var(--muted);">New Password</label>
+              <input id="set-new-pwd" type="password" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--font);outline:none;margin-top:4px;" />
+            </div>
+            <button class="btn btn-primary" onclick="updatePassword()" style="margin-top:10px;align-self:flex-start;">Change Password</button>
+          </div>
         </div>
       </div>
     </div>
@@ -167,7 +203,7 @@
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-      const map = { 'pg-dashboard': 0, 'pg-attendance': 1, 'pg-profile': 2 };
+      const map = { 'pg-dashboard': 0, 'pg-attendance': 1, 'pg-profile': 2, 'pg-settings': 3 };
       const nav = document.querySelectorAll('.nav-item');
       if (nav[map[id]]) nav[map[id]].classList.add('active');
     }
@@ -195,6 +231,10 @@
       if (!state.studentId) state.studentId = state.students[0]?.id || '';
       document.getElementById('tb-school').textContent = state.school?.name || 'Portal';
       document.getElementById('dash-sub').textContent = `${state.user?.role || ''} · ${state.user?.email || ''}`;
+      
+      document.getElementById('set-name').value = state.user?.displayName || '';
+      document.getElementById('set-email').value = state.user?.email || '';
+
       renderStudentSelect();
       const fromEl = document.getElementById('att-from');
       const toEl = document.getElementById('att-to');
@@ -273,28 +313,75 @@
 
     async function loadProfile() {
       const sid = state.studentId;
-      const el = document.getElementById('profile');
-      if (!sid) { el.innerHTML = '<div style="font-size:0.82rem;color:var(--muted);">No linked student yet.</div>'; return; }
+      if (!sid) return;
       const out = await apiFetch(`/portal/api/student/${encodeURIComponent(sid)}`, { method: 'GET' });
-      const s = out?.student;
-      if (!s) { el.innerHTML = '<div style="font-size:0.82rem;color:var(--muted);">Profile unavailable.</div>'; return; }
+      renderProfile(out?.student);
+    }
+
+    function renderProfile(p) {
+      const el = document.getElementById('profile');
+      if (!p) { el.innerHTML = '<div style="font-size:0.82rem;color:var(--muted);">No profile details available.</div>'; return; }
       const fields = [
-        ['Full Name', s.name],
-        ['Admission No.', s.admNo],
-        ['Class', s.cls],
-        ['Gender', s.gender],
-        ['Date of Birth', s.dob],
-        ['House', s.house],
-        ['Address', s.address],
-        ['Guardian', s.guardianName],
-        ['Guardian Phone', s.guardianPhone],
-        ['Guardian Email', s.guardianEmail],
-        ['Emergency Contact', s.emergencyName],
-        ['Emergency Phone', s.emergencyPhone]
+        ['Full Name', p.name],
+        ['Admission No', p.admNo],
+        ['Class', p.cls],
+        ['Gender', p.gender],
+        ['Date of Birth', p.dob],
+        ['House', p.house],
+        ['Address', p.address],
+        ['Guardian', p.guardianName],
+        ['Guardian Phone', p.guardianPhone]
       ];
       el.innerHTML = fields.map(([k,v]) => `
         <div class="field"><label>${escapeHtml(k)}</label><div class="val">${escapeHtml(v || 'Not provided')}</div></div>
       `).join('');
+    }
+
+    function downloadPdf() {
+      const id = state.studentId;
+      if (!id) return;
+      showToast('Generating PDF…', 'ok');
+      apiFetch(`/reports/pdf/student/${encodeURIComponent(id)}`, { method: 'POST' })
+        .then(out => {
+          if (out?.downloadUrl) window.open(out.downloadUrl, '_blank');
+          else throw new Error('PDF unavailable');
+        })
+        .catch(e => showToast(e?.message || 'PDF failed', 'err'));
+    }
+
+    async function updateProfile() {
+      const displayName = document.getElementById('set-name').value;
+      const email = document.getElementById('set-email').value;
+      try {
+        await apiFetch('/portal/api/settings', {
+          method: 'PUT',
+          body: JSON.stringify({ displayName, email })
+        });
+        showToast('Account details updated successfully', 'ok');
+        refreshAll();
+      } catch (e) {
+        showToast(e?.message || 'Failed to update details', 'err');
+      }
+    }
+
+    async function updatePassword() {
+      const oldPassword = document.getElementById('set-old-pwd').value;
+      const newPassword = document.getElementById('set-new-pwd').value;
+      if (!oldPassword || !newPassword) {
+        showToast('Please enter both current and new password', 'err');
+        return;
+      }
+      try {
+        await apiFetch('/auth/change-password', {
+          method: 'POST',
+          body: JSON.stringify({ oldPassword, newPassword })
+        });
+        showToast('Password changed successfully', 'ok');
+        document.getElementById('set-old-pwd').value = '';
+        document.getElementById('set-new-pwd').value = '';
+      } catch (e) {
+        showToast(e?.message || 'Failed to change password', 'err');
+      }
     }
 
     (async function init() {

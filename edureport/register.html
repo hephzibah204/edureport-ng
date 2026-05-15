@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register School — EduReport NG</title>
+<title>Register School — ReportSheet</title>
 <link rel="stylesheet" href="shared.css">
 <style>
 body { display: flex; min-height: 100vh; }
@@ -49,7 +49,7 @@ body { display: flex; min-height: 100vh; }
 <body>
 
 <div class="auth-left">
-  <div class="auth-logo">EduReport<em>NG</em></div>
+  <div class="auth-logo">Report<em>Sheet</em></div>
   <div class="auth-tag">Nigerian School Report Card System</div>
   <div class="auth-title">Register your school</div>
   <div class="auth-sub">Get lifetime access in 2 minutes. No card required to start.</div>
@@ -120,7 +120,7 @@ body { display: flex; min-height: 100vh; }
     <div style="font-weight:bold; margin-top:5px;" id="va-bank"></div>
     <div style="font-size:0.85rem; color:var(--muted); margin-top:5px;" id="va-name"></div>
     <div style="font-size:0.85rem; margin-top:10px;">Please transfer the exact amount. Account will be activated automatically.</div>
-    <button class="btn btn-outline" style="margin-top:10px; width:100%;" onclick="window.location.href='app.html'">I have transferred</button>
+    <button class="btn btn-outline" style="margin-top:10px; width:100%;" onclick="window.location.href='app'">I have transferred</button>
   </div>
 
   <button class="btn btn-primary btn-full btn-lg" onclick="handleRegister()" id="reg-btn" style="margin-top:0.8rem;">
@@ -128,7 +128,7 @@ body { display: flex; min-height: 100vh; }
   </button>
 
   <div class="auth-footer" style="margin-top:1rem;">
-    Already have an account? <a href="login.html">Sign in here</a>
+    Already have an account? <a href="login">Sign in here</a>
   </div>
   <div class="auth-footer" style="margin-top:0.4rem; font-size:0.75rem;">
     By registering you agree to our Terms of Service. 7-day money-back guarantee.
@@ -153,7 +153,7 @@ body { display: flex; min-height: 100vh; }
       </div>
     </div>
     <div class="guarantee-box">
-      🛡️ <strong>7-day satisfaction guarantee.</strong> If EduReport NG doesn't work perfectly for your school, we'll refund you in full — no questions asked. WhatsApp us: <strong>08037000456</strong>
+      🛡️ <strong>7-day satisfaction guarantee.</strong> If ReportSheet doesn't work perfectly for your school, we'll refund you in full — no questions asked. WhatsApp us: <strong>08037000456</strong>
     </div>
   </div>
 </div>
@@ -215,16 +215,16 @@ async function handleRegister() {
           await checkout.initializeCheckout({
             customer_email: email, customer_name: schoolName, amount: (init.amountKobo / 100).toString(), currency: init.currency, channels: ["BANK_TRANSFER", "CARD"],
             onSuccess: () => {},
-            onSuccessfulOrder: () => window.location.href = 'app.html',
+            onSuccessfulOrder: () => window.location.href = 'app',
             onError: () => { errEl.textContent = 'Payment failed'; errEl.classList.add('show'); },
-            onClose: () => window.location.href = 'app.html'
+            onClose: () => window.location.href = 'app'
           });
           return;
         } else if (gateway === 'PAYSTACK' && init.publicKey) {
           const handler = PaystackPop.setup({
             key: init.publicKey, email: email, amount: init.amountKobo, currency: init.currency, ref: init.reference,
-            callback: () => window.location.href = 'app.html',
-            onClose: () => window.location.href = 'app.html'
+            callback: () => window.location.href = 'app',
+            onClose: () => window.location.href = 'app'
           });
           handler.openIframe();
           return;
@@ -241,7 +241,7 @@ async function handleRegister() {
         } else if (gateway === 'FLUTTERWAVE' || gateway === 'MONNIFY') {
           // Typically these return a link to redirect to
           if (init.checkoutUrl) window.location.href = init.checkoutUrl;
-          else window.location.href = 'app.html';
+          else window.location.href = 'app';
           return;
         }
       }
@@ -250,10 +250,10 @@ async function handleRegister() {
       // Registration worked, but payment init failed. Let them into app to pay later.
     }
 
-    okEl.textContent = `✅ Account created! Welcome to EduReport NG, ${schoolName}!`;
+    okEl.textContent = `✅ Account created! Welcome to ReportSheet, ${schoolName}!`;
     okEl.classList.add('show');
     showToast('✅ Registration successful!', 'ok');
-    setTimeout(() => (window.location.href = 'app.html'), 1200);
+    setTimeout(() => (window.location.href = 'app'), 1200);
   } catch (e) {
     errEl.textContent = e?.message || 'Registration failed.';
     errEl.classList.add('show');
@@ -264,7 +264,7 @@ async function handleRegister() {
 
 document.addEventListener('keydown', e => { if (e.key === 'Enter') handleRegister(); });
 const session = Auth.getSession();
-if (session) window.location.href = session.role === 'ADMIN' ? 'admin.html' : 'app.html';
+if (session) window.location.href = session.role === 'ADMIN' ? 'admin' : 'app';
 </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Teacher — EduReport NG</title>
+  <title>Teacher — ReportSheet</title>
   <link rel="stylesheet" href="shared.css" />
   <style>
     body { display: flex; flex-direction: column; }
@@ -68,11 +68,11 @@
 </head>
 <body>
   <div class="topbar">
-    <div class="tb-brand">EduReport<span> Teacher</span></div>
+    <div class="tb-brand">Report<span>Sheet Teacher</span></div>
     <div class="tb-right">
       <div class="tb-chip" id="tb-school">Loading…</div>
-      <button class="tb-btn" onclick="window.location.href='index.html'">🏠 Home</button>
-      <button class="tb-btn" onclick="Auth.logout('login.html')">Sign Out</button>
+      <button class="tb-btn" onclick="window.location.href='index'">🏠 Home</button>
+      <button class="tb-btn" onclick="Auth.logout('login')">Sign Out</button>
     </div>
   </div>
 
@@ -82,6 +82,7 @@
         <div class="sb-lbl">Teacher</div>
         <button class="nav-item active" onclick="showPage('pg-dashboard')"><span class="ni">📊</span> Dashboard</button>
         <button class="nav-item" onclick="showPage('pg-attendance')"><span class="ni">🗓️</span> Attendance</button>
+        <button class="nav-item" onclick="showPage('pg-settings')"><span class="ni">⚙️</span> Settings</button>
       </div>
       <div class="sb-divider"></div>
       <div class="sb-section">
@@ -160,6 +161,42 @@
           </div>
         </div>
       </div>
+
+      <div class="page" id="pg-settings">
+        <div class="pg-hdr">
+          <div class="pg-title">Settings<small>Update your profile and password</small></div>
+        </div>
+        <div class="two">
+          <div class="card">
+            <div class="card-title">Profile Settings</div>
+            <div style="display:flex; flex-direction:column; gap: 10px;">
+              <div>
+                <label style="font-size:0.75rem;font-weight:700;color:var(--muted);">Display Name</label>
+                <input id="set-name" type="text" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--font);outline:none;margin-top:4px;" />
+              </div>
+              <div>
+                <label style="font-size:0.75rem;font-weight:700;color:var(--muted);">Email</label>
+                <input id="set-email" type="email" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--font);outline:none;margin-top:4px;" />
+              </div>
+              <button class="btn btn-primary" onclick="updateProfile()" style="margin-top:10px;">Save Profile</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Change Password</div>
+            <div style="display:flex; flex-direction:column; gap: 10px;">
+              <div>
+                <label style="font-size:0.75rem;font-weight:700;color:var(--muted);">Current Password</label>
+                <input id="set-old-pwd" type="password" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--font);outline:none;margin-top:4px;" />
+              </div>
+              <div>
+                <label style="font-size:0.75rem;font-weight:700;color:var(--muted);">New Password</label>
+                <input id="set-new-pwd" type="password" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:var(--font);outline:none;margin-top:4px;" />
+              </div>
+              <button class="btn btn-primary" onclick="updatePassword()" style="margin-top:10px;">Change Password</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -169,7 +206,10 @@
       <div class="body">
         <div class="grid2" id="m-body"></div>
       </div>
-      <div class="footer"><button class="btn btn-ghost" onclick="closeStudent()">Close</button></div>
+      <div class="footer">
+        <button class="btn btn-outline" onclick="downloadPdf()">⬇️ PDF Report</button>
+        <button class="btn btn-ghost" onclick="closeStudent()">Close</button>
+      </div>
     </div>
   </div>
 
@@ -208,10 +248,11 @@
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-      const map = { 'pg-dashboard': 0, 'pg-attendance': 1 };
+      const map = { 'pg-dashboard': 0, 'pg-attendance': 1, 'pg-settings': 2 };
       const nav = document.querySelectorAll('.nav-item');
       if (nav[map[id]]) nav[map[id]].classList.add('active');
       if (id === 'pg-dashboard') renderDashboard();
+      if (id === 'pg-settings') loadSettings();
     }
 
     function setBadge(status) {
@@ -516,8 +557,11 @@
       loadAttendance();
     }
 
+    let _currentStudentId = null;
+
     async function openStudent(studentId) {
       try {
+        _currentStudentId = studentId;
         const out = await apiFetch(`/teacher/api/student/${encodeURIComponent(studentId)}`, { method: 'GET' });
         const s = out?.student;
         if (!s) throw new Error('Not found');
@@ -545,6 +589,65 @@
 
     function closeStudent() {
       document.getElementById('modal-student').classList.remove('open');
+      _currentStudentId = null;
+    }
+
+    function downloadPdf() {
+      if (!_currentStudentId) return;
+      showToast('Generating PDF…', 'ok');
+      apiFetch(`/reports/pdf/student/${encodeURIComponent(_currentStudentId)}`, { method: 'POST' })
+        .then(out => {
+          if (out?.downloadUrl) window.open(out.downloadUrl, '_blank');
+          else throw new Error('PDF unavailable');
+        })
+        .catch(e => showToast(e?.message || 'PDF failed', 'err'));
+    }
+
+    async function loadSettings() {
+      try {
+        const me = await apiFetch('/me', { method: 'GET' });
+        if (me?.effectiveUser) {
+          document.getElementById('set-name').value = me.effectiveUser.displayName || '';
+          document.getElementById('set-email').value = me.effectiveUser.email || '';
+        }
+      } catch (e) {
+        showToast('Failed to load settings', 'err');
+      }
+    }
+
+    async function updateProfile() {
+      const displayName = document.getElementById('set-name').value;
+      const email = document.getElementById('set-email').value;
+      try {
+        await apiFetch('/teacher/api/profile', {
+          method: 'PUT',
+          body: JSON.stringify({ displayName, email })
+        });
+        showToast('Profile updated successfully', 'ok');
+        refreshAll();
+      } catch (e) {
+        showToast(e?.message || 'Failed to update profile', 'err');
+      }
+    }
+
+    async function updatePassword() {
+      const oldPassword = document.getElementById('set-old-pwd').value;
+      const newPassword = document.getElementById('set-new-pwd').value;
+      if (!oldPassword || !newPassword) {
+        showToast('Please enter both current and new password', 'err');
+        return;
+      }
+      try {
+        await apiFetch('/auth/change-password', {
+          method: 'POST',
+          body: JSON.stringify({ oldPassword, newPassword })
+        });
+        showToast('Password changed successfully', 'ok');
+        document.getElementById('set-old-pwd').value = '';
+        document.getElementById('set-new-pwd').value = '';
+      } catch (e) {
+        showToast(e?.message || 'Failed to change password', 'err');
+      }
     }
 
     (async function init() {

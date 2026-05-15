@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign In — EduReport NG</title>
+<title>Sign In — ReportSheet</title>
 <link rel="stylesheet" href="shared.css">
 <style>
 body { display: flex; min-height: 100vh; }
@@ -63,7 +63,7 @@ body { display: flex; min-height: 100vh; }
 <body>
 
 <div class="auth-left">
-  <div class="auth-logo">EduReport<em>NG</em></div>
+  <div class="auth-logo">Report<em>Sheet</em></div>
   <div class="auth-tag">Nigerian School Report Card System</div>
   <div class="auth-title">Welcome back</div>
   <div class="auth-sub">Sign in to your school dashboard</div>
@@ -88,10 +88,10 @@ body { display: flex; min-height: 100vh; }
   </button>
 
   <div class="auth-footer" style="margin-top:1.2rem;">
-    Don't have an account? <a href="register.html">Register your school →</a>
+    Don't have an account? <a href="register">Register your school →</a>
   </div>
   <div class="auth-footer" style="margin-top:0.5rem;">
-    <a href="index.html">← Back to homepage</a>
+    <a href="index">← Back to homepage</a>
   </div>
 </div>
 
@@ -134,10 +134,10 @@ async function handleLogin() {
     showToast('✅ Welcome back!', 'ok');
     setTimeout(() => {
       const r = result?.user?.role;
-      if (r === 'ADMIN' || r === 'STAFF') window.location.href = 'admin.html';
-      else if (r === 'TEACHER') window.location.href = 'teacher.html';
-      else if (r === 'PARENT' || r === 'STUDENT') window.location.href = 'portal.html';
-      else window.location.href = 'app.html';
+      if (r === 'ADMIN' || r === 'STAFF') window.location.href = 'admin';
+      else if (r === 'TEACHER') window.location.href = 'teacher';
+      else if (r === 'PARENT' || r === 'STUDENT') window.location.href = 'portal';
+      else window.location.href = 'app';
     }, 600);
   } catch (e) {
     alert.textContent = e?.message || 'Sign in failed.';
@@ -149,15 +149,38 @@ async function handleLogin() {
 
 document.addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
 
-// Auto redirect if already logged in
-const session = Auth.getSession();
-if (session) {
-  const r = session.role;
-  if (r === 'ADMIN' || r === 'STAFF') window.location.href = 'admin.html';
-  else if (r === 'TEACHER') window.location.href = 'teacher.html';
-  else if (r === 'PARENT' || r === 'STUDENT') window.location.href = 'portal.html';
-  else window.location.href = 'app.html';
-}
+(async function init() {
+  // Auto redirect if already logged in
+  const session = Auth.getSession();
+  if (session) {
+    const r = session.role;
+    if (r === 'ADMIN' || r === 'STAFF') window.location.href = 'admin';
+    else if (r === 'TEACHER') window.location.href = 'teacher';
+    else if (r === 'PARENT' || r === 'STUDENT') window.location.href = 'portal';
+    else window.location.href = 'app';
+    return;
+  }
+
+  const slug = Auth.getSchoolSlugFromUrl();
+  if (slug) {
+    try {
+      const out = await apiFetch('/public/schools/' + encodeURIComponent(slug));
+      if (out?.school) {
+        document.title = out.school.name + ' — Login';
+        const h1 = document.querySelector('.form-wrap h1');
+        if (h1) h1.textContent = out.school.name;
+        const sub = document.createElement('p');
+        sub.style.textAlign = 'center';
+        sub.style.marginTop = '-1.5rem';
+        sub.style.marginBottom = '1.5rem';
+        sub.style.color = 'var(--muted)';
+        sub.style.fontSize = '0.9rem';
+        sub.textContent = 'School Portal';
+        h1.after(sub);
+      }
+    } catch (e) {}
+  }
+})();
 </script>
 </body>
 </html>

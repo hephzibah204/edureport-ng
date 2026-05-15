@@ -7,7 +7,7 @@ function safeJsonParse(raw, fallback) {
 }
 
 function getConfig() {
-  const cfg = window.EDUREPORT_CONFIG || {};
+  const cfg = window.ReportSheet_CONFIG || {};
   return {
     apiBaseUrl: cfg.apiBaseUrl || "http://127.0.0.1:3010",
     demoMode: Boolean(cfg.demoMode)
@@ -68,8 +68,18 @@ const Auth = {
   async register({ schoolName, email, password, plan }) {
     const { demoMode } = getConfig();
     if (demoMode) throw new Error("Demo mode is disabled in production builds.");
-    const out = await apiFetch("/auth/register", { method: "POST", body: JSON.stringify({ schoolName, email, password, plan }) });
-    DB.setSession({ ...out.user, schoolName: out.school?.name, plan: out.school?.plan, impersonationActive: false, impersonationSchoolId: null, effectiveUserId: out.user?.id, effectiveRole: out.user?.role });
+    const schoolSlug = Auth.getSchoolSlugFromUrl();
+    const out = await apiFetch("/auth/register", { method: "POST", body: JSON.stringify({ schoolName, email, password, plan, schoolSlug }) });
+    if (!out || !out.user) throw new Error("Registration failed: Invalid server response.");
+    DB.setSession({ 
+      ...out.user, 
+      schoolName: out.school?.name, 
+      plan: out.school?.plan, 
+      impersonationActive: false, 
+      impersonationSchoolId: null, 
+      effectiveUserId: out.user?.id, 
+      effectiveRole: out.user?.role 
+    });
     if (out.school) {
       const current = DB.getSchoolData(out.user.id);
       if (!current) {
@@ -103,9 +113,34 @@ const Auth = {
   async login({ email, password, totp }) {
     const { demoMode } = getConfig();
     if (demoMode) throw new Error("Demo mode is disabled in production builds.");
-    const out = await apiFetch("/auth/login", { method: "POST", body: JSON.stringify({ email, password, totp }) });
-    DB.setSession({ ...out.user, schoolName: out.school?.name, plan: out.school?.plan, impersonationActive: false, impersonationSchoolId: null, effectiveUserId: out.user?.id, effectiveRole: out.user?.role });
+    const schoolSlug = Auth.getSchoolSlugFromUrl();
+    const out = await apiFetch("/auth/login", { method: "POST", body: JSON.stringify({ email, password, totp, schoolSlug }) });
+    if (!out || !out.user) throw new Error("Login failed: Invalid server response.");
+    DB.setSession({ 
+      ...out.user, 
+      schoolName: out.school?.name, 
+      plan: out.school?.plan, 
+      impersonationActive: false, 
+      impersonationSchoolId: null, 
+      effectiveUserId: out.user?.id, 
+      effectiveRole: out.user?.role 
+    });
     return out;
+  },
+
+  getSchoolSlugFromUrl() {
+    const hostname = window.location.hostname;
+    // Support subdomain.edureport.ng
+    if (hostname.includes(".edureport.ng")) {
+      return hostname.split(".")[0];
+    }
+    // Support localhost:8080/school-slug/login.html
+    const path = window.location.pathname;
+    const parts = path.split("/").filter(Boolean);
+    if (parts.length > 0 && !["index", "login", "register", "admin", "portal", "teacher"].includes(parts[0])) {
+      return parts[0];
+    }
+    return "";
   },
 
   async logout(redirectPath) {
@@ -114,7 +149,7 @@ const Auth = {
     } catch {
     }
     DB.clearSession();
-    window.location.href = redirectPath || "login.html";
+    window.location.href = redirectPath || "login";
   },
 
   getSession() {
@@ -124,7 +159,7 @@ const Auth = {
   requireAuth(role, opts) {
     const session = DB.getSession();
     if (!session) {
-      window.location.href = (opts && opts.loginPath) ? opts.loginPath : "login.html";
+      window.location.href = (opts && opts.loginPath) ? opts.loginPath : "login";
       return null;
     }
     apiFetch("/me", { method: "GET" })
@@ -133,7 +168,7 @@ const Auth = {
         if (!serverRole) throw new Error("Invalid session");
         if (session.role !== serverRole) {
           DB.clearSession();
-          window.location.href = "login.html";
+          window.location.href = "login";
           return;
         }
         const impersonationActive = Boolean(out?.impersonation?.active);
@@ -148,31 +183,31 @@ const Auth = {
       });
     const effectiveRole = session.effectiveRole || session.role;
     if (role === "admin" && session.role !== "ADMIN" && session.role !== "STAFF") {
-      if (effectiveRole === 'TEACHER') window.location.href = 'teacher.html';
-      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = 'portal.html';
-      else window.location.href = "app.html";
+      if (effectiveRole === 'TEACHER') window.location.href = 'teacher';
+      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = 'portal';
+      else window.location.href = "app";
       return null;
     }
     if (role === "school" && (session.role === "ADMIN" || session.role === "STAFF") && !session.impersonationActive) {
-      window.location.href = "admin.html";
+      window.location.href = "admin";
       return null;
     }
     if (role === "school" && effectiveRole !== "SCHOOL" && !((session.role === "ADMIN" || session.role === "STAFF") && session.impersonationActive)) {
-      if (effectiveRole === 'TEACHER') window.location.href = 'teacher.html';
-      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = 'portal.html';
-      else window.location.href = "login.html";
+      if (effectiveRole === 'TEACHER') window.location.href = 'teacher';
+      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = 'portal';
+      else window.location.href = "login";
       return null;
     }
     if (role === 'teacher' && effectiveRole !== 'TEACHER') {
-      if (effectiveRole === 'SCHOOL') window.location.href = 'app.html';
-      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = 'portal.html';
-      else window.location.href = 'login.html';
+      if (effectiveRole === 'SCHOOL') window.location.href = 'app';
+      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = 'portal';
+      else window.location.href = 'login';
       return null;
     }
     if (role === 'portal' && effectiveRole !== 'PARENT' && effectiveRole !== 'STUDENT') {
-      if (effectiveRole === 'SCHOOL') window.location.href = 'app.html';
-      else if (effectiveRole === 'TEACHER') window.location.href = 'teacher.html';
-      else window.location.href = 'login.html';
+      if (effectiveRole === 'SCHOOL') window.location.href = 'app';
+      else if (effectiveRole === 'TEACHER') window.location.href = 'teacher';
+      else window.location.href = 'login';
       return null;
     }
     return session;

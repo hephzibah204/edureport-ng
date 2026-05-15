@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 final class Db
 {
@@ -46,7 +46,7 @@ final class Db
         if ($dsn === null) {
             $host = Config::env('DB_HOST', '127.0.0.1');
             $port = Config::envInt('DB_PORT', 3306);
-            $name = Config::env('DB_NAME', 'edureport');
+            $name = Config::env('DB_NAME', 'ReportSheet');
             $dsn = "mysql:host={$host};port={$port};dbname={$name};charset=utf8mb4;connect_timeout=2";
         }
         $opt = [

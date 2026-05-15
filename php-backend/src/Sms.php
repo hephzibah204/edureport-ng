@@ -10,7 +10,20 @@ final class Sms
             self::sendTermii($to, $message);
             return;
         }
-        throw new RuntimeException('SMS provider not configured');
+        if ($provider === 'twilio') {
+            self::sendTwilio($to, $message);
+            return;
+        }
+        // Fallback: If primary fails or is unconfigured, try others if keys exist
+        if (Config::env('TERMII_API_KEY')) {
+            self::sendTermii($to, $message);
+            return;
+        }
+        if (Config::env('TWILIO_AUTH_TOKEN')) {
+            self::sendTwilio($to, $message);
+            return;
+        }
+        throw new RuntimeException('SMS provider not configured or available');
     }
 
     private static function normalizePhone(string $raw): string
@@ -32,16 +45,15 @@ final class Sms
         if (strlen($digits) >= 10) {
             return $digits;
         }
-        throw new RuntimeException('Invalid phone number');
+        return $digits;
     }
 
     private static function sendTermii(string $to, string $message): void
     {
         $apiKey = Config::env('TERMII_API_KEY');
-        $sender = Config::env('TERMII_SENDER_ID', 'EduReport');
-        if (!is_string($apiKey) || trim($apiKey) === '') {
-            throw new RuntimeException('TERMII_API_KEY is missing');
-        }
+        $sender = Config::env('TERMII_SENDER_ID', 'ReportSheet');
+        if (!$apiKey) throw new RuntimeException('TERMII_API_KEY is missing');
+        
         $payload = [
             'to' => $to,
             'from' => $sender,
@@ -50,21 +62,48 @@ final class Sms
             'channel' => 'generic',
             'api_key' => $apiKey
         ];
-        $ch = curl_init('https://api.ng.termii.com/api/sms/send');
+        self::curlPost('https://api.ng.termii.com/api/sms/send', $payload);
+    }
+
+    private static function sendTwilio(string $to, string $message): void
+    {
+        $sid = Config::env('TWILIO_ACCOUNT_SID');
+        $token = Config::env('TWILIO_AUTH_TOKEN');
+        $from = Config::env('TWILIO_FROM_NUMBER');
+        if (!$sid || !$token || !$from) throw new RuntimeException('Twilio config missing');
+
+        $url = "https://api.twilio.com/2010-04-01/Accounts/{$sid}/Messages.json";
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_USERPWD, "{$sid}:{$token}");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
+            'To' => '+' . $to,
+            'From' => $from,
+            'Body' => $message
+        ]));
+        $raw = curl_exec($ch);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($code < 200 || $code >= 300) {
+            throw new RuntimeException('Twilio send failed: ' . $raw);
+        }
+    }
+
+    private static function curlPost(string $url, array $payload): void
+    {
+        $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload, JSON_UNESCAPED_SLASHES));
-        curl_setopt($ch, CURLOPT_TIMEOUT, 12);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
         $raw = curl_exec($ch);
-        $err = curl_error($ch);
-        $code = intval(curl_getinfo($ch, CURLINFO_HTTP_CODE));
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
-        if ($raw === false) {
-            throw new RuntimeException('SMS send failed: ' . $err);
-        }
         if ($code < 200 || $code >= 300) {
-            throw new RuntimeException('SMS send failed: ' . $raw);
+            throw new RuntimeException('SMS provider error: ' . $raw);
         }
     }
 }

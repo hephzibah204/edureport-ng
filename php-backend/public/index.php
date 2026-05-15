@@ -12,6 +12,10 @@ require_once dirname(__DIR__) . '/src/Ai.php';
 require_once dirname(__DIR__) . '/src/PdfRenderer.php';
 require_once dirname(__DIR__) . '/src/ReportPdf.php';
 require_once dirname(__DIR__) . '/src/Sms.php';
+require_once dirname(__DIR__) . '/src/AttendanceService.php';
+require_once dirname(__DIR__) . '/src/StudentService.php';
+require_once dirname(__DIR__) . '/src/JobService.php';
+require_once dirname(__DIR__) . '/src/MailService.php';
 require_once dirname(__DIR__) . '/src/App.php';
 
 Config::loadEnvIfPresent();

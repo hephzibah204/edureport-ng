@@ -1,4 +1,7 @@
-window.EDUREPORT_CONFIG = {
-  apiBaseUrl: "http://127.0.0.1:3010",
+window.ReportSheet_CONFIG = {
+  // If apiBaseUrl is empty, the app will try to use the current origin
+  apiBaseUrl: (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') 
+    ? "http://127.0.0.1:3011" 
+    : window.location.origin,
   demoMode: false
 };

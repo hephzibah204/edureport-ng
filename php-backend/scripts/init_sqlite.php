@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 require_once dirname(__DIR__) . '/src/Config.php';
 require_once dirname(__DIR__) . '/src/Db.php';
@@ -8,11 +8,11 @@ Config::loadEnvIfPresent();
 $dsnArg = $argv[1] ?? null;
 $dsn = is_string($dsnArg) && trim($dsnArg) !== '' ? trim($dsnArg) : Config::env('DB_DSN');
 if (!is_string($dsn) || trim($dsn) === '') {
-    $dsn = 'sqlite:storage/edureport.sqlite';
+    $dsn = 'sqlite:storage/ReportSheet.sqlite';
 }
 if (!str_starts_with($dsn, 'sqlite:')) {
     fwrite(STDERR, "DB_DSN must start with sqlite:.\n");
-    fwrite(STDERR, "Tip: set DB_DSN in php-backend/.env or run: php php-backend/scripts/init_sqlite.php sqlite:storage/edureport.sqlite\n");
+    fwrite(STDERR, "Tip: set DB_DSN in php-backend/.env or run: php php-backend/scripts/init_sqlite.php sqlite:storage/ReportSheet.sqlite\n");
     exit(2);
 }
 
@@ -164,9 +164,18 @@ try {
 }
 
 try {
-    $pdo->exec('CREATE TABLE IF NOT EXISTS report_extras (id TEXT PRIMARY KEY, school_id TEXT NOT NULL, student_id TEXT NOT NULL, session TEXT NOT NULL, term TEXT NOT NULL, attendance TEXT NOT NULL, traits TEXT NOT NULL, created_at TEXT NOT NULL, updated_at TEXT NOT NULL, UNIQUE (school_id, student_id, session, term), FOREIGN KEY (school_id) REFERENCES schools(id) ON DELETE CASCADE, FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE)');
+    $pdo->exec('CREATE TABLE IF NOT EXISTS report_extras (id TEXT PRIMARY KEY, school_id TEXT NOT NULL, student_id TEXT NOT NULL, session TEXT NOT NULL, term TEXT NOT NULL, attendance TEXT NOT NULL, traits TEXT NOT NULL, comments TEXT NOT NULL DEFAULT \'{}\', promotion TEXT NOT NULL DEFAULT \'\', created_at TEXT NOT NULL, updated_at TEXT NOT NULL, UNIQUE (school_id, student_id, session, term), FOREIGN KEY (school_id) REFERENCES schools(id) ON DELETE CASCADE, FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE)');
     $pdo->exec('CREATE INDEX IF NOT EXISTS idx_report_extras_school ON report_extras(school_id)');
     $pdo->exec('CREATE INDEX IF NOT EXISTS idx_report_extras_student ON report_extras(student_id)');
+} catch (Throwable $e) {
+}
+
+try {
+    $pdo->exec("ALTER TABLE report_extras ADD COLUMN comments TEXT NOT NULL DEFAULT '{}'");
+} catch (Throwable $e) {
+}
+try {
+    $pdo->exec("ALTER TABLE report_extras ADD COLUMN promotion TEXT NOT NULL DEFAULT ''");
 } catch (Throwable $e) {
 }
 

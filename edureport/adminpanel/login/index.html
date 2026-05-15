@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login — EduReport NG</title>
+  <title>Admin Login — ReportSheet</title>
   <link rel="stylesheet" href="../../shared.css">
   <style>
     body { display:flex; align-items:center; justify-content:center; padding: 28px 14px; }
@@ -22,7 +22,7 @@
 
   <script src="../../config.js"></script>
   <script>
-    const api = (window.EDUREPORT_CONFIG?.apiBaseUrl ? String(window.EDUREPORT_CONFIG.apiBaseUrl).replace(/\/$/, '') : '');
+    const api = (window.ReportSheet_CONFIG?.apiBaseUrl ? String(window.ReportSheet_CONFIG.apiBaseUrl).replace(/\/$/, '') : '');
     const target = api ? (api + '/adminpanel/login/') : '';
     const msg = document.getElementById('msg');
     if (!target) {

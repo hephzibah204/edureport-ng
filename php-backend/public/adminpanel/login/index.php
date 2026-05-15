@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 require_once dirname(__DIR__, 3) . '/src/Config.php';
 Config::loadEnvIfPresent();
@@ -14,7 +14,7 @@ header('Content-Type: text/html; charset=utf-8');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login — EduReport NG</title>
+  <title>Admin Login — ReportSheet</title>
   <style>
     :root { color-scheme: light; }
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: #faf8f3; color:#141412; margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:28px 14px; }

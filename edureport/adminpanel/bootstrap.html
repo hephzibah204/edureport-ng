@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Bootstrap — EduReport NG</title>
+  <title>Admin Bootstrap — ReportSheet</title>
   <link rel="stylesheet" href="../shared.css" />
   <style>
     body { display:flex; align-items:center; justify-content:center; padding: 28px 14px; }
@@ -24,11 +24,11 @@
   <script src="../config.js"></script>
   <script src="../auth.js"></script>
   <script>
-    const apiBase = (window.EDUREPORT_CONFIG?.apiBaseUrl ? String(window.EDUREPORT_CONFIG.apiBaseUrl).replace(/\/$/, '') : '');
+    const apiBase = (window.ReportSheet_CONFIG?.apiBaseUrl ? String(window.ReportSheet_CONFIG.apiBaseUrl).replace(/\/$/, '') : '');
     const loginUrl = apiBase ? (apiBase + '/adminpanel/login/') : '/adminpanel/login/';
     const status = document.getElementById('status');
     const detail = document.getElementById('detail');
-    detail.textContent = apiBase ? ('API: ' + apiBase) : 'Missing EDUREPORT_CONFIG.apiBaseUrl';
+    detail.textContent = apiBase ? ('API: ' + apiBase) : 'Missing ReportSheet_CONFIG.apiBaseUrl';
 
     function setSessionFromMe(out) {
       const current = Auth.getSession() || {};
@@ -59,12 +59,12 @@
         if (role !== 'ADMIN' && role !== 'STAFF') {
           status.textContent = 'Not an admin account.';
           localStorage.removeItem('edu_session');
-          location.replace('../login.html');
+          location.replace('../login');
           return;
         }
         setSessionFromMe(out);
         status.textContent = 'Session ready. Redirecting…';
-        location.replace('../admin.html');
+        location.replace('../admin');
       } catch (e) {
         status.textContent = 'Not logged in yet. Redirecting to admin login…';
         localStorage.removeItem('edu_session');

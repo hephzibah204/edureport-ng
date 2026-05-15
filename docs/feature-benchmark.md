@@ -1,8 +1,8 @@
-# EduReport NG – Feature Benchmark (School Owner Premium)
+﻿# ReportSheet – Feature Benchmark (School Owner Premium)
 
 This benchmark compares the current implemented feature set in this repo against common capabilities found in international school management systems (SIS/gradebook/reporting tools).
 
-## What EduReport NG Already Covers Well
+## What ReportSheet Already Covers Well
 
 - Report cards / report sheets (per student + per class) with export links
 - Score entry and score sheet storage
@@ -18,7 +18,7 @@ This benchmark compares the current implemented feature set in this repo against
 
 Legend: ✅ implemented, 🟡 partial, ❌ missing
 
-| Category | International competitors | EduReport NG today |
+| Category | International competitors | ReportSheet today |
 |---|---|---|
 | SIS core (student profiles, enrollment) | Rich student profile, enrollment history, guardians | 🟡 (basic student profile only) |
 | Gradebook | Flexible assessment structures, weighting, rubrics | 🟡 (CA1/CA2/Exam model) |

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel — EduReport NG</title>
+<title>Admin Panel — ReportSheet</title>
 <link rel="stylesheet" href="shared.css">
 <style>
 body { display: flex; flex-direction: column; }
@@ -89,7 +89,7 @@ body { display: flex; flex-direction: column; }
 <body>
 
 <div class="topbar">
-  <div class="tb-brand">EduReport NG<span>Admin Console</span></div>
+  <div class="tb-brand">ReportSheet<span>Admin Console</span></div>
   <div class="tb-right">
     <div class="tb-search-wrap">
       <input class="tb-search" id="tb-search" placeholder="Search schools, users, or tx:schoolId" onkeydown="if(event.key==='Enter') globalSearch()">
@@ -731,7 +731,7 @@ body { display: flex; flex-direction: column; }
 <script src="config.js"></script>
 <script src="auth.js"></script>
 <script>
-const ADMIN_BOOTSTRAP_URL = 'adminpanel/bootstrap.html';
+const ADMIN_BOOTSTRAP_URL = 'adminpanel/bootstrap';
 const SESSION = Auth.requireAuth('admin', { loginPath: ADMIN_BOOTSTRAP_URL });
 if (!SESSION) {
 }
@@ -1915,7 +1915,7 @@ function saveSlack() {
 function testSlack() {
   const st = document.getElementById("slk-status");
   if (st) st.textContent = "Sending…";
-  apiFetch("/admin/alerts/test", { method: "POST", body: JSON.stringify({ message: "EduReport test alert" }) })
+  apiFetch("/admin/alerts/test", { method: "POST", body: JSON.stringify({ message: "ReportSheet test alert" }) })
     .then((out) => { if (st) st.textContent = out?.ok ? "Sent." : "Failed."; showToast(out?.ok ? "Sent." : "Failed.", out?.ok ? "ok" : "err"); })
     .catch((e) => { if (st) st.textContent = ""; showToast(e?.message || "Send failed", "err"); });
 }
@@ -2061,12 +2061,12 @@ function saveSettings() { showToast('Use the specific Save buttons in this secti
 function exportSchools() {
   const rows = ['School Name,Email,Plan,Status,Students,Joined\n', ...allSchools.map(s=>`"${s.schoolName||'—'}","${s.email}","${s.plan||'lifetime'}","${s.status||'active'}","${s.studentCount||0}","${new Date(s.createdAt).toLocaleDateString('en-NG')}"`)];
   const blob = new Blob([rows.join('\n')],{type:'text/csv'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='EduReport_Schools.csv';a.click();
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ReportSheet_Schools.csv';a.click();
 }
 function exportAllData() {
   const data = { schools: allSchools, exportedAt: new Date().toISOString() };
   const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='EduReport_AllData.json';a.click();
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ReportSheet_AllData.json';a.click();
 }
 
 function globalSearch() {

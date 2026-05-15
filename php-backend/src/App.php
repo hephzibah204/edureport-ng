@@ -5,11 +5,18 @@ final class App
     private array $allowedOrigins;
     private static bool $adminEnsured = false;
     private static bool $plansEnsured = false;
+    private AttendanceService $attendance;
+    private StudentService $students;
+    private JobService $jobs;
 
     public function __construct()
     {
         $origins = Config::env('CORS_ORIGIN', 'http://127.0.0.1:3000,http://localhost:3000');
         $this->allowedOrigins = array_values(array_filter(array_map('trim', explode(',', $origins))));
+        $pdo = Db::pdo();
+        $this->attendance = new AttendanceService($pdo);
+        $this->students = new StudentService($pdo);
+        $this->jobs = new JobService($pdo);
     }
 
     public function run(): void
@@ -336,6 +343,21 @@ HTML;
                 return;
             }
 
+            if ($method === 'GET' && $path === '/public/settings') {
+                Response::json(200, [
+                    'support' => [
+                        'whatsapp' => Config::env('SUPPORT_WHATSAPP', '2348037000456'),
+                        'email' => Config::env('SUPPORT_EMAIL', 'support@edureport.ng'),
+                        'phone' => Config::env('SUPPORT_PHONE', '+234 803 700 0456')
+                    ],
+                    'branding' => [
+                        'name' => 'EduReport NG',
+                        'tagline' => 'Professional Nigerian School Management System'
+                    ]
+                ]);
+                return;
+            }
+
             if ($method === 'GET' && $path === '/me') {
                 $s = Auth::requireSessionUser();
                 $u = Auth::requireUser();
@@ -452,23 +474,36 @@ HTML;
                 $email = Validation::requireEmail($body, 'email');
                 $password = Validation::requireString($body, 'password', 1, 200);
                 $totp = isset($body['totp']) ? trim(strval($body['totp'])) : '';
+                $schoolSlug = isset($body['schoolSlug']) ? trim(strval($body['schoolSlug'])) : '';
+                
                 $row = $this->findUserByEmail($email);
                 if (!$row || !Auth::verifyPassword($row['password_hash'], $password)) {
                     Response::error(401, 'UNAUTHENTICATED', 'Invalid email or password.');
                     return;
                 }
+                
                 if ($row['status'] !== 'ACTIVE') {
                     Response::error(401, 'UNAUTHENTICATED', 'This account is not active.');
                     return;
                 }
+
                 $school = null;
                 if ($row['role'] === 'SCHOOL') {
                     $school = $this->getSchoolByOwnerId($row['id']);
                 }
-                if ($row['role'] === 'TEACHER') {
+                if ($row['role'] === 'TEACHER' || $row['role'] === 'STAFF' || $row['role'] === 'PARENT' || $row['role'] === 'STUDENT') {
                     $schoolId = is_string($row['school_id'] ?? null) ? strval($row['school_id']) : '';
                     if ($schoolId !== '') {
                         $school = $this->getSchoolById($schoolId);
+                    }
+                }
+
+                // If logging in through a school-specific URL, verify school match
+                if ($schoolSlug !== '' && $row['role'] !== 'ADMIN') {
+                    $targetSchool = $this->getSchoolBySlug($schoolSlug);
+                    if (!$targetSchool || !$school || $targetSchool['id'] !== $school['id']) {
+                        Response::error(403, 'WRONG_SCHOOL', 'This account does not belong to ' . ($targetSchool['name'] ?? 'this school') . '.');
+                        return;
                     }
                 }
                 $needsTotp = $this->isTotpRequiredForLogin($row, $school);
@@ -1183,7 +1218,7 @@ HTML;
                 $pdo->prepare($sql)->execute([$userId, $cipher]);
                 $pdo->prepare('UPDATE users SET totp_enabled=0 WHERE id=?')->execute([$userId]);
                 $pdo->commit();
-                $issuer = 'EduReport';
+                $issuer = 'ReportSheet';
                 $uri = Totp::otpauthUri($issuer, $row['email'], $secret);
                 $this->logAudit($_SESSION['user_id'] ?? null, null, 'ADMIN_2FA_SETUP', ['userId' => $userId]);
                 Response::json(200, ['secret' => $secret, 'otpauthUri' => $uri]);
@@ -1375,7 +1410,7 @@ HTML;
                     }
                 }
                 $payloadArr = [
-                    'event' => 'edureport.test',
+                    'event' => 'ReportSheet.test',
                     'gateway' => $gateway,
                     'environment' => $env,
                     'sentAt' => gmdate('c'),
@@ -1383,9 +1418,9 @@ HTML;
                 ];
                 $payload = json_encode($payloadArr, JSON_UNESCAPED_SLASHES);
                 $sig = $secret !== '' ? hash_hmac('sha256', $payload, $secret) : '';
-                $headers = "Content-Type: application/json\r\nUser-Agent: EduReport-TestWebhook/1.0\r\n";
+                $headers = "Content-Type: application/json\r\nUser-Agent: ReportSheet-TestWebhook/1.0\r\n";
                 if ($sig !== '') {
-                    $headers .= "X-EduReport-Signature: " . $sig . "\r\n";
+                    $headers .= "X-ReportSheet-Signature: " . $sig . "\r\n";
                 }
                 $ctx = stream_context_create([
                     'http' => [
@@ -2444,7 +2479,7 @@ HTML;
                     return;
                 }
                 $body = $this->jsonBody();
-                $allowed = ['name','abbr','slug','address','contact','motto','principal','session','term','nextTerm','schoolLevel','classTemplates','ca1Max','ca2Max','examMax','subjects','grades'];
+                $allowed = ['name','abbr','slug','address','contact','motto','principal','session','term','nextTerm','schoolLevel','classTemplates','ca1Max','ca2Max','examMax','subjects','grades','reportColor'];
                 $set = [];
                 $vals = [];
                 foreach ($allowed as $k) {
@@ -2493,6 +2528,11 @@ HTML;
                     if ($k === 'abbr') {
                         $set[] = 'abbr=?';
                         $vals[] = strtoupper(trim(strval($body[$k])));
+                        continue;
+                    }
+                    if ($k === 'reportColor') {
+                        $set[] = 'report_color=?';
+                        $vals[] = trim(strval($body[$k]));
                         continue;
                     }
                     if ($k === 'slug') {
@@ -2814,20 +2854,17 @@ HTML;
                     Response::error(403, 'FORBIDDEN', 'Access denied');
                     return;
                 }
-                $stmt = Db::pdo()->prepare('SELECT id,status,created_at,updated_at FROM attendance_sessions WHERE school_id=? AND class_name=? AND session_date=? LIMIT 1');
-                $stmt->execute([$schoolId, $className, $date]);
-                $session = $stmt->fetch();
+                $session = $this->attendance->getSession($schoolId, $className, $date);
                 $marks = [];
                 if ($session) {
-                    $stmt = Db::pdo()->prepare('SELECT student_id,mark,note FROM attendance_marks WHERE school_id=? AND attendance_session_id=?');
-                    $stmt->execute([$schoolId, $session['id']]);
-                    foreach ($stmt->fetchAll() as $mrow) {
+                    $rows = $this->attendance->getMarks($schoolId, $session['id']);
+                    foreach ($rows as $mrow) {
                         $marks[] = ['studentId' => strval($mrow['student_id']), 'mark' => strval($mrow['mark']), 'note' => strval($mrow['note'] ?? '')];
                     }
                 }
                 $this->logAudit($actorId, $schoolId, 'TEACHER_ATTENDANCE_SESSION_VIEW', ['className' => $className, 'date' => $date]);
                 Response::json(200, [
-                    'session' => $session ? ['id' => strval($session['id']), 'status' => strval($session['status']), 'date' => $date, 'className' => $className, 'createdAt' => $session['created_at'], 'updatedAt' => $session['updated_at']] : null,
+                    'session' => $session ? ['id' => strval($session['id']), 'status' => strval($session['status']), 'date' => $date, 'className' => $className, 'updatedAt' => $session['updated_at']] : null,
                     'marks' => $marks
                 ]);
                 return;
@@ -2859,56 +2896,15 @@ HTML;
                     Response::error(403, 'FORBIDDEN', 'Access denied');
                     return;
                 }
-                $pdo = Db::pdo();
-                $pdo->beginTransaction();
                 try {
-                    $stmt = $pdo->prepare('SELECT id,status FROM attendance_sessions WHERE school_id=? AND class_name=? AND session_date=? LIMIT 1');
-                    $stmt->execute([$schoolId, $className, $date]);
-                    $session = $stmt->fetch();
-                    $sessionId = $session ? strval($session['id']) : $this->id('ats');
-                    $status = $session ? strval($session['status']) : 'DRAFT';
-                    if (!$session) {
-                        $stmt = $pdo->prepare("INSERT INTO attendance_sessions (id,school_id,class_name,session_date,taken_by_user_id,status,created_at,updated_at) VALUES (?,?,?,?,?,'DRAFT',NOW(),NOW())");
-                        $stmt->execute([$sessionId, $schoolId, $className, $date, $u['id']]);
-                    } else {
-                        $stmt = $pdo->prepare('UPDATE attendance_sessions SET updated_at=NOW() WHERE id=? AND school_id=?');
-                        $stmt->execute([$sessionId, $schoolId]);
-                    }
-                    if ($status === 'SUBMITTED') {
-                        Response::error(409, 'ALREADY_SUBMITTED', 'Attendance already submitted for this day.');
-                        $pdo->rollBack();
-                        return;
-                    }
-                    $upsert = Db::isSqlite()
-                        ? 'INSERT INTO attendance_marks (id,school_id,attendance_session_id,student_id,mark,note,created_at,updated_at) VALUES (?,?,?,?,?,?,NOW(),NOW()) ON CONFLICT(attendance_session_id,student_id) DO UPDATE SET mark=excluded.mark, note=excluded.note, updated_at=NOW()'
-                        : 'INSERT INTO attendance_marks (id,school_id,attendance_session_id,student_id,mark,note,created_at,updated_at) VALUES (?,?,?,?,?,?,NOW(),NOW()) ON DUPLICATE KEY UPDATE mark=VALUES(mark), note=VALUES(note), updated_at=NOW()';
-                    $stmt = $pdo->prepare($upsert);
-                    $count = 0;
-                    foreach (array_slice($marks, 0, 2000) as $mrow) {
-                        if (!is_array($mrow)) {
-                            continue;
-                        }
-                        $studentId = trim(strval($mrow['studentId'] ?? ''));
-                        $mark = strtoupper(trim(strval($mrow['mark'] ?? '')));
-                        $note = isset($mrow['note']) ? trim(strval($mrow['note'])) : '';
-                        if ($studentId === '' || !in_array($mark, ['PRESENT', 'ABSENT', 'LATE'], true)) {
-                            continue;
-                        }
-                        $st = $pdo->prepare('SELECT id FROM students WHERE school_id=? AND id=? AND class_name=? LIMIT 1');
-                        $st->execute([$schoolId, $studentId, $className]);
-                        if (!$st->fetch()) {
-                            continue;
-                        }
-                        $stmt->execute([$this->id('atm'), $schoolId, $sessionId, $studentId, $mark, $note]);
-                        $count += 1;
-                    }
-                    $pdo->commit();
+                    $sessionId = $this->attendance->upsertSession($schoolId, $className, $date, $u['id'], $marks);
+                    $this->logAudit($actorId, $schoolId, 'TEACHER_ATTENDANCE_SESSION_SAVE', ['className' => $className, 'date' => $date]);
+                    Response::json(200, ['ok' => true, 'id' => $sessionId]);
+                } catch (InvalidArgumentException $e) {
+                    Response::error(409, 'ALREADY_SUBMITTED', $e->getMessage());
                 } catch (Throwable $e) {
-                    try { $pdo->rollBack(); } catch (Throwable $e2) {}
-                    throw $e;
+                    Response::error(500, 'ERROR', 'Failed to save attendance');
                 }
-                $this->logAudit($actorId, $schoolId, 'TEACHER_ATTENDANCE_SESSION_SAVE', ['className' => $className, 'date' => $date]);
-                Response::json(200, ['ok' => true]);
                 return;
             }
 
@@ -2922,26 +2918,9 @@ HTML;
                     Response::error(403, 'FORBIDDEN', 'No school context');
                     return;
                 }
-                $stmt = Db::pdo()->prepare('SELECT id,class_name,status,session_date FROM attendance_sessions WHERE id=? AND school_id=? LIMIT 1');
-                $stmt->execute([$sessionId, $schoolId]);
-                $session = $stmt->fetch();
-                if (!$session) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
-                $className = strval($session['class_name'] ?? '');
-                $allowed = $this->getTeacherAssignedClasses($schoolId, $u['id']);
-                if (!in_array($className, $allowed, true)) {
-                    Response::error(403, 'FORBIDDEN', 'Access denied');
-                    return;
-                }
-                if (strval($session['status'] ?? '') === 'SUBMITTED') {
-                    Response::json(200, ['ok' => true]);
-                    return;
-                }
-                $stmt = Db::pdo()->prepare("UPDATE attendance_sessions SET status='SUBMITTED', updated_at=NOW() WHERE id=? AND school_id=?");
-                $stmt->execute([$sessionId, $schoolId]);
-                $this->logAudit($actorId, $schoolId, 'TEACHER_ATTENDANCE_SESSION_SUBMIT', ['className' => $className, 'date' => $session['session_date'] ?? null]);
+                
+                $this->attendance->submitSession($schoolId, $sessionId);
+                $this->logAudit($actorId, $schoolId, 'TEACHER_ATTENDANCE_SESSION_SUBMIT', ['sessionId' => $sessionId]);
                 Response::json(200, ['ok' => true]);
                 return;
             }
@@ -2975,11 +2954,75 @@ HTML;
                     Response::error(400, 'VALIDATION_ERROR', 'from/to must be YYYY-MM-DD');
                     return;
                 }
-                $stmt = Db::pdo()->prepare('SELECT id,session_date,status,updated_at FROM attendance_sessions WHERE school_id=? AND class_name=? AND session_date BETWEEN ? AND ? ORDER BY session_date DESC');
-                $stmt->execute([$schoolId, $className, $from, $to]);
-                $out = array_map(fn($r) => ['id' => strval($r['id']), 'date' => strval($r['session_date']), 'status' => strval($r['status']), 'updatedAt' => $r['updated_at']], $stmt->fetchAll());
-                $this->logAudit($actorId, $schoolId, 'TEACHER_ATTENDANCE_HISTORY', ['className' => $className, 'from' => $from, 'to' => $to, 'count' => count($out)]);
-                Response::json(200, ['sessions' => $out]);
+                $sessions = $this->attendance->getHistory($schoolId, $className, $from, $to);
+                $this->logAudit($actorId, $schoolId, 'TEACHER_ATTENDANCE_HISTORY', ['className' => $className, 'from' => $from, 'to' => $to, 'count' => count($sessions)]);
+                Response::json(200, ['sessions' => $sessions]);
+                return;
+            }
+
+            if ($method === 'PUT' && $path === '/teacher/api/profile') {
+                $u = Auth::requireEffectiveRole('TEACHER');
+                $body = $this->jsonBody();
+                $displayName = isset($body['displayName']) ? trim(strval($body['displayName'])) : '';
+                $email = isset($body['email']) ? trim(strval($body['email'])) : '';
+                if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    Response::error(400, 'VALIDATION_ERROR', 'Invalid email address');
+                    return;
+                }
+                
+                $pdo = Db::pdo();
+                
+                if ($email !== '') {
+                    $stmt = $pdo->prepare('SELECT id FROM users WHERE email=? AND id!=? LIMIT 1');
+                    $stmt->execute([$email, $u['id']]);
+                    if ($stmt->fetch()) {
+                        Response::error(400, 'VALIDATION_ERROR', 'Email already in use by another account');
+                        return;
+                    }
+                }
+                
+                $stmt = $pdo->prepare('UPDATE users SET display_name=?, email=?, updated_at=NOW() WHERE id=?');
+                $stmt->execute([$displayName !== '' ? $displayName : null, $email !== '' ? $email : $u['email'], $u['id']]);
+                
+                $userRow = $this->getUserById($u['id']);
+                $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : null;
+                $this->logAudit($u['id'], $schoolId, 'TEACHER_PROFILE_UPDATE', ['email' => $email, 'displayName' => $displayName]);
+                Response::json(200, ['ok' => true]);
+                return;
+            }
+
+            if ($method === 'PUT' && $path === '/portal/api/settings') {
+                $u = Auth::requireUser();
+                if ($u['role'] !== 'PARENT' && $u['role'] !== 'STUDENT') {
+                    Response::error(403, 'FORBIDDEN', 'Forbidden');
+                    return;
+                }
+                $body = $this->jsonBody();
+                $displayName = isset($body['displayName']) ? trim(strval($body['displayName'])) : '';
+                $email = isset($body['email']) ? trim(strval($body['email'])) : '';
+                if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    Response::error(400, 'VALIDATION_ERROR', 'Invalid email address');
+                    return;
+                }
+                
+                $pdo = Db::pdo();
+                
+                if ($email !== '') {
+                    $stmt = $pdo->prepare('SELECT id FROM users WHERE email=? AND id!=? LIMIT 1');
+                    $stmt->execute([$email, $u['id']]);
+                    if ($stmt->fetch()) {
+                        Response::error(400, 'VALIDATION_ERROR', 'Email already in use by another account');
+                        return;
+                    }
+                }
+                
+                $stmt = $pdo->prepare('UPDATE users SET display_name=?, email=?, updated_at=NOW() WHERE id=?');
+                $stmt->execute([$displayName !== '' ? $displayName : null, $email !== '' ? $email : $u['email'], $u['id']]);
+                
+                $userRow = $this->getUserById($u['id']);
+                $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : null;
+                $this->logAudit($u['id'], $schoolId, 'PORTAL_SETTINGS_UPDATE', ['email' => $email, 'displayName' => $displayName]);
+                Response::json(200, ['ok' => true]);
                 return;
             }
 
@@ -3146,9 +3189,8 @@ HTML;
                     Response::error(404, 'NOT_FOUND', 'Not found');
                     return;
                 }
-                $stmt = Db::pdo()->prepare("SELECT s.session_date,m.mark,m.note FROM attendance_marks m JOIN attendance_sessions s ON s.id=m.attendance_session_id WHERE m.school_id=? AND m.student_id=? AND s.status='SUBMITTED' AND s.session_date BETWEEN ? AND ? ORDER BY s.session_date DESC");
-                $stmt->execute([$schoolId, $studentId, $from, $to]);
-                $days = array_map(fn($r) => ['date' => strval($r['session_date']), 'mark' => strval($r['mark']), 'note' => strval($r['note'] ?? '')], $stmt->fetchAll());
+                
+                $days = $this->attendance->getStudentDays($schoolId, $studentId, $from, $to);
                 Response::json(200, ['days' => $days]);
                 return;
             }
@@ -3184,21 +3226,9 @@ HTML;
                     Response::error(404, 'NOT_FOUND', 'Not found');
                     return;
                 }
-                $stmt = Db::pdo()->prepare("SELECT m.mark FROM attendance_marks m JOIN attendance_sessions s ON s.id=m.attendance_session_id WHERE m.school_id=? AND m.student_id=? AND s.status='SUBMITTED' AND s.session_date BETWEEN ? AND ?");
-                $stmt->execute([$schoolId, $studentId, $from, $to]);
-                $present = 0;
-                $absent = 0;
-                $late = 0;
-                $total = 0;
-                foreach ($stmt->fetchAll() as $r) {
-                    $total += 1;
-                    $mk = strtoupper(strval($r['mark'] ?? ''));
-                    if ($mk === 'PRESENT') $present += 1;
-                    if ($mk === 'ABSENT') $absent += 1;
-                    if ($mk === 'LATE') $late += 1;
-                }
-                $rate = $total > 0 ? ($present / $total) : null;
-                Response::json(200, ['summary' => ['total' => $total, 'present' => $present, 'absent' => $absent, 'late' => $late, 'presentRate' => $rate]]);
+                
+                $summary = $this->attendance->getStudentSummary($schoolId, $studentId, $from, $to);
+                Response::json(200, ['summary' => $summary]);
                 return;
             }
 
@@ -3210,9 +3240,7 @@ HTML;
                     Response::error(404, 'NOT_FOUND', 'Not found');
                     return;
                 }
-                $stmt = Db::pdo()->prepare('SELECT id,name,admission_no,gender,class_name,dob,house,parent,photo_url,address,guardian_name,guardian_phone,guardian_email,emergency_name,emergency_phone,profile_extra FROM students WHERE school_id=? ORDER BY created_at ASC');
-                $stmt->execute([$school['id']]);
-                $rows = $stmt->fetchAll();
+                $rows = $this->students->listAll($school['id']);
                 $out = array_map(fn($s) => [
                     'id' => $s['id'],
                     'name' => $s['name'],
@@ -3246,29 +3274,30 @@ HTML;
                 }
                 $this->enforceStudentLimit($school['id'], 1);
                 $body = $this->jsonBody();
-                $name = Validation::requireString($body, 'name', 2, 200);
-                $adm = Validation::requireString($body, 'admNo', 1, 60);
-                $gender = Validation::optionalString($body, 'gender', 20);
-                $cls = Validation::optionalString($body, 'cls', 40);
-                $dob = Validation::optionalString($body, 'dob', 32);
-                $house = Validation::optionalString($body, 'house', 60);
-                $parent = Validation::optionalString($body, 'parent', 120);
-                $photoUrl = Validation::optionalString($body, 'photoUrl', 500);
-                $address = Validation::optionalString($body, 'address', 500);
-                $guardianName = Validation::optionalString($body, 'guardianName', 200);
-                $guardianPhone = Validation::optionalString($body, 'guardianPhone', 40);
-                $guardianEmail = Validation::optionalString($body, 'guardianEmail', 320);
-                $emergencyName = Validation::optionalString($body, 'emergencyName', 200);
-                $emergencyPhone = Validation::optionalString($body, 'emergencyPhone', 40);
-                $extra = $body['extra'] ?? null;
-                $extraJson = '{}';
-                if (is_array($extra)) {
-                    $extraJson = json_encode($extra, JSON_UNESCAPED_SLASHES);
-                }
-                $id = $this->id('stu');
-                $stmt = Db::pdo()->prepare('INSERT INTO students (id,school_id,name,admission_no,gender,class_name,dob,house,parent,photo_url,address,guardian_name,guardian_phone,guardian_email,emergency_name,emergency_phone,profile_extra,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())');
+                
                 try {
-                    $stmt->execute([$id, $school['id'], $name, $adm, $gender, $cls, $dob ?: null, $house, $parent, $photoUrl, $address, $guardianName, $guardianPhone, $guardianEmail, $emergencyName, $emergencyPhone, $extraJson]);
+                    $id = $this->students->create($school['id'], $body);
+                    $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'STUDENT_CREATE_IMPERSONATED' : 'STUDENT_CREATE', ['studentId' => $id, 'admNo' => $body['admNo'] ?? '', 'effectiveUserId' => $u['id']]);
+                    
+                    $s = $this->students->getById($school['id'], $id);
+                    Response::json(201, ['student' => [
+                        'id'=>$s['id'],
+                        'name'=>$s['name'],
+                        'admNo'=>$s['admission_no'],
+                        'gender'=>$s['gender'] ?? '',
+                        'cls'=>$s['class_name'] ?? '',
+                        'dob'=>$s['dob'] ?? '',
+                        'house'=>$s['house'] ?? '',
+                        'parent'=>$s['parent'] ?? '',
+                        'photoUrl' => $s['photo_url'],
+                        'address' => $s['address'],
+                        'guardianName' => $s['guardian_name'],
+                        'guardianPhone' => $s['guardian_phone'],
+                        'guardianEmail' => $s['guardian_email'],
+                        'emergencyName' => $s['emergency_name'],
+                        'emergencyPhone' => $s['emergency_phone'],
+                        'extra' => json_decode($s['profile_extra'] ?? '{}', true) ?: new stdClass()
+                    ]]);
                 } catch (PDOException $e) {
                     if (str_contains($e->getMessage(), 'Duplicate')) {
                         Response::error(400, 'DUPLICATE_ADMISSION_NO', 'Admission number already exists.');
@@ -3276,8 +3305,6 @@ HTML;
                     }
                     throw $e;
                 }
-                $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'STUDENT_CREATE_IMPERSONATED' : 'STUDENT_CREATE', ['studentId' => $id, 'admNo' => $adm, 'effectiveUserId' => $u['id']]);
-                Response::json(201, ['student' => ['id'=>$id,'name'=>$name,'admNo'=>$adm,'gender'=>$gender ?? '','cls'=>$cls ?? '','dob'=>$dob ?? '','house'=>$house ?? '','parent'=>$parent ?? '', 'photoUrl' => $photoUrl, 'address' => $address, 'guardianName' => $guardianName, 'guardianPhone' => $guardianPhone, 'guardianEmail' => $guardianEmail, 'emergencyName' => $emergencyName, 'emergencyPhone' => $emergencyPhone, 'extra' => json_decode($extraJson, true) ?: new stdClass()]]);
                 return;
             }
 
@@ -3290,9 +3317,8 @@ HTML;
                     return;
                 }
                 $studentId = strval($m[1] ?? '');
-                $stmt = Db::pdo()->prepare('SELECT id FROM students WHERE school_id=? AND id=? LIMIT 1');
-                $stmt->execute([$school['id'], $studentId]);
-                if (!$stmt->fetch()) {
+                $s = $this->students->getById($school['id'], $studentId);
+                if (!$s) {
                     Response::error(404, 'NOT_FOUND', 'Not found');
                     return;
                 }
@@ -3301,21 +3327,11 @@ HTML;
                     Response::error(400, 'VALIDATION_ERROR', 'Invalid body');
                     return;
                 }
-                $allowed = ['name','admNo','gender','cls','dob','house','parent','photoUrl','address','guardianName','guardianPhone','guardianEmail','emergencyName','emergencyPhone','extra'];
-                $set = [];
-                $vals = [];
-                foreach ($allowed as $k) {
-                    if (!array_key_exists($k, $body)) {
-                        continue;
-                    }
+                
+                $data = [];
+                foreach ($body as $k => $v) {
                     if ($k === 'extra') {
-                        $ex = $body['extra'];
-                        if (!is_array($ex)) {
-                            Response::error(400, 'VALIDATION_ERROR', 'extra must be an object');
-                            return;
-                        }
-                        $set[] = 'profile_extra=?';
-                        $vals[] = json_encode($ex, JSON_UNESCAPED_SLASHES);
+                        $data['profile_extra'] = is_array($v) ? json_encode($v, JSON_UNESCAPED_SLASHES) : '{}';
                         continue;
                     }
                     $map = [
@@ -3329,17 +3345,10 @@ HTML;
                         'emergencyPhone' => 'emergency_phone'
                     ];
                     $col = $map[$k] ?? $this->snake($k);
-                    $set[] = $col . '=?';
-                    $vals[] = ($body[$k] === null) ? null : strval($body[$k]);
+                    $data[$col] = ($v === null) ? null : strval($v);
                 }
-                if (!$set) {
-                    Response::error(400, 'NO_CHANGES', 'No changes specified.');
-                    return;
-                }
-                $vals[] = $school['id'];
-                $vals[] = $studentId;
-                $stmt = Db::pdo()->prepare('UPDATE students SET ' . implode(',', $set) . ', updated_at=NOW() WHERE school_id=? AND id=?');
-                $stmt->execute($vals);
+
+                $this->students->update($school['id'], $studentId, $data);
                 $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'STUDENT_UPDATE_IMPERSONATED' : 'STUDENT_UPDATE', ['studentId' => $studentId, 'keys' => array_keys($body), 'effectiveUserId' => $u['id']]);
                 Response::json(200, ['ok' => true]);
                 return;
@@ -3367,34 +3376,10 @@ HTML;
                 if ($allowed < count($body)) {
                     $body = array_slice($body, 0, $allowed);
                 }
-                $pdo = Db::pdo();
-                $pdo->beginTransaction();
-                $created = 0;
-                $sql = Db::isSqlite()
-                    ? 'INSERT OR IGNORE INTO students (id,school_id,name,admission_no,gender,class_name,dob,house,parent,created_at) VALUES (?,?,?,?,?,?,?,?,?,NOW())'
-                    : 'INSERT IGNORE INTO students (id,school_id,name,admission_no,gender,class_name,dob,house,parent,created_at) VALUES (?,?,?,?,?,?,?,?,?,NOW())';
-                $stmt = $pdo->prepare($sql);
-                foreach ($body as $row) {
-                    if (!is_array($row)) {
-                        continue;
-                    }
-                    $name = trim(strval($row['name'] ?? ''));
-                    $adm = trim(strval($row['admNo'] ?? ''));
-                    if ($name === '' || $adm === '') {
-                        continue;
-                    }
-                    $id = $this->id('stu');
-                    $gender = isset($row['gender']) ? trim(strval($row['gender'])) : null;
-                    $cls = isset($row['cls']) ? trim(strval($row['cls'])) : null;
-                    $dob = isset($row['dob']) ? trim(strval($row['dob'])) : null;
-                    $house = isset($row['house']) ? trim(strval($row['house'])) : null;
-                    $parent = isset($row['parent']) ? trim(strval($row['parent'])) : null;
-                    $stmt->execute([$id, $school['id'], $name, $adm, $gender, $cls, $dob ?: null, $house, $parent]);
-                    $created += 1;
-                }
-                $pdo->commit();
-                $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'STUDENT_BULK_IMPORT_IMPERSONATED' : 'STUDENT_BULK_IMPORT', ['created' => $created, 'effectiveUserId' => $u['id']]);
-                Response::json(201, ['created' => $created]);
+                
+                $results = $this->students->bulkImport($school['id'], $body);
+                $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'STUDENT_BULK_IMPORT_IMPERSONATED' : 'STUDENT_BULK_IMPORT', ['created' => $results['created'], 'errorCount' => count($results['errors']), 'effectiveUserId' => $u['id']]);
+                Response::json(201, $results);
                 return;
             }
 
@@ -3407,11 +3392,7 @@ HTML;
                     return;
                 }
                 $id = $m[1];
-                $pdo = Db::pdo();
-                $stmt = $pdo->prepare('DELETE FROM score_sheets WHERE school_id=? AND student_id=?');
-                $stmt->execute([$school['id'], $id]);
-                $stmt = $pdo->prepare('DELETE FROM students WHERE school_id=? AND id=?');
-                $stmt->execute([$school['id'], $id]);
+                $this->students->delete($school['id'], $id);
                 $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'STUDENT_DELETE_IMPERSONATED' : 'STUDENT_DELETE', ['studentId' => $id, 'effectiveUserId' => $u['id']]);
                 Response::noContent();
                 return;
@@ -3546,10 +3527,16 @@ HTML;
                     $traits[$k] = ['rating' => $rating, 'remark' => $remark];
                 }
 
+                $comments = [
+                    'teacher' => trim(strval($body['comments']['teacher'] ?? '')),
+                    'principal' => trim(strval($body['comments']['principal'] ?? ''))
+                ];
+                $promotion = trim(strval($body['promotion'] ?? ''));
+
                 $id = $this->id('rx');
                 $sql = Db::isSqlite()
-                    ? 'INSERT INTO report_extras (id,school_id,student_id,session,term,attendance,traits,created_at,updated_at) VALUES (?,?,?,?,?,?,?,NOW(),NOW()) ON CONFLICT(school_id,student_id,session,term) DO UPDATE SET attendance=excluded.attendance, traits=excluded.traits, updated_at=excluded.updated_at'
-                    : 'INSERT INTO report_extras (id,school_id,student_id,session,term,attendance,traits,created_at,updated_at) VALUES (?,?,?,?,?,?,?,NOW(),NOW()) ON DUPLICATE KEY UPDATE attendance=VALUES(attendance), traits=VALUES(traits), updated_at=VALUES(updated_at)';
+                    ? 'INSERT INTO report_extras (id,school_id,student_id,session,term,attendance,traits,comments,promotion,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,NOW(),NOW()) ON CONFLICT(school_id,student_id,session,term) DO UPDATE SET attendance=excluded.attendance, traits=excluded.traits, comments=excluded.comments, promotion=excluded.promotion, updated_at=excluded.updated_at'
+                    : 'INSERT INTO report_extras (id,school_id,student_id,session,term,attendance,traits,comments,promotion,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,NOW(),NOW()) ON DUPLICATE KEY UPDATE attendance=VALUES(attendance), traits=VALUES(traits), comments=VALUES(comments), promotion=VALUES(promotion), updated_at=VALUES(updated_at)';
                 Db::pdo()->prepare($sql)->execute([
                     $id,
                     $school['id'],
@@ -3557,7 +3544,9 @@ HTML;
                     $session,
                     $term,
                     json_encode($attendance, JSON_UNESCAPED_SLASHES),
-                    json_encode($traits, JSON_UNESCAPED_SLASHES)
+                    json_encode($traits, JSON_UNESCAPED_SLASHES),
+                    json_encode($comments, JSON_UNESCAPED_SLASHES),
+                    $promotion
                 ]);
 
                 $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'REPORT_EXTRAS_SAVE_IMPERSONATED' : 'REPORT_EXTRAS_SAVE', ['studentId' => $studentId, 'session' => $session, 'term' => $term, 'effectiveUserId' => $u['id']]);
@@ -3566,14 +3555,27 @@ HTML;
             }
 
             if ($method === 'POST' && preg_match('#^/reports/pdf/student/([^/]+)$#', $path, $m)) {
-                $u = Auth::requireEffectiveRole('SCHOOL');
+                $u = Auth::requireUser();
+                if (!in_array($u['role'], ['SCHOOL', 'TEACHER', 'PARENT', 'STUDENT'], true)) {
+                    Response::error(403, 'FORBIDDEN', 'Access denied');
+                    return;
+                }
                 $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
                 RateLimit::enforce('pdf-student:' . $ip, 30, 3600);
-                $school = $this->getSchoolByOwnerId($u['id']);
+                
+                if ($u['role'] === 'SCHOOL') {
+                    $school = $this->getSchoolByOwnerId($u['id']);
+                } else {
+                    $userRow = $this->getUserById($u['id']);
+                    $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : '';
+                    $school = $schoolId !== '' ? $this->getSchoolById($schoolId) : null;
+                }
+                
                 if (!$school) {
                     Response::error(404, 'NOT_FOUND', 'Not found');
                     return;
                 }
+
                 $studentId = $m[1];
                 $stmt = Db::pdo()->prepare('SELECT id,name,admission_no,gender,class_name FROM students WHERE school_id=? AND id=? LIMIT 1');
                 $stmt->execute([$school['id'], $studentId]);
@@ -3581,6 +3583,21 @@ HTML;
                 if (!$student) {
                     Response::error(404, 'NOT_FOUND', 'Not found');
                     return;
+                }
+
+                if ($u['role'] === 'TEACHER') {
+                    $allowed = $this->getTeacherAssignedClasses($school['id'], $u['id']);
+                    if (!in_array($student['class_name'] ?? '', $allowed, true)) {
+                        Response::error(403, 'FORBIDDEN', 'Access denied');
+                        return;
+                    }
+                } else if ($u['role'] === 'PARENT' || $u['role'] === 'STUDENT') {
+                    $stmt = Db::pdo()->prepare('SELECT id FROM student_links WHERE school_id=? AND user_id=? AND student_id=? LIMIT 1');
+                    $stmt->execute([$school['id'], $u['id'], $studentId]);
+                    if (!$stmt->fetch()) {
+                        Response::error(403, 'FORBIDDEN', 'Access denied');
+                        return;
+                    }
                 }
                 $scores = $this->getScoresForStudent($school['id'], $studentId);
                 $extras = $this->getReportExtras($school['id'], $studentId, strval($school['session'] ?? ''), strval($school['term'] ?? ''));
@@ -3602,7 +3619,7 @@ HTML;
             if ($method === 'POST' && $path === '/reports/pdf/class') {
                 $u = Auth::requireEffectiveRole('SCHOOL');
                 $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                RateLimit::enforce('pdf-class:' . $ip, 12, 3600);
+                RateLimit::enforce('pdf-class:' . $ip, 20, 3600);
                 $school = $this->getSchoolByOwnerId($u['id']);
                 if (!$school) {
                     Response::error(404, 'NOT_FOUND', 'Not found');
@@ -3614,40 +3631,64 @@ HTML;
                     Response::error(400, 'VALIDATION_ERROR', 'className is required');
                     return;
                 }
-                $stmt = Db::pdo()->prepare('SELECT id,name,admission_no,gender,class_name FROM students WHERE school_id=? AND class_name=? ORDER BY name ASC');
-                $stmt->execute([$school['id'], $className]);
-                $students = $stmt->fetchAll();
-                if (!$students) {
-                    Response::error(404, 'NOT_FOUND', 'No students in this class');
+                
+                // Create background job
+                $jobId = $this->jobs->create($school['id'], $u['id'], 'CLASS_PDF', [
+                    'className' => $className,
+                    'actorId' => $actorId,
+                    'isImpersonated' => ($u['impersonating'] ?? false)
+                ]);
+
+                $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'REPORT_PDF_CLASS_QUEUED_IMPERSONATED' : 'REPORT_PDF_CLASS_QUEUED', ['className' => $className, 'jobId' => $jobId]);
+                Response::json(202, ['jobId' => $jobId, 'status' => 'PENDING']);
+                return;
+            }
+
+            if ($method === 'GET' && preg_match('#^/jobs/([^/]+)$#', $path, $m)) {
+                $u = Auth::requireUser();
+                $jobId = $m[1];
+                $job = $this->jobs->getById($jobId);
+                if (!$job) {
+                    Response::error(404, 'NOT_FOUND', 'Job not found');
                     return;
                 }
-                $classStats = $this->buildClassStats($school, $className);
-                $css = '';
-                $sheets = [];
-                foreach ($students as $st) {
-                    $sid = strval($st['id']);
-                    $scores = $this->getScoresForStudent($school['id'], $sid);
-                    $extras = $this->getReportExtras($school['id'], $sid, strval($school['session'] ?? ''), strval($school['term'] ?? ''));
-                    $doc = ReportPdf::buildStudentHtml($school, $st, $scores, $extras, $classStats);
-                    if ($css === '') {
-                        $css = ReportPdf::extractCss($doc);
+                
+                // Security check: only the school/user who created the job can see it
+                if ($u['role'] !== 'ADMIN') {
+                    $school = $this->getSchoolByOwnerId($u['id']);
+                    if (!$school || $job['school_id'] !== $school['id']) {
+                        Response::error(403, 'FORBIDDEN', 'Access denied');
+                        return;
                     }
-                    $sheets[] = ReportPdf::extractSheet($doc);
                 }
-                $joined = implode('<div class="page-break"></div>', array_filter($sheets));
-                $docHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
-                    . '<style>' . $css . '@page{size:A4;margin:12mm;}.page-break{break-after:page;page-break-after:always}</style>'
-                    . '</head><body>' . $joined . '</body></html>';
-                try {
-                    $pdf = PdfRenderer::htmlToPdf($docHtml);
-                    $filename = $this->makeClassPdfFilename($school, $className);
-                    $export = $this->createReportExport($school['id'], $filename, $pdf);
-                } catch (Throwable $e) {
-                    Response::error(501, 'PDF_RENDERER_UNAVAILABLE', $e->getMessage());
-                    return;
+
+                Response::json(200, [
+                    'id' => $job['id'],
+                    'status' => $job['status'],
+                    'progress' => intval($job['progress']),
+                    'resultUrl' => $job['result_url'],
+                    'error' => $job['error'],
+                    'createdAt' => $job['created_at'],
+                    'updatedAt' => $job['updated_at']
+                ]);
+                return;
+            }
+
+            if ($method === 'POST' && $path === '/jobs/worker') {
+                // Internal or Admin only
+                $u = Auth::requireUser();
+                if ($u['role'] !== 'ADMIN') {
+                    // For now, allow school owners to trigger their own pending jobs if they want, 
+                    // but typically this would be a cron job or background process.
+                    $school = $this->getSchoolByOwnerId($u['id']);
+                    if (!$school) {
+                        Response::error(403, 'FORBIDDEN', 'Access denied');
+                        return;
+                    }
                 }
-                $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'REPORT_PDF_CLASS_IMPERSONATED' : 'REPORT_PDF_CLASS', ['className' => $className, 'token' => $export['token'], 'effectiveUserId' => $u['id']]);
-                Response::json(200, ['downloadUrl' => $export['url'], 'expiresAt' => $export['expiresAt']]);
+                
+                $processed = $this->processJobs();
+                Response::json(200, ['ok' => true, 'processed' => $processed]);
                 return;
             }
 
@@ -3728,7 +3769,7 @@ HTML;
                     $pairsTrim[] = '...';
                 }
 
-                $msg = 'EduReport Summary' . "\n"
+                $msg = 'ReportSheet Summary' . "\n"
                     . strval($student['name']) . ' (' . $className . ')' . "\n"
                     . strval($school['term'] ?? '') . ' ' . strval($school['session'] ?? '') . "\n"
                     . implode(', ', $pairsTrim) . "\n"
@@ -3774,6 +3815,7 @@ HTML;
                 $pdo->prepare($sql)->execute([$this->id('scr'), $school['id'], $studentId, $data]);
                 $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'SCORES_SAVE_IMPERSONATED' : 'SCORES_SAVE', ['studentId' => $studentId, 'effectiveUserId' => $u['id']]);
                 Response::json(200, ['ok' => true]);
+                return;
             }
 
             if ($method === 'POST' && $path === '/ai/exam/generate') {
@@ -4016,7 +4058,7 @@ HTML;
                 } elseif ($gateway === 'PAYMENTPOINT') {
                     $checkoutData['virtualAccount'] = [
                         'bankName' => 'Wema Bank',
-                        'accountName' => 'EduReport NG - ' . $school['name'],
+                        'accountName' => 'ReportSheet - ' . $school['name'],
                         'accountNumber' => '0123456789'
                     ];
                 }
@@ -4375,7 +4417,7 @@ HTML;
     private function randomPassword(): string
     {
         $bytes = bin2hex(random_bytes(6));
-        return 'Edu' . $bytes . '!';
+        return 'Report' . $bytes . '!';
     }
 
     private function publicApiUrl(): string
@@ -4485,19 +4527,22 @@ HTML;
             $term = 'First Term';
         }
         try {
-            $stmt = Db::pdo()->prepare('SELECT attendance,traits FROM report_extras WHERE school_id=? AND student_id=? AND session=? AND term=? LIMIT 1');
+            $stmt = Db::pdo()->prepare('SELECT attendance,traits,comments,promotion FROM report_extras WHERE school_id=? AND student_id=? AND session=? AND term=? LIMIT 1');
             $stmt->execute([$schoolId, $studentId, $session, $term]);
             $row = $stmt->fetch();
             if (!$row) {
-                return ['session' => $session, 'term' => $term, 'attendance' => [], 'traits' => []];
+                return ['session' => $session, 'term' => $term, 'attendance' => [], 'traits' => [], 'comments' => [], 'promotion' => ''];
             }
             $a = json_decode($row['attendance'] ?? '{}', true);
             $t = json_decode($row['traits'] ?? '{}', true);
+            $c = json_decode($row['comments'] ?? '{}', true);
             return [
                 'session' => $session,
                 'term' => $term,
                 'attendance' => is_array($a) ? $a : [],
-                'traits' => is_array($t) ? $t : []
+                'traits' => is_array($t) ? $t : [],
+                'comments' => is_array($c) ? $c : [],
+                'promotion' => strval($row['promotion'] ?? '')
             ];
         } catch (Throwable $e) {
             return ['session' => $session, 'term' => $term, 'attendance' => [], 'traits' => []];
@@ -4619,7 +4664,7 @@ HTML;
     {
         $specUrl = '/admin/openapi.json';
         return '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' .
-            '<title>EduReport Admin API Docs</title>' .
+            '<title>ReportSheet Admin API Docs</title>' .
             '<link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css">' .
             '</head><body><div id="swagger-ui"></div>' .
             '<script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>' .
@@ -4631,7 +4676,7 @@ HTML;
     {
         return [
             'openapi' => '3.0.3',
-            'info' => ['title' => 'EduReport Admin API', 'version' => '0.1.0'],
+            'info' => ['title' => 'ReportSheet Admin API', 'version' => '0.1.0'],
             'servers' => [['url' => '/']],
             'components' => [
                 'securitySchemes' => [
@@ -5069,7 +5114,7 @@ HTML;
         $count = intval(($pdo->query($countSql)->fetch()['c'] ?? 0));
         $sent = false;
         if ($count > 0) {
-            $sent = $this->sendSlackAlert("EduReport alert: {$count} failed payments in the last hour.");
+            $sent = $this->sendSlackAlert("ReportSheet alert: {$count} failed payments in the last hour.");
             $pdo->prepare('INSERT INTO alert_events (id,type,status,data,created_at) VALUES (?,?,?,?,NOW())')
                 ->execute([$this->id('alt'), 'FAILED_PAYMENTS_HOUR', $sent ? 'SENT' : 'FAILED', json_encode(['count' => $count], JSON_UNESCAPED_SLASHES)]);
         }
@@ -5282,5 +5327,83 @@ HTML;
     {
         $s = preg_replace('/([a-z])([A-Z])/', '$1_$2', $camel);
         return strtolower($s ?? $camel);
+    }
+
+    private function processJobs(): int
+    {
+        $pending = $this->jobs->getPending();
+        $count = 0;
+        foreach ($pending as $job) {
+            $this->jobs->updateStatus($job['id'], 'PROCESSING', 5);
+            try {
+                if ($job['type'] === 'CLASS_PDF') {
+                    $this->handleClassPdfJob($job);
+                } else {
+                    $this->jobs->updateStatus($job['id'], 'FAILED', 0, null, 'Unknown job type: ' . $job['type']);
+                }
+                $count++;
+            } catch (Throwable $e) {
+                $this->jobs->updateStatus($job['id'], 'FAILED', 0, null, $e->getMessage());
+            }
+        }
+        return $count;
+    }
+
+    private function handleClassPdfJob(array $job): void
+    {
+        $schoolId = $job['school_id'];
+        $payload = $job['payload'];
+        $className = $payload['className'] ?? '';
+        $actorId = $payload['actorId'] ?? $job['user_id'];
+        $isImpersonated = $payload['isImpersonated'] ?? false;
+
+        $school = $this->getSchoolById($schoolId);
+        if (!$school) {
+            throw new Exception("School not found: " . $schoolId);
+        }
+
+        $this->jobs->updateStatus($job['id'], 'PROCESSING', 10);
+
+        $stmt = Db::pdo()->prepare('SELECT id,name,admission_no,gender,class_name FROM students WHERE school_id=? AND class_name=? ORDER BY name ASC');
+        $stmt->execute([$school['id'], $className]);
+        $students = $stmt->fetchAll();
+        if (!$students) {
+            throw new Exception("No students in this class: " . $className);
+        }
+
+        $classStats = $this->buildClassStats($school, $className);
+        $css = '';
+        $sheets = [];
+        $total = count($students);
+        $done = 0;
+
+        foreach ($students as $st) {
+            $sid = strval($st['id']);
+            $scores = $this->getScoresForStudent($school['id'], $sid);
+            $extras = $this->getReportExtras($school['id'], $sid, strval($school['session'] ?? ''), strval($school['term'] ?? ''));
+            $doc = ReportPdf::buildStudentHtml($school, $st, $scores, $extras, $classStats);
+            if ($css === '') {
+                $css = ReportPdf::extractCss($doc);
+            }
+            $sheets[] = ReportPdf::extractSheet($doc);
+            $done++;
+            $progress = 10 + intval(($done / $total) * 70); // 10% to 80%
+            $this->jobs->updateStatus($job['id'], 'PROCESSING', $progress);
+        }
+
+        $joined = implode('<div class="page-break"></div>', array_filter($sheets));
+        $docHtml = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
+            . '<style>' . $css . '@page{size:A4;margin:12mm;}.page-break{break-after:page;page-break-after:always}</style>'
+            . '</head><body>' . $joined . '</body></html>';
+
+        $this->jobs->updateStatus($job['id'], 'PROCESSING', 85);
+
+        $pdf = PdfRenderer::htmlToPdf($docHtml);
+        $filename = $this->makeClassPdfFilename($school, $className);
+        $export = $this->createReportExport($school['id'], $filename, $pdf);
+
+        $this->logAudit($actorId, $school['id'], $isImpersonated ? 'REPORT_PDF_CLASS_IMPERSONATED' : 'REPORT_PDF_CLASS', ['className' => $className, 'token' => $export['token'], 'effectiveUserId' => $job['user_id'], 'jobId' => $job['id']]);
+
+        $this->jobs->updateStatus($job['id'], 'COMPLETED', 100, $export['url']);
     }
 }
