@@ -20,7 +20,7 @@ After deployment, your `public_html/` should look like this:
 
 ```
 public_html/
-├── .htaccess              ← Combined rewrite rules (from deploy/cpanel/.htaccess)
+├── .htaccess              ← Combined rewrite rules (from .htaccess)
 ├── index.html             ← Landing page
 ├── login.html
 ├── register.html
@@ -37,9 +37,8 @@ public_html/
 │   └── login/
 │       └── index.html
 ├── api/                   ← API entry point
-│   ├── .htaccess          ← Backend router (from php-backend/public/.htaccess)
-│   ├── index.php          ← Modified API entry (from php-backend/public/index.php)
-│   └── router.php         ← Dev server router (from php-backend/public/router.php)
+│   ├── .htaccess          ← Backend router (from deploy/cpanel/api/.htaccess)
+│   └── index.php          ← Modified API entry (from deploy/cpanel/api/index.php)
 └── backend/               ← Backend source (protected by .htaccess)
     ├── .htaccess          ← Deny from all (from deploy/cpanel/backend/.htaccess)
     ├── .env               ← Your configuration (NEVER commit this)
@@ -60,9 +59,8 @@ Upload the following to your cPanel `public_html/` directory:
 | `index.html`, `login.html`, `register.html`, `app.html`, `admin.html`, `teacher.html`, `portal.html`, `exammaker.html` | `public_html/` |
 | `shared.css`, `auth.js`, `config.js` | `public_html/` |
 | `adminpanel/` | `public_html/adminpanel/` |
-| `php-backend/public/.htaccess` | `public_html/api/.htaccess` |
-| `php-backend/public/index.php` | `public_html/api/index.php` |
-| `php-backend/public/router.php` | `public_html/api/router.php` |
+| `deploy/cpanel/api/index.php` | `public_html/api/index.php` |
+| `deploy/cpanel/api/.htaccess` | `public_html/api/.htaccess` |
 | `php-backend/src/` | `public_html/backend/src/` |
 | `php-backend/storage/` (empty dirs) | `public_html/backend/storage/` |
 | `php-backend/migrations/` | `public_html/backend/migrations/` |
