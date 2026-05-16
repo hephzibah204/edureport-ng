@@ -1,3 +1,5 @@
+DirectoryIndex index.html index.php
+
 RewriteEngine On
 
 # Security headers
@@ -10,6 +12,15 @@ RewriteRule ^backend/ - [F,L]
 
 # API routes - forward to PHP backend
 RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+
+# Explicit: serve index.html for directory-like paths
+RewriteCond %{REQUEST_URI} ^(.+)/$
+RewriteCond %{DOCUMENT_ROOT}%1/index.html -f
+RewriteRule ^(.+)/$ $1/index.html [L]
+
+RewriteCond %{REQUEST_URI} ^(.+[^/])$
+RewriteCond %{DOCUMENT_ROOT}%1/index.html -f
+RewriteRule ^(.+[^/])$ $1/index.html [L]
 
 # Serve existing files and directories directly
 RewriteCond %{REQUEST_FILENAME} -f
