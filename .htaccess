@@ -1,10 +1,31 @@
 RewriteEngine On
 
-# Hide .html extension
+# Security headers
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+# Block direct access to backend source
+RewriteRule ^backend/ - [F,L]
+
+# API routes - forward to PHP backend
+RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+
+# Serve existing files and directories directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Hide .html extension for frontend pages
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
 
-# Redirect .html to clean URL
+# Redirect direct .html access to clean URL
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
 RewriteRule ^ /%1 [NC,L,R=301]
+
+# Fallback to landing page
+RewriteRule ^ index.html [L]

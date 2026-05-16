@@ -5,11 +5,10 @@ Header always set X-Content-Type-Options "nosniff"
 Header always set X-Frame-Options "SAMEORIGIN"
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
-# Block access to sensitive directories
+# Block direct access to backend source
 RewriteRule ^backend/ - [F,L]
-RewriteRule ^api/backend/ - [F,L]
 
-# API routes - forward to backend API
+# API routes - forward to PHP backend
 RewriteRule ^api/(.*)$ api/index.php [QSA,L]
 
 # Serve existing files and directories directly

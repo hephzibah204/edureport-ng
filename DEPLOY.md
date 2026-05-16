@@ -57,7 +57,9 @@ Upload the following to your cPanel `public_html/` directory:
 
 | Source | Destination |
 |---|---|
-| `edureport/*` (all frontend files) | `public_html/` |
+| `index.html`, `login.html`, `register.html`, `app.html`, `admin.html`, `teacher.html`, `portal.html`, `exammaker.html` | `public_html/` |
+| `shared.css`, `auth.js`, `config.js` | `public_html/` |
+| `adminpanel/` | `public_html/adminpanel/` |
 | `php-backend/public/.htaccess` | `public_html/api/.htaccess` |
 | `php-backend/public/index.php` | `public_html/api/index.php` |
 | `php-backend/public/router.php` | `public_html/api/router.php` |
@@ -65,7 +67,7 @@ Upload the following to your cPanel `public_html/` directory:
 | `php-backend/storage/` (empty dirs) | `public_html/backend/storage/` |
 | `php-backend/migrations/` | `public_html/backend/migrations/` |
 | `php-backend/scripts/` | `public_html/backend/scripts/` |
-| `deploy/cpanel/.htaccess` | `public_html/.htaccess` |
+| `.htaccess` (root) | `public_html/.htaccess` |
 | `deploy/cpanel/backend/.htaccess` | `public_html/backend/.htaccess` |
 
 **Do NOT upload:**
