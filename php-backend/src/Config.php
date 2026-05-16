@@ -40,6 +40,12 @@ final class Config
     {
         $v = getenv($key);
         if ($v === false) {
+            $v = $_ENV[$key] ?? null;
+        }
+        if ($v === false || $v === null) {
+            $v = $_SERVER[$key] ?? null;
+        }
+        if ($v === false || $v === null) {
             return $default;
         }
         return $v;

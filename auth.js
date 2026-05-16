@@ -9,7 +9,7 @@ function safeJsonParse(raw, fallback) {
 function getConfig() {
   const cfg = window.ReportSheet_CONFIG || {};
   return {
-    apiBaseUrl: cfg.apiBaseUrl || "http://127.0.0.1:3010",
+    apiBaseUrl: cfg.apiBaseUrl || "http://127.0.0.1:3011",
     demoMode: Boolean(cfg.demoMode)
   };
 }

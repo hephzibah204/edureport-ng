@@ -3966,7 +3966,7 @@ HTML;
                     $stmt->execute([$this->id('sub'), $school['id'], $plan['planId'], $plan['versionId'], $status, $billingCycle, 0, $currency, $start, $end, $trialEnd, 0]);
                     $pdo->commit();
                     
-                    Response::json(['ok' => true, 'virtualAccount' => null, 'checkoutUrl' => null, 'reference' => null]);
+                    Response::json(200, ['ok' => true, 'virtualAccount' => null, 'checkoutUrl' => null, 'reference' => null]);
                     return;
                 }
 

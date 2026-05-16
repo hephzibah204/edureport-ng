@@ -29,9 +29,12 @@ require_once $backendDir . '/App.php';
 Config::loadEnvIfPresent();
 
 // Strip /api prefix from rewritten requests
-if (isset($_SERVER['REQUEST_URI']) && str_starts_with($_SERVER['REQUEST_URI'], '/api')) {
-    $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], 4);
-    if ($_SERVER['REQUEST_URI'] === '') $_SERVER['REQUEST_URI'] = '/';
+if (isset($_SERVER['REQUEST_URI'])) {
+    $uri = $_SERVER['REQUEST_URI'];
+    if ($uri === '/api' || str_starts_with($uri, '/api/')) {
+        $_SERVER['REQUEST_URI'] = substr($uri, 4);
+        if ($_SERVER['REQUEST_URI'] === '') $_SERVER['REQUEST_URI'] = '/';
+    }
 }
 
 ini_set('display_errors', '0');
