@@ -6,32 +6,91 @@
   <title>Admin Login — ReportSheet</title>
   <link rel="stylesheet" href="../../shared.css">
   <style>
-    body { display:flex; align-items:center; justify-content:center; padding: 28px 14px; }
-    .wrap { width: min(520px, 92vw); }
-    .muted { color: var(--muted); font-size: 0.9rem; }
+    body { display:flex; align-items:center; justify-content:center; min-height:100vh; padding: 28px 14px; background: var(--cream); }
+    .wrap { width: min(420px, 92vw); }
+    .logo { font-family: var(--font-display); font-size: 1.6rem; font-weight: 900; color: var(--green); margin-bottom: 0.3rem; }
+    .logo em { font-style: normal; color: var(--gold); }
+    .tag { font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; }
+    .muted { color: var(--muted); font-size: 0.85rem; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <div class="card-title">Redirecting…</div>
-      <div class="muted">Opening secure admin login.</div>
-      <div id="msg" class="muted" style="margin-top:10px;"></div>
+      <div class="logo">Report<em>Sheet</em></div>
+      <div class="tag">Admin Panel</div>
+      <div id="alert" class="alert alert-err"></div>
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="admin@yourdomain.com" autocomplete="email">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <div class="field">
+        <label>2FA Code (if enabled)</label>
+        <input type="text" id="totp" placeholder="123456" inputmode="numeric" autocomplete="one-time-code">
+      </div>
+      <button class="btn btn-primary btn-full btn-lg" onclick="handleLogin()" id="login-btn" style="margin-top:0.5rem;">
+        Sign In
+      </button>
+      <div class="muted" style="margin-top:1rem;text-align:center;">
+        <a href="../bootstrap.html" style="color:var(--green);text-decoration:none;">← Back to dashboard</a>
+      </div>
     </div>
   </div>
 
+  <div id="toast"></div>
   <script src="../../config.js"></script>
+  <script src="../../auth.js"></script>
   <script>
-    const api = (window.ReportSheet_CONFIG?.apiBaseUrl ? String(window.ReportSheet_CONFIG.apiBaseUrl).replace(/\/$/, '') : '');
-    const target = api ? (api + '/adminpanel/login/') : '';
-    const msg = document.getElementById('msg');
-    if (!target) {
-      msg.textContent = 'Missing apiBaseUrl in config.js.';
-    } else {
-      msg.textContent = target;
-      location.replace(target);
+    async function handleLogin() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const totp = document.getElementById('totp').value.trim();
+      const alert = document.getElementById('alert');
+      const btn = document.getElementById('login-btn');
+      alert.classList.remove('show');
+
+      if (!email || !password) {
+        alert.textContent = 'Please enter your email and password.';
+        alert.classList.add('show');
+        return;
+      }
+
+      btn.innerHTML = '<span class="spinner"></span> Signing in…';
+      btn.disabled = true;
+
+      try {
+        const result = await Auth.login({ email, password, totp });
+        const role = result?.user?.role;
+        if (role !== 'ADMIN' && role !== 'STAFF') {
+          Auth.clearSession();
+          alert.textContent = 'Access denied. Admin credentials required.';
+          alert.classList.add('show');
+          btn.innerHTML = 'Sign In';
+          btn.disabled = false;
+          return;
+        }
+        showToast('✅ Welcome, Admin!', 'ok');
+        setTimeout(() => { window.location.href = '../bootstrap.html'; }, 600);
+      } catch (e) {
+        alert.textContent = e?.message || 'Sign in failed.';
+        alert.classList.add('show');
+        btn.innerHTML = 'Sign In';
+        btn.disabled = false;
+      }
     }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
+
+    (function() {
+      const session = Auth.getSession();
+      if (session && (session.role === 'ADMIN' || session.role === 'STAFF')) {
+        window.location.href = '../bootstrap.html';
+      }
+    })();
   </script>
 </body>
 </html>
-

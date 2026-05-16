@@ -25,7 +25,7 @@
   <script src="../auth.js"></script>
   <script>
     const apiBase = (window.ReportSheet_CONFIG?.apiBaseUrl ? String(window.ReportSheet_CONFIG.apiBaseUrl).replace(/\/$/, '') : '');
-    const loginUrl = apiBase ? (apiBase + '/adminpanel/login/') : '/adminpanel/login/';
+    const loginUrl = '/adminpanel/login/';
     const status = document.getElementById('status');
     const detail = document.getElementById('detail');
     detail.textContent = apiBase ? ('API: ' + apiBase) : 'Missing ReportSheet_CONFIG.apiBaseUrl';
@@ -59,12 +59,12 @@
         if (role !== 'ADMIN' && role !== 'STAFF') {
           status.textContent = 'Not an admin account.';
           localStorage.removeItem('edu_session');
-          location.replace('../login');
+          location.replace('/login');
           return;
         }
         setSessionFromMe(out);
         status.textContent = 'Session ready. Redirecting…';
-        location.replace('../admin');
+        location.replace('/admin');
       } catch (e) {
         status.textContent = 'Not logged in yet. Redirecting to admin login…';
         localStorage.removeItem('edu_session');
