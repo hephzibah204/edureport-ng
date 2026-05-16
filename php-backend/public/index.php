@@ -1,29 +1,36 @@
 <?php
 
-require_once dirname(__DIR__) . '/src/Config.php';
-require_once dirname(__DIR__) . '/src/Response.php';
-require_once dirname(__DIR__) . '/src/Db.php';
-require_once dirname(__DIR__) . '/src/Validation.php';
-require_once dirname(__DIR__) . '/src/Auth.php';
-require_once dirname(__DIR__) . '/src/Crypto.php';
-require_once dirname(__DIR__) . '/src/Totp.php';
-require_once dirname(__DIR__) . '/src/RateLimit.php';
-require_once dirname(__DIR__) . '/src/Ai.php';
-require_once dirname(__DIR__) . '/src/PdfRenderer.php';
-require_once dirname(__DIR__) . '/src/ReportPdf.php';
-require_once dirname(__DIR__) . '/src/Sms.php';
-require_once dirname(__DIR__) . '/src/AttendanceService.php';
-require_once dirname(__DIR__) . '/src/StudentService.php';
-require_once dirname(__DIR__) . '/src/JobService.php';
-require_once dirname(__DIR__) . '/src/MailService.php';
-require_once dirname(__DIR__) . '/src/App.php';
+$backendDir = is_dir(dirname(__DIR__, 2) . '/backend/src')
+    ? dirname(__DIR__, 2) . '/backend/src'
+    : dirname(__DIR__) . '/src';
+
+$storageDir = is_dir(dirname(__DIR__, 2) . '/backend/storage')
+    ? dirname(__DIR__, 2) . '/backend/storage'
+    : dirname(__DIR__) . '/storage';
+
+require_once $backendDir . '/Config.php';
+require_once $backendDir . '/Response.php';
+require_once $backendDir . '/Db.php';
+require_once $backendDir . '/Validation.php';
+require_once $backendDir . '/Auth.php';
+require_once $backendDir . '/Crypto.php';
+require_once $backendDir . '/Totp.php';
+require_once $backendDir . '/RateLimit.php';
+require_once $backendDir . '/Ai.php';
+require_once $backendDir . '/PdfRenderer.php';
+require_once $backendDir . '/ReportPdf.php';
+require_once $backendDir . '/Sms.php';
+require_once $backendDir . '/AttendanceService.php';
+require_once $backendDir . '/StudentService.php';
+require_once $backendDir . '/JobService.php';
+require_once $backendDir . '/MailService.php';
+require_once $backendDir . '/App.php';
 
 Config::loadEnvIfPresent();
 
 ini_set('display_errors', '0');
 error_reporting(E_ALL);
 
-$storageDir = dirname(__DIR__) . '/storage';
 if (!is_dir($storageDir)) {
     @mkdir($storageDir, 0750, true);
 }
