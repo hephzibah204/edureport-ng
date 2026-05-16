@@ -73,6 +73,16 @@ final class Auth
         return $u;
     }
 
+    public static function requireAnyRole(array $roles): array
+    {
+        $u = self::requireSessionUser();
+        if (!in_array($u['role'], $roles, true)) {
+            Response::error(403, 'FORBIDDEN', 'Forbidden');
+            exit;
+        }
+        return $u;
+    }
+
     public static function requireEffectiveRole(string $role): array
     {
         $u = self::requireUser();

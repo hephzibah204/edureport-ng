@@ -26,7 +26,7 @@ final class Config
             if ($k === '') {
                 continue;
             }
-            if (str_starts_with($v, '"') && str_ends_with($v, '"')) {
+            if ((str_starts_with($v, '"') && str_ends_with($v, '"')) || (str_starts_with($v, "'") && str_ends_with($v, "'"))) {
                 $v = substr($v, 1, -1);
             }
             if (getenv($k) === false) {

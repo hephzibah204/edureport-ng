@@ -95,16 +95,6 @@ final class App
                 http_response_code(301);
                 header('Location: /' . rawurlencode($slugRaw));
                 return;
-
-                $slug = htmlspecialchars($slugRaw, ENT_QUOTES);
-                $html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-                    . '<title>School</title>'
-                    . '<meta name="description" content="School landing page">'
-                    . '<style>body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0B1220;color:#0F172A} .wrap{max-width:1100px;margin:0 auto;padding:28px} .card{background:#fff;border-radius:16px;padding:22px;border:1px solid rgba(0,0,0,.06)} .hdr{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px} .brand{display:flex;align-items:center;gap:12px} .logo{width:44px;height:44px;border-radius:12px;background:#F7F8FA;object-fit:cover;border:1px solid rgba(0,0,0,.08)} .h1{font-size:22px;font-weight:800;margin:0} .muted{color:#475569;font-size:14px} .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid rgba(0,0,0,.12);text-decoration:none;font-weight:700;font-size:14px} .btnP{background:#2563EB;color:#fff;border-color:#2563EB} .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px} .tile{background:#F7F8FA;border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:14px} .t{font-weight:800;font-size:13px;margin:0 0 6px} .v{margin:0;font-size:14px;color:#0F172A} @media(max-width:900px){.grid{grid-template-columns:1fr}}</style>'
-                    . '</head><body><div class="wrap"><div class="card"><div class="hdr"><div class="brand"><img id="logo" class="logo" alt=""><div><p id="name" class="h1">Loading…</p><p id="desc" class="muted"></p></div></div><a id="cta" class="btn btnP" href="/teacher/login?school=' . $slug . '">Teacher Sign In</a></div><div id="grid" class="grid"></div></div></div>'
-                    . '<script>(async()=>{try{const r=await fetch("/public/schools/' . $slug . '",{credentials:"include"});const j=await r.json();if(!r.ok) throw new Error(j?.error?.message||"Not found");const s=j.school||{};document.title=(s.name||"School")+" | Home";document.getElementById("name").textContent=s.name||"School";document.getElementById("desc").textContent=s.publicDescription||"";const logo=document.getElementById("logo");if(s.logoUrl){logo.src=s.logoUrl;logo.style.background="#fff";}else{logo.style.display="none";}const tiles=[];if(s.address) tiles.push(["Address",s.address]);if(s.contact) tiles.push(["Contact",s.contact]);if(s.motto) tiles.push(["Motto",s.motto]);if(s.principal) tiles.push(["Principal",s.principal]);const g=document.getElementById("grid");g.innerHTML=tiles.map(x=>`<div class=\"tile\"><p class=\"t\">${x[0]}</p><p class=\"v\">${(x[1]||"").replaceAll("<","&lt;").replaceAll(">","&gt;")}</p></div>`).join("") || `<div class=\"tile\"><p class=\"t\">Info</p><p class=\"v\">No public information yet.</p></div>`;}catch(e){document.getElementById("name").textContent="School not found";document.getElementById("desc").textContent=e?.message||"";document.getElementById("cta").style.display="none";document.getElementById("grid").innerHTML="";}})();</script></body></html>';
-                Response::html(200, $html);
-                return;
             }
 
             if (($method === 'GET' || $method === 'HEAD') && preg_match('#^/([^/]+)$#', $path, $m)) {
@@ -388,6 +378,12 @@ HTML;
                         $school = $this->getSchoolById($schoolId);
                     }
                 }
+                if (($effectiveRow['role'] ?? null) === 'SCHOOL_ADMIN') {
+                    $schoolId = is_string($effectiveRow['school_id'] ?? null) ? strval($effectiveRow['school_id']) : '';
+                    if ($schoolId !== '') {
+                        $school = $this->getSchoolById($schoolId);
+                    }
+                }
                 Response::json(200, [
                     'user' => [
                         'id' => $sessionRow['id'],
@@ -491,7 +487,7 @@ HTML;
                 if ($row['role'] === 'SCHOOL') {
                     $school = $this->getSchoolByOwnerId($row['id']);
                 }
-                if ($row['role'] === 'TEACHER' || $row['role'] === 'STAFF' || $row['role'] === 'PARENT' || $row['role'] === 'STUDENT') {
+                if ($row['role'] === 'TEACHER' || $row['role'] === 'STAFF' || $row['role'] === 'PARENT' || $row['role'] === 'STUDENT' || $row['role'] === 'SCHOOL_ADMIN') {
                     $schoolId = is_string($row['school_id'] ?? null) ? strval($row['school_id']) : '';
                     if ($schoolId !== '') {
                         $school = $this->getSchoolById($schoolId);
@@ -2444,14 +2440,14 @@ HTML;
 
             if ($method === 'GET' && $path === '/school') {
                 $u = Auth::requireUser();
-                if (!in_array($u['role'], ['SCHOOL', 'TEACHER'], true)) {
+                if (!in_array($u['role'], ['SCHOOL', 'SCHOOL_ADMIN', 'TEACHER'], true)) {
                     Response::error(403, 'FORBIDDEN', 'Forbidden');
                     return;
                 }
                 $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
                 $school = null;
-                if ($u['role'] === 'SCHOOL') {
-                    $school = $this->getSchoolByOwnerId($u['id']);
+                if ($u['role'] === 'SCHOOL' || $u['role'] === 'SCHOOL_ADMIN') {
+                    $school = $this->getSchoolByOwnerIdOrSchoolId($u['id'], $u['role']);
                 }
                 if ($u['role'] === 'TEACHER') {
                     $row = $this->getUserById($u['id']);
@@ -2471,15 +2467,12 @@ HTML;
             }
 
             if ($method === 'PUT' && $path === '/school') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $body = $this->jsonBody();
-                $allowed = ['name','abbr','slug','address','contact','motto','principal','session','term','nextTerm','schoolLevel','classTemplates','ca1Max','ca2Max','examMax','subjects','grades','reportColor'];
+                $allowed = ['name','abbr','slug','address','contact','motto','principal','session','term','nextTerm','schoolLevel','classTemplates','ca1Max','ca2Max','examMax','subjects','grades','reportColor','logoUrl'];
                 $set = [];
                 $vals = [];
                 foreach ($allowed as $k) {
@@ -2570,13 +2563,10 @@ HTML;
             }
 
             if ($method === 'GET' && $path === '/teachers') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $stmt = Db::pdo()->prepare("SELECT u.id,u.email,u.status,tp.display_name FROM users u JOIN teacher_profiles tp ON tp.user_id=u.id WHERE u.role='TEACHER' AND u.school_id=? ORDER BY tp.display_name ASC");
                 $stmt->execute([$school['id']]);
                 $rows = $stmt->fetchAll();
@@ -2605,13 +2595,10 @@ HTML;
             }
 
             if ($method === 'POST' && $path === '/teachers') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $body = $this->jsonBody();
                 $email = Validation::requireEmail($body, 'email');
                 $displayName = Validation::requireString($body, 'displayName', 2, 160);
@@ -2653,13 +2640,10 @@ HTML;
             }
 
             if ($method === 'PUT' && preg_match('#^/teachers/([^/]+)$#', $path, $m)) {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $teacherUserId = strval($m[1] ?? '');
                 $stmt = Db::pdo()->prepare("SELECT id FROM users WHERE id=? AND role='TEACHER' AND school_id=? LIMIT 1");
                 $stmt->execute([$teacherUserId, $school['id']]);
@@ -2713,13 +2697,10 @@ HTML;
             }
 
             if ($method === 'DELETE' && preg_match('#^/teachers/([^/]+)$#', $path, $m)) {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $teacherUserId = strval($m[1] ?? '');
                 $stmt = Db::pdo()->prepare("UPDATE users SET status='SUSPENDED', updated_at=NOW() WHERE id=? AND role='TEACHER' AND school_id=?");
                 $stmt->execute([$teacherUserId, $school['id']]);
@@ -3027,13 +3008,10 @@ HTML;
             }
 
             if ($method === 'POST' && $path === '/portal/users') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $body = $this->jsonBody();
                 $role = strtoupper(trim(strval($body['role'] ?? '')));
                 if (!in_array($role, ['PARENT', 'STUDENT'], true)) {
@@ -3233,13 +3211,10 @@ HTML;
             }
 
             if ($method === 'GET' && $path === '/students') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $rows = $this->students->listAll($school['id']);
                 $out = array_map(fn($s) => [
                     'id' => $s['id'],
@@ -3265,13 +3240,10 @@ HTML;
             }
 
             if ($method === 'POST' && $path === '/students') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $this->enforceStudentLimit($school['id'], 1);
                 $body = $this->jsonBody();
                 
@@ -3309,13 +3281,10 @@ HTML;
             }
 
             if ($method === 'PUT' && preg_match('#^/students/([^/]+)$#', $path, $m)) {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $studentId = strval($m[1] ?? '');
                 $s = $this->students->getById($school['id'], $studentId);
                 if (!$s) {
@@ -3355,13 +3324,10 @@ HTML;
             }
 
             if ($method === 'POST' && $path === '/students/bulk') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $body = $this->jsonBody();
                 if (!is_array($body)) {
                     Response::error(400, 'VALIDATION_ERROR', 'Body must be an array');
@@ -3384,13 +3350,10 @@ HTML;
             }
 
             if ($method === 'DELETE' && preg_match('#^/students/([^/]+)$#', $path, $m)) {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $id = $m[1];
                 $this->students->delete($school['id'], $id);
                 $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'STUDENT_DELETE_IMPERSONATED' : 'STUDENT_DELETE', ['studentId' => $id, 'effectiveUserId' => $u['id']]);
@@ -3399,13 +3362,10 @@ HTML;
             }
 
             if ($method === 'GET' && $path === '/scores') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $stmt = Db::pdo()->prepare('SELECT student_id,data FROM score_sheets WHERE school_id=?');
                 $stmt->execute([$school['id']]);
                 $scores = [];
@@ -3418,12 +3378,9 @@ HTML;
             }
 
             if ($method === 'GET' && preg_match('#^/report-extras/([^/]+)$#', $path, $m)) {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
                 $studentId = $m[1];
                 $stmt = Db::pdo()->prepare('SELECT id FROM students WHERE school_id=? AND id=? LIMIT 1');
                 $stmt->execute([$school['id'], $studentId]);
@@ -3460,13 +3417,10 @@ HTML;
             }
 
             if ($method === 'PUT' && preg_match('#^/report-extras/([^/]+)$#', $path, $m)) {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $studentId = $m[1];
                 $stmt = Db::pdo()->prepare('SELECT id FROM students WHERE school_id=? AND id=? LIMIT 1');
                 $stmt->execute([$school['id'], $studentId]);
@@ -3556,15 +3510,15 @@ HTML;
 
             if ($method === 'POST' && preg_match('#^/reports/pdf/student/([^/]+)$#', $path, $m)) {
                 $u = Auth::requireUser();
-                if (!in_array($u['role'], ['SCHOOL', 'TEACHER', 'PARENT', 'STUDENT'], true)) {
+                if (!in_array($u['role'], ['SCHOOL', 'SCHOOL_ADMIN', 'TEACHER', 'PARENT', 'STUDENT'], true)) {
                     Response::error(403, 'FORBIDDEN', 'Access denied');
                     return;
                 }
                 $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
                 RateLimit::enforce('pdf-student:' . $ip, 30, 3600);
                 
-                if ($u['role'] === 'SCHOOL') {
-                    $school = $this->getSchoolByOwnerId($u['id']);
+                if ($u['role'] === 'SCHOOL' || $u['role'] === 'SCHOOL_ADMIN') {
+                    $school = $this->getSchoolByOwnerIdOrSchoolId($u['id'], $u['role']);
                 } else {
                     $userRow = $this->getUserById($u['id']);
                     $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : '';
@@ -3617,14 +3571,11 @@ HTML;
             }
 
             if ($method === 'POST' && $path === '/reports/pdf/class') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 RateLimit::enforce('pdf-class:' . $ip, 20, 3600);
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
                 $body = $this->jsonBody();
                 $className = trim(strval($body['className'] ?? ''));
                 if ($className === '') {
@@ -3693,14 +3644,11 @@ HTML;
             }
 
             if ($method === 'POST' && $path === '/reports/share/sms') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 RateLimit::enforce('report-sms:' . $ip, 20, 3600);
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
                 $body = $this->jsonBody();
                 $studentId = trim(strval($body['studentId'] ?? ''));
                 $to = trim(strval($body['to'] ?? ''));
@@ -3788,13 +3736,10 @@ HTML;
             }
 
             if ($method === 'PUT' && preg_match('#^/scores/([^/]+)$#', $path, $m)) {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
                 $studentId = $m[1];
                 $stmt = Db::pdo()->prepare('SELECT id FROM students WHERE school_id=? AND id=?');
                 $stmt->execute([$school['id'], $studentId]);
@@ -3819,8 +3764,9 @@ HTML;
             }
 
             if ($method === 'POST' && $path === '/ai/exam/generate') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $school = $this->getSchoolByOwnerId($u['id']);
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
                 if (!$school) { Response::error(404, 'NOT_FOUND', 'School not found'); return; }
                 
                 // Feature restriction: Require Pro+AI plan for AI Exam Generator
@@ -3856,8 +3802,9 @@ HTML;
             }
 
             if ($method === 'GET' && $path === '/ai/exam') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $school = $this->getSchoolByOwnerId($u['id']);
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
                 if (!$school) { Response::error(404, 'NOT_FOUND', 'School not found'); return; }
                 
                 $stmt = Db::pdo()->prepare("SELECT id, subject, class_level, topic, created_at FROM generated_exams WHERE school_id=? ORDER BY created_at DESC");
@@ -3867,8 +3814,9 @@ HTML;
             }
 
             if ($method === 'GET' && preg_match('#^/ai/exam/([^/]+)$#', $path, $m)) {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $school = $this->getSchoolByOwnerId($u['id']);
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
                 if (!$school) { Response::error(404, 'NOT_FOUND', 'School not found'); return; }
                 
                 $stmt = Db::pdo()->prepare("SELECT * FROM generated_exams WHERE id=? AND school_id=?");
@@ -3882,8 +3830,9 @@ HTML;
             }
 
             if ($method === 'DELETE' && preg_match('#^/ai/exam/([^/]+)$#', $path, $m)) {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $school = $this->getSchoolByOwnerId($u['id']);
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
                 if (!$school) { Response::error(404, 'NOT_FOUND', 'School not found'); return; }
                 
                 $stmt = Db::pdo()->prepare("DELETE FROM generated_exams WHERE id=? AND school_id=?");
@@ -3893,13 +3842,10 @@ HTML;
             }
 
             if ($method === 'POST' && preg_match('#^/ai/report/([^/]+)$#', $path, $m)) {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'Not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $actorId = $ctx['actorId'];
 
                 $subRow = $this->getSchoolSubscription($school['id']);
                 if (!$subRow || !in_array(strtolower($subRow['planSlug']), ['pro', 'trial'], true)) {
@@ -3970,12 +3916,9 @@ HTML;
             }
 
             if ($method === 'POST' && $path === '/payments/initialize') {
-                $u = Auth::requireEffectiveRole('SCHOOL');
-                $school = $this->getSchoolByOwnerId($u['id']);
-                if (!$school) {
-                    Response::error(404, 'NOT_FOUND', 'School not found');
-                    return;
-                }
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
                 $body = $this->jsonBody();
                 $gateway = strtoupper(trim(Validation::requireString($body, 'gateway', 2, 50)));
                 $planSlug = strtolower(trim(Validation::requireString($body, 'planSlug', 2, 80)));
@@ -4545,7 +4488,7 @@ HTML;
                 'promotion' => strval($row['promotion'] ?? '')
             ];
         } catch (Throwable $e) {
-            return ['session' => $session, 'term' => $term, 'attendance' => [], 'traits' => []];
+            return ['session' => $session, 'term' => $term, 'attendance' => [], 'traits' => [], 'comments' => [], 'promotion' => ''];
         }
     }
 
@@ -4754,6 +4697,38 @@ HTML;
         $stmt->execute([$ownerId]);
         $row = $stmt->fetch();
         return $row ?: null;
+    }
+
+    private function getSchoolByOwnerIdOrSchoolId(string $userId, string $role): ?array
+    {
+        if ($role === 'SCHOOL') {
+            return $this->getSchoolByOwnerId($userId);
+        }
+        if ($role === 'SCHOOL_ADMIN') {
+            $row = $this->getUserById($userId);
+            $schoolId = is_array($row) && is_string($row['school_id'] ?? null) ? strval($row['school_id']) : '';
+            if ($schoolId !== '') {
+                return $this->getSchoolById($schoolId);
+            }
+        }
+        return null;
+    }
+
+    private function requireSchoolContext(): array
+    {
+        $u = Auth::requireUser();
+        $role = $u['role'];
+        if (!in_array($role, ['SCHOOL', 'SCHOOL_ADMIN'], true)) {
+            Response::error(403, 'FORBIDDEN', 'Forbidden');
+            exit;
+        }
+        $school = $this->getSchoolByOwnerIdOrSchoolId($u['id'], $role);
+        if (!$school) {
+            Response::error(404, 'NOT_FOUND', 'Not found');
+            exit;
+        }
+        $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
+        return ['u' => $u, 'school' => $school, 'actorId' => $actorId];
     }
 
     private function getSchoolById(string $schoolId): ?array
@@ -5273,7 +5248,8 @@ HTML;
             'examMax' => intval($s['exam_max'] ?? 80),
             'subjects' => json_decode($s['subjects'] ?? '[]', true) ?: [],
             'grades' => json_decode($s['grades'] ?? '[]', true) ?: [],
-            'plan' => $s['plan']
+            'plan' => $s['plan'],
+            'logoUrl' => is_string($s['logo_url'] ?? null) ? strval($s['logo_url']) : ''
         ];
     }
 
@@ -5303,7 +5279,7 @@ HTML;
 
     private function enforceMaintenance(string $ip, string $path): void
     {
-        if ($path === '/healthz' || $path === '/readyz') {
+        if ($path === '/healthz' || $path === '/readyz' || str_starts_with($path, '/public/') || str_starts_with($path, '/s/')) {
             return;
         }
         $cfg = $this->getSystemSetting('maintenance');

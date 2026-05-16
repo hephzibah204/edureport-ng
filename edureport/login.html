@@ -167,16 +167,10 @@ document.addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin()
       const out = await apiFetch('/public/schools/' + encodeURIComponent(slug));
       if (out?.school) {
         document.title = out.school.name + ' — Login';
-        const h1 = document.querySelector('.form-wrap h1');
-        if (h1) h1.textContent = out.school.name;
-        const sub = document.createElement('p');
-        sub.style.textAlign = 'center';
-        sub.style.marginTop = '-1.5rem';
-        sub.style.marginBottom = '1.5rem';
-        sub.style.color = 'var(--muted)';
-        sub.style.fontSize = '0.9rem';
-        sub.textContent = 'School Portal';
-        h1.after(sub);
+        const titleEl = document.querySelector('.auth-title');
+        if (titleEl) titleEl.textContent = 'Welcome to ' + out.school.name;
+        const sub = document.querySelector('.auth-sub');
+        if (sub) sub.textContent = 'Sign in to ' + out.school.name;
       }
     } catch (e) {}
   }

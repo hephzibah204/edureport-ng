@@ -162,25 +162,6 @@ const Auth = {
       window.location.href = (opts && opts.loginPath) ? opts.loginPath : "login";
       return null;
     }
-    apiFetch("/me", { method: "GET" })
-      .then((out) => {
-        const serverRole = out?.user?.role;
-        if (!serverRole) throw new Error("Invalid session");
-        if (session.role !== serverRole) {
-          DB.clearSession();
-          window.location.href = "login";
-          return;
-        }
-        const impersonationActive = Boolean(out?.impersonation?.active);
-        const impersonationSchoolId = out?.impersonation?.schoolId || null;
-        const effectiveUserId = out?.effectiveUser?.id || out?.user?.id || null;
-        const effectiveRole = out?.effectiveUser?.role || out?.user?.role || null;
-        DB.setSession({ ...session, role: out.user.role, email: out.user.email, plan: out.school?.plan, schoolName: out.school?.name, impersonationActive, impersonationSchoolId, effectiveUserId, effectiveRole });
-      })
-      .catch(() => {
-        DB.clearSession();
-        window.location.href = (opts && opts.loginPath) ? opts.loginPath : "login.html";
-      });
     const effectiveRole = session.effectiveRole || session.role;
     if (role === "admin" && session.role !== "ADMIN" && session.role !== "STAFF") {
       if (effectiveRole === 'TEACHER') window.location.href = 'teacher';
@@ -192,7 +173,7 @@ const Auth = {
       window.location.href = "admin";
       return null;
     }
-    if (role === "school" && effectiveRole !== "SCHOOL" && !((session.role === "ADMIN" || session.role === "STAFF") && session.impersonationActive)) {
+    if (role === "school" && effectiveRole !== "SCHOOL" && effectiveRole !== "SCHOOL_ADMIN" && !((session.role === "ADMIN" || session.role === "STAFF") && session.impersonationActive)) {
       if (effectiveRole === 'TEACHER') window.location.href = 'teacher';
       else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = 'portal';
       else window.location.href = "login";
@@ -210,6 +191,25 @@ const Auth = {
       else window.location.href = 'login';
       return null;
     }
+    apiFetch("/me", { method: "GET" })
+      .then((out) => {
+        const serverRole = out?.user?.role;
+        if (!serverRole) throw new Error("Invalid session");
+        if (session.role !== serverRole) {
+          DB.clearSession();
+          window.location.href = "login";
+          return;
+        }
+        const impersonationActive = Boolean(out?.impersonation?.active);
+        const impersonationSchoolId = out?.impersonation?.schoolId || null;
+        const effectiveUserId = out?.effectiveUser?.id || out?.user?.id || null;
+        const effectiveRole2 = out?.effectiveUser?.role || out?.user?.role || null;
+        DB.setSession({ ...session, role: out.user.role, email: out.user.email, plan: out.school?.plan, schoolName: out.school?.name, impersonationActive, impersonationSchoolId, effectiveUserId, effectiveRole: effectiveRole2 });
+      })
+      .catch(() => {
+        DB.clearSession();
+        window.location.href = (opts && opts.loginPath) ? opts.loginPath : "login.html";
+      });
     return session;
   }
 };

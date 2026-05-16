@@ -4,9 +4,8 @@ ReportSheet is a school report-card system.
 
 This repo contains:
 
-- Frontend (static): [ReportSheet/](file:///c:/Users/Abiodun%20Emmanuel/Documents/CODEBASE/ReportSheet-ng/ReportSheet)
-- PHP Backend (primary, cPanel-friendly): [php-backend/](file:///c:/Users/Abiodun%20Emmanuel/Documents/CODEBASE/ReportSheet-ng/php-backend)
-- Backend API (Fastify + Prisma, legacy/optional): [backend/](file:///c:/Users/Abiodun%20Emmanuel/Documents/CODEBASE/ReportSheet-ng/backend)
+- Frontend (static): [edureport/](edureport/)
+- PHP Backend (primary, cPanel-friendly): [php-backend/](php-backend/)
 
 ## Run (Docker)
 
@@ -51,8 +50,4 @@ docker compose up --build
 
 - Swagger UI: `/admin/docs` (requires an ADMIN session or Bearer token)
 - OpenAPI JSON: `/admin/openapi.json`
-- Postman collection: [docs/postman/ReportSheet-admin.postman_collection.json](file:///c:/Users/Abiodun%20Emmanuel/Documents/CODEBASE/ReportSheet-ng/docs/postman/ReportSheet-admin.postman_collection.json)
-
-## Legacy Node Backend
-
-- The Node backend exists for an optional/legacy deployment path and is not the primary runtime.
+- Postman collection: [docs/postman/ReportSheet-admin.postman_collection.json](docs/postman/ReportSheet-admin.postman_collection.json)
