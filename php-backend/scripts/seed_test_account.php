@@ -144,7 +144,7 @@ try {
                         
                     $pdo->prepare('INSERT INTO student_links (id,school_id,student_id,user_id,link_type,created_at) VALUES (?,?,?,?,?,NOW())')
                         ->execute([idp('sl'), $sid, $studId, $parentUid, 'PARENT']);
-                } catch (Exception $e) {}
+                } catch (Throwable $e) {}
             }
         }
     }

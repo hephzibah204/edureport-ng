@@ -24,11 +24,12 @@
   <script src="../config.js"></script>
   <script src="../auth.js"></script>
   <script>
-    const apiBase = (window.ReportSheet_CONFIG?.apiBaseUrl ? String(window.ReportSheet_CONFIG.apiBaseUrl).replace(/\/$/, '') : '');
+    const { apiBaseUrl } = getConfig();
+    const apiBase = apiBaseUrl ? String(apiBaseUrl).replace(/\/$/, '') : '';
     const loginUrl = '/adminpanel/login/';
     const status = document.getElementById('status');
     const detail = document.getElementById('detail');
-    detail.textContent = apiBase ? ('API: ' + apiBase) : 'Missing ReportSheet_CONFIG.apiBaseUrl';
+    detail.textContent = apiBase ? ('API: ' + apiBase) : 'Missing apiBaseUrl';
 
     function setSessionFromMe(out) {
       const current = Auth.getSession() || {};
@@ -48,7 +49,7 @@
         effectiveUserId,
         effectiveRole
       };
-      localStorage.setItem('edu_session', JSON.stringify(merged));
+      try { localStorage.setItem('edu_session', JSON.stringify(merged)); } catch (e) {}
     }
 
     (async () => {
@@ -58,7 +59,7 @@
         const role = out?.user?.role;
         if (role !== 'ADMIN' && role !== 'STAFF') {
           status.textContent = 'Not an admin account.';
-          localStorage.removeItem('edu_session');
+          try { localStorage.removeItem('edu_session'); } catch (e) {}
           location.replace('/login');
           return;
         }
@@ -67,7 +68,7 @@
         location.replace('/admin');
       } catch (e) {
         status.textContent = 'Not logged in yet. Redirecting to admin login…';
-        localStorage.removeItem('edu_session');
+        try { localStorage.removeItem('edu_session'); } catch (e) {}
         location.replace(loginUrl);
       }
     })();

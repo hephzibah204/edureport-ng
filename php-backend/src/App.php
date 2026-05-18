@@ -11,7 +11,7 @@ final class App
 
     public function __construct()
     {
-        $origins = Config::env('CORS_ORIGIN', 'http://127.0.0.1:3000,http://localhost:3000');
+        $origins = Config::env('CORS_ORIGIN', 'http://127.0.0.1:3011,http://localhost:3011');
         $this->allowedOrigins = array_values(array_filter(array_map('trim', explode(',', $origins))));
         $pdo = Db::pdo();
         $this->attendance = new AttendanceService($pdo);
@@ -31,7 +31,11 @@ final class App
             $path = '/';
         }
 
-        $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+        $forwarded = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? null;
+        if (is_string($forwarded)) {
+            $forwarded = trim(explode(',', $forwarded)[0]);
+        }
+        $ip = $forwarded ?? $_SERVER['REMOTE_ADDR'] ?? 'unknown';
         RateLimit::enforce($ip . ':' . $path, 600, 60);
         $this->enforceMaintenance($ip, $path);
 
@@ -99,7 +103,7 @@ final class App
 
             if (($method === 'GET' || $method === 'HEAD') && preg_match('#^/([^/]+)$#', $path, $m)) {
                 $slugRaw = trim(strval($m[1] ?? ''));
-                $reserved = ['healthz','readyz','admin','adminpanel','teacher','auth','school','students','scores','ai','public','me','logout','s'];
+                $reserved = ['healthz','readyz','admin','adminpanel','teacher','auth','school','students','scores','ai','public','me','logout','s','payments','jobs','reports','webhooks','report-extras','portal','teachers','report','register','login','index'];                
                 if ($slugRaw !== '' && !str_contains($slugRaw, '.') && preg_match('/^[A-Za-z0-9][A-Za-z0-9-]{1,62}$/', $slugRaw) === 1 && !in_array(strtolower($slugRaw), $reserved, true)) {
                     $slug = htmlspecialchars($slugRaw, ENT_QUOTES);
                     $html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
@@ -1344,38 +1348,11 @@ HTML;
                 $stmt->execute([$id, $gateway, $env, $keyName, $cipher, $_SESSION['user_id'] ?? null]);
                 $pdo->commit();
                 $this->logAudit($_SESSION['user_id'] ?? null, null, 'ADMIN_SET_GATEWAY_KEY', ['gateway' => $gateway, 'environment' => $env, 'keyName' => $keyName]);
-                Response::json(200, ['ok' => true, 'id' => $id]);
+                Response::json(201, ['ok' => true, 'id' => $id]);
                 return;
             }
 
             if ($method === 'PUT' && $path === '/admin/payment-gateways/webhook') {
-                Auth::requirePermission('payments.write');
-                $body = $this->jsonBody();
-                $gateway = strtoupper(Validation::requireString($body, 'gateway', 2, 20));
-                $env = strtoupper(Validation::requireString($body, 'environment', 2, 20));
-                $url = Validation::requireString($body, 'url', 8, 500);
-                $secret = isset($body['secret']) ? trim(strval($body['secret'])) : '';
-                $enabled = ($body['enabled'] ?? true) === true;
-                if (!in_array($gateway, $this->paymentGateways(), true)) {
-                    Response::error(400, 'VALIDATION_ERROR', 'Invalid gateway');
-                    return;
-                }
-                if (!in_array($env, ['SANDBOX','LIVE'], true)) {
-                    Response::error(400, 'VALIDATION_ERROR', 'Invalid environment');
-                    return;
-                }
-                if (!filter_var($url, FILTER_VALIDATE_URL)) {
-                    Response::error(400, 'VALIDATION_ERROR', 'Invalid url');
-                    return;
-                }
-                $secretCipher = $secret !== '' ? Crypto::encrypt($secret) : null;
-                $id = $this->id('whk');
-                $sql = Db::isSqlite()
-                    ? 'INSERT INTO payment_gateway_webhooks (id,gateway,environment,url,secret_ciphertext,enabled,created_at,updated_at,updated_by_user_id) VALUES (?,?,?,?,?,?,NOW(),NOW(),?) ON CONFLICT(gateway,environment) DO UPDATE SET url=excluded.url, secret_ciphertext=excluded.secret_ciphertext, enabled=excluded.enabled, updated_at=excluded.updated_at, updated_by_user_id=excluded.updated_by_user_id'
-                    : 'INSERT INTO payment_gateway_webhooks (id,gateway,environment,url,secret_ciphertext,enabled,created_at,updated_at,updated_by_user_id) VALUES (?,?,?,?,?,?,NOW(),NOW(),?) ON DUPLICATE KEY UPDATE url=VALUES(url),secret_ciphertext=VALUES(secret_ciphertext),enabled=VALUES(enabled),updated_at=VALUES(updated_at),updated_by_user_id=VALUES(updated_by_user_id)';
-                Db::pdo()->prepare($sql)->execute([$id, $gateway, $env, $url, $secretCipher, $enabled ? 1 : 0, $_SESSION['user_id'] ?? null]);
-                $this->logAudit($_SESSION['user_id'] ?? null, null, 'ADMIN_SET_GATEWAY_WEBHOOK', ['gateway' => $gateway, 'environment' => $env, 'enabled' => $enabled]);
-                Response::json(200, ['ok' => true]);
                 return;
             }
 
@@ -2033,7 +2010,7 @@ HTML;
                     }
                 }
                 $this->logAudit($_SESSION['user_id'] ?? null, null, 'ADMIN_IMPORT_SCHOOLS', ['created' => $created, 'errors' => count($errors)]);
-                Response::json(200, ['created' => $created, 'errors' => $errors]);
+                Response::json(201, ['created' => $created, 'errors' => $errors]);
                 return;
             }
 
@@ -2762,6 +2739,40 @@ HTML;
                 return;
             }
 
+            if ($method === 'GET' && preg_match('#^/teacher/api/student/([^/]+)$#', $path, $m)) {
+                $u = Auth::requireEffectiveRole('TEACHER');
+                $studentId = strval($m[1] ?? '');
+                $userRow = $this->getUserById($u['id']);
+                $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : '';
+                if ($schoolId === '') {
+                    Response::error(403, 'FORBIDDEN', 'No school context');
+                    return;
+                }
+                $stmt = Db::pdo()->prepare('SELECT id,name,admission_no,class_name,gender,date_of_birth,house,address FROM students WHERE id=? AND school_id=? LIMIT 1');
+                $stmt->execute([$studentId, $schoolId]);
+                $s = $stmt->fetch();
+                if (!$s) {
+                    Response::error(404, 'NOT_FOUND', 'Student not found');
+                    return;
+                }
+                $allowed = $this->getTeacherAssignedClasses($schoolId, $u['id']);
+                if (!in_array(strval($s['class_name']), $allowed, true)) {
+                    Response::error(403, 'FORBIDDEN', 'Access denied');
+                    return;
+                }
+                Response::json(200, ['student' => [
+                    'id' => strval($s['id']),
+                    'name' => strval($s['name']),
+                    'admNo' => strval($s['admission_no']),
+                    'cls' => strval($s['class_name']),
+                    'gender' => strval($s['gender'] ?? ''),
+                    'dob' => strval($s['date_of_birth'] ?? ''),
+                    'house' => strval($s['house'] ?? ''),
+                    'address' => strval($s['address'] ?? '')
+                ]]);
+                return;
+            }
+
             if (($method === 'GET' || $method === 'PUT') && preg_match('#^/teacher/api/scores/([^/]+)$#', $path, $m)) {
                 $u = Auth::requireEffectiveRole('TEACHER');
                 $actorId = $u['id'];
@@ -3247,6 +3258,19 @@ HTML;
                 $this->enforceStudentLimit($school['id'], 1);
                 $body = $this->jsonBody();
                 
+                $name = trim(strval($body['name'] ?? ''));
+                $admNo = trim(strval($body['admNo'] ?? ''));
+                if ($name === '') {
+                    Response::error(400, 'VALIDATION_ERROR', 'Student name is required');
+                    return;
+                }
+                if ($admNo === '') {
+                    Response::error(400, 'VALIDATION_ERROR', 'Admission number is required');
+                    return;
+                }
+                $body['name'] = $name;
+                $body['admNo'] = $admNo;
+                
                 try {
                     $id = $this->students->create($school['id'], $body);
                     $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'STUDENT_CREATE_IMPERSONATED' : 'STUDENT_CREATE', ['studentId' => $id, 'admNo' => $body['admNo'] ?? '', 'effectiveUserId' => $u['id']]);
@@ -3604,10 +3628,22 @@ HTML;
                     return;
                 }
                 
-                // Security check: only the school/user who created the job can see it
-                if ($u['role'] !== 'ADMIN') {
-                    $school = $this->getSchoolByOwnerId($u['id']);
-                    if (!$school || $job['school_id'] !== $school['id']) {
+                // Security check: only the user who created the job or an admin can see it
+                if ($u['role'] !== 'ADMIN' && $job['user_id'] !== $u['id']) {
+                    // Fallback: check if the job belongs to the user's school (for TEACHER/SCHOOL_ADMIN)
+                    $schoolId = null;
+                    if ($u['role'] === 'TEACHER' || $u['role'] === 'SCHOOL_ADMIN') {
+                        $row = $this->getUserById($u['id']);
+                        if (is_array($row) && is_string($row['school_id'] ?? null)) {
+                            $schoolId = strval($row['school_id']);
+                        }
+                    } elseif ($u['role'] === 'SCHOOL') {
+                        $school = $this->getSchoolByOwnerId($u['id']);
+                        if ($school) {
+                            $schoolId = $school['id'];
+                        }
+                    }
+                    if (!$schoolId || $job['school_id'] !== $schoolId) {
                         Response::error(403, 'FORBIDDEN', 'Access denied');
                         return;
                     }
@@ -3626,19 +3662,28 @@ HTML;
             }
 
             if ($method === 'POST' && $path === '/jobs/worker') {
-                // Internal or Admin only
                 $u = Auth::requireUser();
                 if ($u['role'] !== 'ADMIN') {
-                    // For now, allow school owners to trigger their own pending jobs if they want, 
-                    // but typically this would be a cron job or background process.
-                    $school = $this->getSchoolByOwnerId($u['id']);
-                    if (!$school) {
+                    $schoolId = null;
+                    if ($u['role'] === 'SCHOOL') {
+                        $school = $this->getSchoolByOwnerId($u['id']);
+                        if ($school) {
+                            $schoolId = $school['id'];
+                        }
+                    } elseif ($u['role'] === 'TEACHER' || $u['role'] === 'SCHOOL_ADMIN') {
+                        $row = $this->getUserById($u['id']);
+                        if (is_array($row) && is_string($row['school_id'] ?? null)) {
+                            $schoolId = strval($row['school_id']);
+                        }
+                    }
+                    if (!$schoolId) {
                         Response::error(403, 'FORBIDDEN', 'Access denied');
                         return;
                     }
+                    $processed = $this->processJobs($schoolId);
+                } else {
+                    $processed = $this->processJobs();
                 }
-                
-                $processed = $this->processJobs();
                 Response::json(200, ['ok' => true, 'processed' => $processed]);
                 return;
             }
@@ -3795,7 +3840,7 @@ HTML;
                     $stmt->execute([$id, $school['id'], $u['id'], $subject, $classLevel, $topic, json_encode($questions, JSON_UNESCAPED_SLASHES)]);
                     
                     Response::json(200, ['id' => $id, 'questions' => $questions]);
-                } catch (Exception $e) {
+                } catch (Throwable $e) {
                     Response::error(500, 'AI_ERROR', $e->getMessage());
                 }
                 return;
@@ -3877,7 +3922,6 @@ HTML;
                 foreach ($subjects as $subjectName) {
                     $s = $scores[$subjectName] ?? null;
                     if (!is_array($s)) {
-                        $count += 1.0;
                         continue;
                     }
                     $total += floatval($s['ca1'] ?? 0) + floatval($s['ca2'] ?? 0) + floatval($s['exam'] ?? 0);
@@ -4257,10 +4301,14 @@ HTML;
         if (!is_string($raw) || trim($raw) === '') {
             return [];
         }
+        // Require JSON Content-Type for non-empty bodies to prevent CSRF via form submissions
+        $ct = strtolower(trim(strval($_SERVER['CONTENT_TYPE'] ?? $_SERVER['HTTP_CONTENT_TYPE'] ?? '')));
+        if ($ct !== '' && !str_contains($ct, 'application/json') && !str_contains($ct, 'application/x-json')) {
+            throw new InvalidArgumentException('Invalid Content-Type: expected application/json');
+        }
         $decoded = json_decode($raw, true);
         if (!is_array($decoded)) {
-            Response::error(400, 'VALIDATION_ERROR', 'Invalid JSON');
-            exit;
+            throw new InvalidArgumentException('Invalid JSON body');
         }
         return $decoded;
     }
@@ -4370,7 +4418,17 @@ HTML;
             return rtrim(trim($env), '/');
         }
         $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-        $host = $_SERVER['HTTP_HOST'] ?? '127.0.0.1:3010';
+        $host = $_SERVER['SERVER_NAME'] ?? $_SERVER['HTTP_HOST'] ?? '127.0.0.1:3011';
+        // Strip port from host for validation
+        $hostname = preg_replace('/:\d+$/', '', $host);
+        // Basic hostname validation to prevent Host header injection
+        if (!preg_match('/^[a-zA-Z0-9]([a-zA-Z0-9.-]*[a-zA-Z0-9])?$/', $hostname)) {
+            $host = '127.0.0.1:3011';
+        }
+        $port = $_SERVER['SERVER_PORT'] ?? '';
+        if ($port !== '' && $port !== '80' && $port !== '443' && strpos($host, ':') === false) {
+            $host .= ':' . $port;
+        }
         return $scheme . '://' . $host;
     }
 
@@ -5112,7 +5170,7 @@ HTML;
             $start = strval($s['current_period_end']);
             $planId = $s['plan_id'];
             $versionId = $s['plan_version_id'];
-            if ($s['pending_plan_id'] && $s['pending_plan_version_id'] && $s['pending_effective_at'] && strtotime($s['pending_effective_at']) <= time()) {
+            if ($s['pending_plan_id'] && $s['pending_plan_version_id'] && $s['pending_effective_at'] && strtotime($s['pending_effective_at']) <= strtotime($now)) {
                 $planId = $s['pending_plan_id'];
                 $versionId = $s['pending_plan_version_id'];
                 $appliedPending += 1;
@@ -5305,9 +5363,9 @@ HTML;
         return strtolower($s ?? $camel);
     }
 
-    private function processJobs(): int
+    private function processJobs(?string $schoolIdFilter = null): int
     {
-        $pending = $this->jobs->getPending();
+        $pending = $schoolIdFilter !== null ? $this->jobs->getPendingBySchool($schoolIdFilter) : $this->jobs->getPending();
         $count = 0;
         foreach ($pending as $job) {
             $this->jobs->updateStatus($job['id'], 'PROCESSING', 5);

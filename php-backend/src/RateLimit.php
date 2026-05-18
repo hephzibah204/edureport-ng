@@ -10,8 +10,11 @@ final class RateLimit
         }
         
         $now = time();
-        if (random_int(1, 100) === 1) {
+        $cleanupFile = $dir . DIRECTORY_SEPARATOR . '.cleanup';
+        $lastCleanup = @filemtime($cleanupFile);
+        if ($lastCleanup === false || $lastCleanup < $now - 3600) {
             self::cleanup($dir, $now);
+            @touch($cleanupFile);
         }
         $file = $dir . DIRECTORY_SEPARATOR . hash('sha256', $key) . '.json';
         $bucket = ['reset' => $now + $windowSeconds, 'count' => 0];

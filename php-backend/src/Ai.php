@@ -69,8 +69,9 @@ final class Ai
         $url = "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key={$key}";
         
         $payload = [
+            'system_instruction' => ['parts' => [['text' => $system]]],
             'contents' => [
-                ['role' => 'user', 'parts' => [['text' => "SYSTEM INSTRUCTIONS: {$system}\n\nUSER INPUT: {$user}"]]]
+                ['role' => 'user', 'parts' => [['text' => $user]]]
             ],
             'generationConfig' => [
                 'temperature' => 0.4,

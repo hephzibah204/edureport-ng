@@ -743,7 +743,7 @@ let platformStats = null;
 function setSessionPatch(patch) {
   const sess = Auth.getSession();
   if (!sess) return;
-  localStorage.setItem("edu_session", JSON.stringify({ ...sess, ...patch }));
+  try { localStorage.setItem("edu_session", JSON.stringify({ ...sess, ...patch })); } catch (e) {}
 }
 
 function updateImpersonationUi() {
@@ -774,13 +774,14 @@ function toApiStatus(status) {
 }
 
 function escapeHtml(v) {
-  return String(v ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
+  if (v === null || v === undefined) return '';
+  return String(v).replace(/[&<>"']/g, function(c) {
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
 }
+function lsGet(k, fallback) { try { const v = localStorage.getItem(k); return v !== null ? v : fallback; } catch (e) { return fallback; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+function lsRemove(k) { try { localStorage.removeItem(k); } catch (e) {} }
 
 async function refreshAll() {
   try {
@@ -865,7 +866,7 @@ function renderOverview() {
   const plans = {}; schools.forEach(s => { plans[s.plan||'lifetime']=(plans[s.plan||'lifetime']||0)+1; });
   document.getElementById('plan-dist').innerHTML = Object.entries(plans).map(([p,c]) => `
     <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
-      <div style="flex:1;font-size:0.85rem;font-weight:600;text-transform:capitalize;">${p}</div>
+      <div style="flex:1;font-size:0.85rem;font-weight:600;text-transform:capitalize;">${escapeHtml(p)}</div>
       <div style="background:var(--green4);border-radius:20px;padding:2px 12px;font-size:0.78rem;font-weight:700;color:var(--green);">${c} school${c>1?'s':''}</div>
       <div style="font-size:0.78rem;color:var(--muted);">₦${((planPrices[p]||25000)*c).toLocaleString()}</div>
     </div>`).join('') || '<div style="color:var(--muted);font-size:0.84rem;">No schools yet</div>';
@@ -876,7 +877,7 @@ function renderOverview() {
     <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
       <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--green3),var(--green2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:0.75rem;flex-shrink:0;">${escapeHtml((s.schoolName || "?").charAt(0))}</div>
       <div style="flex:1;"><div style="font-size:0.84rem;font-weight:600;">${escapeHtml(s.schoolName || s.email)}</div><div style="font-size:0.73rem;color:var(--muted);">${new Date(s.createdAt).toLocaleDateString('en-NG')}</div></div>
-      <span class="badge ${planBadge(s.plan)}">${s.plan||'lifetime'}</span>
+      <span class="badge ${planBadge(s.plan)}">${escapeHtml(s.plan||'lifetime')}</span>
     </div>`).join('') || '<div style="color:var(--muted);font-size:0.84rem;">No schools yet</div>';
 
   // Overview table
@@ -886,9 +887,9 @@ function renderOverview() {
     <td style="color:var(--muted);font-family:var(--font-mono);font-size:0.77rem;">${i+1}</td>
     <td><strong>${escapeHtml(s.schoolName||'—')}</strong></td>
     <td style="font-size:0.8rem;color:var(--muted);">${escapeHtml(s.email)}</td>
-    <td><span class="badge ${planBadge(s.plan)}">${s.plan||'lifetime'}</span></td>
+    <td><span class="badge ${planBadge(s.plan)}">${escapeHtml(s.plan||'lifetime')}</span></td>
     <td style="text-align:center;">${s.studentCount||0}</td>
-    <td><span class="badge ${s.status==='suspended'?'badge-red':'badge-green'}">${s.status||'active'}</span></td>
+    <td><span class="badge ${s.status==='suspended'?'badge-red':'badge-green'}">${escapeHtml(s.status||'active')}</span></td>
     <td style="font-size:0.78rem;color:var(--muted);">${new Date(s.createdAt).toLocaleDateString('en-NG')}</td>
   </tr>`).join('') || '<tr class="empty-row"><td colspan="7">No schools registered yet</td></tr>';
 }
@@ -908,7 +909,7 @@ function renderSchoolsTable() {
     <td style="color:var(--muted);font-family:var(--font-mono);font-size:0.77rem;">${i+1}</td>
     <td><strong>${escapeHtml(s.schoolName||'—')}</strong><div style="font-size:0.73rem;color:var(--muted);">${escapeHtml(s.school?.name||'')}</div></td>
     <td style="font-size:0.8rem;">${escapeHtml(s.email)}</td>
-    <td><span class="badge ${planBadge(s.plan)}">${s.plan||'lifetime'}</span></td>
+    <td><span class="badge ${planBadge(s.plan)}">${escapeHtml(s.plan||'lifetime')}</span></td>
     <td style="text-align:center;font-family:var(--font-mono);">${s.studentCount||0}</td>
     <td style="text-align:center;font-family:var(--font-mono);">${s.scoredCount||0}</td>
     <td><span class="badge ${s.status==='suspended'?'badge-red':'badge-green'}">${s.status||'active'}</span></td>
@@ -1250,10 +1251,10 @@ function renderLicenses() {
   if (!schools.length) { el.innerHTML='<tr class="empty-row"><td colspan="7">No schools yet</td></tr>'; return; }
   el.innerHTML = schools.map((s,i) => `<tr>
     <td style="color:var(--muted);font-family:var(--font-mono);font-size:0.77rem;">${i+1}</td>
-    <td><strong>${s.schoolName||'—'}</strong></td>
-    <td style="font-size:0.8rem;">${s.email}</td>
-    <td><span class="badge ${planBadge(s.plan)}">${s.plan||'lifetime'}</span></td>
-    <td><span class="badge ${s.status==='suspended'?'badge-red':'badge-green'}">${s.status||'active'}</span></td>
+    <td><strong>${escapeHtml(s.schoolName||'—')}</strong></td>
+    <td style="font-size:0.8rem;">${escapeHtml(s.email)}</td>
+    <td><span class="badge ${planBadge(s.plan)}">${escapeHtml(s.plan||'lifetime')}</span></td>
+    <td><span class="badge ${s.status==='suspended'?'badge-red':'badge-green'}">${escapeHtml(s.status||'active')}</span></td>
     <td style="font-size:0.77rem;color:var(--muted);">${new Date(s.createdAt).toLocaleDateString('en-NG')}</td>
     <td>
       <div class="status-form">
@@ -2095,14 +2096,14 @@ function globalSearch() {
 
 function applyTheme(theme) {
   const t = theme === "dark" ? "dark" : "light";
-  localStorage.setItem("edu_theme", t);
+  try { localStorage.setItem("edu_theme", t); } catch (e) {}
   document.body.classList.toggle("theme-dark", t === "dark");
   const btn = document.getElementById("tb-theme");
   if (btn) btn.textContent = t === "dark" ? "Light" : "Dark";
 }
 
 function toggleTheme() {
-  const cur = localStorage.getItem("edu_theme") || "light";
+  const cur = (() => { try { return localStorage.getItem("edu_theme") || "light"; } catch (e) { return "light"; } })();
   applyTheme(cur === "dark" ? "light" : "dark");
 }
 
@@ -2114,7 +2115,7 @@ if (SESSION) {
   loadFeatureFlags().catch(() => {});
   loadEmailTemplates().catch(() => {});
 
-  applyTheme(localStorage.getItem("edu_theme") || "light");
+  applyTheme((() => { try { return localStorage.getItem("edu_theme") || "light"; } catch (e) { return "light"; } })());
   toggleSlackFields();
 
   const initialPage = (location.hash || "").replace("#", "").trim();

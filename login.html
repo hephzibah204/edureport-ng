@@ -88,10 +88,10 @@ body { display: flex; min-height: 100vh; }
   </button>
 
   <div class="auth-footer" style="margin-top:1.2rem;">
-    Don't have an account? <a href="register">Register your school →</a>
+    Don't have an account? <a href="/register">Register your school →</a>
   </div>
   <div class="auth-footer" style="margin-top:0.5rem;">
-    <a href="index">← Back to homepage</a>
+    <a href="/">← Back to homepage</a>
   </div>
 </div>
 
@@ -130,10 +130,10 @@ async function handleLogin() {
     showToast('✅ Welcome back!', 'ok');
     setTimeout(() => {
       const r = result?.user?.role;
-      if (r === 'ADMIN' || r === 'STAFF') window.location.href = 'admin';
-      else if (r === 'TEACHER') window.location.href = 'teacher';
-      else if (r === 'PARENT' || r === 'STUDENT') window.location.href = 'portal';
-      else window.location.href = 'app';
+      if (r === 'ADMIN' || r === 'STAFF') window.location.href = '/admin';
+      else if (r === 'TEACHER') window.location.href = '/teacher';
+      else if (r === 'PARENT' || r === 'STUDENT') window.location.href = '/portal';
+      else window.location.href = '/app';
     }, 600);
   } catch (e) {
     alert.textContent = e?.message || 'Sign in failed.';
@@ -150,10 +150,10 @@ document.addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin()
   const session = Auth.getSession();
   if (session) {
     const r = session.role;
-    if (r === 'ADMIN' || r === 'STAFF') window.location.href = 'admin';
-    else if (r === 'TEACHER') window.location.href = 'teacher';
-    else if (r === 'PARENT' || r === 'STUDENT') window.location.href = 'portal';
-    else window.location.href = 'app';
+    if (r === 'ADMIN' || r === 'STAFF') window.location.href = '/admin';
+    else if (r === 'TEACHER') window.location.href = '/teacher';
+    else if (r === 'PARENT' || r === 'STUDENT') window.location.href = '/portal';
+    else window.location.href = '/app';
     return;
   }
 

@@ -55,4 +55,15 @@ final class JobService
         }
         return $rows;
     }
+
+    public function getPendingBySchool(string $schoolId): array
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM jobs WHERE status='PENDING' AND school_id=? ORDER BY created_at ASC");
+        $stmt->execute([$schoolId]);
+        $rows = $stmt->fetchAll();
+        foreach ($rows as &$r) {
+            $r['payload'] = json_decode($r['payload'], true);
+        }
+        return $rows;
+    }
 }

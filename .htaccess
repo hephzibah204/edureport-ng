@@ -7,11 +7,12 @@ Header always set X-Content-Type-Options "nosniff"
 Header always set X-Frame-Options "SAMEORIGIN"
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
-# Block direct access to backend source
+# Block direct access to backend source directories
 RewriteRule ^backend/ - [F,L]
+RewriteRule ^php-backend/ - [F,L]
 
-# API routes - forward to PHP backend
-RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+# API routes - forward to PHP backend entry point
+RewriteRule ^api/(.*)$ php-backend/public/index.php [QSA,L]
 
 # Explicit: serve index.html for directory-like paths
 RewriteCond %{REQUEST_URI} ^(.+)/$

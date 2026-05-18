@@ -31,36 +31,40 @@ async function apiFetch(path, opts = {}) {
   return data;
 }
 
+function lsGet(key, fallback) { try { const v = localStorage.getItem(key); return v !== null ? v : fallback; } catch (e) { return fallback; } }
+function lsSet(key, val) { try { localStorage.setItem(key, val); } catch (e) { /* private browsing */ } }
+function lsRemove(key) { try { localStorage.removeItem(key); } catch (e) { /* private browsing */ } }
+
 const DB = {
   getSession() {
-    return safeJsonParse(localStorage.getItem("edu_session") || "null", null);
+    return safeJsonParse(lsGet("edu_session", "null"), null);
   },
   setSession(session) {
-    localStorage.setItem("edu_session", JSON.stringify(session));
+    lsSet("edu_session", JSON.stringify(session));
   },
   clearSession() {
-    localStorage.removeItem("edu_session");
+    lsRemove("edu_session");
   },
 
   getSchoolData(userId) {
-    return safeJsonParse(localStorage.getItem(`edu_school_${userId}`) || "null", null);
+    return safeJsonParse(lsGet(`edu_school_${userId}`, "null"), null);
   },
   saveSchoolData(userId, data) {
-    localStorage.setItem(`edu_school_${userId}`, JSON.stringify(data));
+    lsSet(`edu_school_${userId}`, JSON.stringify(data));
   },
 
   getStudents(userId) {
-    return safeJsonParse(localStorage.getItem(`edu_students_${userId}`) || "[]", []);
+    return safeJsonParse(lsGet(`edu_students_${userId}`, "[]"), []);
   },
   saveStudents(userId, arr) {
-    localStorage.setItem(`edu_students_${userId}`, JSON.stringify(arr));
+    lsSet(`edu_students_${userId}`, JSON.stringify(arr));
   },
 
   getScores(userId) {
-    return safeJsonParse(localStorage.getItem(`edu_scores_${userId}`) || "{}", {});
+    return safeJsonParse(lsGet(`edu_scores_${userId}`, "{}"), {});
   },
   saveScores(userId, obj) {
-    localStorage.setItem(`edu_scores_${userId}`, JSON.stringify(obj));
+    lsSet(`edu_scores_${userId}`, JSON.stringify(obj));
   }
 };
 
@@ -149,7 +153,7 @@ const Auth = {
     } catch {
     }
     DB.clearSession();
-    window.location.href = redirectPath || "login";
+    window.location.href = redirectPath || "/login";
   },
 
   getSession() {
@@ -159,36 +163,36 @@ const Auth = {
   requireAuth(role, opts) {
     const session = DB.getSession();
     if (!session) {
-      window.location.href = (opts && opts.loginPath) ? opts.loginPath : "login";
+      window.location.href = (opts && opts.loginPath) ? opts.loginPath : "/login";
       return null;
     }
     const effectiveRole = session.effectiveRole || session.role;
     if (role === "admin" && session.role !== "ADMIN" && session.role !== "STAFF") {
-      if (effectiveRole === 'TEACHER') window.location.href = 'teacher';
-      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = 'portal';
-      else window.location.href = "app";
+      if (effectiveRole === 'TEACHER') window.location.href = '/teacher';
+      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = '/portal';
+      else window.location.href = "/app";
       return null;
     }
     if (role === "school" && (session.role === "ADMIN" || session.role === "STAFF") && !session.impersonationActive) {
-      window.location.href = "admin";
+      window.location.href = "/admin";
       return null;
     }
     if (role === "school" && effectiveRole !== "SCHOOL" && effectiveRole !== "SCHOOL_ADMIN" && !((session.role === "ADMIN" || session.role === "STAFF") && session.impersonationActive)) {
-      if (effectiveRole === 'TEACHER') window.location.href = 'teacher';
-      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = 'portal';
-      else window.location.href = "login";
+      if (effectiveRole === 'TEACHER') window.location.href = '/teacher';
+      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = '/portal';
+      else window.location.href = "/login";
       return null;
     }
     if (role === 'teacher' && effectiveRole !== 'TEACHER') {
-      if (effectiveRole === 'SCHOOL') window.location.href = 'app';
-      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = 'portal';
-      else window.location.href = 'login';
+      if (effectiveRole === 'SCHOOL') window.location.href = '/app';
+      else if (effectiveRole === 'PARENT' || effectiveRole === 'STUDENT') window.location.href = '/portal';
+      else window.location.href = '/login';
       return null;
     }
     if (role === 'portal' && effectiveRole !== 'PARENT' && effectiveRole !== 'STUDENT') {
-      if (effectiveRole === 'SCHOOL') window.location.href = 'app';
-      else if (effectiveRole === 'TEACHER') window.location.href = 'teacher';
-      else window.location.href = 'login';
+      if (effectiveRole === 'SCHOOL') window.location.href = '/app';
+      else if (effectiveRole === 'TEACHER') window.location.href = '/teacher';
+      else window.location.href = '/login';
       return null;
     }
     apiFetch("/me", { method: "GET" })
@@ -197,7 +201,7 @@ const Auth = {
         if (!serverRole) throw new Error("Invalid session");
         if (session.role !== serverRole) {
           DB.clearSession();
-          window.location.href = "login";
+          window.location.href = "/login";
           return;
         }
         const impersonationActive = Boolean(out?.impersonation?.active);
@@ -208,7 +212,7 @@ const Auth = {
       })
       .catch(() => {
         DB.clearSession();
-        window.location.href = (opts && opts.loginPath) ? opts.loginPath : "login.html";
+        window.location.href = "/login";
       });
     return session;
   }

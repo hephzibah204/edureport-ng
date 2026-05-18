@@ -21,7 +21,11 @@ final class MailService
         // Note: For real SMTP with authentication without external libs, 
         // the server's php.ini must be configured to use a tool like msmtp or postfix.
         // If the user wants a native PHP SMTP client implementation, it would be much larger.
-        return @mail($to, $subject, self::wrapTemplate($subject, $htmlContent), implode("\r\n", $headers));
+        $sent = @mail($to, $subject, self::wrapTemplate($subject, $htmlContent), implode("\r\n", $headers));
+        if (!$sent) {
+            error_log('MailService: Failed to send email to ' . $to);
+        }
+        return $sent;
     }
 
     /**

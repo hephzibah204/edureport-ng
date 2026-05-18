@@ -216,16 +216,16 @@ async function handleRegister() {
           await checkout.initializeCheckout({
             customer_email: email, customer_name: schoolName, amount: (init.amountKobo / 100).toString(), currency: init.currency, channels: ["BANK_TRANSFER", "CARD"],
             onSuccess: () => {},
-            onSuccessfulOrder: () => window.location.href = 'app',
-            onError: () => { errEl.textContent = 'Payment failed'; errEl.classList.add('show'); },
-            onClose: () => window.location.href = 'app'
+            onSuccessfulOrder: () => window.location.href = '/app',
+            onError: () => { errEl.textContent = 'Payment failed. Please try again.'; errEl.classList.add('show'); btn.innerHTML = 'Create School Account →'; btn.disabled = false; },
+            onClose: () => window.location.href = '/app'
           });
           return;
         } else if (gateway === 'PAYSTACK' && init.publicKey) {
           const handler = PaystackPop.setup({
             key: init.publicKey, email: email, amount: init.amountKobo, currency: init.currency, ref: init.reference,
-            callback: () => window.location.href = 'app',
-            onClose: () => window.location.href = 'app'
+            callback: () => window.location.href = '/app',
+            onClose: () => window.location.href = '/app'
           });
           handler.openIframe();
           return;
@@ -240,21 +240,24 @@ async function handleRegister() {
           okEl.classList.add('show');
           return;
         } else if (gateway === 'FLUTTERWAVE' || gateway === 'MONNIFY') {
-          // Typically these return a link to redirect to
           if (init.checkoutUrl) window.location.href = init.checkoutUrl;
-          else window.location.href = 'app';
+          else window.location.href = '/app';
           return;
         }
       }
     } catch (payErr) {
       console.error(payErr);
-      // Registration worked, but payment init failed. Let them into app to pay later.
+      errEl.textContent = 'Payment initialization failed. Your account was created, but you need to set up payment later.';
+      errEl.classList.add('show');
+      btn.innerHTML = 'Create School Account →';
+      btn.disabled = false;
+      return;
     }
 
     okEl.textContent = `✅ Account created! Welcome to ReportSheet, ${schoolName}!`;
     okEl.classList.add('show');
     showToast('✅ Registration successful!', 'ok');
-    setTimeout(() => (window.location.href = 'app'), 1200);
+    setTimeout(() => (window.location.href = '/app'), 1200);
   } catch (e) {
     errEl.textContent = e?.message || 'Registration failed.';
     errEl.classList.add('show');
@@ -265,7 +268,7 @@ async function handleRegister() {
 
 document.addEventListener('keydown', e => { if (e.key === 'Enter') handleRegister(); });
 const session = Auth.getSession();
-if (session) window.location.href = session.role === 'ADMIN' ? 'admin' : 'app';
+if (session) window.location.href = session.role === 'ADMIN' ? '/admin' : '/app';
 </script>
 </body>
 </html>

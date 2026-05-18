@@ -383,7 +383,7 @@ body { display: flex; flex-direction: column; }
           <button class="btn btn-outline" onclick="generateAiReport()">✨ AI Remarks</button>
           <button class="btn btn-outline" onclick="openExtras()">🧾 Attendance & Traits</button>
           <button class="btn btn-outline" onclick="downloadStudentPdf()">⬇️ PDF</button>
-          <button class="btn btn-outline" onclick="downloadClassPdf()">⬇️ Class PDF</button>
+          <button id="btn-class-pdf" class="btn btn-outline" onclick="downloadClassPdf()">⬇️ Class PDF</button>
           <button class="btn btn-outline" onclick="openSms()">📲 Send SMS</button>
           <button class="btn btn-blue" onclick="window.print()">🖨️ Print / PDF</button>
           <button class="btn btn-gold" onclick="printClass()">📦 Print Class</button>
@@ -589,13 +589,14 @@ if (!SESSION) throw new Error('Not authenticated');
 let UID = SESSION.effectiveUserId || SESSION.id;
 
 function escapeHtml(v) {
-  return String(v ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
+  if (v === null || v === undefined) return '';
+  return String(v).replace(/[&<>"']/g, function(c) {
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
 }
+function lsGet(k, fallback) { try { const v = localStorage.getItem(k); return v !== null ? v : fallback; } catch (e) { return fallback; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+function lsRemove(k) { try { localStorage.removeItem(k); } catch (e) {} }
 
 function parsePrefixes(s) {
   return String(s || '')
@@ -885,7 +886,7 @@ let obSubjects = [];
 
 function checkOnboarding() {
   const isNew = students.length === 0 && (school.principal === "" || !school.principal);
-  if (isNew && !localStorage.getItem(`ob_dismissed_${UID}`)) {
+  if (isNew && !lsGet('ob_dismissed_'+UID)) {
     obCurStep = 1;
     obSubjects = [...(school.subjects || [])];
     populateOb();
@@ -966,7 +967,7 @@ async function finishOnboarding() {
     await apiFetch("/school", { method: "PUT", body: JSON.stringify(updated) });
     school = updated;
     DB.saveSchoolData(UID, school);
-    localStorage.setItem(`ob_dismissed_${UID}`, '1');
+    lsSet('ob_dismissed_'+UID, '1');
     closeModal('modal-onboarding');
     populateSetup();
     renderSubjects();
@@ -1041,9 +1042,9 @@ function renderGradeTable() {
   const el = document.getElementById('grade-tbody'); if (!el) return;
   el.innerHTML = (school.grades||[]).map(g => `
     <tr>
-      <td><strong style="color:${g.color}">${g.grade}</strong></td>
-      <td style="text-align:center;">${g.min}–${g.max}</td>
-      <td>${g.remark}</td>
+      <td><strong style="color:${escapeHtml(g.color)}">${escapeHtml(g.grade)}</strong></td>
+      <td style="text-align:center;">${escapeHtml(String(g.min))}–${escapeHtml(String(g.max))}</td>
+      <td>${escapeHtml(g.remark)}</td>
     </tr>`).join('');
 }
 
@@ -1190,7 +1191,9 @@ function renderStudents() {
   document.getElementById('st-top').textContent=avgs.length?Math.max(...avgs).toFixed(1)+'%':'—';
 }
 function exportCSV() {
-  const rows=['Name,Adm No,Class,Gender,Average,Grade\n',...students.map(s=>{const avg=studentAvg(s.id);const g=avg!==null?getGrade(avg,school.grades||[]):{grade:'—'};return `"${s.name}","${s.admNo}","${s.cls}","${s.gender}","${avg!==null?avg.toFixed(1)+'%':'—'}","${g.grade}"`;})];
+  function escCsv(v) { return '"' + String(v).replace(/"/g, '""') + '"'; }
+  const rows=['Name,Adm No,Class,Gender,Average,Grade\n',...students.map(s=>{const avg=studentAvg(s.id);const g=avg!==null?getGrade(avg,school.grades||[]):{grade:'—'};return [escCsv(s.name),escCsv(s.admNo),escCsv(s.cls),escCsv(s.gender),escCsv(avg!==null?avg.toFixed(1)+'%':'—'),escCsv(g.grade)].join(',');
+  })];
   const blob=new Blob([rows.join('\n')],{type:'text/csv'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${school.name||'School'}_Students.csv`;a.click();
 }
@@ -1557,7 +1560,8 @@ function downloadClassPdf() {
   const cls = document.getElementById('report-class')?.value || '';
   if (!cls) { showToast('Select a class first.','err'); return; }
   
-  const btn = document.querySelector('button[onclick="downloadClassPdf()"]');
+  const btn = document.getElementById('btn-class-pdf');
+  if (!btn) return;
   const prevText = btn.innerHTML;
   btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Queueing...';
 
@@ -1758,7 +1762,8 @@ function renderSidebarClasses() {
   if (!classes.length){el.innerHTML='<div style="padding:0 0.5rem;font-size:0.77rem;color:var(--muted);">No classes yet</div>';return;}
   el.innerHTML=classes.map(c=>{
     const cnt=students.filter(s=>s.cls===c).length;
-    return `<button class="class-item" onclick="filterCls('${c}')"><div class="class-dot"></div><span style="flex:1;">${escapeHtml(c)}</span><span style="font-size:0.7rem;color:var(--muted);">${cnt}</span></button>`;
+    const safeCls = String(c).replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    return `<button class="class-item" onclick="filterCls('${safeCls}')"><div class="class-dot"></div><span style="flex:1;">${escapeHtml(c)}</span><span style="font-size:0.7rem;color:var(--muted);">${cnt}</span></button>`;
   }).join('');
 }
 function filterCls(c) { showPage('pg-students'); const fd=document.getElementById('filter-cls'); if(fd){fd.value=c;renderStudents();} }
