@@ -2585,6 +2585,7 @@ HTML;
                     return;
                 }
                 $classes = array_values(array_unique(array_filter(array_map(fn($x) => trim(strval($x)), $classes), fn($x) => $x !== '')));
+                $this->enforceStaffLimit($school['id'], 1);
                 if ($this->findUserByEmail($email)) {
                     Response::error(400, 'EMAIL_IN_USE', 'An account with this email already exists.');
                     return;
@@ -2822,6 +2823,12 @@ HTML;
             if ($method === 'GET' && $path === '/teacher/api/attendance/session') {
                 $u = Auth::requireEffectiveRole('TEACHER');
                 $actorId = $u['id'];
+                // Feature check: attendance requires attendance feature
+                $userRow = $this->getUserById($u['id']);
+                $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : '';
+                if ($schoolId !== '') {
+                    $this->enforceFeatureAccess($schoolId, 'attendance');
+                }
                 $className = isset($_GET['className']) ? trim(strval($_GET['className'])) : '';
                 $date = isset($_GET['date']) ? trim(strval($_GET['date'])) : '';
                 if ($className === '') {
@@ -2866,6 +2873,11 @@ HTML;
                 $u = Auth::requireEffectiveRole('TEACHER');
                 $actorId = $u['id'];
                 $body = $this->jsonBody();
+                $userRow = $this->getUserById($u['id']);
+                $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : '';
+                if ($schoolId !== '') {
+                    $this->enforceFeatureAccess($schoolId, 'attendance');
+                }
                 $className = Validation::requireString($body, 'className', 1, 80);
                 $date = Validation::requireString($body, 'date', 10, 10);
                 if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
@@ -3599,6 +3611,7 @@ HTML;
                 $u = $ctx['u'];
                 $school = $ctx['school'];
                 $actorId = $ctx['actorId'];
+                $this->enforceFeatureAccess($school['id'], 'batch_pdf');
                 RateLimit::enforce('pdf-class:' . $ip, 20, 3600);
                 $body = $this->jsonBody();
                 $className = trim(strval($body['className'] ?? ''));
@@ -3814,10 +3827,12 @@ HTML;
                 $school = $ctx['school'];
                 if (!$school) { Response::error(404, 'NOT_FOUND', 'School not found'); return; }
                 
-                // Feature restriction: Require Pro+AI plan for AI Exam Generator
-                $sub = $this->getSchoolSubscription($school['id']);
-                if (!$sub || !in_array(strtolower($sub['planSlug']), ['pro', 'trial'])) {
-                    Response::error(403, 'UPGRADE_REQUIRED', 'Please upgrade to the Pro + AI plan to use AI Exam Generator.');
+                // Feature check: AI Exam requires ai_exam feature
+                $this->enforceFeatureAccess($school['id'], 'ai_exam');
+                // Check AI credits
+                $credits = $this->getAiCredits($school['id']);
+                if ($credits['remaining'] < 2) {
+                    Response::error(403, 'INSUFFICIENT_CREDITS', 'Not enough AI credits. You need 2 credits per exam generation. Current balance: ' . $credits['remaining']);
                     return;
                 }
                 $body = $this->jsonBody();
@@ -3835,11 +3850,14 @@ HTML;
                         'questionCount' => $questionCount
                     ]);
                     
+                    // Deduct credits only on success
+                    $this->useAiCredit($school['id'], 2);
+                    
                     $id = $this->id('exm');
                     $stmt = Db::pdo()->prepare("INSERT INTO generated_exams (id,school_id,teacher_id,subject,class_level,topic,questions,created_at,updated_at) VALUES (?,?,?,?,?,?,?,NOW(),NOW())");
                     $stmt->execute([$id, $school['id'], $u['id'], $subject, $classLevel, $topic, json_encode($questions, JSON_UNESCAPED_SLASHES)]);
                     
-                    Response::json(200, ['id' => $id, 'questions' => $questions]);
+                    Response::json(200, ['id' => $id, 'questions' => $questions, 'creditsRemaining' => $credits['remaining'] - 2]);
                 } catch (Throwable $e) {
                     Response::error(500, 'AI_ERROR', $e->getMessage());
                 }
@@ -3892,9 +3910,12 @@ HTML;
                 $school = $ctx['school'];
                 $actorId = $ctx['actorId'];
 
-                $subRow = $this->getSchoolSubscription($school['id']);
-                if (!$subRow || !in_array(strtolower($subRow['planSlug']), ['pro', 'trial'], true)) {
-                    Response::error(403, 'UPGRADE_REQUIRED', 'Please upgrade to the Pro + AI plan to use AI Report Features.');
+                // Feature check: AI Reports requires ai_reports feature
+                $this->enforceFeatureAccess($school['id'], 'ai_reports');
+                // Check AI credits (costs 1 per report)
+                $credits = $this->getAiCredits($school['id']);
+                if ($credits['remaining'] < 1) {
+                    Response::error(403, 'INSUFFICIENT_CREDITS', 'Not enough AI credits. You need 1 credit per AI report. Current balance: ' . $credits['remaining'] . '. Purchase more credits from the admin.');
                     return;
                 }
                 $studentId = $m[1];
@@ -3954,8 +3975,57 @@ HTML;
                 $ctx['firstName'] = $firstName;
                 $ctx['average'] = $avg;
                 $out = Ai::generateReport($ctx);
-                $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'AI_REPORT_IMPERSONATED' : 'AI_REPORT', ['studentId' => $studentId, 'effectiveUserId' => $u['id']]);
-                Response::json(200, $out);
+                // Deduct credit on success
+                $this->useAiCredit($school['id'], 1);
+                $remainingCredits = $credits['remaining'] - 1;
+                $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'AI_REPORT_IMPERSONATED' : 'AI_REPORT', ['studentId' => $studentId, 'effectiveUserId' => $u['id'], 'creditsRemaining' => $remainingCredits]);
+                Response::json(200, array_merge($out, ['creditsRemaining' => $remainingCredits]));
+                return;
+            }
+
+            if ($method === 'GET' && $path === '/ai/credits') {
+                $ctx = $this->requireSchoolContext();
+                $credits = $this->getAiCredits($ctx['school']['id']);
+                $cfg = $this->getEffectivePlanConfigForSchool($ctx['school']['id']);
+                $planLimit = $cfg['limits']['aiCredits'] ?? 0;
+                Response::json(200, [
+                    'remaining' => $credits['remaining'],
+                    'total' => $credits['total'],
+                    'planLimit' => $planLimit,
+                    'perExamCost' => 2,
+                    'perReportCost' => 1
+                ]);
+                return;
+            }
+
+            if ($method === 'POST' && $path === '/ai/credits/purchase') {
+                $ctx = $this->requireSchoolContext();
+                $u = $ctx['u'];
+                $school = $ctx['school'];
+                $body = $this->jsonBody();
+                $amount = intval($body['amount'] ?? 0);
+                if ($amount < 10 || $amount > 10000) {
+                    Response::error(400, 'VALIDATION_ERROR', 'Amount must be between 10 and 10,000 credits');
+                    return;
+                }
+                // Check if plan allows AI credits purchase (only lifetime/pro)
+                $cfg = $this->getEffectivePlanConfigForSchool($school['id']);
+                $planLimit = $cfg['limits']['aiCredits'] ?? 0;
+                if ($planLimit === 0 && ($cfg['limits']['aiCredits'] ?? null) !== null) {
+                    Response::error(403, 'UPGRADE_REQUIRED', 'Your plan does not support AI features. Please upgrade.');
+                    return;
+                }
+                // Calculate price: ₦100 per 10 credits = ₦10/credit
+                $pricePerCredit = 1000; // 1000 kobo = ₦10 per credit
+                $totalKobo = $amount * $pricePerCredit;
+                // Create a payment for the credits
+                $stmt = Db::pdo()->prepare('INSERT INTO payments (id,school_id,amount,currency,status,description,metadata,created_at) VALUES (?,?,?,?,?,?,?,NOW())');
+                $payId = $this->id('pay');
+                $stmt->execute([$payId, $school['id'], $totalKobo, 'NGN', 'COMPLETED', 'AI Credits x' . $amount, json_encode(['type' => 'ai_credits', 'credits' => $amount])]);
+                $this->addAiCredits($school['id'], $amount);
+                $this->logAudit($u['id'], $school['id'], 'AI_CREDITS_PURCHASE', ['amount' => $amount, 'totalKobo' => $totalKobo]);
+                $credits = $this->getAiCredits($school['id']);
+                Response::json(200, ['ok' => true, 'creditsAdded' => $amount, 'creditsRemaining' => $credits['remaining'], 'paymentId' => $payId]);
                 return;
             }
 
@@ -4252,11 +4322,14 @@ HTML;
         } catch (Throwable $e) {
             return;
         }
+        // Ensure ai_credits columns exist (safe re-run)
+        try { $pdo->exec('ALTER TABLE school_subscriptions ADD COLUMN ai_credits_remaining INT NOT NULL DEFAULT 0'); } catch (Throwable $e) {}
+        try { $pdo->exec('ALTER TABLE school_subscriptions ADD COLUMN ai_credits_total INT NOT NULL DEFAULT 0'); } catch (Throwable $e) {}
         $defaults = [
-            ['slug' => 'starter', 'name' => 'Starter', 'monthlyKobo' => 1500000, 'annualKobo' => 1500000, 'lifetimeKobo' => 0, 'trialDays' => 0, 'students' => 100],
-            ['slug' => 'pro', 'name' => 'Pro + AI', 'monthlyKobo' => 0, 'annualKobo' => 0, 'lifetimeKobo' => 3500000, 'trialDays' => 0, 'students' => null],
-            ['slug' => 'trial', 'name' => 'Trial', 'monthlyKobo' => 0, 'annualKobo' => 0, 'lifetimeKobo' => 0, 'trialDays' => 7, 'students' => null],
-            ['slug' => 'lifetime', 'name' => 'Lifetime', 'monthlyKobo' => 0, 'annualKobo' => 0, 'lifetimeKobo' => 2500000, 'trialDays' => 0, 'students' => null]
+            ['slug' => 'starter', 'name' => 'Starter', 'monthlyKobo' => 150000, 'annualKobo' => 1500000, 'lifetimeKobo' => 0, 'trialDays' => 0, 'students' => 100, 'staff' => 3, 'aiCredits' => 0, 'features' => ['scores', 'report_sheet', 'teachers_portal', 'attendance', 'public_page', 'csv_import', 'basic_branding']],
+            ['slug' => 'pro', 'name' => 'Pro + AI', 'monthlyKobo' => 0, 'annualKobo' => 0, 'lifetimeKobo' => 3500000, 'trialDays' => 0, 'students' => null, 'staff' => null, 'aiCredits' => 2000, 'features' => ['scores', 'report_sheet', 'batch_pdf', 'teachers_portal', 'attendance', 'parent_portal', 'public_page', 'csv_import', 'school_branding', 'multi_term', 'ai_reports', 'ai_exam', 'sms_reports']],
+            ['slug' => 'trial', 'name' => 'Trial', 'monthlyKobo' => 0, 'annualKobo' => 0, 'lifetimeKobo' => 0, 'trialDays' => 7, 'students' => 50, 'staff' => 0, 'aiCredits' => 5, 'features' => ['scores', 'report_sheet', 'csv_import']],
+            ['slug' => 'lifetime', 'name' => 'Lifetime', 'monthlyKobo' => 0, 'annualKobo' => 0, 'lifetimeKobo' => 2500000, 'trialDays' => 0, 'students' => null, 'staff' => 10, 'aiCredits' => 200, 'features' => ['scores', 'report_sheet', 'batch_pdf', 'teachers_portal', 'attendance', 'parent_portal', 'public_page', 'csv_import', 'school_branding', 'multi_term', 'ai_reports', 'ai_exam']],
         ];
         foreach ($defaults as $d) {
             try {
@@ -4278,8 +4351,14 @@ HTML;
                         'setupFeeKobo' => 0
                     ],
                     'trialDays' => $d['trialDays'],
-                    'features' => [],
-                    'limits' => ['students' => $d['students'], 'staff' => null, 'storageMb' => null, 'smsCredits' => null],
+                    'features' => $d['features'],
+                    'limits' => [
+                        'students' => $d['students'],
+                        'staff' => $d['staff'],
+                        'storageMb' => null,
+                        'smsCredits' => $d['slug'] === 'pro' ? 100 : 0,
+                        'aiCredits' => $d['aiCredits']
+                    ],
                     'proration' => ['mode' => 'NONE']
                 ];
                 $pdo->beginTransaction();
@@ -4293,6 +4372,21 @@ HTML;
                 continue;
             }
         }
+        // Seed AI credits for existing subscriptions that have none
+        try {
+            $pdo->exec("UPDATE school_subscriptions ss JOIN subscription_plans sp ON sp.id=ss.plan_id
+                SET ss.ai_credits_remaining = CASE
+                    WHEN sp.slug='pro' THEN GREATEST(ss.ai_credits_remaining, 2000)
+                    WHEN sp.slug='lifetime' THEN GREATEST(ss.ai_credits_remaining, 200)
+                    WHEN sp.slug='trial' THEN GREATEST(ss.ai_credits_remaining, 5)
+                    ELSE ss.ai_credits_remaining END,
+                ss.ai_credits_total = CASE
+                    WHEN sp.slug='pro' THEN GREATEST(ss.ai_credits_total, 2000)
+                    WHEN sp.slug='lifetime' THEN GREATEST(ss.ai_credits_total, 200)
+                    WHEN sp.slug='trial' THEN GREATEST(ss.ai_credits_total, 5)
+                    ELSE ss.ai_credits_total END
+                WHERE ss.ai_credits_total = 0 AND ss.ai_credits_remaining = 0");
+        } catch (Throwable $e) {}
     }
 
     private function jsonBody(): array
@@ -5249,6 +5343,91 @@ HTML;
             Response::error(403, 'LIMIT_EXCEEDED', 'Student limit reached for this plan.');
             exit;
         }
+    }
+
+    private function remainingStaffCapacity(string $schoolId, int $requested): int
+    {
+        if ($requested < 1) return 0;
+        $cfg = $this->getEffectivePlanConfigForSchool($schoolId);
+        $limit = $cfg['limits']['staff'] ?? null;
+        if ($limit === null) return $requested;
+        $limit = intval($limit);
+        if ($limit <= 0) return 0;
+        $stmt = Db::pdo()->prepare("SELECT COUNT(*) AS c FROM users WHERE school_id=? AND role='TEACHER' AND status!='DELETED'");
+        $stmt->execute([$schoolId]);
+        $current = intval(($stmt->fetch()['c'] ?? 0));
+        $remaining = $limit - $current;
+        if ($remaining <= 0) return 0;
+        return min($requested, $remaining);
+    }
+
+    private function enforceStaffLimit(string $schoolId, int $requested): void
+    {
+        $allowed = $this->remainingStaffCapacity($schoolId, $requested);
+        if ($allowed < $requested) {
+            Response::error(403, 'LIMIT_EXCEEDED', 'Staff/teacher limit reached for this plan. Please upgrade.');
+            exit;
+        }
+    }
+
+    private function hasFeatureAccess(string $schoolId, string $feature): bool
+    {
+        $cfg = $this->getEffectivePlanConfigForSchool($schoolId);
+        $features = $cfg['features'] ?? [];
+        return is_array($features) && in_array($feature, $features, true);
+    }
+
+    private function enforceFeatureAccess(string $schoolId, string $feature): void
+    {
+        if (!$this->hasFeatureAccess($schoolId, $feature)) {
+            Response::error(403, 'UPGRADE_REQUIRED', 'This feature requires an upgraded plan.');
+            exit;
+        }
+    }
+
+    private function getAiCredits(string $schoolId): array
+    {
+        try {
+            $stmt = Db::pdo()->prepare('SELECT ai_credits_remaining, ai_credits_total FROM school_subscriptions WHERE school_id=? LIMIT 1');
+            $stmt->execute([$schoolId]);
+            $row = $stmt->fetch();
+            if ($row) {
+                return ['remaining' => intval($row['ai_credits_remaining']), 'total' => intval($row['ai_credits_total'])];
+            }
+        } catch (Throwable $e) {}
+        return ['remaining' => 0, 'total' => 0];
+    }
+
+    private function useAiCredit(string $schoolId, int $amount = 1): bool
+    {
+        try {
+            $pdo = Db::pdo();
+            $stmt = $pdo->prepare('SELECT ai_credits_remaining FROM school_subscriptions WHERE school_id=? LIMIT 1');
+            $stmt->execute([$schoolId]);
+            $row = $stmt->fetch();
+            if (!$row) return false;
+            $remaining = intval($row['ai_credits_remaining'] ?? 0);
+            $cfg = $this->getEffectivePlanConfigForSchool($schoolId);
+            $planLimit = intval($cfg['limits']['aiCredits'] ?? 0);
+            // If plan has no limit (null = unlimited), allow without decrementing
+            if ($planLimit <= 0 && ($cfg['limits']['aiCredits'] ?? null) === null) {
+                return true;
+            }
+            if ($remaining < $amount) return false;
+            $stmt = $pdo->prepare('UPDATE school_subscriptions SET ai_credits_remaining = ai_credits_remaining - ? WHERE school_id=? AND ai_credits_remaining >= ?');
+            $stmt->execute([$amount, $schoolId, $amount]);
+            return $stmt->rowCount() > 0;
+        } catch (Throwable $e) {
+            return false;
+        }
+    }
+
+    private function addAiCredits(string $schoolId, int $amount): void
+    {
+        try {
+            Db::pdo()->prepare('UPDATE school_subscriptions SET ai_credits_remaining = ai_credits_remaining + ?, ai_credits_total = ai_credits_total + ? WHERE school_id=?')
+                ->execute([$amount, $amount, $schoolId]);
+        } catch (Throwable $e) {}
     }
 
     private function upsertSchoolSubscriptionFromLegacyPlan(string $schoolId, string $legacyPlan): void

@@ -55,22 +55,26 @@ body { display: flex; min-height: 100vh; }
   <div class="auth-sub">Get lifetime access in 2 minutes. No card required to start.</div>
 
   <!-- Plan selector -->
-  <div class="plan-pills" style="grid-template-columns: 1fr 1fr 1fr 1fr; font-size: 0.9rem;">
+  <div class="plan-pills">
     <div class="plan-pill" id="pill-starter" onclick="selectPlan('starter')">
       <div class="pp-price">₦15,000</div>
       <div class="pp-name">Starter / Year</div>
+      <div style="font-size:0.65rem;color:var(--muted);margin-top:2px;">100 students · 3 teachers</div>
     </div>
     <div class="plan-pill selected" id="pill-lifetime" onclick="selectPlan('lifetime')">
       <div class="pp-price">₦25,000</div>
-      <div class="pp-name">⭐ Lifetime</div>
+      <div class="pp-name">🔥 Lifetime Access</div>
+      <div style="font-size:0.65rem;color:var(--muted);margin-top:2px;">Unlimited students · 200 AI credits</div>
     </div>
     <div class="plan-pill" id="pill-pro" onclick="selectPlan('pro')">
       <div class="pp-price">₦35,000</div>
-      <div class="pp-name">Pro + AI (Lifetime)</div>
+      <div class="pp-name">🚀 Pro + AI (Lifetime)</div>
+      <div style="font-size:0.65rem;color:var(--muted);margin-top:2px;">2,000 AI credits · Full AI suite</div>
     </div>
     <div class="plan-pill" id="pill-trial" onclick="selectPlan('trial')">
       <div class="pp-price">Free</div>
       <div class="pp-name">7-Day Trial</div>
+      <div style="font-size:0.65rem;color:var(--muted);margin-top:2px;">50 students · 5 AI credits</div>
     </div>
   </div>
   <input type="hidden" id="selected-plan" value="lifetime">
@@ -83,10 +87,6 @@ body { display: flex; min-height: 100vh; }
     <input type="text" id="school-name" placeholder="e.g. Hephzibah College, Ijebu Igbo">
   </div>
   <div class="form-row">
-    <div class="field">
-      <label>Email Address *</label>
-      <input type="email" id="email" placeholder="admin@yourschool.com">
-    </div>
     <div class="field">
       <label>Phone Number</label>
       <input type="tel" id="phone" placeholder="08012345678">
