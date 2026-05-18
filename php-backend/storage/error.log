@@ -63,3 +63,9 @@
 #1 C:\Users\Abiodun Emmanuel\Documents\CODEBASE\edureport-ng\php-backend\public\router.php(34): require('C:\\Users\\Abiodu...')
 #2 {main}
 
+[2026-05-18 15:52:18] PDOException: could not find driver in C:\Users\Abiodun Emmanuel\Documents\CODEBASE\edureport-ng\php-backend\src\Db.php:60
+#0 C:\Users\Abiodun Emmanuel\Documents\CODEBASE\edureport-ng\php-backend\src\Db.php(60): PDO->__construct('sqlite:C:/Users...', '', Object(SensitiveParameterValue), Array)
+#1 C:\Users\Abiodun Emmanuel\Documents\CODEBASE\edureport-ng\php-backend\src\App.php(16): Db::pdo()
+#2 C:\Users\Abiodun Emmanuel\Documents\CODEBASE\edureport-ng\php-backend\public\index.php(100): App->__construct()
+#3 {main}
+
