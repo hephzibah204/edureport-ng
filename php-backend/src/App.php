@@ -407,7 +407,9 @@ HTML;
                         'role' => $sessionRow['role'],
                         'status' => $sessionRow['status'],
                         'forcePasswordChange' => intval($sessionRow['force_password_change'] ?? 0) === 1,
-                        'displayName' => $sessionRow['display_name'] ?? null
+                        'displayName' => $sessionRow['display_name'] ?? null,
+                        'phone' => $sessionRow['phone'] ?? null,
+                        'totpEnabled' => intval($sessionRow['totp_enabled'] ?? 0) === 1
                     ],
                     'effectiveUser' => [
                         'id' => $effectiveRow['id'],
@@ -416,6 +418,8 @@ HTML;
                         'status' => $effectiveRow['status'],
                         'forcePasswordChange' => intval($effectiveRow['force_password_change'] ?? 0) === 1,
                         'displayName' => $effectiveRow['display_name'] ?? null,
+                        'phone' => $effectiveRow['phone'] ?? null,
+                        'totpEnabled' => intval($effectiveRow['totp_enabled'] ?? 0) === 1,
                         'schoolSubscription' => $school ? $this->getSchoolSubscription($school['id']) : null
                     ],
                     'school' => $school ? ['id' => $school['id'], 'name' => $school['name'], 'abbr' => $school['abbr'], 'plan' => $school['plan']] : null,
@@ -602,6 +606,109 @@ if ($method === 'POST' && $path === '/auth/register') {
                 $stmt = Db::pdo()->prepare('UPDATE users SET password_hash=?, force_password_change=0, updated_at=NOW() WHERE id=?');
                 $stmt->execute([$hash, $u['id']]);
                 $this->logAudit($u['adminId'] ?? $u['id'], $u['schoolId'] ?? null, ($u['impersonating'] ?? false) ? 'SCHOOL_PASSWORD_CHANGE_IMPERSONATED' : 'PASSWORD_CHANGE', []);
+                Response::json(200, ['ok' => true]);
+                return;
+            }
+
+            if ($method === 'PUT' && $path === '/auth/profile') {
+                $u = Auth::requireUser();
+                $body = $this->jsonBody();
+                $displayName = isset($body['displayName']) ? trim(strval($body['displayName'])) : '';
+                $email = isset($body['email']) ? trim(strval($body['email'])) : '';
+                $phone = isset($body['phone']) ? trim(strval($body['phone'])) : '';
+                if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    Response::error(400, 'VALIDATION_ERROR', 'Invalid email address');
+                    return;
+                }
+                
+                $pdo = Db::pdo();
+                
+                if ($email !== '') {
+                    $stmt = $pdo->prepare('SELECT id FROM users WHERE email=? AND id!=? LIMIT 1');
+                    $stmt->execute([$email, $u['id']]);
+                    if ($stmt->fetch()) {
+                        Response::error(400, 'VALIDATION_ERROR', 'Email already in use by another account');
+                        return;
+                    }
+                }
+                
+                $stmt = $pdo->prepare('UPDATE users SET display_name=?, email=?, phone=?, updated_at=NOW() WHERE id=?');
+                $stmt->execute([
+                    $displayName !== '' ? $displayName : null,
+                    $email !== '' ? $email : $u['email'],
+                    $phone !== '' ? $phone : null,
+                    $u['id']
+                ]);
+                
+                $userRow = $this->getUserById($u['id']);
+                $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : null;
+                $this->logAudit($u['id'], $schoolId, 'PROFILE_UPDATE', ['email' => $email, 'displayName' => $displayName, 'phone' => $phone]);
+                Response::json(200, ['ok' => true]);
+                return;
+            }
+
+            if ($method === 'POST' && $path === '/auth/2fa/setup') {
+                $u = Auth::requireUser();
+                RateLimit::enforce('2fa-setup:' . $ip, 30, 3600);
+                $userId = $u['id'];
+                $row = $this->getUserById($userId);
+                if (!$row) {
+                    Response::error(404, 'NOT_FOUND', 'Not found');
+                    return;
+                }
+                $secret = Totp::generateSecretBase32();
+                $cipher = Crypto::encrypt($secret);
+                $pdo = Db::pdo();
+                $pdo->beginTransaction();
+                $sql = Db::isSqlite()
+                    ? 'INSERT INTO user_totp_secrets (user_id,secret_ciphertext,created_at,updated_at) VALUES (?,?,NOW(),NOW()) ON CONFLICT(user_id) DO UPDATE SET secret_ciphertext=excluded.secret_ciphertext, updated_at=excluded.updated_at'
+                    : 'INSERT INTO user_totp_secrets (user_id,secret_ciphertext,created_at,updated_at) VALUES (?,?,NOW(),NOW()) ON DUPLICATE KEY UPDATE secret_ciphertext=VALUES(secret_ciphertext),updated_at=VALUES(updated_at)';
+                $pdo->prepare($sql)->execute([$userId, $cipher]);
+                $pdo->prepare('UPDATE users SET totp_enabled=0 WHERE id=?')->execute([$userId]);
+                $pdo->commit();
+                $issuer = 'ReportSheet';
+                $uri = Totp::otpauthUri($issuer, $row['email'], $secret);
+                $this->logAudit($userId, $row['school_id'] ?? null, '2FA_SETUP_INITIATED', []);
+                Response::json(200, ['secret' => $secret, 'otpauthUri' => $uri]);
+                return;
+            }
+
+            if ($method === 'POST' && $path === '/auth/2fa/enable') {
+                $u = Auth::requireUser();
+                RateLimit::enforce('2fa-enable:' . $ip, 60, 3600);
+                $userId = $u['id'];
+                $body = $this->jsonBody();
+                $code = Validation::requireString($body, 'code', 4, 12);
+                $stmt = Db::pdo()->prepare('SELECT secret_ciphertext FROM user_totp_secrets WHERE user_id=? LIMIT 1');
+                $stmt->execute([$userId]);
+                $row = $stmt->fetch();
+                if (!$row || !is_string($row['secret_ciphertext'] ?? null)) {
+                    Response::error(404, 'NOT_FOUND', '2FA not setup');
+                    return;
+                }
+                $secret = Crypto::decrypt($row['secret_ciphertext']);
+                if (!Totp::verify($secret, $code)) {
+                    Response::error(400, 'TOTP_INVALID', 'Invalid code');
+                    return;
+                }
+                Db::pdo()->prepare('UPDATE users SET totp_enabled=1 WHERE id=?')->execute([$userId]);
+                $userRow = $this->getUserById($userId);
+                $this->logAudit($userId, $userRow['school_id'] ?? null, '2FA_ENABLED', []);
+                Response::json(200, ['ok' => true]);
+                return;
+            }
+
+            if ($method === 'POST' && $path === '/auth/2fa/disable') {
+                $u = Auth::requireUser();
+                RateLimit::enforce('2fa-disable:' . $ip, 30, 3600);
+                $userId = $u['id'];
+                $pdo = Db::pdo();
+                $pdo->beginTransaction();
+                $pdo->prepare('DELETE FROM user_totp_secrets WHERE user_id=?')->execute([$userId]);
+                $pdo->prepare('UPDATE users SET totp_enabled=0 WHERE id=?')->execute([$userId]);
+                $pdo->commit();
+                $userRow = $this->getUserById($userId);
+                $this->logAudit($userId, $userRow['school_id'] ?? null, '2FA_DISABLED', []);
                 Response::json(200, ['ok' => true]);
                 return;
             }
@@ -2577,7 +2684,7 @@ if ($method === 'POST' && $path === '/auth/register') {
                 $vals[] = $school['id'];
                 $stmt = Db::pdo()->prepare('UPDATE schools SET ' . implode(',', $set) . ' WHERE id=?');
                 $stmt->execute($vals);
-                $school = $this->getSchoolByOwnerId($u['id']);
+                $school = $this->getSchoolByOwnerIdOrSchoolId($u['id'], $u['role']);
                 $this->logAudit($actorId, $school['id'] ?? null, ($u['impersonating'] ?? false) ? 'SCHOOL_UPDATE_CONFIG_IMPERSONATED' : 'SCHOOL_UPDATE_CONFIG', ['keys' => array_keys($body), 'effectiveUserId' => $u['id']]);
                 Response::json(200, ['school' => $this->schoolToApi($school)]);
                 return;
@@ -4529,7 +4636,7 @@ if ($method === 'POST' && $path === '/auth/register') {
 
     private function findUserByEmail(string $email): ?array
     {
-        $stmt = Db::pdo()->prepare('SELECT id,email,password_hash,role,status,force_password_change,totp_enabled,school_id FROM users WHERE email=? LIMIT 1');
+        $stmt = Db::pdo()->prepare('SELECT id,email,password_hash,role,status,force_password_change,totp_enabled,school_id,phone,display_name FROM users WHERE email=? LIMIT 1');
         $stmt->execute([$email]);
         $row = $stmt->fetch();
         return $row ?: null;
@@ -4537,7 +4644,7 @@ if ($method === 'POST' && $path === '/auth/register') {
 
     private function getUserById(string $id): ?array
     {
-        $stmt = Db::pdo()->prepare('SELECT id,email,role,status,force_password_change,totp_enabled,school_id FROM users WHERE id=? LIMIT 1');
+        $stmt = Db::pdo()->prepare('SELECT id,email,role,status,force_password_change,totp_enabled,school_id,phone,display_name FROM users WHERE id=? LIMIT 1');
         $stmt->execute([$id]);
         $row = $stmt->fetch();
         return $row ?: null;

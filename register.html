@@ -219,7 +219,27 @@ async function handleRegister() {
   btn.disabled = true;
 
   try {
-    await Auth.register({ schoolName, email, password, plan, schoolSlug: schoolUsername });
+    const out = await Auth.register({ schoolName, email, password, plan, schoolSlug: schoolUsername });
+    
+    if (out && out.user) {
+      DB.setSession({ 
+        ...out.user, 
+        schoolName: out.school?.name, 
+        plan: out.school?.plan, 
+        impersonationActive: false, 
+        impersonationSchoolId: null, 
+        effectiveUserId: out.user?.id, 
+        effectiveRole: out.user?.role 
+      });
+    }
+    
+    if (plan === 'trial') {
+      okEl.textContent = `✅ Account created! Welcome to ReportSheet, ${schoolName}!`;
+      okEl.classList.add('show');
+      showToast('✅ Registration successful!', 'ok');
+      setTimeout(() => (window.location.href = '/app'), 1200);
+      return;
+    }
     
     // Now trigger payment initialization
     try {

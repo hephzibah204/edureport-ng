@@ -175,6 +175,7 @@ body { display: flex; flex-direction: column; }
       <div class="sb-lbl">Main Menu</div>
       <button class="nav-item active" onclick="showPage('pg-dashboard')"><span class="ni">📊</span> Dashboard</button>
       <button class="nav-item" onclick="showPage('pg-setup')"><span class="ni">⚙️</span> School Setup</button>
+      <button class="nav-item" onclick="showPage('pg-profile')"><span class="ni">👤</span> Profile Settings</button>
       <button class="nav-item" onclick="showPage('pg-billing')"><span class="ni">💳</span> Billing</button>
       <button class="nav-item" onclick="showPage('pg-teachers')"><span class="ni">🧑‍🏫</span> Teachers</button>
       <button class="nav-item" onclick="showPage('pg-students')"><span class="ni">👥</span> Students</button>
@@ -310,6 +311,70 @@ body { display: flex; flex-direction: column; }
       </div>
     </div>
 
+    <!-- PROFILE SETTINGS -->
+    <div class="page" id="pg-profile">
+      <div class="pg-hdr">
+        <div class="pg-title">Profile Settings<small>Manage your personal details, credentials, and 2FA security</small></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:start;">
+        <!-- Left: Account Details -->
+        <div class="card">
+          <div class="card-title">👤 Account Details</div>
+          <div class="field">
+            <label>Display Name</label>
+            <input type="text" id="prof-name" placeholder="e.g. Principal Admin">
+          </div>
+          <div class="field">
+            <label>Email Address *</label>
+            <input type="email" id="prof-email" placeholder="e.g. admin@school.com">
+          </div>
+          <div class="field">
+            <label>Phone Number</label>
+            <input type="text" id="prof-phone" placeholder="e.g. +2348000000000">
+          </div>
+          <button class="btn btn-primary" onclick="saveProfileSettings()" id="btn-save-profile">💾 Save Profile</button>
+        </div>
+
+        <!-- Right: Change Password -->
+        <div class="card">
+          <div class="card-title">🔒 Change Password</div>
+          <div class="field">
+            <label>Current Password</label>
+            <input type="password" id="prof-pwd-old" placeholder="••••••••••••">
+          </div>
+          <div class="field">
+            <label>New Password (Min 12 chars)</label>
+            <input type="password" id="prof-pwd-new" placeholder="••••••••••••">
+          </div>
+          <div class="field">
+            <label>Confirm New Password</label>
+            <input type="password" id="prof-pwd-confirm" placeholder="••••••••••••">
+          </div>
+          <button class="btn btn-gold" onclick="changeAdminPassword()" id="btn-change-pwd">🔑 Update Password</button>
+        </div>
+      </div>
+
+      <!-- Bottom Card: Two-Factor Authentication -->
+      <div class="card" style="margin-top:1.4rem;">
+        <div class="card-title">🛡️ Two-Factor Authentication (2FA)</div>
+        <div style="display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
+          <div style="flex:1;min-width:280px;">
+            <div style="font-size:0.95rem;font-weight:600;margin-bottom:0.3rem;">Secure Your Account with TOTP 2FA</div>
+            <div style="font-size:0.8rem;color:var(--muted);line-height:1.4;">
+              Two-factor authentication adds an extra layer of protection. Once enabled, you will be prompted to enter a 6-digit code from your authenticator app (like Google Authenticator or Microsoft Authenticator) whenever you sign in.
+            </div>
+            <div style="margin-top:0.8rem;">
+              Status: <span id="prof-2fa-status" class="badge badge-gray">Checking...</span>
+            </div>
+          </div>
+          <div id="prof-2fa-actions" style="display:flex;gap:10px;">
+            <button class="btn btn-blue" id="btn-setup-2fa" onclick="initiate2faSetup()">⚙️ Set Up 2FA</button>
+            <button class="btn btn-red" id="btn-disable-2fa" style="display:none;" onclick="disable2fa()">❌ Disable 2FA</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="page" id="pg-teachers">
       <div class="pg-hdr">
         <div class="pg-title">Teachers<small>Create teacher accounts and assign classes</small></div>
@@ -393,6 +458,41 @@ body { display: flex; flex-direction: column; }
       <div id="report-area"><div style="text-align:center;padding:4rem;color:var(--muted);">Select a student to preview their report card.</div></div>
     </div>
 
+  </div>
+</div>
+
+<!-- MODAL: 2FA SETUP -->
+<div class="overlay" id="modal-2fa-setup">
+  <div class="modal">
+    <div class="modal-title">🛡️ Set Up Two-Factor Authentication</div>
+    <div style="font-size:0.85rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.4;">
+      Scan the QR code with your authenticator app (Google Authenticator, Duo, Authy, etc.), or manually type the secret key.
+    </div>
+    
+    <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:1.2rem;">
+      <div id="qr-container" style="background:#fff;padding:10px;border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;width:200px;height:200px;margin-bottom:1rem;">
+        <img id="qr-image" src="" alt="2FA QR Code" style="max-width:100%;height:auto;display:none;">
+        <div id="qr-loading" class="spinner spin-green"></div>
+      </div>
+      
+      <div class="field" style="width:100%;">
+        <label>Secret Key (Manual Entry)</label>
+        <div style="display:flex;gap:8px;">
+          <input type="text" id="prof-2fa-secret" readonly style="font-family:var(--font-mono);font-size:0.9rem;letter-spacing:0.05em;background:var(--panel);">
+          <button class="btn btn-ghost" onclick="copy2faSecret()">📋 Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Enter 6-Digit Authenticator Code</label>
+      <input type="text" id="prof-2fa-code" placeholder="123456" maxlength="6" style="text-align:center;font-size:1.4rem;font-weight:700;letter-spacing:0.2em;">
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-2fa-setup')">Cancel</button>
+      <button class="btn btn-primary" onclick="verifyAndEnable2fa()">Verify & Enable</button>
+    </div>
   </div>
 </div>
 
@@ -684,15 +784,23 @@ syncFromServer()
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  const map = { 'pg-dashboard':0,'pg-setup':1,'pg-billing':2,'pg-teachers':3,'pg-students':4,'pg-scores':5,'pg-report':6 };
+  const targetPage = document.getElementById(id);
+  if (targetPage) targetPage.classList.add('active');
+  
+  // Dynamically activate sidebar nav item
   const navItems = document.querySelectorAll('.nav-item');
-  if (navItems[map[id]]) navItems[map[id]].classList.add('active');
+  navItems.forEach(n => {
+    if (n.getAttribute('onclick')?.includes(id)) {
+      n.classList.add('active');
+    }
+  });
+  
   if (id === 'pg-scores') syncSelects();
   if (id === 'pg-report') syncSelects();
   if (id === 'pg-dashboard') updateDashboard();
   if (id === 'pg-teachers') loadTeachers();
   if (id === 'pg-billing') loadBilling();
+  if (id === 'pg-profile') loadProfileSettings();
 }
 
 async function loadBilling() {
@@ -702,7 +810,7 @@ async function loadBilling() {
     const plan = p?.planSlug || 'Trial';
     const status = p?.status || 'UNKNOWN';
     document.getElementById('bil-plan-name').textContent = plan.toUpperCase() + ' PLAN - ' + status;
-    document.getElementById('bil-plan-desc').textContent = p ? \`Valid until \${p.currentPeriodEnd || 'Forever'}\` : 'Your current billing status.';
+    document.getElementById('bil-plan-desc').textContent = p ? `Valid until ${p.currentPeriodEnd || 'Forever'}` : 'Your current billing status.';
   } catch (e) {}
 }
 
@@ -734,6 +842,197 @@ async function initiateCheckout(planSlug, cycle) {
     }
   } catch (e) {
     showToast(e?.message || 'Failed to start payment', 'err');
+  }
+}
+
+async function loadProfileSettings() {
+  try {
+    const me = await apiFetch('/me', { method: 'GET' });
+    const user = me?.effectiveUser;
+    if (user) {
+      document.getElementById('prof-name').value = user.displayName || '';
+      document.getElementById('prof-email').value = user.email || '';
+      document.getElementById('prof-phone').value = user.phone || '';
+      
+      const badge = document.getElementById('prof-2fa-status');
+      const setupBtn = document.getElementById('btn-setup-2fa');
+      const disableBtn = document.getElementById('btn-disable-2fa');
+      
+      if (user.totpEnabled) {
+        badge.textContent = "ENABLED";
+        badge.className = "badge badge-green";
+        setupBtn.style.display = "none";
+        disableBtn.style.display = "inline-flex";
+      } else {
+        badge.textContent = "DISABLED";
+        badge.className = "badge badge-gray";
+        setupBtn.style.display = "inline-flex";
+        disableBtn.style.display = "none";
+      }
+    }
+  } catch (e) {
+    showToast("Failed to load profile details", "err");
+  }
+}
+
+async function saveProfileSettings() {
+  const btn = document.getElementById('btn-save-profile');
+  const oldText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Saving...';
+  
+  const displayName = document.getElementById('prof-name').value.trim();
+  const email = document.getElementById('prof-email').value.trim();
+  const phone = document.getElementById('prof-phone').value.trim();
+  
+  if (!email) {
+    showToast("Email address is required", "err");
+    btn.disabled = false;
+    btn.innerHTML = oldText;
+    return;
+  }
+  
+  try {
+    const res = await apiFetch('/auth/profile', {
+      method: 'PUT',
+      body: JSON.stringify({ displayName, email, phone })
+    });
+    if (res.ok) {
+      showToast("Profile details updated successfully", "ok");
+      await loadProfileSettings();
+    } else {
+      showToast(res.message || "Failed to update profile", "err");
+    }
+  } catch (e) {
+    showToast(e?.message || "Failed to update profile", "err");
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = oldText;
+  }
+}
+
+async function changeAdminPassword() {
+  const btn = document.getElementById('btn-change-pwd');
+  const oldText = btn.innerHTML;
+  
+  const oldPassword = document.getElementById('prof-pwd-old').value;
+  const newPassword = document.getElementById('prof-pwd-new').value;
+  const confirmPassword = document.getElementById('prof-pwd-confirm').value;
+  
+  if (!oldPassword) {
+    showToast("Current password is required", "err");
+    return;
+  }
+  if (!newPassword || newPassword.length < 12) {
+    showToast("New password must be at least 12 characters", "err");
+    return;
+  }
+  if (newPassword !== confirmPassword) {
+    showToast("Confirm password does not match new password", "err");
+    return;
+  }
+  
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Updating...';
+  
+  try {
+    const res = await apiFetch('/auth/change-password', {
+      method: 'POST',
+      body: JSON.stringify({ oldPassword, newPassword })
+    });
+    if (res.ok) {
+      showToast("Password updated successfully", "ok");
+      document.getElementById('prof-pwd-old').value = '';
+      document.getElementById('prof-pwd-new').value = '';
+      document.getElementById('prof-pwd-confirm').value = '';
+    } else {
+      showToast(res.message || "Failed to change password", "err");
+    }
+  } catch (e) {
+    showToast(e?.message || "Failed to change password", "err");
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = oldText;
+  }
+}
+
+async function initiate2faSetup() {
+  openModal('modal-2fa-setup');
+  document.getElementById('qr-loading').style.display = 'inline-block';
+  document.getElementById('qr-image').style.display = 'none';
+  document.getElementById('prof-2fa-secret').value = '';
+  document.getElementById('prof-2fa-code').value = '';
+  
+  try {
+    const res = await apiFetch('/auth/2fa/setup', { method: 'POST' });
+    if (res.secret && res.otpauthUri) {
+      document.getElementById('prof-2fa-secret').value = res.secret;
+      
+      const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(res.otpauthUri);
+      const img = document.getElementById('qr-image');
+      img.src = qrUrl;
+      img.onload = () => {
+        document.getElementById('qr-loading').style.display = 'none';
+        img.style.display = 'block';
+      };
+    } else {
+      showToast(res.message || "Failed to initiate 2FA setup", "err");
+      closeModal('modal-2fa-setup');
+    }
+  } catch (e) {
+    showToast(e?.message || "Failed to initiate 2FA setup", "err");
+    closeModal('modal-2fa-setup');
+  }
+}
+
+function copy2faSecret() {
+  const input = document.getElementById('prof-2fa-secret');
+  input.select();
+  input.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(input.value)
+    .then(() => showToast("Secret key copied to clipboard", "ok"))
+    .catch(() => showToast("Failed to copy secret key", "err"));
+}
+
+async function verifyAndEnable2fa() {
+  const code = document.getElementById('prof-2fa-code').value.trim();
+  if (code.length < 6) {
+    showToast("Please enter a valid 6-digit code", "err");
+    return;
+  }
+  
+  try {
+    const res = await apiFetch('/auth/2fa/enable', {
+      method: 'POST',
+      body: JSON.stringify({ code })
+    });
+    if (res.ok) {
+      showToast("Two-Factor Authentication enabled successfully", "ok");
+      closeModal('modal-2fa-setup');
+      await loadProfileSettings();
+    } else {
+      showToast(res.message || "Invalid validation code", "err");
+    }
+  } catch (e) {
+    showToast(e?.message || "Invalid validation code", "err");
+  }
+}
+
+async function disable2fa() {
+  if (!confirm("Are you sure you want to disable Two-Factor Authentication? This will make your account less secure.")) {
+    return;
+  }
+  
+  try {
+    const res = await apiFetch('/auth/2fa/disable', { method: 'POST' });
+    if (res.ok) {
+      showToast("Two-Factor Authentication disabled", "ok");
+      await loadProfileSettings();
+    } else {
+      showToast(res.message || "Failed to disable 2FA", "err");
+    }
+  } catch (e) {
+    showToast(e?.message || "Failed to disable 2FA", "err");
   }
 }
 
