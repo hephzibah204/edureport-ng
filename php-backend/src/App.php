@@ -415,7 +415,7 @@ HTML;
                 return;
             }
 
-            if ($method === 'POST' && $path === '/auth/register') {
+if ($method === 'POST' && $path === '/auth/register') {
                 RateLimit::enforce('register:' . $ip, 30, 3600);
                 $body = $this->jsonBody();
                 $schoolName = Validation::requireString($body, 'schoolName', 2, 160);
@@ -429,10 +429,41 @@ HTML;
                 if (!in_array($plan, ['starter', 'lifetime', 'pro', 'trial'], true)) {
                     $plan = 'lifetime';
                 }
+                
+                // Check if email is already in use
                 if ($this->findUserByEmail($email)) {
                     Response::error(400, 'EMAIL_IN_USE', 'An account with this email already exists.');
                     return;
                 }
+                
+                // Handle school slug (username/subdomain)
+                $schoolSlugInput = $body['schoolSlug'] ?? null;
+                $schoolSlug = null;
+                
+                if ($schoolSlugInput !== null) {
+                    $schoolSlug = Validation::optionalString($body, 'schoolSlug', 50);
+                    if ($schoolSlug !== null) {
+                        $schoolSlug = strtolower(trim($schoolSlug));
+                        // Validate format: only lowercase letters, numbers, hyphens
+                        if (!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $schoolSlug)) {
+                            Response::error(400, 'INVALID_SCHOOL_SLUG', 'School username can only contain lowercase letters, numbers, and hyphens.');
+                            return;
+                        }
+                        // Check if slug is already taken
+                        $stmt = Db::pdo()->prepare('SELECT id FROM schools WHERE subdomain=? LIMIT 1');
+                        $stmt->execute([$schoolSlug]);
+                        if ($stmt->fetch()) {
+                            Response::error(400, 'SCHOOL_SLUG_TAKEN', 'School username is already taken.');
+                            return;
+                        }
+                    }
+                }
+                
+                // If no valid schoolSlug provided, generate from school name
+                if ($schoolSlug === null) {
+                    $schoolSlug = $this->ensureUniqueSchoolSlug($schoolName);
+                }
+                
                 $uid = $this->id('usr');
                 $sid = $this->id('sch');
                 $hash = Auth::hashPassword($password);
@@ -440,7 +471,148 @@ HTML;
                 if ($abbr === '') {
                     $abbr = 'SCH';
                 }
-                $slug = $this->ensureUniqueSchoolSlug($schoolName);
+                $plan = strtolower(trim($plan));
+                if (!in_array($plan, ['starter', 'lifetime', 'pro', 'trial'], true)) {
+                    $plan = 'lifetime';
+                }
+                $plan = strtolower(trim($plan));
+                if (!in_array($plan, ['starter', 'lifetime', 'pro', 'trial'], true)) {
+                    $plan = 'lifetime';
+                }
+                
+                // Check if email is already in use
+                if ($this->findUserByEmail($email)) {
+                    Response::error(400, 'EMAIL_IN_USE', 'An account with this email already exists.');
+                    return;
+                }
+                
+                // Handle school slug (username/subdomain)
+                $schoolSlugInput = $body['schoolSlug'] ?? null;
+                $schoolSlug = null;
+                
+                if ($schoolSlugInput !== null) {
+                    $schoolSlug = Validation::optionalString($body, 'schoolSlug', 50);
+                    if ($schoolSlug !== null) {
+                        $schoolSlug = strtolower(trim($schoolSlug));
+                        // Validate format: only lowercase letters, numbers, hyphens
+                        if (!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $schoolSlug)) {
+                            Response::error(400, 'INVALID_SCHOOL_SLUG', 'School username can only contain lowercase letters, numbers, and hyphens.');
+                            return;
+                        }
+                        // Check if slug is already taken
+                        $stmt = Db::pdo()->prepare('SELECT id FROM schools WHERE subdomain=? LIMIT 1');
+                        $stmt->execute([$schoolSlug]);
+                        if ($stmt->fetch()) {
+                            Response::error(400, 'SCHOOL_SLUG_TAKEN', 'School username is already taken.');
+                            return;
+                        }
+                    }
+                }
+                
+                // If no valid schoolSlug provided, generate from school name
+                if ($schoolSlug === null) {
+                    $schoolSlug = $this->ensureUniqueSchoolSlug($schoolName);
+                }
+                
+                $uid = $this->id('usr');
+                $sid = $this->id('sch');
+                $hash = Auth::hashPassword($password);
+                $abbr = strtoupper(substr(preg_replace('/[^A-Za-z0-9]/', '', implode('', array_map(fn($w) => mb_substr($w, 0, 1), preg_split('/\s+/', $schoolName) ?: []))), 0, 3));
+                if ($abbr === '') {
+                    $abbr = 'SCH';
+                }
+                $plan = strtolower(trim($plan));
+                if (!in_array($plan, ['starter', 'lifetime', 'pro', 'trial'], true)) {
+                    $plan = 'lifetime';
+                }
+                
+                // Check if email is already in use
+                if ($this->findUserByEmail($email)) {
+                    Response::error(400, 'EMAIL_IN_USE', 'An account with this email already exists.');
+                    return;
+                }
+                
+                // Handle school slug (username/subdomain)
+                $schoolSlugInput = $body['schoolSlug'] ?? null;
+                $schoolSlug = null;
+                
+                if ($schoolSlugInput !== null) {
+                    $schoolSlug = Validation::optionalString($body, 'schoolSlug', 50);
+                    if ($schoolSlug !== null) {
+                        $schoolSlug = strtolower(trim($schoolSlug));
+                        // Validate format: only lowercase letters, numbers, hyphens
+                        if (!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $schoolSlug)) {
+                            Response::error(400, 'INVALID_SCHOOL_SLUG', 'School username can only contain lowercase letters, numbers, and hyphens.');
+                            return;
+                        }
+                        // Check if slug is already taken
+                        $stmt = Db::pdo()->prepare('SELECT id FROM schools WHERE subdomain=? LIMIT 1');
+                        $stmt->execute([$schoolSlug]);
+                        if ($stmt->fetch()) {
+                            Response::error(400, 'SCHOOL_SLUG_TAKEN', 'School username is already taken.');
+                            return;
+                        }
+                    }
+                }
+                
+                // If no valid schoolSlug provided, generate from school name
+                if ($schoolSlug === null) {
+                    $schoolSlug = $this->ensureUniqueSchoolSlug($schoolName);
+                }
+                
+                $uid = $this->id('usr');
+                $sid = $this->id('sch');
+                $hash = Auth::hashPassword($password);
+                $abbr = strtoupper(substr(preg_replace('/[^A-Za-z0-9]/', '', implode('', array_map(fn($w) => mb_substr($w, 0, 1), preg_split('/\s+/', $schoolName) ?: []))), 0, 3));
+                if ($abbr === '') {
+                    $abbr = 'SCH';
+                }
+                $plan = strtolower(trim($plan));
+                if (!in_array($plan, ['starter', 'lifetime', 'pro', 'trial'], true)) {
+                    $plan = 'lifetime';
+                }
+                
+                // Check if email is already in use
+                if ($this->findUserByEmail($email)) {
+                    Response::error(400, 'EMAIL_IN_USE', 'An account with this email already exists.');
+                    return;
+                }
+                
+                // Handle school slug (username/subdomain)
+                $schoolSlugInput = $body['schoolSlug'] ?? null;
+                $schoolSlug = null;
+                
+                if ($schoolSlugInput !== null) {
+                    $schoolSlug = Validation::optionalString($body, 'schoolSlug', 50);
+                    if ($schoolSlug !== null) {
+                        $schoolSlug = strtolower(trim($schoolSlug));
+                        // Validate format: only lowercase letters, numbers, hyphens
+                        if (!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $schoolSlug)) {
+                            Response::error(400, 'INVALID_SCHOOL_SLUG', 'School username can only contain lowercase letters, numbers, and hyphens.');
+                            return;
+                        }
+                        // Check if slug is already taken
+                        $stmt = Db::pdo()->prepare('SELECT id FROM schools WHERE subdomain=? LIMIT 1');
+                        $stmt->execute([$schoolSlug]);
+                        if ($stmt->fetch()) {
+                            Response::error(400, 'SCHOOL_SLUG_TAKEN', 'School username is already taken.');
+                            return;
+                        }
+                    }
+                }
+                
+                // If no valid schoolSlug provided, generate from school name
+                if ($schoolSlug === null) {
+                    $schoolSlug = $this->ensureUniqueSchoolSlug($schoolName);
+                }
+                
+                $uid = $this->id('usr');
+                $sid = $this->id('sch');
+                $hash = Auth::hashPassword($password);
+                $abbr = strtoupper(substr(preg_replace('/[^A-Za-z0-9]/', '', implode('', array_map(fn($w) => mb_substr($w, 0, 1), preg_split('/\s+/', $schoolName) ?: []))), 0, 3));
+                if ($abbr === '') {
+                    $abbr = 'SCH';
+                }
                 $pdo = Db::pdo();
                 $pdo->beginTransaction();
                 $stmt = $pdo->prepare('INSERT INTO users (id,email,password_hash,role,status,created_at) VALUES (?,?,?,?,?,NOW())');

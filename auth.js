@@ -69,48 +69,10 @@ const DB = {
 };
 
 const Auth = {
-  async register({ schoolName, email, password, plan }) {
-    const { demoMode } = getConfig();
-    if (demoMode) throw new Error("Demo mode is disabled in production builds.");
-    const schoolSlug = Auth.getSchoolSlugFromUrl();
-    const out = await apiFetch("/auth/register", { method: "POST", body: JSON.stringify({ schoolName, email, password, plan, schoolSlug }) });
-    if (!out || !out.user) throw new Error("Registration failed: Invalid server response.");
-    DB.setSession({ 
-      ...out.user, 
-      schoolName: out.school?.name, 
-      plan: out.school?.plan, 
-      impersonationActive: false, 
-      impersonationSchoolId: null, 
-      effectiveUserId: out.user?.id, 
-      effectiveRole: out.user?.role 
-    });
-    if (out.school) {
-      const current = DB.getSchoolData(out.user.id);
-      if (!current) {
-        DB.saveSchoolData(out.user.id, {
-          name: out.school.name,
-          abbr: out.school.abbr,
-          address: "",
-          contact: "",
-          motto: "Excellence Through Knowledge",
-          principal: "",
-          session: "2024/2025",
-          term: "First Term",
-          nextTerm: "",
-          ca1Max: 10,
-          ca2Max: 10,
-          examMax: 80,
-          subjects: ["Mathematics", "English Language", "Basic Science", "Social Studies", "Business Studies", "Civic Education", "Agricultural Science", "Physical Education"],
-          grades: [
-            { min: 75, max: 100, grade: "A", remark: "Distinction", color: "#155724" },
-            { min: 65, max: 74, grade: "B", remark: "Credit", color: "#0c5460" },
-            { min: 50, max: 64, grade: "C", remark: "Merit", color: "#856404" },
-            { min: 40, max: 49, grade: "D", remark: "Pass", color: "#884510" },
-            { min: 0, max: 39, grade: "F", remark: "Fail", color: "#721c24" }
-          ]
-        });
-      }
-    }
+async register({ schoolName, email, password, plan, schoolSlug }) {
+    // Use provided schoolSlug, or fallback to URL-based detection
+    const slug = schoolSlug || Auth.getSchoolSlugFromUrl();
+    const out = await apiFetch("/auth/register", { method: "POST", body: JSON.stringify({ schoolName, email, password, plan, schoolSlug: slug }) });
     return out;
   },
 

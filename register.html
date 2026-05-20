@@ -82,16 +82,25 @@ body { display: flex; min-height: 100vh; }
   <div id="reg-alert" class="alert alert-err"></div>
   <div id="reg-ok" class="alert alert-ok"></div>
 
-  <div class="field">
-    <label>School Name *</label>
-    <input type="text" id="school-name" placeholder="e.g. Hephzibah College, Ijebu Igbo">
-  </div>
-  <div class="form-row">
+   <div class="field">
+     <label>School Name *</label>
+     <input type="text" id="school-name" placeholder="e.g. Hephzibah College, Ijebu Igbo">
+   </div>
     <div class="field">
-      <label>Phone Number</label>
-      <input type="tel" id="phone" placeholder="08012345678">
+      <label>School Username *</label>
+      <input type="text" id="school-username" placeholder="e.g. hephzibahcollege (for hephzibahcollege.edureport.ng)">
+      <small style="color:var(--muted); display:block; margin-top:4px;">Only lowercase letters, numbers, and hyphens allowed. Will be used as your school's subdomain.</small>
     </div>
-  </div>
+    <div class="field">
+      <label>Email Address *</label>
+      <input type="email" id="email" placeholder="e.g. admin@yourschool.com">
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="08012345678">
+      </div>
+    </div>
   <div class="form-row">
     <div class="field">
       <label>Password *</label>
@@ -181,6 +190,7 @@ function selectPlan(plan) {
 
 async function handleRegister() {
   const schoolName = document.getElementById('school-name').value.trim();
+  const schoolUsername = document.getElementById('school-username').value.trim();
   const email      = document.getElementById('email').value.trim();
   const password   = document.getElementById('password').value;
   const confirm    = document.getElementById('confirm-password').value;
@@ -192,15 +202,24 @@ async function handleRegister() {
   errEl.classList.remove('show'); okEl.classList.remove('show');
 
   if (!schoolName) { errEl.textContent = 'Please enter your school name.'; errEl.classList.add('show'); return; }
+  if (!schoolUsername) { errEl.textContent = 'Please enter your school username.'; errEl.classList.add('show'); return; }
   if (!email)      { errEl.textContent = 'Please enter your email address.'; errEl.classList.add('show'); return; }
   if (password.length < 12) { errEl.textContent = 'Password must be at least 12 characters.'; errEl.classList.add('show'); return; }
   if (password !== confirm) { errEl.textContent = 'Passwords do not match.'; errEl.classList.add('show'); return; }
+
+  // Validate school username format
+  const usernameRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+  if (!usernameRegex.test(schoolUsername)) {
+    errEl.textContent = 'School username must contain only lowercase letters, numbers, and hyphens.';
+    errEl.classList.add('show');
+    return;
+  }
 
   btn.innerHTML = '<span class="spinner"></span> Creating account…';
   btn.disabled = true;
 
   try {
-    await Auth.register({ schoolName, email, password, plan });
+    await Auth.register({ schoolName, email, password, plan, schoolSlug: schoolUsername });
     
     // Now trigger payment initialization
     try {
