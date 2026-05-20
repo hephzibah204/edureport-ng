@@ -4415,7 +4415,7 @@ if ($method === 'POST' && $path === '/auth/register') {
         } catch (InvalidArgumentException $e) {
             Response::error(400, 'VALIDATION_ERROR', $e->getMessage());
         } catch (Throwable $e) {
-            Response::error(500, 'INTERNAL_ERROR', 'Unexpected error');
+            Response::error(500, 'INTERNAL_ERROR', 'Unexpected error: ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine() . "\n" . $e->getTraceAsString());
         }
     }
 
@@ -5755,7 +5755,7 @@ if ($method === 'POST' && $path === '/auth/register') {
 
     private function snake(string $camel): string
     {
-        $s = preg_replace('/([a-z])([A-Z])/', '$1_$2', $camel);
+        $s = preg_replace('/([a-z0-9])([A-Z])/', '$1_$2', $camel);
         return strtolower($s ?? $camel);
     }
 
