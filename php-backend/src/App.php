@@ -2317,6 +2317,9 @@ if ($method === 'POST' && $path === '/auth/register') {
                 $pdo->beginTransaction();
                 if (!$sub) {
                     $trialDays = intval($plan['config']['trialDays'] ?? 0);
+                    if ($planSlug === 'trial') {
+                        $trialDays = 7;
+                    }
                     $status = $trialDays > 0 ? 'TRIALING' : 'ACTIVE';
                     $trialEnd = $trialDays > 0 ? gmdate('Y-m-d H:i:s', time() + ($trialDays * 86400)) : null;
                     $start = $now;
@@ -4223,6 +4226,9 @@ if ($method === 'POST' && $path === '/auth/register') {
                     $start = gmdate('Y-m-d H:i:s');
                     $end = $this->periodEndUtc($start, $billingCycle);
                     $trialDays = intval($plan['config']['trialDays'] ?? 0);
+                    if ($planSlug === 'trial') {
+                        $trialDays = 7;
+                    }
                     $status = $trialDays > 0 ? 'TRIALING' : 'ACTIVE';
                     $trialEnd = $trialDays > 0 ? gmdate('Y-m-d H:i:s', time() + ($trialDays * 86400)) : null;
 
@@ -5144,14 +5150,14 @@ if ($method === 'POST' && $path === '/auth/register') {
     private function getSchoolSubscription(string $schoolId): ?array
     {
         try {
-            $stmt = Db::pdo()->prepare('SELECT ss.status, ss.current_period_end, sp.slug AS plan_slug FROM school_subscriptions ss JOIN subscription_plans sp ON sp.id=ss.plan_id WHERE ss.school_id=? LIMIT 1');
+            $stmt = Db::pdo()->prepare('SELECT ss.status, ss.current_period_end, ss.trial_end, sp.slug AS plan_slug FROM school_subscriptions ss JOIN subscription_plans sp ON sp.id=ss.plan_id WHERE ss.school_id=? LIMIT 1');
             $stmt->execute([$schoolId]);
             $row = $stmt->fetch();
             if ($row && is_string($row['plan_slug'] ?? null)) {
                 return [
                     'planSlug' => strval($row['plan_slug']),
                     'status' => strval($row['status'] ?? ''),
-                    'currentPeriodEnd' => $row['current_period_end'] ?? null
+                    'currentPeriodEnd' => ($row['status'] === 'TRIALING' && !empty($row['trial_end'])) ? $row['trial_end'] : ($row['current_period_end'] ?? null)
                 ];
             }
         } catch (Throwable $e) {
@@ -5660,7 +5666,7 @@ if ($method === 'POST' && $path === '/auth/register') {
             }
             $cfg = json_decode($row['config'] ?? '[]', true);
             $trialDays = is_array($cfg) ? intval($cfg['trialDays'] ?? 0) : 0;
-            if ($slug === 'trial' && $trialDays <= 0) {
+            if ($slug === 'trial') {
                 $trialDays = 7;
             }
             $status = $slug === 'trial' ? 'TRIALING' : 'ACTIVE';
