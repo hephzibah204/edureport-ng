@@ -39,6 +39,18 @@ final class App
         RateLimit::enforce($ip . ':' . $path, 600, 60);
         $this->enforceMaintenance($ip, $path);
 
+        if (str_starts_with($path, '/teacher/api/') || str_starts_with($path, '/portal/api/')) {
+            $uid = $_SESSION['user_id'] ?? null;
+            if (is_string($uid)) {
+                $userRow = $this->getUserById($uid);
+                $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : '';
+                if ($schoolId !== '' && !$this->isSubscriptionValid($schoolId)) {
+                    Response::error(402, 'SUBSCRIPTION_EXPIRED', 'Your school subscription or free trial has expired. Please contact the administrator.');
+                    return;
+                }
+            }
+        }
+
         try {
             if ($method === 'GET' && $path === '/healthz') {
                 Response::json(200, ['ok' => true]);
@@ -403,7 +415,8 @@ HTML;
                         'role' => $effectiveRow['role'],
                         'status' => $effectiveRow['status'],
                         'forcePasswordChange' => intval($effectiveRow['force_password_change'] ?? 0) === 1,
-                        'displayName' => $effectiveRow['display_name'] ?? null
+                        'displayName' => $effectiveRow['display_name'] ?? null,
+                        'schoolSubscription' => $school ? $this->getSchoolSubscription($school['id']) : null
                     ],
                     'school' => $school ? ['id' => $school['id'], 'name' => $school['name'], 'abbr' => $school['abbr'], 'plan' => $school['plan']] : null,
                     'impersonation' => [
@@ -486,6 +499,7 @@ if ($method === 'POST' && $path === '/auth/register') {
                 ]);
                 $classTemplates = json_encode(['nursery' => 'Nursery, KG', 'primary' => 'Primary, Grade', 'secondary' => 'JSS, SSS'], JSON_UNESCAPED_SLASHES);
                 $stmt->execute([$sid, $uid, $schoolName, $abbr, 'Secondary', $classTemplates, strtoupper($plan), $subjects, $grades, 10, 10, 80, $schoolSlug]);
+                $this->upsertSchoolSubscriptionFromLegacyPlan($sid, $plan);
                 $pdo->commit();
                 $this->logAudit(null, $sid, 'SCHOOL_REGISTER', ['schoolName' => $schoolName, 'email' => $email]);
                 Auth::rotateSessionId();
@@ -4060,7 +4074,7 @@ if ($method === 'POST' && $path === '/auth/register') {
             }
 
             if ($method === 'POST' && $path === '/payments/initialize') {
-                $ctx = $this->requireSchoolContext();
+                $ctx = $this->requireSchoolContext(true);
                 $u = $ctx['u'];
                 $school = $ctx['school'];
                 $body = $this->jsonBody();
@@ -4896,7 +4910,7 @@ if ($method === 'POST' && $path === '/auth/register') {
         return null;
     }
 
-    private function requireSchoolContext(): array
+    private function requireSchoolContext(bool $allowExpired = false): array
     {
         $u = Auth::requireUser();
         $role = $u['role'];
@@ -4907,6 +4921,10 @@ if ($method === 'POST' && $path === '/auth/register') {
         $school = $this->getSchoolByOwnerIdOrSchoolId($u['id'], $role);
         if (!$school) {
             Response::error(404, 'NOT_FOUND', 'Not found');
+            exit;
+        }
+        if (!$allowExpired && !$this->isSubscriptionValid($school['id'])) {
+            Response::error(402, 'SUBSCRIPTION_EXPIRED', 'Your free trial or subscription has expired. Please upgrade or renew your plan.');
             exit;
         }
         $actorId = ($u['impersonating'] ?? false) ? ($u['adminId'] ?? $u['id']) : $u['id'];
@@ -5044,6 +5062,68 @@ if ($method === 'POST' && $path === '/auth/register') {
         }
 
         return null;
+    }
+
+    private function isSubscriptionValid(string $schoolId): bool
+    {
+        try {
+            $pdo = Db::pdo();
+            $stmt = $pdo->prepare('SELECT ss.status, ss.current_period_end, ss.trial_end, sp.slug AS plan_slug FROM school_subscriptions ss JOIN subscription_plans sp ON sp.id=ss.plan_id WHERE ss.school_id=? LIMIT 1');
+            $stmt->execute([$schoolId]);
+            $sub = $stmt->fetch();
+
+            if ($sub) {
+                $status = strtoupper(trim(strval($sub['status'] ?? '')));
+                $planSlug = strtolower(trim(strval($sub['plan_slug'] ?? '')));
+
+                if ($planSlug === 'lifetime') {
+                    return true;
+                }
+
+                if ($status === 'ACTIVE') {
+                    if ($sub['current_period_end'] !== null) {
+                        return strtotime($sub['current_period_end']) >= time();
+                    }
+                    return true;
+                }
+
+                if ($status === 'TRIALING') {
+                    if ($sub['trial_end'] !== null) {
+                        return strtotime($sub['trial_end']) >= time();
+                    }
+                    return true;
+                }
+
+                if ($status === 'CANCELLED' || $status === 'PAST_DUE') {
+                    if ($sub['current_period_end'] !== null) {
+                        return strtotime($sub['current_period_end']) >= time();
+                    }
+                    return false;
+                }
+
+                return false;
+            }
+        } catch (Throwable $e) {
+        }
+
+        try {
+            $stmt = Db::pdo()->prepare('SELECT plan, created_at FROM schools WHERE id=? LIMIT 1');
+            $stmt->execute([$schoolId]);
+            $school = $stmt->fetch();
+            if ($school) {
+                $plan = strtoupper(trim(strval($school['plan'] ?? 'LIFETIME')));
+                if ($plan === 'LIFETIME' || $plan === 'STARTER' || $plan === 'PRO') {
+                    return true;
+                }
+                if ($plan === 'TRIAL') {
+                    $createdAt = $school['created_at'];
+                    return (strtotime($createdAt) + (7 * 86400)) >= time();
+                }
+            }
+        } catch (Throwable $e) {
+        }
+
+        return false;
     }
 
     private function legacyPlanToSlug(?string $plan): string
