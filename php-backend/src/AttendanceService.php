@@ -33,6 +33,23 @@ final class AttendanceService
             throw new InvalidArgumentException('Cannot update a submitted session');
         }
 
+        // Validate that all students belong to the specified class
+        if (!empty($marks)) {
+            $studentIds = array_map(fn($m) => strval($m['studentId'] ?? ''), $marks);
+            $studentIds = array_values(array_unique(array_filter($studentIds)));
+            if (!empty($studentIds)) {
+                $placeholders = implode(',', array_fill(0, count($studentIds), '?'));
+                $stmt = $this->pdo->prepare("SELECT id, class_name FROM students WHERE school_id=? AND id IN ($placeholders)");
+                $stmt->execute(array_merge([$schoolId], $studentIds));
+                $validStudents = $stmt->fetchAll();
+                foreach ($validStudents as $vs) {
+                    if (strval($vs['class_name'] ?? '') !== $className) {
+                        throw new InvalidArgumentException("Student {$vs['id']} does not belong to class '$className'");
+                    }
+                }
+            }
+        }
+
         $this->pdo->beginTransaction();
         try {
             if (!$session) {
@@ -63,6 +80,12 @@ final class AttendanceService
 
     public function submitSession(string $schoolId, string $sessionId): void
     {
+        $stmt = $this->pdo->prepare('SELECT id, status FROM attendance_sessions WHERE id=? AND school_id=? LIMIT 1');
+        $stmt->execute([$sessionId, $schoolId]);
+        $session = $stmt->fetch();
+        if (!$session) {
+            throw new InvalidArgumentException('Attendance session not found');
+        }
         $stmt = $this->pdo->prepare('UPDATE attendance_sessions SET status=\'SUBMITTED\', updated_at=NOW() WHERE id=? AND school_id=?');
         $stmt->execute([$sessionId, $schoolId]);
     }

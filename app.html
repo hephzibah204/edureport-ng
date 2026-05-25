@@ -86,49 +86,52 @@ body { display: flex; flex-direction: column; }
 .report-wrap { background: #888; border-radius: 12px; padding: 1.8rem; margin-top: 1rem; }
 .report-sheet {
   background: #fff; width: 210mm; min-height: 288mm;
-  margin: 0 auto; padding: 11mm 13mm;
+  margin: 0 auto; padding: 10mm 12mm;
   font-family: 'Plus Jakarta Sans', 'DM Sans', sans-serif;
-  font-size: 9.5pt; color: #111;
+  font-size: 9.5pt; color: #111; line-height: 1.45;
   box-shadow: 0 4px 40px rgba(0,0,0,0.28); position: relative;
 }
-.report-sheet::before { content: attr(data-school); position: absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:5rem; font-family: var(--font-display); color:rgba(26,107,60,0.04); white-space:nowrap; pointer-events:none; z-index:0; width:100%; text-align:center; font-weight:900; }
+.report-sheet::before { content: attr(data-school); position: absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); font-size:6rem; font-family: var(--font-display); color:rgba(26,107,60,0.04); white-space:nowrap; pointer-events:none; z-index:0; width:100%; text-align:center; font-weight:900; letter-spacing:0.08em; }
 .report-sheet * { position: relative; z-index: 1; }
+@media print { .report-sheet { box-shadow: none !important; page-break-after: always; } .report-sheet:last-child { page-break-after: avoid; } }
 .rs-head { display:flex; align-items:center; gap:12px; padding-bottom:9px; border-bottom:3px solid var(--green); margin-bottom:8px; }
 .rs-crest { width:58px; height:58px; border-radius:50%; background:linear-gradient(135deg,var(--green3),var(--green2)); display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-display); font-size:1.2rem; font-weight:900; flex-shrink:0; border:3px solid var(--gold); }
 .rs-school-info { flex:1; text-align:center; }
-.rs-school-name { font-family:var(--font-display); font-size:1.2rem; font-weight:900; color:var(--green); line-height:1.1; }
-.rs-school-motto { font-size:0.67rem; font-style:italic; color:var(--gold); margin-top:2px; }
-.rs-school-addr { font-size:0.64rem; color:#666; margin-top:2px; }
-.rs-strip { background:var(--green3); color:#fff; text-align:center; padding:4px; font-size:0.64rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; margin:7px 0; border-radius:2px; }
-.rs-info { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; margin-bottom:7px; }
-.rs-ib { border:1px solid #ddd; border-radius:3px; padding:4px 7px; }
-.rs-ib-lbl { font-size:0.57rem; text-transform:uppercase; letter-spacing:0.06em; color:#999; font-weight:700; }
-.rs-ib-val { font-size:0.81rem; font-weight:700; color:#111; margin-top:1px; }
-.rs-tbl { width:100%; border-collapse:collapse; margin-bottom:8px; font-size:0.71rem; }
-.rs-tbl th { background:var(--green); color:#fff; padding:5px 6px; text-align:center; font-size:0.59rem; text-transform:uppercase; letter-spacing:0.05em; font-weight:700; border:1px solid #155c33; }
+.rs-school-name { font-family:var(--font-display); font-size:1.25rem; font-weight:900; color:var(--green); line-height:1.1; }
+.rs-school-motto { font-size:0.65rem; font-style:italic; color:var(--gold); margin-top:2px; letter-spacing:0.02em; }
+.rs-school-addr { font-size:0.62rem; color:#666; margin-top:2px; }
+.rs-strip { background:var(--green3); color:#fff; text-align:center; padding:4px 8px; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; margin:7px 0; border-radius:2px; }
+.rs-info { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; margin-bottom:7px; }
+.rs-ib { border:1px solid #ddd; border-radius:3px; padding:3px 7px; }
+.rs-ib-lbl { font-size:0.54rem; text-transform:uppercase; letter-spacing:0.06em; color:#999; font-weight:700; }
+.rs-ib-val { font-size:0.82rem; font-weight:700; color:#111; margin-top:1px; }
+.rs-tbl { width:100%; border-collapse:collapse; margin-bottom:8px; font-size:0.7rem; }
+.rs-tbl th { background:var(--green); color:#fff; padding:5px 6px; text-align:center; font-size:0.58rem; text-transform:uppercase; letter-spacing:0.05em; font-weight:700; border:1px solid #155c33; }
 .rs-tbl th:first-child { text-align:left; }
 .rs-tbl td { padding:4px 6px; border:1px solid #e0e0e0; text-align:center; }
 .rs-tbl td:first-child { text-align:left; font-weight:600; }
 .rs-tbl tr:nth-child(even) td { background:#f7faf8; }
-.rs-summary { display:grid; grid-template-columns:repeat(4,1fr); gap:5px; margin-bottom:8px; }
-.rs-sb { border:2px solid var(--green); border-radius:5px; padding:6px; text-align:center; }
-.rs-sb-lbl { font-size:0.57rem; text-transform:uppercase; color:var(--green); font-weight:700; }
-.rs-sb-val { font-family:var(--font-display); font-size:1.2rem; font-weight:900; color:var(--green); }
+.rs-summary { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-bottom:8px; }
+.rs-sb { border:2px solid var(--green); border-radius:5px; padding:5px 4px; text-align:center; }
+.rs-sb-lbl { font-size:0.55rem; text-transform:uppercase; color:var(--green); font-weight:700; }
+.rs-sb-val { font-family:var(--font-display); font-size:1.15rem; font-weight:900; color:var(--green); line-height:1.2; }
 .rs-gkey { display:grid; grid-template-columns:repeat(5,1fr); gap:3px; margin-bottom:8px; }
-.rs-gk { border:1px solid #ddd; border-radius:3px; padding:3px 5px; text-align:center; font-size:0.61rem; }
+.rs-gk { border:1px solid #ddd; border-radius:3px; padding:3px 5px; text-align:center; font-size:0.6rem; }
 .rs-gk strong { display:block; font-size:0.82rem; }
 .rs-two { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px; }
 .rs-sk-tbl { width:100%; border-collapse:collapse; font-size:0.66rem; }
-.rs-sk-tbl th { background:rgba(26,107,60,0.1); color:var(--green); padding:4px 7px; text-align:left; font-size:0.59rem; border:1px solid #ddd; }
+.rs-sk-tbl th { background:rgba(26,107,60,0.1); color:var(--green); padding:4px 7px; text-align:left; font-size:0.58rem; border:1px solid #ddd; }
 .rs-sk-tbl td { padding:3px 7px; border:1px solid #e5e5e5; }
 .rs-remarks { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px; }
 .rs-rmk { border:1px solid #ccc; border-radius:5px; padding:7px; }
-.rs-rmk-title { font-size:0.61rem; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:var(--green); margin-bottom:3px; }
-.rs-rmk-text { font-size:0.72rem; color:#333; min-height:34px; }
-.rs-sig { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:8px; }
-.rs-sigline { border-top:1px solid #333; margin-top:24px; padding-top:3px; font-size:0.61rem; color:#555; text-align:center; }
-.rs-next { background:rgba(26,107,60,0.07); border-radius:3px; padding:4px 9px; font-size:0.67rem; color:var(--green); font-weight:600; text-align:center; margin-bottom:6px; }
-.rs-affirmation { background:linear-gradient(135deg,var(--green3),var(--green)); color:#fff; text-align:center; padding:5px; font-size:0.64rem; font-style:italic; border-radius:2px; }
+.rs-rmk-title { font-size:0.6rem; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:var(--green); margin-bottom:2px; }
+.rs-rmk-text { font-size:0.72rem; color:#333; min-height:34px; line-height:1.55; }
+.rs-rmk-text .study-tips { margin-top:6px; font-size:0.66rem; color:#555; }
+.rs-rmk-text .study-tips strong { color:var(--green); }
+.rs-sig { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:10px; }
+.rs-sigline { border-top:1px solid #444; margin-top:26px; padding-top:3px; font-size:0.6rem; color:#555; text-align:center; }
+.rs-next { background:rgba(26,107,60,0.07); border-radius:3px; padding:4px 9px; font-size:0.65rem; color:var(--green); font-weight:600; text-align:center; margin-bottom:6px; }
+.rs-affirmation { background:linear-gradient(135deg,var(--green3),var(--green)); color:#fff; text-align:center; padding:5px; font-size:0.62rem; font-style:italic; border-radius:2px; }
 
 /* QUICK ACTION CARDS */
 .qa-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1.6rem; }
@@ -248,6 +251,7 @@ body { display: flex; flex-direction: column; }
           <div class="field"><label>Phone / Email</label><input type="text" id="s-contact" placeholder="+234…"></div>
           <div class="field"><label>School Motto</label><input type="text" id="s-motto" placeholder="Excellence Through Knowledge"></div>
           <div class="field"><label>Principal's Name</label><input type="text" id="s-principal" placeholder="Mr./Mrs./Dr. …"></div>
+          <div class="field"><label>School Logo URL</label><input type="url" id="s-logo" placeholder="https://yourschool.com/logo.png"><div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">Logo will appear on report cards. Recommended: 200x200px PNG.</div></div>
           <div class="field"><label>Report Card Theme Color</label><input type="color" id="s-color" value="#0d4526" style="height:38px;padding:2px;cursor:pointer;"></div>
         </div>
         <div>
@@ -1148,6 +1152,7 @@ function populateSetup() {
   const cnt  = document.getElementById('s-contact');   if(cnt) cnt.value = s.contact || '';
   const mto  = document.getElementById('s-motto');     if(mto) mto.value = s.motto || '';
   const pri  = document.getElementById('s-principal'); if(pri) pri.value = s.principal || '';
+  const logo = document.getElementById('s-logo');     if(logo) logo.value = s.logoUrl || '';
   const ses  = document.getElementById('s-session');   if(ses) ses.value = s.session || '2024/2025';
   const trm  = document.getElementById('s-term');      if(trm) trm.value = s.term || 'First Term';
   const nxt  = document.getElementById('s-nextterm');  if(nxt) nxt.value = s.nextTerm || '';
@@ -1284,7 +1289,7 @@ function updateScoreTotal() {
   const ex = +document.getElementById('s-exam')?.value || 0;
   const el = document.getElementById('s-total'); if (el) el.value = (c1+c2+ex)+' marks';
 }
-function saveSetup() {
+async function saveSetup() {
   school = {
     ...school,
     name:      document.getElementById('s-name').value.trim(),
@@ -1294,6 +1299,7 @@ function saveSetup() {
     contact:   document.getElementById('s-contact').value.trim(),
     motto:     document.getElementById('s-motto').value.trim(),
     principal: document.getElementById('s-principal').value.trim(),
+    logoUrl:   document.getElementById('s-logo').value.trim(),
     session:   document.getElementById('s-session').value,
     term:      document.getElementById('s-term').value,
     nextTerm:  document.getElementById('s-nextterm').value.trim(),
@@ -1309,11 +1315,15 @@ function saveSetup() {
     reportColor: document.getElementById('s-color').value,
   };
   DB.saveSchoolData(UID, school);
-  apiFetch("/school", { method: "PUT", body: JSON.stringify(school) }).catch((e) => showToast(e?.message || "Save failed", "err"));
-  document.getElementById('tb-school').textContent = school.name;
-  updateDashboard();
-  updateSlugLink();
-  showToast('✅ School settings saved!', 'ok');
+  try {
+    await apiFetch("/school", { method: "PUT", body: JSON.stringify(school) });
+    document.getElementById('tb-school').textContent = school.name;
+    updateDashboard();
+    updateSlugLink();
+    showToast('✅ School settings saved!', 'ok');
+  } catch (e) {
+    showToast(e?.message || "Save failed", "err");
+  }
 }
 function renderSubjects() {
   const el = document.getElementById('subj-list'); if (!el) return;
@@ -1323,19 +1333,29 @@ function renderSubjects() {
       <button onclick="removeSubject(${i})" style="border:none;background:none;color:var(--red);font-size:0.88rem;cursor:pointer;">✕</button>
     </div>`).join('');
 }
-function addSubject() {
+async function addSubject() {
   const inp = document.getElementById('new-subj'); const val = inp.value.trim();
   if (hasUnsafeChars(val)) { showToast('Subject contains unsupported characters.','err'); return; }
   if (!val || (school.subjects||[]).includes(val)) { showToast('Already exists or empty.','err'); return; }
-  school.subjects = [...(school.subjects||[]), val]; inp.value = '';
-  DB.saveSchoolData(UID, school);
-  apiFetch("/school", { method: "PUT", body: JSON.stringify({ subjects: school.subjects }) }).catch((e) => showToast(e?.message || "Save failed", "err"));
-  renderSubjects(); showToast('Subject added!');
+  const updated = [...(school.subjects||[]), val];
+  try {
+    await apiFetch("/school", { method: "PUT", body: JSON.stringify({ subjects: updated }) });
+    school.subjects = updated; inp.value = '';
+    DB.saveSchoolData(UID, school);
+    renderSubjects(); showToast('Subject added!');
+  } catch (e) {
+    showToast(e?.message || "Save failed", "err");
+  }
 }
-function removeSubject(i) {
-  school.subjects.splice(i,1); DB.saveSchoolData(UID, school);
-  apiFetch("/school", { method: "PUT", body: JSON.stringify({ subjects: school.subjects }) }).catch((e) => showToast(e?.message || "Save failed", "err"));
-  renderSubjects();
+async function removeSubject(i) {
+  const updated = (school.subjects||[]).filter((_, idx) => idx !== i);
+  try {
+    await apiFetch("/school", { method: "PUT", body: JSON.stringify({ subjects: updated }) });
+    school.subjects = updated; DB.saveSchoolData(UID, school);
+    renderSubjects();
+  } catch (e) {
+    showToast(e?.message || "Save failed", "err");
+  }
 }
 function renderGradeTable() {
   const el = document.getElementById('grade-tbody'); if (!el) return;
@@ -1640,6 +1660,7 @@ function buildReport(id) {
   const classAvgs=classMates.map(s=>studentAvg(s.id) ?? 0);
   const pos=classAvgs.filter(a => (+a) > (+avgVal)).length + 1;
   const sfx=pos===1?'st':pos===2?'nd':pos===3?'rd':'th';
+  const hasLogo = school.logoUrl && school.logoUrl.startsWith('http');
   const initials=(school.abbr||(school.name||'SCH').split(' ').map(w=>w[0]).join('')).slice(0,3).toUpperCase();
   const dateStr=new Date().toLocaleDateString('en-NG',{day:'numeric',month:'long',year:'numeric'});
   const firstName=stu.name.split(' ')[0]||stu.name;
@@ -1652,7 +1673,7 @@ function buildReport(id) {
   const parentLetter = ai?.parentLetter || '';
   return `<div class="report-sheet" data-school="${escapeHtml(school.name||'School')}">
     <div class="rs-head">
-      <div class="rs-crest">${initials}</div>
+      ${hasLogo ? `<img src="${escapeHtml(school.logoUrl)}" alt="" style="width:58px;height:58px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);flex-shrink:0;">` : `<div class="rs-crest">${initials}</div>`}
       <div class="rs-school-info">
         <div class="rs-school-name">${escapeHtml(school.name||'School Name')}</div>
         <div class="rs-school-motto">"${escapeHtml(school.motto||'Excellence Through Knowledge')}"</div>
@@ -1727,7 +1748,7 @@ function buildReport(id) {
     <div class="rs-gkey">${grades.map(g=>`<div class="rs-gk"><strong style="color:${g.color}">${g.grade}</strong>${g.min}–${g.max}%<br><span style="color:#aaa;">${g.remark}</span></div>`).join('')}</div>
     <div class="rs-two">
       <table class="rs-sk-tbl">
-        <thead><tr><th colspan="2">📅 Attendance</th></tr></thead>
+        <thead><tr><th colspan="2">ATTENDANCE</th></tr></thead>
         <tbody><tr><td>Days School Opened</td><td>${att.daysOpened ?? '—'}</td></tr><tr><td>Days Present</td><td>${att.daysPresent ?? '—'}</td></tr><tr><td>Times Late</td><td>${att.timesLate ?? '—'}</td></tr></tbody>
       </table>
       <table class="rs-sk-tbl">
@@ -1741,13 +1762,13 @@ function buildReport(id) {
       </table>
     </div>
     <div class="rs-remarks">
-      <div class="rs-rmk"><div class="rs-rmk-title">📝 Class Teacher's Remark</div><div class="rs-rmk-text">${escapeHtml(teacherRemark)}${studyTips.length ? `<div style="margin-top:8px;font-size:0.68rem;color:#555;"><strong>Study Tips:</strong> ${studyTips.map(t=>escapeHtml(t)).join(' · ')}</div>` : ''}</div><div style="margin-top:6px;border-top:1px dashed #ccc;padding-top:3px;font-size:0.59rem;color:#aaa;">Signature: ________________________</div></div>
-      <div class="rs-rmk"><div class="rs-rmk-title">🏫 Principal's Remark</div><div class="rs-rmk-text">${escapeHtml(principalRemark)}</div><div style="margin-top:6px;border-top:1px dashed #ccc;padding-top:3px;font-size:0.59rem;color:#aaa;">Principal: ${escapeHtml(school.principal||'_______________')}</div></div>
+      <div class="rs-rmk"><div class="rs-rmk-title">Class Teacher's Remark</div><div class="rs-rmk-text">${escapeHtml(teacherRemark)}${studyTips.length ? `<div class="study-tips"><strong>Study Tips:</strong> ${studyTips.map(t=>escapeHtml(t)).join(' · ')}</div>` : ''}</div><div style="margin-top:6px;border-top:1px dashed #ccc;padding-top:3px;font-size:0.58rem;color:#999;">Signature: ________________________</div></div>
+      <div class="rs-rmk"><div class="rs-rmk-title">Principal's Remark</div><div class="rs-rmk-text">${escapeHtml(principalRemark)}</div><div style="margin-top:6px;border-top:1px dashed #ccc;padding-top:3px;font-size:0.58rem;color:#999;">Principal: ${escapeHtml(school.principal||'_______________')}</div></div>
     </div>
-    ${gapAnalysis ? `<div class="rs-rmk" style="margin-bottom:6px;"><div class="rs-rmk-title">🔍 AI Learning Gap Analysis</div><div class="rs-rmk-text">${escapeHtml(gapAnalysis)}</div></div>` : ''}
-    ${parentLetter ? `<div class="rs-rmk" style="margin-bottom:6px;"><div class="rs-rmk-title">✉️ Letter to Parent</div><div class="rs-rmk-text">${escapeHtml(parentLetter)}</div></div>` : ''}
-    <div class="rs-rmk" style="margin-bottom:6px;"><div class="rs-rmk-title">👪 Parent/Guardian Acknowledgement</div><div style="font-size:0.69rem;color:#555;padding:4px 0;">Signature: __________________________________ &nbsp;&nbsp; Date: ________________</div></div>
-    <div class="rs-next">📅 Next Term Begins: ${escapeHtml(school.nextTerm||'—')} &nbsp;|&nbsp; School: ${escapeHtml(school.name||'—')} &nbsp;|&nbsp; ${escapeHtml(school.term)} · ${escapeHtml(school.session)}</div>
+    ${gapAnalysis ? `<div class="rs-rmk" style="margin-bottom:6px;"><div class="rs-rmk-title">Learning Gap Analysis</div><div class="rs-rmk-text">${escapeHtml(gapAnalysis)}</div></div>` : ''}
+    ${parentLetter ? `<div class="rs-rmk" style="margin-bottom:6px;"><div class="rs-rmk-title">Letter to Parent</div><div class="rs-rmk-text">${escapeHtml(parentLetter)}</div></div>` : ''}
+    <div class="rs-rmk" style="margin-bottom:6px;"><div class="rs-rmk-title">Parent / Guardian Acknowledgement</div><div style="font-size:0.69rem;color:#555;padding:4px 0;">Signature: __________________________________ &nbsp;&nbsp; Date: ________________</div></div>
+    <div class="rs-next">Next Term Begins: ${escapeHtml(school.nextTerm||'—')} &nbsp;|&nbsp; ${escapeHtml(school.term)} · ${escapeHtml(school.session)}</div>
     <div class="rs-sig">
       <div><div class="rs-sigline">Class Teacher's Signature & Date</div></div>
       <div><div class="rs-sigline">Principal: ${escapeHtml(school.principal||'__________')}</div></div>
@@ -1757,16 +1778,17 @@ function buildReport(id) {
   </div>`;
 }
 
-function stars(n) {
+function traitLabel(n) {
   const x = +n || 0;
   if (x < 1) return '—';
-  return '⭐'.repeat(Math.min(5, Math.max(1, x)));
+  const labels = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+  return labels[Math.min(5, Math.max(1, Math.round(x)))] || '—';
 }
 
 function renderTraitRow(label, v) {
   const rating = (v && v.rating !== undefined) ? v.rating : null;
   const remark = (v && typeof v.remark === 'string') ? v.remark : '';
-  return `<tr><td>${escapeHtml(label)}</td><td>${escapeHtml(stars(rating))}</td><td>${escapeHtml(remark || '—')}</td></tr>`;
+  return `<tr><td>${escapeHtml(label)}</td><td>${escapeHtml(traitLabel(rating))}</td><td>${escapeHtml(remark || '—')}</td></tr>`;
 }
 
 function loadExtras(studentId) {
@@ -1831,7 +1853,11 @@ function saveExtras() {
     cooperation: trait('cooperation'),
     leadership: trait('leadership')
   };
-  const payload = { session: school.session||'', term: school.term||'', attendance, traits };
+  // Preserve existing comments/promotion so they aren't overwritten with empty values
+  const existing = REPORT_EXTRAS[id] || {};
+  const comments = existing.comments || { teacher: '', principal: '' };
+  const promotion = existing.promotion || '';
+  const payload = { session: school.session||'', term: school.term||'', attendance, traits, comments, promotion };
   apiFetch(`/report-extras/${encodeURIComponent(id)}`, { method: 'PUT', body: JSON.stringify(payload) })
     .then(() => {
       REPORT_EXTRAS[id] = { ...payload, _key: `${id}|${school.session||''}|${school.term||''}` };

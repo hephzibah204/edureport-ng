@@ -6,6 +6,7 @@ RewriteEngine On
 Header always set X-Content-Type-Options "nosniff"
 Header always set X-Frame-Options "SAMEORIGIN"
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 
 # Block direct access to backend source directories
 RewriteRule ^backend/ - [F,L]

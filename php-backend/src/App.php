@@ -74,11 +74,17 @@ final class App
                     return;
                 }
                 $file = strval($row['file_path']);
-                if (!is_file($file)) {
+                $realFile = realpath($file);
+                $storageDir = realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . 'reports');
+                if ($realFile === false || $storageDir === false || !str_starts_with($realFile, $storageDir)) {
                     Response::html(404, '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not Found</title></head><body style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;padding:20px;">File missing.</body></html>');
                     return;
                 }
-                $bytes = file_get_contents($file);
+                if (!is_file($realFile)) {
+                    Response::html(404, '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not Found</title></head><body style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;padding:20px;">File missing.</body></html>');
+                    return;
+                }
+                $bytes = file_get_contents($realFile);
                 if ($bytes === false) {
                     Response::error(500, 'INTERNAL_ERROR', 'Unable to read file');
                     return;
@@ -432,8 +438,25 @@ HTML;
                 return;
             }
 
-if ($method === 'POST' && $path === '/auth/register') {
+            if ($method === 'POST' && $path === '/auth/register') {
                 RateLimit::enforce('register:' . $ip, 30, 3600);
+                // CSRF protection: validate origin/referer
+                $origin = $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'] ?? '';
+                $allowedOrigins = $this->allowedOrigins;
+                $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+                $allowedOrigins[] = 'http://' . $host;
+                $allowedOrigins[] = 'https://' . $host;
+                $validOrigin = false;
+                foreach ($allowedOrigins as $ao) {
+                    if ($ao !== '' && str_starts_with($origin, $ao)) {
+                        $validOrigin = true;
+                        break;
+                    }
+                }
+                if (!$validOrigin) {
+                    Response::error(403, 'FORBIDDEN', 'Registration requests must originate from this application.');
+                    return;
+                }
                 $body = $this->jsonBody();
                 $schoolName = Validation::requireString($body, 'schoolName', 2, 160);
                 $email = Validation::requireEmail($body, 'email');
@@ -2471,6 +2494,7 @@ if ($method === 'POST' && $path === '/auth/register') {
                     Response::error(404, 'NOT_FOUND', 'Not found');
                     return;
                 }
+                Auth::rotateSessionId();
                 $_SESSION['impersonate_user_id'] = $sc['owner_id'];
                 $_SESSION['impersonate_school_id'] = $sc['id'];
                 $this->logAudit($_SESSION['user_id'] ?? null, $sc['id'], 'ADMIN_IMPERSONATE_START', ['ownerId' => $sc['owner_id']]);
@@ -2739,6 +2763,7 @@ if ($method === 'POST' && $path === '/auth/register') {
                     return;
                 }
                 $classes = array_values(array_unique(array_filter(array_map(fn($x) => trim(strval($x)), $classes), fn($x) => $x !== '')));
+                $this->validateTeacherClassAssignments($school, $classes);
                 $this->enforceStaffLimit($school['id'], 1);
                 if ($this->findUserByEmail($email)) {
                     Response::error(400, 'EMAIL_IN_USE', 'An account with this email already exists.');
@@ -2809,6 +2834,7 @@ if ($method === 'POST' && $path === '/auth/register') {
                     }
                     if (is_array($classes)) {
                         $classes = array_values(array_unique(array_filter(array_map(fn($x) => trim(strval($x)), $classes), fn($x) => $x !== '')));
+                        $this->validateTeacherClassAssignments($school, $classes);
                         $stmt = $pdo->prepare('DELETE FROM teacher_class_assignments WHERE school_id=? AND teacher_user_id=?');
                         $stmt->execute([$school['id'], $teacherUserId]);
                         if (count($classes)) {
@@ -2977,7 +3003,6 @@ if ($method === 'POST' && $path === '/auth/register') {
             if ($method === 'GET' && $path === '/teacher/api/attendance/session') {
                 $u = Auth::requireEffectiveRole('TEACHER');
                 $actorId = $u['id'];
-                // Feature check: attendance requires attendance feature
                 $userRow = $this->getUserById($u['id']);
                 $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : '';
                 if ($schoolId !== '') {
@@ -2996,8 +3021,6 @@ if ($method === 'POST' && $path === '/auth/register') {
                     Response::error(400, 'VALIDATION_ERROR', 'date must be YYYY-MM-DD');
                     return;
                 }
-                $userRow = $this->getUserById($u['id']);
-                $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : '';
                 if ($schoolId === '') {
                     Response::error(403, 'FORBIDDEN', 'No school context');
                     return;
@@ -3043,8 +3066,6 @@ if ($method === 'POST' && $path === '/auth/register') {
                     Response::error(400, 'VALIDATION_ERROR', 'marks must be an array');
                     return;
                 }
-                $userRow = $this->getUserById($u['id']);
-                $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : '';
                 if ($schoolId === '') {
                     Response::error(403, 'FORBIDDEN', 'No school context');
                     return;
@@ -3086,6 +3107,8 @@ if ($method === 'POST' && $path === '/auth/register') {
             if ($method === 'GET' && $path === '/teacher/api/attendance/history') {
                 $u = Auth::requireEffectiveRole('TEACHER');
                 $actorId = $u['id'];
+                $userRow = $this->getUserById($u['id']);
+                $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : '';
                 $className = isset($_GET['className']) ? trim(strval($_GET['className'])) : '';
                 $from = isset($_GET['from']) ? trim(strval($_GET['from'])) : '';
                 $to = isset($_GET['to']) ? trim(strval($_GET['to'])) : '';
@@ -3093,8 +3116,6 @@ if ($method === 'POST' && $path === '/auth/register') {
                     Response::error(400, 'VALIDATION_ERROR', 'className is required');
                     return;
                 }
-                $userRow = $this->getUserById($u['id']);
-                $schoolId = is_array($userRow) && is_string($userRow['school_id'] ?? null) ? strval($userRow['school_id']) : '';
                 if ($schoolId === '') {
                     Response::error(403, 'FORBIDDEN', 'No school context');
                     return;
@@ -3587,22 +3608,29 @@ if ($method === 'POST' && $path === '/auth/register') {
                 if ($term === '') {
                     $term = 'First Term';
                 }
-                $stmt = Db::pdo()->prepare('SELECT attendance,traits FROM report_extras WHERE school_id=? AND student_id=? AND session=? AND term=? LIMIT 1');
+                $stmt = Db::pdo()->prepare('SELECT attendance,traits,comments,promotion FROM report_extras WHERE school_id=? AND student_id=? AND session=? AND term=? LIMIT 1');
                 $stmt->execute([$school['id'], $studentId, $session, $term]);
                 $row = $stmt->fetch();
                 $attendance = ['daysOpened' => null, 'daysPresent' => null, 'timesLate' => null];
                 $traits = new stdClass();
+                $comments = new stdClass();
+                $promotion = '';
                 if ($row) {
                     $a = json_decode($row['attendance'] ?? '{}', true);
                     $t = json_decode($row['traits'] ?? '{}', true);
+                    $c = json_decode($row['comments'] ?? '{}', true);
                     if (is_array($a)) {
                         $attendance = array_merge($attendance, $a);
                     }
                     if (is_array($t)) {
                         $traits = $t;
                     }
+                    if (is_array($c)) {
+                        $comments = $c;
+                    }
+                    $promotion = strval($row['promotion'] ?? '');
                 }
-                Response::json(200, ['extras' => ['session' => $session, 'term' => $term, 'attendance' => $attendance, 'traits' => $traits]]);
+                Response::json(200, ['extras' => ['session' => $session, 'term' => $term, 'attendance' => $attendance, 'traits' => $traits, 'comments' => $comments, 'promotion' => $promotion]]);
                 return;
             }
 
@@ -3717,6 +3745,12 @@ if ($method === 'POST' && $path === '/auth/register') {
                 
                 if (!$school) {
                     Response::error(404, 'NOT_FOUND', 'Not found');
+                    return;
+                }
+                
+                // Subscription check for all roles
+                if (!$this->isSubscriptionValid($school['id'])) {
+                    Response::error(402, 'SUBSCRIPTION_EXPIRED', 'Your school subscription or free trial has expired. Please contact the administrator.');
                     return;
                 }
 
@@ -4004,14 +4038,15 @@ if ($method === 'POST' && $path === '/auth/register') {
                         'questionCount' => $questionCount
                     ]);
                     
-                    // Deduct credits only on success
-                    $this->useAiCredit($school['id'], 2);
-                    
                     $id = $this->id('exm');
                     $stmt = Db::pdo()->prepare("INSERT INTO generated_exams (id,school_id,teacher_id,subject,class_level,topic,questions,created_at,updated_at) VALUES (?,?,?,?,?,?,?,NOW(),NOW())");
                     $stmt->execute([$id, $school['id'], $u['id'], $subject, $classLevel, $topic, json_encode($questions, JSON_UNESCAPED_SLASHES)]);
                     
-                    Response::json(200, ['id' => $id, 'questions' => $questions, 'creditsRemaining' => $credits['remaining'] - 2]);
+                    // Deduct credits only after successful DB insert
+                    $this->useAiCredit($school['id'], 2);
+                    
+                    $newCredits = $this->getAiCredits($school['id']);
+                    Response::json(200, ['id' => $id, 'questions' => $questions, 'creditsRemaining' => $newCredits['remaining']]);
                 } catch (Throwable $e) {
                     Response::error(500, 'AI_ERROR', $e->getMessage());
                 }
@@ -4131,7 +4166,8 @@ if ($method === 'POST' && $path === '/auth/register') {
                 $out = Ai::generateReport($ctx);
                 // Deduct credit on success
                 $this->useAiCredit($school['id'], 1);
-                $remainingCredits = $credits['remaining'] - 1;
+                $newCredits = $this->getAiCredits($school['id']);
+                $remainingCredits = $newCredits['remaining'];
                 $this->logAudit($actorId, $school['id'], ($u['impersonating'] ?? false) ? 'AI_REPORT_IMPERSONATED' : 'AI_REPORT', ['studentId' => $studentId, 'effectiveUserId' => $u['id'], 'creditsRemaining' => $remainingCredits]);
                 Response::json(200, array_merge($out, ['creditsRemaining' => $remainingCredits]));
                 return;
@@ -4364,8 +4400,12 @@ if ($method === 'POST' && $path === '/auth/register') {
                         $reference = $body['reference'] ?? null;
                     }
                 } elseif ($gateway === 'PAYMENTPOINT') {
-                    $isValid = true;
-                    $reference = $body['reference'] ?? null;
+                    $signature = $headersUpper['PAYMENTPOINT-SIGNATURE'] ?? $headersUpper['X-PAYMENTPOINT-SIGNATURE'] ?? '';
+                    $secret = $creds['SECRET_KEY'] ?? '';
+                    if ($signature !== '' && $secret !== '' && $signature === hash_hmac('sha512', $rawBody, $secret)) {
+                        $isValid = true;
+                        $reference = $body['reference'] ?? null;
+                    }
                 }
 
                 if (!$isValid) {
@@ -4421,7 +4461,11 @@ if ($method === 'POST' && $path === '/auth/register') {
         } catch (InvalidArgumentException $e) {
             Response::error(400, 'VALIDATION_ERROR', $e->getMessage());
         } catch (Throwable $e) {
-            Response::error(500, 'INTERNAL_ERROR', 'Unexpected error: ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine() . "\n" . $e->getTraceAsString());
+            $debug = Config::env('DEBUG', 'false');
+            $msg = ($debug === 'true' || $debug === '1')
+                ? 'Unexpected error: ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine() . "\n" . $e->getTraceAsString()
+                : 'An internal error occurred. Please try again or contact support.';
+            Response::error(500, 'INTERNAL_ERROR', $msg);
         }
     }
 
@@ -4458,7 +4502,7 @@ if ($method === 'POST' && $path === '/auth/register') {
             if ($exists) {
                 return;
             }
-            $id = 'admin_001';
+            $id = $this->id('admin');
             $hash = Auth::hashPassword($password);
             $stmt = $pdo->prepare('INSERT INTO users (id,email,password_hash,role,status,created_at) VALUES (?,?,?,?,?,NOW())');
             $stmt->execute([$id, $email, $hash, 'ADMIN', 'ACTIVE']);
@@ -4594,6 +4638,11 @@ if ($method === 'POST' && $path === '/auth/register') {
         }
         header('Access-Control-Allow-Headers: Content-Type, Authorization');
         header('Access-Control-Allow-Methods: GET,POST,PUT,PATCH,DELETE,OPTIONS');
+        // Security headers
+        header('X-Content-Type-Options: nosniff');
+        header('X-Frame-Options: SAMEORIGIN');
+        header('Referrer-Policy: strict-origin-when-cross-origin');
+        header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
     }
 
     private function handlePreflight(): void
@@ -4821,7 +4870,15 @@ if ($method === 'POST' && $path === '/auth/register') {
         foreach ($rows as $r) {
             $data = json_decode($r['data'] ?? '[]', true);
             $data = is_array($data) ? $data : [];
-            $avg = ReportPdf::studentAvgPct($subjects, $data, $totalMax);
+            // Skip students with no scores to avoid 0% skewing class averages
+            $hasAnyScore = false;
+            foreach ($subjects as $sub) {
+                if (isset($data[$sub]) && is_array($data[$sub])) {
+                    $hasAnyScore = true;
+                    break;
+                }
+            }
+            $avg = $hasAnyScore ? ReportPdf::studentAvgPct($subjects, $data, $totalMax) : null;
             if ($avg !== null) {
                 $out['_studentAverages'][] = $avg;
             }
@@ -5107,6 +5164,46 @@ if ($method === 'POST' && $path === '/auth/register') {
             $t = trim($t, '-');
         }
         return $t;
+    }
+
+    /**
+     * Validate that class names in teacher assignments exist in the school's class templates
+     */
+    private function validateTeacherClassAssignments(array $school, array $classes): void
+    {
+        $ctRaw = $school['class_templates'] ?? '{}';
+        $ct = is_string($ctRaw) ? json_decode($ctRaw, true) : [];
+        if (!is_array($ct)) {
+            $ct = [];
+        }
+        $allowed = [];
+        foreach (['nursery', 'primary', 'secondary'] as $level) {
+            $raw = trim(strval($ct[$level] ?? ''));
+            if ($raw !== '') {
+                foreach (array_map('trim', explode(',', $raw)) as $prefix) {
+                    if ($prefix !== '') {
+                        $allowed[] = strtolower($prefix);
+                    }
+                }
+            }
+        }
+        // If no templates configured, skip validation
+        if (empty($allowed)) {
+            return;
+        }
+        foreach ($classes as $cls) {
+            $lower = strtolower(trim($cls));
+            $matched = false;
+            foreach ($allowed as $prefix) {
+                if (str_starts_with($lower, $prefix)) {
+                    $matched = true;
+                    break;
+                }
+            }
+            if (!$matched) {
+                throw new InvalidArgumentException("Class '$cls' does not match any configured class template.");
+            }
+        }
     }
 
     private function getTeacherAssignedClasses(string $schoolId, string $teacherUserId): array
@@ -5796,6 +5893,15 @@ if ($method === 'POST' && $path === '/auth/register') {
         $school = $this->getSchoolById($schoolId);
         if (!$school) {
             throw new Exception("School not found: " . $schoolId);
+        }
+
+        // Enforce feature access for batch PDF
+        if (!$this->hasFeatureAccess($schoolId, 'batch_pdf')) {
+            throw new Exception('Batch PDF generation requires an upgraded plan.');
+        }
+        // Subscription check
+        if (!$this->isSubscriptionValid($schoolId)) {
+            throw new Exception('School subscription has expired.');
         }
 
         $this->jobs->updateStatus($job['id'], 'PROCESSING', 10);

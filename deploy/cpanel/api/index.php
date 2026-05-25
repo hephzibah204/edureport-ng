@@ -40,7 +40,30 @@ if (isset($_SERVER['REQUEST_URI'])) {
 ini_set('display_errors', '0');
 error_reporting(E_ALL);
 
+// Force HTTPS redirect
+if (Config::envBool('FORCE_HTTPS', false)) {
+    $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (intval($_SERVER['SERVER_PORT'] ?? 80) === 443);
+    if (!$isSecure && isset($_SERVER['HTTP_HOST'])) {
+        $uri = $_SERVER['REQUEST_URI'] ?? '/';
+        header('Location: https://' . $_SERVER['HTTP_HOST'] . $uri, true, 301);
+        exit;
+    }
+}
+
 if (!is_dir($storageDir)) {
+    @mkdir($storageDir, 0750, true);
+}
+
+// Rotate log if > 10MB
+$logFile = $storageDir . '/error.log';
+if (is_file($logFile) && filesize($logFile) > 10485760) {
+    @rename($logFile, $storageDir . '/error-' . gmdate('Y-m-d-His') . '.log');
+}
+
+$debug = Config::envBool('DEBUG', false);
+
+$emitError = function (int $code, array $payload) {
     @mkdir($storageDir, 0750, true);
 }
 
