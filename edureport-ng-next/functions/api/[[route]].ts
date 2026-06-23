@@ -59,7 +59,7 @@ export async function onRequest(context: {
     });
   }
 
-  if (url.pathname === "/api/public-bucket-list" && method === "GET") {
+  if (url.pathname === "/api/config/bucket" && method === "GET") {
     if (!env.BUCKET) return errorResponse("No BUCKET binding", 500);
     const listed = await env.BUCKET.list();
     return jsonResponse(listed.objects.map((o: any) => o.key));
@@ -89,10 +89,11 @@ export async function onRequest(context: {
     // File Download route (Public for logos and profile photos)
     if (parts[0] === "files" && parts[1] === "list" && method === "GET") {
       const listed = await env.BUCKET.list({ limit: 100 });
-      return new Response(JSON.stringify(listed.objects.map(o => o.key)), { headers: { "Content-Type": "application/json" } });
+      return new Response(JSON.stringify(listed.objects.map((o: any) => o.key)), { headers: { "Content-Type": "application/json" } });
     }
-    if (parts[0] === "files" && parts.length === 2 && method === "GET") {
-      return await handleFileDownload(env.BUCKET, parts[1], origin);
+    if (parts[0] === "files" && parts.length >= 2 && method === "GET") {
+      const fileKey = decodeURIComponent(parts.slice(1).join("/"));
+      return await handleFileDownload(env.BUCKET, fileKey, origin);
     }
 
     // Global Announcements for authenticated users
