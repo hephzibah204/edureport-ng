@@ -38,11 +38,11 @@ export default function ParentsList() {
   const [classFilter, setClassFilter] = useState('');
 
   // Extract unique classes
-  const classes = Array.from(new Set(students.map(s => s.cls).filter(Boolean))).sort();
+  const classes = Array.from(new Set(students.map(s => s.className).filter(Boolean))).sort();
 
   // Filter students by class
   const filteredStudentsForSelect = classFilter
-    ? students.filter(s => s.cls === classFilter)
+    ? students.filter(s => s.className === classFilter)
     : students;
 
   const fetchData = async () => {
