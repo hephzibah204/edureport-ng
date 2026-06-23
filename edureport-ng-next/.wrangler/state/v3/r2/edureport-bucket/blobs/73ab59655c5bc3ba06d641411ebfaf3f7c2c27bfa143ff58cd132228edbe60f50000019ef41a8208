@@ -1,0 +1,325 @@
+{
+  "id": "exam-d8562b52-03df-4dd0-af62-1498c319dbfc",
+  "subject": "Basic 3 Civic 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "The need for constituted authority is to ____law and order",
+      "type": "mcq",
+      "options": [
+        "fight",
+        "bell",
+        "maintain"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Constituted authority is responsible for maintaining law and order."
+    },
+    {
+      "question": "Drug education involves teaching people on the ____",
+      "type": "mcq",
+      "options": [
+        "way of making drugs",
+        "proper use of drugs",
+        "cooking and selling of drugs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Drug education focuses on the proper use of drugs, not their production or sale."
+    },
+    {
+      "question": "______ means a person or group of persons that at on behalf of the people and baked by law",
+      "type": "mcq",
+      "options": [
+        "constituted power",
+        "constituted authority",
+        "constituted soldier"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Constituted authority refers to entities that act on behalf of the people as per the law."
+    },
+    {
+      "question": "Taking care of oneself and the surroundings is known as ___",
+      "type": "mcq",
+      "options": [
+        "personal hygiene",
+        "personal love",
+        "healing our body"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Personal hygiene refers to taking care of oneself and the surroundings."
+    },
+    {
+      "question": "Traditional toilet is ___",
+      "type": "mcq",
+      "options": [
+        "costly to build",
+        "cheaper to construct",
+        "is higher to climb"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Traditional toilets are generally cheaper to construct compared to modern ones."
+    },
+    {
+      "question": "Some drugs are useful to the body while some are ______ to health",
+      "type": "mcq",
+      "options": [
+        "rich",
+        "beautiful",
+        "dangerous"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Some drugs can be harmful or dangerous to health."
+    },
+    {
+      "question": "Taking care of the body and surroundings will prevent ____________ and _________________",
+      "type": "mcq",
+      "options": [
+        "head & leg pain",
+        "sickness & diseases",
+        "fatness & eye sight"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Maintaining personal and environmental hygiene prevents sickness and diseases."
+    },
+    {
+      "question": "We must only take _____given to us by our doctor",
+      "type": "mcq",
+      "options": [
+        "drugs",
+        "clothes",
+        "houses"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Doctors prescribe drugs, not clothes or houses."
+    },
+    {
+      "question": "Regular exercise will make us ____________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "To control the way we eat, drink and the type of clothes we put on is known as",
+      "type": "mcq",
+      "options": [
+        "pride",
+        "self discipline",
+        "self will"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Self-discipline involves controlling one's habits and behaviors."
+    },
+    {
+      "question": "Traditional toilet facilities are usually constructed in ____area",
+      "type": "mcq",
+      "options": [
+        "rural",
+        "offices",
+        "airport"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Traditional toilets are commonly found in rural areas."
+    },
+    {
+      "question": "We maintained toilet facilities by ______",
+      "type": "mcq",
+      "options": [
+        "drawing",
+        "sitting",
+        "flushing"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Flushing is a method of maintaining toilet facilities."
+    },
+    {
+      "question": "Drugs education helps to protect the people against _____",
+      "type": "mcq",
+      "options": [
+        "wealth",
+        "untimely death",
+        "wisdom"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Drug education helps prevent untimely death caused by drug abuse."
+    },
+    {
+      "question": "The prohibited drugs by the government are ________ and _____",
+      "type": "mcq",
+      "options": [
+        "sweet & biscuit",
+        "yam & rice",
+        "cocaine & heroine"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Cocaine and heroine are examples of prohibited drugs."
+    },
+    {
+      "question": "India hemp is known as_____",
+      "type": "mcq",
+      "options": [
+        "nice hemp",
+        "hard drugs",
+        "expire drugs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "India hemp is classified as a hard drug."
+    },
+    {
+      "question": "For us to be hygienic, we must take our bath and brush our teeth ____",
+      "type": "mcq",
+      "options": [
+        "daily",
+        "sometimes",
+        "monthly"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Daily hygiene practices like bathing and brushing teeth are essential."
+    },
+    {
+      "question": "______ toilet reduces smell and flies",
+      "type": "mcq",
+      "options": [
+        "traditional",
+        "pit",
+        "modern"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Modern toilets are designed to reduce smell and flies."
+    },
+    {
+      "question": "Constituted authority promote good ______among the members of the community",
+      "type": "mcq",
+      "options": [
+        "roar",
+        "flower",
+        "relationship"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Constituted authority promotes good relationships within the community."
+    },
+    {
+      "question": "An Oba is a _____type of constituted authority",
+      "type": "mcq",
+      "options": [
+        "religious",
+        "traditional",
+        "political"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An Oba is a traditional form of constituted authority."
+    },
+    {
+      "question": "_______ and ________ are used to clean our toilets to prevent flies and bad odour",
+      "type": "mcq",
+      "options": [
+        "broom & sand",
+        "Dettol & Harpic",
+        "papers & wood"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Dettol and Harpic are cleaning agents used to maintain toilets."
+    },
+    {
+      "question": "Those drugs that causes drowsiness are called _____",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "We should _____________ our toilet facilities everyday.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Traditional toilet encourages ________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Modern toilets are __________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_______________ leaders are ___________ to maintain",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Constituted authority direct members of their organisations in order to achieve their _______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Government agencies in controlling the uses of drugs arrest and prosecute those found with __________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Which of the toilet is difficult to maintain?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_______________ are rules and regulations that guard against the production and use of drugs",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The school is another ______________ that can help in the control and regulation of the use of drugs",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List three (3) roles of the family in controlling the use if drugs.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What is drug law?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention three (3) ways of maintaining toilets",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "State three (3) factors that promote personal hygiene",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

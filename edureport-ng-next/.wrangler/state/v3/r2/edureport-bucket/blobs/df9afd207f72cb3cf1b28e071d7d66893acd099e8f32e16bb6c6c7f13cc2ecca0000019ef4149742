@@ -1,0 +1,92 @@
+{
+  "id": "exam-fef299f6-a822-44f7-854b-68345cdc38c6",
+  "subject": "Basic 2 1st Phe Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "One of these is not a manipulative skill _________",
+      "type": "mcq",
+      "options": [
+        "catching",
+        "singing",
+        "sleeping",
+        "throwing"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Singing and sleeping are not manipulative skills, but among the options given, 'sleeping' is the most clearly not a manipulative skill."
+    },
+    {
+      "question": "There are ________- types of movement",
+      "type": "mcq",
+      "options": [
+        "4",
+        "5",
+        "3",
+        "6"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The correct answer is 3 types of movement."
+    },
+    {
+      "question": "__________ is a rhythmic movement",
+      "type": "mcq",
+      "options": [
+        "cooking",
+        "writing",
+        "clapping",
+        "running"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Clapping is a rhythmic movement."
+    },
+    {
+      "question": "We dance with ____",
+      "type": "mcq",
+      "options": [
+        "talking",
+        "music",
+        "noises",
+        "silence"
+      ],
+      "correctAnswer": 1,
+      "explanation": "We dance with music."
+    },
+    {
+      "question": "Mention 2 fundamental rhythmic and movement",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention 3 track events",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Rhythmic movements can be a form of exercise for our _____________",
+      "type": "mcq",
+      "options": [
+        "house",
+        "food",
+        "body",
+        "clothes"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Rhythmic movements are a form of exercise for our body."
+    },
+    {
+      "question": "Mention 4 fundamental rhythmic and movement. E. g Hopping",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

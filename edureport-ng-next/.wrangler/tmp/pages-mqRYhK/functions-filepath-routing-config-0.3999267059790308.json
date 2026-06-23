@@ -1,0 +1,29 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/health",
+      "mountPath": "/api",
+      "method": "GET",
+      "module": [
+        "api/health.ts:onRequestGet"
+      ]
+    },
+    {
+      "routePath": "/api/:route*",
+      "mountPath": "/api",
+      "method": "",
+      "module": [
+        "api/[[route]].ts:onRequest"
+      ]
+    },
+    {
+      "routePath": "/",
+      "mountPath": "/",
+      "method": "",
+      "middleware": [
+        "_middleware.ts:onRequest"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}

@@ -1,0 +1,311 @@
+{
+  "id": "exam-3d7338a0-cd29-4c78-af3e-279c55480916",
+  "subject": "Basic 6 2nd Agric Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Air in motion is known as _________",
+      "type": "mcq",
+      "options": [
+        "wind",
+        "air pressure",
+        "harmattan",
+        "season"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Air in motion is called wind."
+    },
+    {
+      "question": "The instrument used for determining the direction of wind is called ________",
+      "type": "mcq",
+      "options": [
+        "anemometer",
+        "barometer",
+        "wind vane",
+        "speedometer"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A wind vane is used to determine the direction of wind."
+    },
+    {
+      "question": "In Nigeria, the south-west wind brings _________",
+      "type": "mcq",
+      "options": [
+        "dry season",
+        "rainfall",
+        "harmattan",
+        "wind"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The south-west wind brings rainfall to Nigeria."
+    },
+    {
+      "question": "One of these is not a type of wind",
+      "type": "mcq",
+      "options": [
+        "calm wind",
+        "breeze",
+        "gale",
+        "shower"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Shower is not a type of wind."
+    },
+    {
+      "question": "When air is cooled, water vapour condenses into tiny droplets of water which form ______",
+      "type": "mcq",
+      "options": [
+        "cloud",
+        "wind",
+        "breeze",
+        "temperature"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Condensed water vapour forms clouds."
+    },
+    {
+      "question": "The temperature at which air is cooled and its water vapour is changed or condenses into tiny droplet of water is called ______",
+      "type": "mcq",
+      "options": [
+        "rain-point temperature",
+        "dew-point temperature",
+        "gale-point temperature",
+        "none of the options"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The temperature at which condensation occurs is called dew-point temperature."
+    },
+    {
+      "question": "The instrument used for measuring atmospheric pressure is known as ___",
+      "type": "mcq",
+      "options": [
+        "wind vane",
+        "barometer",
+        "anemometer",
+        "thermometer"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A barometer measures atmospheric pressure."
+    },
+    {
+      "question": "One of these is not a climatic belt in Nigeria.",
+      "type": "mcq",
+      "options": [
+        "Northern belt",
+        "middle belt",
+        "western belt",
+        "southern belt"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Nigeria's climatic belts are Northern, Middle, and Southern."
+    },
+    {
+      "question": "Nigeria’s vegetation zones are divided into ",
+      "type": "mcq",
+      "options": [
+        "mangrove and fresh water zones",
+        "rainforest and tall grass savanna zones",
+        "woodland and tall grass savanna zones",
+        "forest and savanna zones"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Nigeria's vegetation zones include rainforest and tall grass savanna."
+    },
+    {
+      "question": "The vegetation type of the Northern belt of Nigeria is ______",
+      "type": "mcq",
+      "options": [
+        "mangrove",
+        "rain forest",
+        "fresh water",
+        "short grass and marginal savanna"
+      ],
+      "correctAnswer": 3,
+      "explanation": "The Northern belt has short grass and marginal savanna."
+    },
+    {
+      "question": "The vegetation type of the Southern belt of Nigeria is _______",
+      "type": "mcq",
+      "options": [
+        "short grass and marginal savanna",
+        "woodland and tall grass savanna",
+        "mangrove, fresh water swamp and rainforest",
+        "marginal savanna"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Southern belt includes mangrove, fresh water swamp, and rainforest."
+    },
+    {
+      "question": "Plantain, banana, cocoyam, oil palm are found in the ______",
+      "type": "mcq",
+      "options": [
+        "short grass savanna zone",
+        "marginal savanna",
+        "mangrove and fresh water swamp zone",
+        "woodland and tall grass zone"
+      ],
+      "correctAnswer": 2,
+      "explanation": "These crops are typically found in the mangrove and fresh water swamp zone."
+    },
+    {
+      "question": "Which of the vegetation zone has the highest amount of rainfall, highest duration of rainfall and lowest temperature",
+      "type": "mcq",
+      "options": [
+        "short grass savanna",
+        "woodland and tall grass savanna",
+        "mangrove and fresh swamp water",
+        "marginal savanna zone"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The mangrove and fresh swamp water zone has the highest rainfall and lowest temperature."
+    },
+    {
+      "question": "Pre-planting activities involve all the following except ",
+      "type": "mcq",
+      "options": [
+        "watering",
+        "choice of good site",
+        "land clearing and stumping",
+        "preparation of nursery beds"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Watering is a post-planting activity, not pre-planting."
+    },
+    {
+      "question": "One of these is a post-planting activity.",
+      "type": "mcq",
+      "options": [
+        "sowing of seeds",
+        "selection and transplanting seedlings",
+        "application of fertilizers",
+        "choice of good site"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Application of fertilizers is a post-planting activity."
+    },
+    {
+      "question": "The pre-planting activity that involves the removal of grasses, stubborn root and stumps is known is ",
+      "type": "mcq",
+      "options": [
+        "sowing of seeds",
+        "choice of good site",
+        "selection and transplanting seedlings",
+        "land clearing and stumping"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Land clearing and stumping is a pre-planting activity."
+    },
+    {
+      "question": "_____is the process of removing seedling from the nursery to a permanent plot",
+      "type": "mcq",
+      "options": [
+        "watering",
+        "mulching",
+        "staking",
+        "transplanting"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Transplanting is the process of moving seedlings to a permanent plot."
+    },
+    {
+      "question": "The post-planting activity that involves the covering of soil surface with grass leaves or crop remains to reduce evaporation is called ___",
+      "type": "mcq",
+      "options": [
+        "watering",
+        "sowing",
+        "mulching",
+        "staking"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Mulching reduces evaporation by covering the soil."
+    },
+    {
+      "question": "___________is the use of stick to prop up, or provide support to crops with creeping stems",
+      "type": "mcq",
+      "options": [
+        "mulching",
+        "staking",
+        "weeding",
+        "choosing a good site"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Staking provides support to crops with creeping stems."
+    },
+    {
+      "question": "Cassava tuber can be processed into one of the following except ",
+      "type": "mcq",
+      "options": [
+        "rice grains",
+        "garri",
+        "starch",
+        "tapioca"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Rice grains are not derived from cassava."
+    },
+    {
+      "question": "___________is the removal of unwanted plants competing with crops for nutrients",
+      "type": "mcq",
+      "options": [
+        "weeding",
+        "staking",
+        "mulching",
+        "watering"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Weeding removes unwanted plants that compete with crops."
+    },
+    {
+      "question": "NPK is a type of _________",
+      "type": "mcq",
+      "options": [
+        "crop",
+        "pre-planting activity",
+        "fertilizer",
+        "post-planting activity"
+      ],
+      "correctAnswer": 2,
+      "explanation": "NPK is a type of fertilizer."
+    },
+    {
+      "question": "One of these is a way of reducing evaporation",
+      "type": "mcq",
+      "options": [
+        "staking",
+        "mulching",
+        "weeding",
+        "choosing a good site"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mulching helps reduce evaporation."
+    },
+    {
+      "question": "Transplanting can be done using one of the following",
+      "type": "mcq",
+      "options": [
+        "cutlass",
+        "trowel",
+        "tractor",
+        "rake"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A trowel is used for transplanting."
+    },
+    {
+      "question": "_______ is the amount of water vapour in the air",
+      "type": "mcq",
+      "options": [
+        "temperature",
+        "cloud cover",
+        "atmosphere vapour",
+        "humidity"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Humidity refers to the amount of water vapour in the air."
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

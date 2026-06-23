@@ -1,0 +1,343 @@
+{
+  "id": "exam-2e91937d-14b3-4d1b-8692-b5a4f9db6282",
+  "subject": "Basic 2 Social 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "______ encourages friendship",
+      "type": "mcq",
+      "options": [
+        "fighting",
+        "greeting",
+        "selling"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Greeting is a social action that promotes friendship."
+    },
+    {
+      "question": "Greeting shows the sign of ______",
+      "type": "mcq",
+      "options": [
+        "respect",
+        "hatred",
+        "stealing"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Greeting is a sign of respect and politeness."
+    },
+    {
+      "question": "______ and ____ are forms of greeting",
+      "type": "mcq",
+      "options": [
+        "buying/selling",
+        "prostrating /kneeling",
+        "slapping/biting"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Prostrating and kneeling are traditional forms of greeting in some cultures."
+    },
+    {
+      "question": "The Yorubas prostrate and kneel while the Hausa _____",
+      "type": "mcq",
+      "options": [
+        "jump",
+        "squat",
+        "sit"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Hausa people may squat as a form of greeting."
+    },
+    {
+      "question": "An ____ is the surroundings where we live.",
+      "type": "mcq",
+      "options": [
+        "school",
+        "hospital",
+        "environment"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Environment refers to the surroundings where we live."
+    },
+    {
+      "question": "Clean environment keep us ____",
+      "type": "mcq",
+      "options": [
+        "sad",
+        "healthy",
+        "sleepy"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A clean environment contributes to good health."
+    },
+    {
+      "question": "proper use and washing of the _____ and bathroom help to keep the environment clean",
+      "type": "mcq",
+      "options": [
+        "toilet",
+        "box",
+        "teacher"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Proper use and cleaning of the toilet helps maintain a clean environment."
+    },
+    {
+      "question": "We must keep the drains clean for a free flow of water and to prevent ____ from breeding in them.",
+      "type": "mcq",
+      "options": [
+        "mosquitoes",
+        "money",
+        "mattress"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Mosquitoes can breed in stagnant water in drains."
+    },
+    {
+      "question": "Clean environment helps to promote good ____",
+      "type": "mcq",
+      "options": [
+        "hamper",
+        "grandfather",
+        "health"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A clean environment promotes good health."
+    },
+    {
+      "question": "Clean environment prevents the spread of ______",
+      "type": "mcq",
+      "options": [
+        "diseases",
+        "detol",
+        "dispute"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A clean environment helps prevent the spread of diseases."
+    },
+    {
+      "question": "____ is a sudden and unexpected event that happens to people which causes pain, damage or death.",
+      "type": "mcq",
+      "options": [
+        "assignment",
+        "area",
+        "accident"
+      ],
+      "correctAnswer": 2,
+      "explanation": "An accident is an unexpected event that causes harm."
+    },
+    {
+      "question": "Accident can take any form and it could happen at ____ or in the school",
+      "type": "mcq",
+      "options": [
+        "dream",
+        "home",
+        "dream"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Accidents can occur at home or in school."
+    },
+    {
+      "question": "Stepping on ____ of fruit, especially banana and mango can cause accident",
+      "type": "mcq",
+      "options": [
+        "peels",
+        "money",
+        "it"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Stepping on fruit peels can cause slips and falls."
+    },
+    {
+      "question": "Wrong handling of ____ can cause accident",
+      "type": "mcq",
+      "options": [
+        "objects",
+        "fall",
+        "water"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Improper handling of objects can lead to accidents."
+    },
+    {
+      "question": "Accidents could occur on the playground as a result of some ____ objects",
+      "type": "mcq",
+      "options": [
+        "party",
+        "dangerous",
+        "comb"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Dangerous objects on the playground can cause accidents."
+    },
+    {
+      "question": "Falling in bath tub is an accident at ___",
+      "type": "mcq",
+      "options": [
+        "road",
+        "class",
+        "home"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Falling in a bath tub is an accident that can happen at home."
+    },
+    {
+      "question": "Accident causes ____ to the body",
+      "type": "mcq",
+      "options": [
+        "damages",
+        "happiness",
+        "engagement"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Accidents can cause physical damage to the body."
+    },
+    {
+      "question": "Naked wire could cause ___ shock",
+      "type": "mcq",
+      "options": [
+        "rope",
+        "electric",
+        "stove"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Naked wires can cause electric shocks."
+    },
+    {
+      "question": "We should report any accident to our _______",
+      "type": "mcq",
+      "options": [
+        "friend",
+        "water",
+        "teacher"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Teachers are responsible for handling accidents in schools."
+    },
+    {
+      "question": "We should apply ____ treatment to an accident victims",
+      "type": "mcq",
+      "options": [
+        "first aid",
+        "first class",
+        "first batch"
+      ],
+      "correctAnswer": 0,
+      "explanation": "First aid is the immediate care given to accident victims."
+    },
+    {
+      "question": "Greetings encourage ____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "______________ and ___________ are forms of greeting.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Clean _________ help to promote good health",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "______ can happen anywhere an time",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "We can prevent accident by not playing _____________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Environment can be kept clean by ___________ the grass or brush.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "___________ use of an object may cause accident",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Do not throw __________ things about",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "when a person falls from a bath tub it can cause ______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List five forms of greeting",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What is an environment?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List the types of environment",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List three accidents in the home",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List two accident in the school",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write four ways which we can take care of our environment.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List five ways of preventing accident in the school",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

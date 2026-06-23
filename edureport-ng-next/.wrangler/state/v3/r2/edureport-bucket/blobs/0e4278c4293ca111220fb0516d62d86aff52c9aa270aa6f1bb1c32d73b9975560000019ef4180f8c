@@ -1,0 +1,35 @@
+{
+  "id": "exam-495776c8-d91f-4ab4-a23d-5c297af20a97",
+  "subject": "Basic 2 Physical And Health Education",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Give two examples each of the following movements: a. manipulative movements; b. fundamental rhythmic movements; c. creative rhythmic movements; d. locomotor movements.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "Give two examples of animals that: a. hop; b. gallop.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "Mention one wrong way of: a. leaping; b. walking; c. stepping; d. hopping.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "List four machines that make different rhythmic sounds.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

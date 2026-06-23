@@ -1,0 +1,121 @@
+{
+  "id": "exam-17e8669e-1a78-4ab0-9a8a-135d819b4a9e",
+  "subject": "Art B4 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Underline the correct answer",
+      "type": "mcq",
+      "options": [
+        "theatre",
+        "park",
+        "studio"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "____is acting or imitation of people and situation before an audidence by actor or actress",
+      "type": "mcq",
+      "options": [
+        "phonics",
+        "drama",
+        "theatre"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "____ dance is popular among the Igbo people",
+      "type": "mcq",
+      "options": [
+        "takai",
+        "Bata",
+        "Atilogwu"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "____dance is popular among the Hausa people",
+      "type": "mcq",
+      "options": [
+        "Bata",
+        "koroso",
+        "Atilogwu"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "____ dance is popular among the Yoruba people",
+      "type": "mcq",
+      "options": [
+        "Atilogwu",
+        "Bata",
+        "takai"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The instruments that produce sound when they are struck with hand, an object or shaken are known as ___",
+      "type": "mcq",
+      "options": [
+        "chordophonics",
+        "idophonics",
+        "Aerophonics"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "The instruments that are made of skin of animal and produce sound through vibration of the skin when beaten either with bare hand or stick.",
+      "type": "mcq",
+      "options": [
+        "membraphonics",
+        "idophonics",
+        "chordophonics"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The instruments that produce sound by strumming or plucking the string attached to them are known as ______",
+      "type": "mcq",
+      "options": [
+        "Aerophonics",
+        "chordophonics",
+        "idophonics"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "The instruments that produce sound when air is blowing into them are known as ____",
+      "type": "mcq",
+      "options": [
+        "chordophonics",
+        "Aerophonics",
+        "idophonics"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "A pulpy paper soaked , pounded, ground and mixed with starch to mould or create an object is known as ____(a) origami (b) paper mache (c) paper collage",
+      "type": "mcq",
+      "options": [
+        "origami",
+        "paper mache",
+        "paper collage"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

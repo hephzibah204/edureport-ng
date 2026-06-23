@@ -1,0 +1,47 @@
+{
+  "id": "exam-93a661f3-93d7-4aed-a940-203c85131852",
+  "subject": "Kg 2nd Ryme Que",
+  "classLevel": "Nursery",
+  "questions": [
+    {
+      "question": "Recite the following rhymes",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "1. My fathers house",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "2. Tick says the clock tick tick",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "3. One two three four five teacher waiting at the door",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "4. A-Z rhymes",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "5. The more we are together",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

@@ -1,0 +1,231 @@
+{
+  "id": "exam-2522bc02-2b61-448d-b254-3a704e1676c8",
+  "subject": "Basic 3 Agric 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Oil can be used for ____",
+      "type": "mcq",
+      "options": [
+        "cooking",
+        "stealing",
+        "fighting"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Cooking is a common use of oil."
+    },
+    {
+      "question": "Oil and fats give ______ to man and animal",
+      "type": "mcq",
+      "options": [
+        "vomiting",
+        "cholera",
+        "energy"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Oil and fats provide energy to the body."
+    },
+    {
+      "question": "Oil is a major ____ in soap making",
+      "type": "mcq",
+      "options": [
+        "ingredient",
+        "pepper",
+        "light"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Oil is a major ingredient in soap making."
+    },
+    {
+      "question": "A _________ is a food eaten by man and animal which contains all the necessary classes of food in the right proportion",
+      "type": "mcq",
+      "options": [
+        "food",
+        "protein",
+        "balanced diet"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A balanced diet contains all the necessary nutrients in the right proportions."
+    },
+    {
+      "question": "A good balance diet must contain ____",
+      "type": "mcq",
+      "options": [
+        "stone",
+        "protein",
+        "solid"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Protein is an essential component of a balanced diet."
+    },
+    {
+      "question": "We need to eat a balanced diet to get chemicals called ____",
+      "type": "mcq",
+      "options": [
+        "oil",
+        "nutrient",
+        "fat"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Nutrients are chemicals that the body needs from food."
+    },
+    {
+      "question": "There are ______different types of nutrients that must be present in any given balanced diet",
+      "type": "mcq",
+      "options": [
+        "five",
+        "ten",
+        "fifteen"
+      ],
+      "correctAnswer": 0,
+      "explanation": "There are five main types of nutrients required in a balanced diet."
+    },
+    {
+      "question": "_____are body’s main source of energy",
+      "type": "mcq",
+      "options": [
+        "carbohydrate",
+        "rider",
+        "bus"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Carbohydrates are the main source of energy for the body."
+    },
+    {
+      "question": "______build and repair body tissues",
+      "type": "mcq",
+      "options": [
+        "Okro",
+        "rice",
+        "protein"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Proteins are essential for building and repairing body tissues."
+    },
+    {
+      "question": "Balanced diet makes man and ______ to grow and develop well",
+      "type": "mcq",
+      "options": [
+        "stone",
+        "animal",
+        "tree"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A balanced diet helps both humans and animals grow and develop properly."
+    },
+    {
+      "question": "Balanced diet nourishes the ____",
+      "type": "mcq",
+      "options": [
+        "stem",
+        "food",
+        "skin"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A balanced diet nourishes the skin and other body parts."
+    },
+    {
+      "question": "_____helps in mental development",
+      "type": "mcq",
+      "options": [
+        "balanced diet",
+        "curie",
+        "fan"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A balanced diet helps in mental development."
+    },
+    {
+      "question": "A diet that does not contain all the classes of food in the need as proportion is called ____",
+      "type": "mcq",
+      "options": [
+        "sandine",
+        "fish",
+        "unbalanced diet"
+      ],
+      "correctAnswer": 2,
+      "explanation": "An unbalanced diet lacks the proper proportions of different food classes."
+    },
+    {
+      "question": "Unbalanced diet can lead to_____",
+      "type": "mcq",
+      "options": [
+        "fat",
+        "stunted growth",
+        "stealing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Unbalanced diets can lead to stunted growth in children."
+    },
+    {
+      "question": "_________ is a condition caused by inadequate protein in the diet",
+      "type": "mcq",
+      "options": [
+        "kwashiorkor",
+        "hereditary",
+        "tortoise"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Kwashiorkor is a disease caused by a lack of protein in the diet."
+    },
+    {
+      "question": "____ crops are crops grown for their grain seeds for feeding man and animals",
+      "type": "mcq",
+      "options": [
+        "grain",
+        "school",
+        "office"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Grain crops are grown for their seeds, which are used for feeding people and animals."
+    },
+    {
+      "question": "Which of the following is not an example of grain crops",
+      "type": "mcq",
+      "options": [
+        "maize",
+        "millet",
+        "cassava"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Cassava is not a grain crop; it is a root crop."
+    },
+    {
+      "question": "Local grain crop can be ____",
+      "type": "mcq",
+      "options": [
+        "yam",
+        "grain cereals",
+        "oil"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Local grain crops include grain cereals like rice and millet."
+    },
+    {
+      "question": "Grain crops are used in preparation of _____ feeds",
+      "type": "mcq",
+      "options": [
+        "livestock",
+        "feed",
+        "office"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Grain crops are used to prepare feeds for livestock."
+    },
+    {
+      "question": "Grain crops serve as ______for man",
+      "type": "mcq",
+      "options": [
+        "food",
+        "poison",
+        "leaf"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Grain crops serve as a primary source of food for humans."
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

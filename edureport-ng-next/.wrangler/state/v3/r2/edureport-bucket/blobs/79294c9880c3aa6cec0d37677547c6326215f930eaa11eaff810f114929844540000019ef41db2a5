@@ -1,0 +1,426 @@
+{
+  "id": "exam-fae492eb-feb6-4064-8b5c-41b20fe30c8e",
+  "subject": "Basic 4 Agric 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "_____ is the application of manure to ornamental plants.",
+      "type": "mcq",
+      "options": [
+        "weeding",
+        "manuring",
+        "watering"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Manuring refers to the application of manure to plants."
+    },
+    {
+      "question": "One of the method of making compost is ____",
+      "type": "mcq",
+      "options": [
+        "hole method",
+        "pit method",
+        "sand method"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The pit method is a common technique for making compost."
+    },
+    {
+      "question": "A _______ seed is the seed that is free of diseases, pest and weed.",
+      "type": "mcq",
+      "options": [
+        "bad",
+        "good",
+        "spoilt"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A good seed is free from diseases, pests, and weeds."
+    },
+    {
+      "question": "____provides nutrients to the roots of crops.",
+      "type": "mcq",
+      "options": [
+        "water",
+        "disease",
+        "pest"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Water provides nutrients to the roots of crops."
+    },
+    {
+      "question": "All grasses and shrubs are packed with a ______",
+      "type": "mcq",
+      "options": [
+        "hand trowel",
+        "axe",
+        "rake"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A rake is used to pack grasses and shrubs."
+    },
+    {
+      "question": "______ is the act of cutting away portion of growing plant.",
+      "type": "mcq",
+      "options": [
+        "pruning",
+        "planting",
+        "manuring"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Pruning is the act of cutting away parts of a growing plant."
+    },
+    {
+      "question": "____plants are flower plants that are used to beautify a house",
+      "type": "mcq",
+      "options": [
+        "weeding",
+        "ornamental",
+        "mulching"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Ornamental plants are used to beautify a house."
+    },
+    {
+      "question": "An example of a crop that can be grown from its stem is ____",
+      "type": "mcq",
+      "options": [
+        "cassava",
+        "sweet potato",
+        "yam"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Cassava can be grown from its stem."
+    },
+    {
+      "question": "______ are the most common raw materials used to make compost",
+      "type": "mcq",
+      "options": [
+        "sand",
+        "stone",
+        "spoilt fruits"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Spoilt fruits are commonly used to make compost."
+    },
+    {
+      "question": "_____is a medium of exchange.",
+      "type": "mcq",
+      "options": [
+        "land",
+        "labour",
+        "money"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Money is a medium of exchange."
+    },
+    {
+      "question": "_____ is when dried grass is used to cover the growing seedling",
+      "type": "mcq",
+      "options": [
+        "mulching",
+        "pruning",
+        "watering"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Mulching involves using dried grass to cover seedlings."
+    },
+    {
+      "question": "_____ is permanent and fixed in nature.",
+      "type": "mcq",
+      "options": [
+        "labour",
+        "land",
+        "money"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Land is permanent and fixed in nature."
+    },
+    {
+      "question": "In _____method decomposition of materials is carried out in dug out pits.",
+      "type": "mcq",
+      "options": [
+        "heap",
+        "pit",
+        "pile"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The pit method involves decomposition in dug-out pits."
+    },
+    {
+      "question": "Small shrubs and grasses are cleared with a _________",
+      "type": "mcq",
+      "options": [
+        "watering can",
+        "cutlass",
+        "sickle"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A sickle is used to clear small shrubs and grasses."
+    },
+    {
+      "question": "Insects can be controlled using ___",
+      "type": "mcq",
+      "options": [
+        "fertilizer",
+        "manure",
+        "pesticide"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Pesticide is used to control insects."
+    },
+    {
+      "question": "_____ is used to uproot a seedling from the nursery to the field.",
+      "type": "mcq",
+      "options": [
+        "sickle",
+        "pick axe",
+        "hand trowel"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A hand trowel is used to uproot seedlings."
+    },
+    {
+      "question": "_____ are generally set at the bottom of the water.",
+      "type": "mcq",
+      "options": [
+        "fishing trap",
+        "feeding trough",
+        "watering trough"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Fishing traps are generally set at the bottom of the water."
+    },
+    {
+      "question": "_____is work done by human beings in agriculture",
+      "type": "mcq",
+      "options": [
+        "labour",
+        "land",
+        "money"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Labour is work done by human beings in agriculture."
+    },
+    {
+      "question": "____ are needed to kill weed.",
+      "type": "mcq",
+      "options": [
+        "nutrient",
+        "manure",
+        "herbicide"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Herbicides are used to kill weeds."
+    },
+    {
+      "question": "Compost is a mixture of ____ matter which decays to form humus.",
+      "type": "mcq",
+      "options": [
+        "plant and animal",
+        "chemical",
+        "soil and sand"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Compost is a mixture of plant and animal matter."
+    },
+    {
+      "question": "_____is used for moving small load of soil, potted plants and animal dung.",
+      "type": "mcq",
+      "options": [
+        "hoe",
+        "wheel barrow",
+        "axe"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A wheel barrow is used for moving small loads."
+    },
+    {
+      "question": "______are used to carry people and farm produce across river.",
+      "type": "mcq",
+      "options": [
+        "fishing spear",
+        "fishing trap",
+        "canoes"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Canoes are used to carry people and farm produce across rivers."
+    },
+    {
+      "question": "_______ are instruments farmers use to carry out simple farming operations.",
+      "type": "mcq",
+      "options": [
+        "compost",
+        "crop farm tools",
+        "labour"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Crop farm tools are instruments used for farming operations."
+    },
+    {
+      "question": "______ is an example of an ornamental plant.",
+      "type": "mcq",
+      "options": [
+        "weed",
+        "manure",
+        "hibiscus"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Hibiscus is an example of an ornamental plant."
+    },
+    {
+      "question": "______ is an example of a crop that can be planted from its seed.",
+      "type": "mcq",
+      "options": [
+        "maize",
+        "cassava",
+        "sugar cane"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Maize is an example of a crop that can be planted from its seed."
+    },
+    {
+      "question": "Transplanting is the removal of seedling from the nursery to the _______________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Manure can be either organic or _______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Agricultural production cannot take place without _____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Example of inorganic fertilizer is __________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Some farm tools can be used in _______________ and animal rearing",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_______________ is an example of a mulching material.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "___________, _____________ and __________ are examples of ornamental plants.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "An unwanted plant growing where it is not wanted is known as ______________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Applying water to keep the soil wet is ___________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "___________________ and ___________________ are used for catching fishes.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "A good seed is a seed that is free from ___________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "A tool used for transplanting seedling is a _____________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Good seeds should be selected for _____________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "A _______________ is used to water our seedlings.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Agricultural land can be used for _______________ and ________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write four crop farm tools",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List two methods of making compost",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write four steps in raising ornamental plants",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List four basic factors of production",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write the uses of the following animal farming tools.\n\nFishing net: ______________________________________\nBasket: __________________________________________\nSpade __________________________________\nWatering can : __________________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

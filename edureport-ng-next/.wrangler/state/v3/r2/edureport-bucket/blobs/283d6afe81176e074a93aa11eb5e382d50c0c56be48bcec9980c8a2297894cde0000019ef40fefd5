@@ -1,0 +1,245 @@
+{
+  "id": "exam-b7cfd540-c9e4-4d0a-838e-17b91132d041",
+  "subject": "Basic 1 Agric Science",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "What is the colour of a leaf?",
+      "type": "mcq",
+      "options": [
+        "Green",
+        "Red",
+        "Blue",
+        "Yellow"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Leaves are typically green due to the presence of chlorophyll, which is essential for photosynthesis."
+    },
+    {
+      "question": "Name five different plants that you know.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Are there flowers in your school?",
+      "type": "mcq",
+      "options": [
+        "Yes",
+        "No",
+        "Sometimes",
+        "Not sure"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Flowers can be found in many schools as part of gardens or decorative plantings."
+    },
+    {
+      "question": "Name them to your teachers.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Draw any plant.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Name the different parts of the plant in picture 10.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Name five plants that we eat.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Do you keep animals at home? What type of plants do you feed your animals with?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Name some plants and give their uses.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Name three harmful plants.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention the names of some animals we eat as food.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List three uses of farm animals.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Name two animals that work on the farm.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention one farm animal that is used as guard animal.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Explain what land is.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention 3 types of land.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List five uses of land.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention uses of rocks/stone to farmers.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Describe the sun.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "State three uses of the sun.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "With the help of your teacher, prepare two cans containing young plants. Keep one of the cans in a dark place and the other in the sun. After three days, describe the colour of the leaves of the two young plants.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Can you make a kite? Your teacher will guide you to make one.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Do you have a ball? What is inside it?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Breathe in and out. What do you breathe in?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Blow into a balloon to make it big. Then allow the air in it to escape.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Describe your experience to your friend.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "State two uses of air to people.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention four sources of water.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What effect has water on plants?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Have you travelled on water before? How did you feel in the boat?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List four uses of water.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Name three diseases that can be contacted by drinking or bathing in unclean water.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

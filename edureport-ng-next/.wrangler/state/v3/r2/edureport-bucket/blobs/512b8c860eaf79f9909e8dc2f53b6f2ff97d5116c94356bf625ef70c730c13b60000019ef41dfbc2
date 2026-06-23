@@ -1,0 +1,282 @@
+{
+  "id": "exam-1529144d-8be4-4c7f-89c1-743149c9461f",
+  "subject": "Basic 4 Civic 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "The duties which we have to do as members of the family are _____",
+      "type": "mcq",
+      "options": [
+        "responsibilities",
+        "duties",
+        "rights"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "An example of civic value is ____",
+      "type": "mcq",
+      "options": [
+        "disloyalty",
+        "obedience",
+        "disobedience"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "The form of government where the king or queen rules is ____",
+      "type": "mcq",
+      "options": [
+        "oligarchy",
+        "democracy",
+        "Monarchy"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Parent’s responsibility to their children is to ____",
+      "type": "mcq",
+      "options": [
+        "pay their school fees",
+        "beat them",
+        "punish them"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Behaviours and attitudes that are expected of us as members of a society are ____",
+      "type": "mcq",
+      "options": [
+        "civic rights",
+        "civic duties",
+        "civic values"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Ethnicity can be caused by _____",
+      "type": "mcq",
+      "options": [
+        "poverty",
+        "patriotism",
+        "tolerance"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "There are ______tiers or arms of government in Nigeria.",
+      "type": "mcq",
+      "options": [
+        "6",
+        "3",
+        "5"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "One of the problems of local government is ____",
+      "type": "mcq",
+      "options": [
+        "lack of senses",
+        "lack of manner",
+        "corruption"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Washing dishes at home is ____responsibility .",
+      "type": "mcq",
+      "options": [
+        "father’s",
+        "children’s",
+        "mother’s"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "A large group of people that share same culture, language or history is a ___",
+      "type": "mcq",
+      "options": [
+        "nation",
+        "community",
+        "citizen"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "We need civic values for us to ____",
+      "type": "mcq",
+      "options": [
+        "quarrel among one another",
+        "promote democracy",
+        "fight among one another"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Nigeria is made up of _____major ethnic groups.",
+      "type": "mcq",
+      "options": [
+        "three",
+        "two",
+        "many"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The federal government assists the state government in providing social amenities like ____",
+      "type": "mcq",
+      "options": [
+        "schools",
+        "prison yards",
+        "offices"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The reason for building our nation is _____",
+      "type": "mcq",
+      "options": [
+        "for war",
+        "for fighting",
+        "for development"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "The common language spoken in Nigeria is _____language.",
+      "type": "mcq",
+      "options": [
+        "French",
+        "English",
+        "Yoruba"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "The president of Nigeria is ____",
+      "type": "mcq",
+      "options": [
+        "Professor Yemi Osibanjo",
+        "General Muhammadu Buhari",
+        "Mr Akinwunmi Ambode"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "We must _____ to other people’s views",
+      "type": "mcq",
+      "options": [
+        "listen",
+        "abuse",
+        "neglect"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "One of the characteristics of a nation is _____",
+      "type": "mcq",
+      "options": [
+        "common ancestor",
+        "common views",
+        "common economy"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "One of the solutions to the problems of ethnicity is ____",
+      "type": "mcq",
+      "options": [
+        "inter-marriage",
+        "conflict",
+        "waste of resources"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Members of a home have different roles to perform. (true or false)",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "A monarchy can also be called a ____form of government.",
+      "type": "mcq",
+      "options": [
+        "constitutional",
+        "presidential",
+        "traditional"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "_____heads the federal government",
+      "type": "mcq",
+      "options": [
+        "Governor",
+        "chairman",
+        "president"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "There are ____ states in Nigeria",
+      "type": "mcq",
+      "options": [
+        "20",
+        "36",
+        "19"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Ethnicity has negative effect when it is ____used.",
+      "type": "mcq",
+      "options": [
+        "rightly",
+        "wrongly",
+        "correctly"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Building a great nation is the responsibility of every _____",
+      "type": "mcq",
+      "options": [
+        "foreigner",
+        "stranger",
+        "citizen"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

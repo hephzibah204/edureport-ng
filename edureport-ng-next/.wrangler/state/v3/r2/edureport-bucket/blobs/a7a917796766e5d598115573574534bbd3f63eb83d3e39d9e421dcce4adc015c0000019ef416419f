@@ -1,0 +1,346 @@
+{
+  "id": "exam-2767d8eb-0174-43a4-896a-87244fc34fb3",
+  "subject": "Basic 2 Civic",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Civic education helps us to:",
+      "type": "mcq",
+      "options": [
+        "Understand our rights; it helps us to know what to expect from the government.",
+        "Understand our responsibilities; it helps us to understand what we should do for our country.",
+        "Know how to practise democracy properly.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "Civic education helps us with all of the listed aspects, making 'All of the above' the correct answer."
+    },
+    {
+      "question": "The importance of civic education to national development includes:",
+      "type": "mcq",
+      "options": [
+        "Teaching us to cooperate with one another regardless of religion or ethnicity.",
+        "Teaching us how to make our society better.",
+        "Teaching us to pay taxes and understand why we should do so.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "Civic education covers all these aspects, making 'All of the above' the correct answer."
+    },
+    {
+      "question": "Give three reasons why civic education is important.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "If we do not pay our taxes, what will happen?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention three things we can learn if we study civic education.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Rules and regulations in the school are:",
+      "type": "mcq",
+      "options": [
+        "What we should do in the school environment.",
+        "What we should not do in the school environment.",
+        "Both A and B.",
+        "None of the above."
+      ],
+      "correctAnswer": 2,
+      "explanation": "Rules and regulations include both what should be done and what should not be done, making 'Both A and B' the correct answer."
+    },
+    {
+      "question": "School rules include:",
+      "type": "mcq",
+      "options": [
+        "Be punctual at school.",
+        "Attend school regularly.",
+        "You must be neat and tidy at all times.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "All the listed items are part of school rules, making 'All of the above' the correct answer."
+    },
+    {
+      "question": "Punctuality and regularity will help you become a better person in future. Here are some ways in which you can learn to be punctual and regular in whatever you are doing. Which of the following is NOT a way?",
+      "type": "mcq",
+      "options": [
+        "Attend school everyday of the week.",
+        "Always think of the time and day you should do something.",
+        "Submit your classwork and homework to the teacher on time.",
+        "Participate in class activities."
+      ],
+      "correctAnswer": 3,
+      "explanation": "Participating in class activities is not directly related to being punctual and regular."
+    },
+    {
+      "question": "Pupils who obey rules could be rewarded in the following ways:",
+      "type": "mcq",
+      "options": [
+        "Being praised by the teacher and the head teacher.",
+        "Being given a prize by the school.",
+        "Being respected by the teachers and other pupils.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "All the listed options are valid ways of rewarding obedience."
+    },
+    {
+      "question": "Those who disobey rules may get punished by the teacher. Which of the following is NOT a consequence?",
+      "type": "mcq",
+      "options": [
+        "They may get punished by the teacher.",
+        "They would be noted specially for disobedience.",
+        "The teacher would report them to their parents.",
+        "They may be sent away from school."
+      ],
+      "correctAnswer": 0,
+      "explanation": "Getting punished by the teacher is a direct consequence, not an exception."
+    },
+    {
+      "question": "List six school rules and regulations.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention three rewards of obeying school rules and regulations.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write two things which would make a pupil earn punishment from the teacher.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Duties of class monitors and prefects include:",
+      "type": "mcq",
+      "options": [
+        "Keeping the class neat and tidy.",
+        "Cleaning the chalkboard.",
+        "Stopping noise making in the class.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "All the listed duties are part of a class monitor's responsibilities."
+    },
+    {
+      "question": "Qualities of class monitors and prefects include:",
+      "type": "mcq",
+      "options": [
+        "Hardworking.",
+        "Humble.",
+        "Regular in school.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "All the listed qualities are important for class monitors and prefects."
+    },
+    {
+      "question": "Mention five duties of class monitors.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention five qualities of class monitors.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention three things that can be done to appreciate the work done by good class monitors.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "A community is made up of a group of people. They live close to each other in a place. They obey rules and regulations. What is a community?",
+      "type": "mcq",
+      "options": [
+        "A group of people living close to each other in a place.",
+        "A group of people who obey rules and regulations.",
+        "Both A and B.",
+        "None of the above."
+      ],
+      "correctAnswer": 2,
+      "explanation": "A community consists of people living together and following rules, making 'Both A and B' the correct answer."
+    },
+    {
+      "question": "Mention three types of communities.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Select two kinds of communities. State two ways in which these two communities are different from each other.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List five members of a community.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List three rules of a good community.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Community leaders include:",
+      "type": "mcq",
+      "options": [
+        "Oba - Yoruba.",
+        "Sarki - Hausa.",
+        "Eze - Igbo.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "All the listed names are examples of community leaders."
+    },
+    {
+      "question": "Roles of community leaders include:",
+      "type": "mcq",
+      "options": [
+        "Settle disputes.",
+        "Promote peace at all times.",
+        "Organise community work.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "All the listed roles are part of a community leader's responsibilities."
+    },
+    {
+      "question": "Qualities of community leaders include:",
+      "type": "mcq",
+      "options": [
+        "Caring.",
+        "Loving.",
+        "Wise.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "All the listed qualities are essential for community leaders."
+    },
+    {
+      "question": "State two ways in which we can reward our community leaders.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "We can keep our surroundings clean by doing the following:",
+      "type": "mcq",
+      "options": [
+        "Sweeping and cleaning the house regularly.",
+        "Sweeping the classroom and the school compound everyday.",
+        "Putting refuse in the dustbin.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "All the listed actions contribute to keeping the surroundings clean."
+    },
+    {
+      "question": "Ensure a clean environment by:",
+      "type": "mcq",
+      "options": [
+        "Providing enough dustbins.",
+        "Inspecting the school everyday.",
+        "Placing things in their proper places.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "All the listed actions help maintain a clean environment."
+    },
+    {
+      "question": "Mention three ways in which we can keep our surroundings clean.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "State four things which we can do to make sure our environment remains clean.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Give two reasons why we should live in a clean environment.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What is a toilet?",
+      "type": "mcq",
+      "options": [
+        "A place where people pass waste.",
+        "A type of modern facility.",
+        "A traditional structure.",
+        "None of the above."
+      ],
+      "correctAnswer": 0,
+      "explanation": "A toilet is specifically designed for waste disposal."
+    },
+    {
+      "question": "Types of toilets include:",
+      "type": "mcq",
+      "options": [
+        "Traditional toilets like pit and bucket toilets.",
+        "Modern toilets like water systems.",
+        "Both A and B.",
+        "None of the above."
+      ],
+      "correctAnswer": 2,
+      "explanation": "Toilets are categorized into traditional and modern types."
+    },
+    {
+      "question": "Ways of keeping modern toilets clean include:",
+      "type": "mcq",
+      "options": [
+        "Flush the toilet after every use.",
+        "Clean the toilet everyday.",
+        "Use disinfectants to clean the toilet.",
+        "All of the above."
+      ],
+      "correctAnswer": 3,
+      "explanation": "All the listed methods are effective for maintaining cleanliness in modern toilets."
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

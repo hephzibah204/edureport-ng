@@ -1,0 +1,371 @@
+{
+  "id": "exam-31e6e2dd-e87a-40a7-9e85-9f7209965a79",
+  "subject": "Basic 3 Social 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "___________ are substances used to cure or prevent illnesses",
+      "type": "mcq",
+      "options": [
+        "drugs",
+        "sick",
+        "diseases"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "One of the following is not a body illnesses",
+      "type": "mcq",
+      "options": [
+        "headache",
+        "stomach ache",
+        "rice"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Drugs are used to _____ the body",
+      "type": "mcq",
+      "options": [
+        "kill",
+        "disease",
+        "strengthen"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Which of the following is not a drug",
+      "type": "mcq",
+      "options": [
+        "paracetamol",
+        "Panadol",
+        "beans"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Those who produce drugs and give the right drug for each illness are called ____",
+      "type": "mcq",
+      "options": [
+        "market",
+        "pharmacists",
+        "accountant"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "One of the following cannot administer drugs",
+      "type": "mcq",
+      "options": [
+        "mad man",
+        "doctor",
+        "nurse"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "____means taking drugs for wrong reasons or in the wrong quantity",
+      "type": "mcq",
+      "options": [
+        "sickness",
+        "disease",
+        "drug abuse"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "The means of keeping our environment clean is called _____",
+      "type": "mcq",
+      "options": [
+        "sanitation",
+        "poison",
+        "odour"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "We can keep our environment clean by ____",
+      "type": "mcq",
+      "options": [
+        "cutting the grasses around our houses",
+        "littering the house",
+        "littering the toilet"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "We must wash our _____ to prevent bad odour and germ",
+      "type": "mcq",
+      "options": [
+        "fan",
+        "book",
+        "toilets"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "One of the following is not a type of toilet",
+      "type": "mcq",
+      "options": [
+        "water system",
+        "pit toilet",
+        "class toilet"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "We can make our community to be cleaned by ___",
+      "type": "mcq",
+      "options": [
+        "cleaning the gutter",
+        "killing people",
+        "sleeping"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The cleaning of the environment where someone live is called ____",
+      "type": "mcq",
+      "options": [
+        "personal hygiene",
+        "school",
+        "market"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Disease can be ___",
+      "type": "mcq",
+      "options": [
+        "cholera",
+        "sand",
+        "dustbin"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The disease that make someone to be vomiting and stooling is called ___",
+      "type": "mcq",
+      "options": [
+        "headache",
+        "diabetes",
+        "cholera"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "_____ is a disease that make you force air out of your throat or lung often through the mouth",
+      "type": "mcq",
+      "options": [
+        "food",
+        "leg",
+        "cough"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "One of the following is not a home appliance or gadget",
+      "type": "mcq",
+      "options": [
+        "shoe",
+        "television",
+        "refrigerator"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Electrical gadget are the equipment we use with the aid of _____",
+      "type": "mcq",
+      "options": [
+        "water",
+        "electricity",
+        "biro"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "___is the movement of people, goods and services from one place to another.",
+      "type": "mcq",
+      "options": [
+        "lorry",
+        "okada",
+        "transportation"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "_____ can cause road accident",
+      "type": "mcq",
+      "options": [
+        "bad road",
+        "kitchen",
+        "school"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Transportation is the ________________of people, goods and services from one place to another.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The accident caused by fire is called _____________ accident",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Electric _________________ is used for cooking in the kitchen.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Television is an example of electric _______________ used at home",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Water can be put inside __________________ to make it cold",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "__________________ and ____________ are the symptom of cholera disease",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Dirty toilet can lead to _____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "___________________ are substances used to cure or prevent illness and also used to improve the physical or mental well-being of a person.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "__________________prescribes the right drugs for a particular illness.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Taking drugs for wrong reasons or in the wrong quantity is called ___________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What do you understand by drug",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What is drug abuse ?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention 3 different drug used for curing illness/disease",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention 2 ways of preventing drug abuse.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "what is sanitation?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention two ways by which we can maintain our toilets",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What is road accident?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "mention three causes of road accident",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What is transportation?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention three types of transportation you know.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

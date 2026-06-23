@@ -1,0 +1,356 @@
+{
+  "id": "exam-160ba90b-63d9-4df3-af38-9f05bf7bbbd2",
+  "subject": "Basic 2 Civic 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "We need civic education in order to (a) be rich and wealthy (b) know our rights and duties (c) fight and quarrel",
+      "type": "mcq",
+      "options": [
+        "be rich and wealthy",
+        "know our rights and duties",
+        "fight and quarrel",
+        "none of the above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Civic education is about understanding one's rights and duties as a citizen."
+    },
+    {
+      "question": "Civic education helps us to ___(a) acquire skills (b) fight nation",
+      "type": "mcq",
+      "options": [
+        "acquire skills",
+        "fight nation",
+        "build houses",
+        "none of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Civic education helps individuals acquire skills that are essential for active participation in society."
+    },
+    {
+      "question": "____ and ___guides the behavior of members of a community (a) rules and regulation (b) amenities and facilities",
+      "type": "mcq",
+      "options": [
+        "rules and regulation",
+        "amenities and facilities",
+        "people and places",
+        "none of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Rules and regulations guide the behavior of members in a community."
+    },
+    {
+      "question": "A community must have a _____ (a) visitor (b) thief (c) ruler",
+      "type": "mcq",
+      "options": [
+        "visitor",
+        "thief",
+        "ruler",
+        "none of the above"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A community requires a ruler to maintain order and manage its affairs."
+    },
+    {
+      "question": "____is a modern community (a) village (b) city (c) street",
+      "type": "mcq",
+      "options": [
+        "village",
+        "city",
+        "street",
+        "none of the above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A city is considered a modern community with more developed infrastructure."
+    },
+    {
+      "question": "______ is a traditional community (a) school (b) village (c) city",
+      "type": "mcq",
+      "options": [
+        "school",
+        "village",
+        "city",
+        "none of the above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A village is typically considered a traditional community."
+    },
+    {
+      "question": "A community is a place where we ___as a group (a) fight (b) destroy (c) live",
+      "type": "mcq",
+      "options": [
+        "fight",
+        "destroy",
+        "live",
+        "none of the above"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A community is a place where people live together as a group."
+    },
+    {
+      "question": "There are ____types of community (a) ten (b) two (c) three",
+      "type": "mcq",
+      "options": [
+        "ten",
+        "two",
+        "three",
+        "none of the above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "There are generally two types of communities: modern and traditional."
+    },
+    {
+      "question": "_____ live in a community (a) people (b) flowers (c) city",
+      "type": "mcq",
+      "options": [
+        "people",
+        "flowers",
+        "city",
+        "none of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "People live in a community."
+    },
+    {
+      "question": "One of these is member of a community (a) desk (b) father (c) chair",
+      "type": "mcq",
+      "options": [
+        "desk",
+        "father",
+        "chair",
+        "none of the above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A father is a member of a community."
+    },
+    {
+      "question": "A ____leads a modern community (a) governor (b) nurse (c) teacher",
+      "type": "mcq",
+      "options": [
+        "governor",
+        "nurse",
+        "teacher",
+        "none of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A governor leads a modern community such as a city or state."
+    },
+    {
+      "question": "Are you a member of a community (a) no (b) yes",
+      "type": "mcq",
+      "options": [
+        "no",
+        "yes",
+        "maybe",
+        "none of the above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Everyone is a member of a community."
+    },
+    {
+      "question": "An ____ rules in Hausa community (a) Emir (b) Obi (c) Oba",
+      "type": "mcq",
+      "options": [
+        "Emir",
+        "Obi",
+        "Oba",
+        "none of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The Emir is the ruler in a Hausa community."
+    },
+    {
+      "question": "The _____rules in a Yoruba community. (a) Oba (b) Emir (c) Obi",
+      "type": "mcq",
+      "options": [
+        "Oba",
+        "Emir",
+        "Obi",
+        "none of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The Oba is the ruler in a Yoruba community."
+    },
+    {
+      "question": "Members of a community has ___ to basic amenities (a) town (b) right (c) left",
+      "type": "mcq",
+      "options": [
+        "town",
+        "right",
+        "left",
+        "none of the above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Members of a community have the right to basic amenities."
+    },
+    {
+      "question": "Community members should ___with the government (a) disobey (b) co-operate (c) disrespect",
+      "type": "mcq",
+      "options": [
+        "disobey",
+        "co-operate",
+        "disrespect",
+        "none of the above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Community members should co-operate with the government."
+    },
+    {
+      "question": "A community leader should be ____ (a) bad (b) worse (c) honest",
+      "type": "mcq",
+      "options": [
+        "bad",
+        "worse",
+        "honest",
+        "none of the above"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A community leader should be honest."
+    },
+    {
+      "question": "We have ____job in our community (a) teaching (b) playing",
+      "type": "mcq",
+      "options": [
+        "teaching",
+        "playing",
+        "singing",
+        "none of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Teaching is a common job in a community."
+    },
+    {
+      "question": "The school is a ____community (a) village (b) modern (c) traditional",
+      "type": "mcq",
+      "options": [
+        "village",
+        "modern",
+        "traditional",
+        "none of the above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The school is a modern community."
+    },
+    {
+      "question": "Who is a ruler in the Igbo community (a) Oba (b) Obi (c) Emir",
+      "type": "mcq",
+      "options": [
+        "Oba",
+        "Obi",
+        "Emir",
+        "none of the above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Obi is the ruler in an Igbo community."
+    },
+    {
+      "question": "Civic education helps us to be ________ citizen",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Abuja is known as a ________ community",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "A village is known as a _____________ community",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "People should _____ the rules of the society",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "A community leader should be honest and ____________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Oba rules in the ________________ community",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "An Emir rules in _____________ community",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "___________ community has little social amenities",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Who is the leader of a state _______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The governor of Lagos state is ____________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List the two main types of community",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention 2 importance of civic education",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention 2 types of job/work people do in our community",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention two qualities of a leader",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention 2 basic amenities you can find in the community.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

@@ -1,0 +1,131 @@
+{
+  "id": "exam-c6a26b98-a320-4bf6-b2f5-a9d98b3c55a4",
+  "subject": "Nursery 2(9)",
+  "classLevel": "Nursery",
+  "questions": [
+    {
+      "question": "Which of the following is a two-letter phonetic word?",
+      "type": "mcq",
+      "options": [
+        "bat",
+        "cat",
+        "dog",
+        "sun"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'Bat' is a two-letter phonetic word."
+    },
+    {
+      "question": "What is the correct missing letter in 'c------t'?",
+      "type": "mcq",
+      "options": [
+        "u",
+        "d",
+        "a",
+        "t"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'Cubit' is the correct word, so 'u' is the missing letter."
+    },
+    {
+      "question": "What is the correct missing letter in 'c------p'?",
+      "type": "mcq",
+      "options": [
+        "u",
+        "d",
+        "a",
+        "t"
+      ],
+      "correctAnswer": 2,
+      "explanation": "'Cap' is the correct word, so 'a' is the missing letter."
+    },
+    {
+      "question": "What is the correct missing letter in 'b------d'?",
+      "type": "mcq",
+      "options": [
+        "e",
+        "c",
+        "a",
+        "t"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'Bed' is the correct word, so 'e' is the missing letter."
+    },
+    {
+      "question": "What is the main objective of Week 3 & 4 in Term One?",
+      "type": "mcq",
+      "options": [
+        "Introduce building of three letter phonetic words",
+        "Review of sound and letters",
+        "Match words with objects",
+        "Read three lettered words"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The main objective of Week 3 & 4 in Term One is to introduce building of three letter phonetic words."
+    },
+    {
+      "question": "What is the purpose of the 'Mystery Bag' activity in Term Three?",
+      "type": "mcq",
+      "options": [
+        "To identify objects by touch",
+        "To practice writing",
+        "To learn about colors",
+        "To solve math problems"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The purpose of the 'Mystery Bag' activity is to identify objects by touch."
+    },
+    {
+      "question": "What is the main objective of Week 5 & 6 in Term Two?",
+      "type": "mcq",
+      "options": [
+        "Introduce pictorial fraction",
+        "Introduce division as sharing",
+        "Build multiplication tables",
+        "Teach time on the hour"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The main objective of Week 5 & 6 in Term Two is to introduce division as sharing."
+    },
+    {
+      "question": "What is the main objective of Week 9 & 10 in Term Three?",
+      "type": "mcq",
+      "options": [
+        "Introduce measurement of length",
+        "Review numbers 1-40",
+        "Write numbers in words",
+        "Identify odd and even numbers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The main objective of Week 9 & 10 in Term Three is to introduce measurement of length."
+    },
+    {
+      "question": "What is the main objective of Week 1 & 2 in Term Three?",
+      "type": "mcq",
+      "options": [
+        "Make paper into snowflakes",
+        "Review numbers 1-40",
+        "Write numbers in words",
+        "Identify odd and even numbers"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The main objective of Week 1 & 2 in Term Three is to make paper into snowflakes."
+    },
+    {
+      "question": "What is the main objective of Week 1 & 2 in Term One?",
+      "type": "mcq",
+      "options": [
+        "Review of sound and letters",
+        "Introduce building of three letter phonetic words",
+        "Match words with objects",
+        "Read three lettered words"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The main objective of Week 1 & 2 in Term One is to review sound and letters."
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "exam-0eb7bc78-583d-4f83-8ee6-cd80b56fc236",
+  "subject": "K G Art Que  2nd",
+  "classLevel": "Nursery",
+  "questions": [
+    {
+      "question": "Colour this letter",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "Draw this pattern",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "Colour letter G for goat",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "Colour this objects",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "Draw this pattern work",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

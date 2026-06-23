@@ -1,0 +1,131 @@
+{
+  "id": "exam-1b6d8eca-dfaa-4510-b7c2-52f3fed52694",
+  "subject": "Art B2 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "The annual ceremony that is organized by people of a particular community is known as ____",
+      "type": "mcq",
+      "options": [
+        "local festival",
+        "fun fare",
+        "community event",
+        "cultural celebration"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A local festival is an annual ceremony organized by a specific community."
+    },
+    {
+      "question": "_____ and _____ festivals are examples of religious festivals",
+      "type": "mcq",
+      "options": [
+        "Argungun and new yam",
+        "Christmas and salah",
+        "Hindu and Buddhist",
+        "Easter and Diwali"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Christmas and salah are examples of religious festivals."
+    },
+    {
+      "question": "______ and _____ festivals are examples of cultural festivals.",
+      "type": "mcq",
+      "options": [
+        "Christmas andsallah",
+        "Argungun and New yam",
+        "Diwali and Eid",
+        "Holi and Christmas"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Argungun and New yam are examples of cultural festivals."
+    },
+    {
+      "question": "Argungun festival is about ____competition",
+      "type": "mcq",
+      "options": [
+        "boxing",
+        "fishing",
+        "dancing",
+        "racing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Argungun festival is about fishing competition."
+    },
+    {
+      "question": "Argungun festival is done in ____state",
+      "type": "mcq",
+      "options": [
+        "Kebbi",
+        "Kaduna",
+        "Lagos",
+        "Abuja"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Argungun festival is done in Kebbi state."
+    },
+    {
+      "question": "New yam festival is observed by ____people",
+      "type": "mcq",
+      "options": [
+        "Hausa",
+        "Igbo",
+        "Yoruba",
+        "Fulani"
+      ],
+      "correctAnswer": 1,
+      "explanation": "New yam festival is observed by Igbo people."
+    },
+    {
+      "question": "Bata dance is popular among ___people",
+      "type": "mcq",
+      "options": [
+        "Yoruba",
+        "Fulani",
+        "Hausa",
+        "Igbo"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Bata dance is popular among Yoruba people."
+    },
+    {
+      "question": "Atilogwu dance is popular among ___people",
+      "type": "mcq",
+      "options": [
+        "Hausa",
+        "Igbo",
+        "Yoruba",
+        "Fulani"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Atilogwu dance is popular among Igbo people."
+    },
+    {
+      "question": "Korosodance is popular among ___people",
+      "type": "mcq",
+      "options": [
+        "Yoruba",
+        "Hausa",
+        "Igbo",
+        "Fulani"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Korosodance is popular among Yoruba people."
+    },
+    {
+      "question": "____may be defined as total way of life of people",
+      "type": "mcq",
+      "options": [
+        "culture",
+        "music",
+        "art",
+        "language"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Culture may be defined as the total way of life of people."
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

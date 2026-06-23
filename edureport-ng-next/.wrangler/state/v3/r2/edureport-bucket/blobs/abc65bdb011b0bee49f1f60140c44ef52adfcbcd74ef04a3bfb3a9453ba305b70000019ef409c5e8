@@ -1,0 +1,121 @@
+{
+  "id": "exam-f127822e-f724-4dcc-b312-14e568d700c3",
+  "subject": "Kg 2nd Que  Health",
+  "classLevel": "Nursery",
+  "questions": [
+    {
+      "question": "Is it good to play with sand",
+      "type": "mcq",
+      "options": [
+        "yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Is it good to play with sharp object.",
+      "type": "mcq",
+      "options": [
+        "yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention these sharp objects",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Is it good to cut your finger nails short",
+      "type": "mcq",
+      "options": [
+        "Yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Is it good to wash your hands all the time.",
+      "type": "mcq",
+      "options": [
+        "Yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Is it good to care for our hand",
+      "type": "mcq",
+      "options": [
+        "yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Is it good to pick something from the floor and eat",
+      "type": "mcq",
+      "options": [
+        "yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Is it good to do physical exercise",
+      "type": "mcq",
+      "options": [
+        "Yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Is it good to wash your fruits before eating them.",
+      "type": "mcq",
+      "options": [
+        "yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Mention these fruits",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

@@ -1,0 +1,236 @@
+{
+  "id": "exam-b74f53f3-68f8-414b-af81-4cea42a690a5",
+  "subject": "Basic 1 Social Studies",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "What is the head of the family?",
+      "type": "mcq",
+      "options": [
+        "Father",
+        "Mother",
+        "Children",
+        "Uncle"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The text states that the father is the head of the family."
+    },
+    {
+      "question": "What type of family consists of father, mother and their children?",
+      "type": "mcq",
+      "options": [
+        "Nuclear family",
+        "Extended family",
+        "Single parent family",
+        "Adoptive family"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The text clearly defines a nuclear family as consisting of father, mother, and their children."
+    },
+    {
+      "question": "What is the name of your uncle?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention five things about the people in the picture.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Who are the people that make up an extended family?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Who are the people that make up a nuclear family?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention one quality of a good family.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What do you do to help your parents at home?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What should a girl do to help her mother before going to school every morning?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What should a boy do to help his father before going to school every morning?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What should children do to help their parents before going to bed every night?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Identify a man and woman from your culture in the pictures.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention five different ways of life that are common to people in all cultures.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention five things people use everyday.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "How do you greet your parents at home?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention five things people should not do.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Identify the Holy Bible from the pictures in this module.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Who are the people using the Tesbar for worship?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Name the three main religions in Nigeria.",
+      "type": "mcq",
+      "options": [
+        "Christianity, Islam, Traditional Religion",
+        "Christianity, Hinduism, Buddhism",
+        "Islam, Judaism, Christianity",
+        "Traditional Religion, Christianity, Islam"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The text states that the three main religions in Nigeria are Christianity, Islam, and Traditional Religion."
+    },
+    {
+      "question": "Who is the head of the Islamic religion?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Who are the people using Bible in their worship?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Name two places of worship you know in your locality.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Name three things you do in the church, mosque or shrine.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What days do Christians and Muslims worship during the week?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What are the things they use for worship in traditional religion?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Find out from your teacher the difference between a church and a mosque.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Visit a church or mosque or shrine with your teacher.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write down three things you have seen in the church or mosque or shrine.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Who is a Pastor?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Who is an Imam?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

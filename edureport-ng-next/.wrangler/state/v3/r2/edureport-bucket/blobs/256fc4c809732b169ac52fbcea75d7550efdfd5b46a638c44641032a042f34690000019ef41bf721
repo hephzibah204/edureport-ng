@@ -1,0 +1,229 @@
+{
+  "id": "exam-961c6d6e-2c78-46b2-8d88-e1c66cfff46d",
+  "subject": "Basic 3 Science 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Air is a mixture of _____________",
+      "type": "mcq",
+      "options": [
+        "gases",
+        "food",
+        "rice"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Air is a mixture of gases."
+    },
+    {
+      "question": "____ is air in motion",
+      "type": "mcq",
+      "options": [
+        "air",
+        "wind",
+        "blow"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Wind is air in motion."
+    },
+    {
+      "question": "Wind can have good and __________ effect",
+      "type": "mcq",
+      "options": [
+        "bad",
+        "oxygen",
+        "market"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Wind can have good and bad effects."
+    },
+    {
+      "question": "A good drinking ______ has no colour",
+      "type": "mcq",
+      "options": [
+        "air",
+        "hot",
+        "water"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A good drinking water has no colour."
+    },
+    {
+      "question": "Which of the following is not a quality of good water",
+      "type": "mcq",
+      "options": [
+        "it must not has colour",
+        "it must not smell",
+        "it must be dirty"
+      ],
+      "correctAnswer": 2,
+      "explanation": "It must be dirty is not a quality of good water."
+    },
+    {
+      "question": "______ is not a source of water",
+      "type": "mcq",
+      "options": [
+        "tap",
+        "river",
+        "glass"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Glass is not a source of water."
+    },
+    {
+      "question": "It is good for water to smell",
+      "type": "mcq",
+      "options": [
+        "true",
+        "false"
+      ],
+      "correctAnswer": 1,
+      "explanation": "It is not good for water to smell."
+    },
+    {
+      "question": "_______ can make water unfit for drinking",
+      "type": "mcq",
+      "options": [
+        "sand",
+        "book",
+        "library"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Sand can make water unfit for drinking."
+    },
+    {
+      "question": "Contaminated water is ____ to our health",
+      "type": "mcq",
+      "options": [
+        "dangerous",
+        "water",
+        "wind"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Contaminated water is dangerous to our health."
+    },
+    {
+      "question": "One of the following is not a substance that makes water unfit for drinking",
+      "type": "mcq",
+      "options": [
+        "urine",
+        "dust",
+        "chlorine"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Chlorine is not a substance that makes water unfit for drinking."
+    },
+    {
+      "question": "Drinking ______ can be dangerous to health",
+      "type": "mcq",
+      "options": [
+        "bad water",
+        "good water",
+        "empty water"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Drinking bad water can be dangerous to health."
+    },
+    {
+      "question": "Drinking bad water can cause one of the following",
+      "type": "mcq",
+      "options": [
+        "sickness",
+        "dust",
+        "effect"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Drinking bad water can cause sickness."
+    },
+    {
+      "question": "Colours are used for ___",
+      "type": "mcq",
+      "options": [
+        "eating",
+        "sleeping",
+        "safety"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Colours are used for safety."
+    },
+    {
+      "question": "One of the following is not a colour",
+      "type": "mcq",
+      "options": [
+        "yellow",
+        "blue",
+        "iron"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Iron is not a colour."
+    },
+    {
+      "question": "______ are used for beautification",
+      "type": "mcq",
+      "options": [
+        "colours",
+        "blue",
+        "green"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Colours are used for beautification."
+    },
+    {
+      "question": "Nigeria colour is ___",
+      "type": "mcq",
+      "options": [
+        "green and red",
+        "green and white"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Nigeria's colour is green and red."
+    },
+    {
+      "question": "Colour red in the traffic light symbolizes",
+      "type": "mcq",
+      "options": [
+        "green",
+        "white",
+        "danger"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Colour red in the traffic light symbolizes danger."
+    },
+    {
+      "question": "Air occupies ____",
+      "type": "mcq",
+      "options": [
+        "space",
+        "light",
+        "leaf"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Air occupies space."
+    },
+    {
+      "question": "Human being cannot do without ______ and _____",
+      "type": "mcq",
+      "options": [
+        "rice and beans",
+        "pencil and biro",
+        "air and water"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Human beings cannot do without air and water."
+    },
+    {
+      "question": "Dirty can be removed from water by ____",
+      "type": "mcq",
+      "options": [
+        "boiling",
+        "toilet",
+        "paper"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Dirty can be removed from water by boiling."
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

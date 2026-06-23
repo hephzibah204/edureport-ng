@@ -1,0 +1,178 @@
+{
+  "id": "exam-5175b641-1158-4c7d-9cab-58da2c08654d",
+  "subject": "Basic 2 English 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "correctAnswer": -1,
+      "options": [],
+      "question": "Why are Kamal and Zube at the market?",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "options": [],
+      "question": "Who likes shopping?",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "options": [],
+      "question": "What colour of sandals do they prefer?",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "options": [],
+      "question": "Do you like shopping? Why?",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "options": [],
+      "question": "What colour of sandals do you usually wear?",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": 0,
+      "options": [
+        "plays",
+        "he",
+        "tennis",
+        "every"
+      ],
+      "question": "Underline the verbs in the sentence below. He plays tennis every day.",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "options": [
+        "run",
+        "cook",
+        "am",
+        "paint"
+      ],
+      "question": "Write the correct verbs in the blanks. Example: She has a car.",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "options": [
+        "slowly",
+        "now",
+        "loudly",
+        "outside"
+      ],
+      "question": "Underline the adverb in the sentence below. Example: I met them yesterday.",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "options": [
+        "quietly",
+        "here",
+        "everywhere",
+        "outside",
+        "later"
+      ],
+      "question": "Fill in the blanks with the adverbs given in the box below.",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "options": [
+        "from",
+        "for",
+        "at",
+        "in",
+        "into",
+        "on",
+        "up"
+      ],
+      "question": "Underline the correct preposition in the brackets. Examples: He jumps (at, in, over) the drain.",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "options": [
+        "and",
+        "but",
+        "or",
+        "so",
+        "nor"
+      ],
+      "question": "Fill in the blanks with the correct conjunctions.",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "options": [
+        "sick",
+        "well",
+        "hungry",
+        "thirsty"
+      ],
+      "question": "A hospital is the place where we go when we are ______________________.",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "options": [
+        "doctor",
+        "nurse",
+        "patient",
+        "visitor"
+      ],
+      "question": "Sick people go to meet the _____________ and _____________ in the hospital.",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 2,
+      "options": [
+        "food",
+        "water",
+        "medicine",
+        "air"
+      ],
+      "question": "The nurse in the hospital gives _____________ to the sick people.",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "options": [
+        "beds",
+        "chairs",
+        "tables",
+        "desks"
+      ],
+      "question": "There are ___________ for sick people in the hospital.",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "options": [
+        "hospital",
+        "clinic",
+        "doctor",
+        "nurse"
+      ],
+      "question": "Pregnant women also go to the ___________ to see the doctor.",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "options": [
+        "takes care",
+        "beats",
+        "helps",
+        "harm"
+      ],
+      "question": "The doctor _____________ of the sick people (takes care/ beats).",
+      "type": "mcq"
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

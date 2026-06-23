@@ -1,0 +1,336 @@
+{
+  "id": "exam-d5561c03-dfd3-4b67-b76b-b4f35859fd9b",
+  "subject": "Basic 2 Phe 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Basket ball is a ____ game",
+      "type": "mcq",
+      "options": [
+        "tidy",
+        "team",
+        "tennis"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Basketball is a team game."
+    },
+    {
+      "question": "Each team is made up of ___players",
+      "type": "mcq",
+      "options": [
+        "six",
+        "seven",
+        "five"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Each team in basketball consists of five players."
+    },
+    {
+      "question": "____ and ____ are skills in basket ball",
+      "type": "mcq",
+      "options": [
+        "bouncing/throwing",
+        "catching/kicking",
+        "rolling/picking"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Bouncing and throwing are fundamental skills in basketball."
+    },
+    {
+      "question": "_____ is a way of giving the ball to a team mate.",
+      "type": "mcq",
+      "options": [
+        "catching",
+        "heading",
+        "throwing"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Throwing is a way of passing the ball to a teammate."
+    },
+    {
+      "question": "In bouncing one hand is used to drop the ball on the ground from the ___level",
+      "type": "mcq",
+      "options": [
+        "head",
+        "waist",
+        "neck"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In bouncing, the ball is dropped from waist level."
+    },
+    {
+      "question": "____ involves having the ball in your possession",
+      "type": "mcq",
+      "options": [
+        "team",
+        "bouncing",
+        "catching"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Catching involves having the ball in your possession."
+    },
+    {
+      "question": "During catching, the eyes are ____on the ball",
+      "type": "mcq",
+      "options": [
+        "fixed",
+        "filled",
+        "fetched"
+      ],
+      "correctAnswer": 0,
+      "explanation": "During catching, the eyes are fixed on the ball."
+    },
+    {
+      "question": "Throwing is usually done in an ___position",
+      "type": "mcq",
+      "options": [
+        "falling",
+        "astride",
+        "middle"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Throwing is usually done in an astride position."
+    },
+    {
+      "question": "Swimming is a ____sport, that can be carried out in natural water streams, rivers as well as in swimming pool",
+      "type": "mcq",
+      "options": [
+        "water",
+        "team",
+        "gas"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Swimming is a water sport."
+    },
+    {
+      "question": "Do not ____into the pool with head without first knowing the depth of the pool",
+      "type": "mcq",
+      "options": [
+        "leg",
+        "dive",
+        "deposit"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Do not dive into the pool with your head first without knowing the depth."
+    },
+    {
+      "question": "Do not swim immediately after food, allow the food to ____before going to the swimming pool.",
+      "type": "mcq",
+      "options": [
+        "digest",
+        "dispose",
+        "departed"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Allow the food to digest before swimming."
+    },
+    {
+      "question": "The swimmer should be able to ___in water with confidence",
+      "type": "mcq",
+      "options": [
+        "walk",
+        "sleep",
+        "float"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The swimmer should be able to float in water with confidence."
+    },
+    {
+      "question": "Use proper ____ for swimming",
+      "type": "mcq",
+      "options": [
+        "leg",
+        "head",
+        "dressing"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Use proper dressing for swimming."
+    },
+    {
+      "question": "Take a cold ___before entering the pool.",
+      "type": "mcq",
+      "options": [
+        "drink",
+        "shower",
+        "food"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Take a cold shower before entering the pool."
+    },
+    {
+      "question": "Warm up properly to prepare the _____ and the body fit and ready for swimming",
+      "type": "mcq",
+      "options": [
+        "muscles",
+        "hand",
+        "stomach"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Warm up properly to prepare the muscles and the body."
+    },
+    {
+      "question": "Girls should wear swim ___",
+      "type": "mcq",
+      "options": [
+        "socks",
+        "belt",
+        "suits"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Girls should wear swim suits."
+    },
+    {
+      "question": "Boys should wear swimming ___",
+      "type": "mcq",
+      "options": [
+        "turkey",
+        "trunks",
+        "tray"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Boys should wear swimming trunks."
+    },
+    {
+      "question": "Do not assume you know everything if you are just learning how to ____",
+      "type": "mcq",
+      "options": [
+        "eat",
+        "walk",
+        "swim"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Do not assume you know everything if you are just learning how to swim."
+    },
+    {
+      "question": "A learner should stay at the ____end of the pool until he or she has learned to swim.",
+      "type": "mcq",
+      "options": [
+        "shallow",
+        "middle",
+        "water"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A learner should stay at the shallow end of the pool."
+    },
+    {
+      "question": "A swimmer should not wear ______ or ornaments while in the swimming pool.",
+      "type": "mcq",
+      "options": [
+        "ballon",
+        "necklace",
+        "biscuit"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A swimmer should not wear a necklace or ornaments."
+    },
+    {
+      "question": "_______ ball is a team game",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "There are _________players in each team of basket ball.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Catching involves having the ball in your ____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Throwing is a way giving the ball to a _______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "One leg forward and the other leg behind in order to maintain ________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "In catching the _________ are spread round the ball",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The legs are in astride position while the body lean ________ at the point of catch",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The ________ should be able to float in water with confidence",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "______ should wear swim suites",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Do not run around the surroundings of the _______________pool.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List the three skill in basket ball",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write five safety rules in swimming",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Draw a basketball court",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Draw a player catching a ball",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List the two proper dress for a swimmer",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

@@ -1,0 +1,336 @@
+{
+  "id": "exam-673adb43-67a6-4f11-a27a-3cb5650e9b99",
+  "subject": "Basic 1 Social 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "_____ is any thing that we eat to keep us alive.",
+      "type": "mcq",
+      "options": [
+        "rat",
+        "food",
+        "fool"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Food is the correct answer as it is what we eat to stay alive."
+    },
+    {
+      "question": "We eat food _____day",
+      "type": "mcq",
+      "options": [
+        "every",
+        "some",
+        "table"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'Every' is the correct answer as we eat food every day."
+    },
+    {
+      "question": "There are ____ classes of food",
+      "type": "mcq",
+      "options": [
+        "6",
+        "3",
+        "10"
+      ],
+      "correctAnswer": 1,
+      "explanation": "There are 3 classes of food."
+    },
+    {
+      "question": "We get food we eat from various ____",
+      "type": "mcq",
+      "options": [
+        "keg",
+        "hole",
+        "sources"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Sources is the correct answer as we get food from various sources."
+    },
+    {
+      "question": "We can get food in the ___",
+      "type": "mcq",
+      "options": [
+        "bush",
+        "market",
+        "toilet"
+      ],
+      "correctAnswer": 0,
+      "explanation": "We can get food in the bush."
+    },
+    {
+      "question": "Water is a clear ____liquid",
+      "type": "mcq",
+      "options": [
+        "dirty",
+        "colourless",
+        "colourful"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Water is a clear colourless liquid."
+    },
+    {
+      "question": "There are _____sources of water",
+      "type": "mcq",
+      "options": [
+        "10",
+        "3",
+        "1"
+      ],
+      "correctAnswer": 1,
+      "explanation": "There are 3 sources of water."
+    },
+    {
+      "question": "We use water for ____",
+      "type": "mcq",
+      "options": [
+        "cooking",
+        "walking",
+        "sleeping"
+      ],
+      "correctAnswer": 0,
+      "explanation": "We use water for cooking."
+    },
+    {
+      "question": "There are ___types of religion in Nigerian",
+      "type": "mcq",
+      "options": [
+        "1",
+        "3",
+        "6"
+      ],
+      "correctAnswer": 2,
+      "explanation": "There are 6 types of religion in Nigeria."
+    },
+    {
+      "question": "Christians believe in ____",
+      "type": "mcq",
+      "options": [
+        "Jesus Christ",
+        "shrine",
+        "Daddy"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Christians believe in Jesus Christ."
+    },
+    {
+      "question": "_____means that the food that we eat does not harm us",
+      "type": "mcq",
+      "options": [
+        "food safety",
+        "water cloth",
+        "iron"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Food safety means that the food we eat does not harm us."
+    },
+    {
+      "question": "When food stays too long, it becomes ______",
+      "type": "mcq",
+      "options": [
+        "safe",
+        "spoilt",
+        "too good"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When food stays too long, it becomes spoilt."
+    },
+    {
+      "question": "Meet is obtained from ____on the farm.",
+      "type": "mcq",
+      "options": [
+        "cattle",
+        "stick",
+        "plant"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Meat is obtained from cattle on the farm."
+    },
+    {
+      "question": "Tap water is an example of ____of water",
+      "type": "mcq",
+      "options": [
+        "source",
+        "river",
+        "hand"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Tap water is an example of a source of water."
+    },
+    {
+      "question": "Without water, there will be no ____",
+      "type": "mcq",
+      "options": [
+        "life",
+        "sun",
+        "hot"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Without water, there will be no life."
+    },
+    {
+      "question": "The muslims worship in the ____",
+      "type": "mcq",
+      "options": [
+        "church",
+        "mosque",
+        "house"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Muslims worship in the mosque."
+    },
+    {
+      "question": "Traditional worshipers believe in various ____",
+      "type": "mcq",
+      "options": [
+        "gods",
+        "pepper",
+        "cups"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Traditional worshipers believe in various gods."
+    },
+    {
+      "question": "____ is the movement of goods and people from one place to another",
+      "type": "mcq",
+      "options": [
+        "walking",
+        "transportation",
+        "eyeing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Transportation is the movement of goods and people from one place to another."
+    },
+    {
+      "question": "______walk on water",
+      "type": "mcq",
+      "options": [
+        "canoe",
+        "bus",
+        "aeroplane"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A canoe can walk on water."
+    },
+    {
+      "question": "In the olden days people walk on ____",
+      "type": "mcq",
+      "options": [
+        "land",
+        "sea",
+        "helicopters"
+      ],
+      "correctAnswer": 0,
+      "explanation": "In the olden days, people walked on land."
+    },
+    {
+      "question": "Yam is an example of __________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "We can buy bread and eggs in the __________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Fishermen catch fishes in the ______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Water is an important item in ____________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "There are ______major religions in Nigeria.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Christians worship in the _________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_____________ is an example of transportation.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_______________ is an example of olden days means of transportation",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "A good water must not have _____________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "We can get meat from __________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention 2 sources of water",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_____________ and ______________ are examples of found that we eat.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention 2 object of worship in Christianity",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "State 3 uses of water",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "______________________ is an examples of problem of transportation.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

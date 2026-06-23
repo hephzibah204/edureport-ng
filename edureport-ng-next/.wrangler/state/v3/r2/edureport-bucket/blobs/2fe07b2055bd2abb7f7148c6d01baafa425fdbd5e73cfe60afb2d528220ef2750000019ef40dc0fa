@@ -1,0 +1,211 @@
+{
+  "id": "exam-87826bd1-525d-4196-a840-08394ec6bbe1",
+  "subject": "Basic 1  Agric Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "____________ is the outer layer of the earth surface.",
+      "type": "mcq",
+      "options": [
+        "Land",
+        "stone",
+        "soil"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Soil is the outer layer of the earth's surface."
+    },
+    {
+      "question": "We use stones for _____________",
+      "type": "mcq",
+      "options": [
+        "washing",
+        "building",
+        "painting"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Stones are commonly used for building."
+    },
+    {
+      "question": "Air cannot be seen but we can __________ it.",
+      "type": "mcq",
+      "options": [
+        "feel",
+        "hear",
+        "touch"
+      ],
+      "correctAnswer": 0,
+      "explanation": "We can feel air even though we cannot see it."
+    },
+    {
+      "question": "Sun provides daylight for people to __________",
+      "type": "mcq",
+      "options": [
+        "clap",
+        "see",
+        "hear"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The sun provides daylight so people can see."
+    },
+    {
+      "question": "__________ grow on the soil",
+      "type": "mcq",
+      "options": [
+        "plants",
+        "babies",
+        "fishes"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Plants grow on the soil."
+    },
+    {
+      "question": "Do we need sun to survive?",
+      "type": "mcq",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Yes, we need the sun to survive."
+    },
+    {
+      "question": "____________ is a mixture of gases.",
+      "type": "mcq",
+      "options": [
+        "Fart",
+        "Air",
+        "Water"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Air is a mixture of gases."
+    },
+    {
+      "question": "We use air to inflate Ballon",
+      "type": "mcq",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Yes, we use air to inflate a balloon."
+    },
+    {
+      "question": "Soil provides shelter for some animals.",
+      "type": "mcq",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Yes, soil provides shelter for some animals."
+    },
+    {
+      "question": "We soil for _____________",
+      "type": "mcq",
+      "options": [
+        "Writing",
+        "Farming",
+        "Playing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "We use soil for farming."
+    },
+    {
+      "question": "We get vitamin ___________ from the sun.",
+      "type": "mcq",
+      "options": [
+        "D",
+        "B",
+        "A"
+      ],
+      "correctAnswer": 0,
+      "explanation": "We get vitamin D from the sun."
+    },
+    {
+      "question": "The sun is very dangerous to our ___________",
+      "type": "mcq",
+      "options": [
+        "body",
+        "sight",
+        "hair"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The sun is very dangerous to our sight."
+    },
+    {
+      "question": "Land is a free gift from _____________",
+      "type": "mcq",
+      "options": [
+        "God",
+        "Satan",
+        "White men"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Land is considered a free gift from God."
+    },
+    {
+      "question": "A ___________ is fueled with air.",
+      "type": "mcq",
+      "options": [
+        "bread",
+        "cake",
+        "ball"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A ball is fueled with air."
+    },
+    {
+      "question": "Rock stones can be used for _________________ construction.",
+      "type": "mcq",
+      "options": [
+        "road",
+        "school",
+        "stadium"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Rock stones can be used for road construction."
+    },
+    {
+      "question": "What is soil?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List three things that can float in air:",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List three things found on the land:",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write two things that air can inflate:",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write out three types of land:",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

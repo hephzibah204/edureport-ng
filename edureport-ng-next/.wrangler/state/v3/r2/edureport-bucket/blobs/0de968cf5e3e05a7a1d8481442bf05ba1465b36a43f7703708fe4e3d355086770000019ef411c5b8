@@ -1,0 +1,287 @@
+{
+  "id": "exam-8e27e4dd-27a9-441d-a0d4-7f36ab2ae848",
+  "subject": "Basic 1 English 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "This is a book, this is this statement is a _____",
+      "type": "mcq",
+      "options": [
+        "singular",
+        "plural",
+        "noun"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "I have a big elephant; big represent ___",
+      "type": "mcq",
+      "options": [
+        "noun",
+        "adjective",
+        "verb"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "The ball is ____ the table",
+      "type": "mcq",
+      "options": [
+        "under",
+        "for",
+        "at"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Tolu walks _____schools",
+      "type": "mcq",
+      "options": [
+        "to",
+        "on",
+        "is"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Rain falls ____the sky",
+      "type": "mcq",
+      "options": [
+        "at",
+        "from",
+        "to"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Tigers ____meat",
+      "type": "mcq",
+      "options": [
+        "eat",
+        "ate",
+        "eats"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The boys ____near my house.",
+      "type": "mcq",
+      "options": [
+        "live",
+        "lives",
+        "lives"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Adjectives are words that say more about __",
+      "type": "mcq",
+      "options": [
+        "noun",
+        "cup",
+        "verbs"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Tolu _____ to school by bus.",
+      "type": "mcq",
+      "options": [
+        "like",
+        "goes",
+        "take"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "The book is ____the table",
+      "type": "mcq",
+      "options": [
+        "on",
+        "is",
+        "of"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Don’t stand ____the fire",
+      "type": "mcq",
+      "options": [
+        "of",
+        "at",
+        "near"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "____is your name?",
+      "type": "mcq",
+      "options": [
+        "what",
+        "how",
+        "where"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "____old are you?",
+      "type": "mcq",
+      "options": [
+        "Where",
+        "How",
+        "When"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "____ is your house?",
+      "type": "mcq",
+      "options": [
+        "Where",
+        "What",
+        "Whose"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "_____ I help you?",
+      "type": "mcq",
+      "options": [
+        "Where",
+        "can",
+        "How"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "____ is a cup",
+      "type": "mcq",
+      "options": [
+        "These",
+        "This",
+        "How"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "_____ are hens",
+      "type": "mcq",
+      "options": [
+        "how",
+        "these",
+        "to"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "We _____in the bedroom",
+      "type": "mcq",
+      "options": [
+        "eat",
+        "sleep",
+        "dance"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Hospital is a place where ___people receive treatment",
+      "type": "mcq",
+      "options": [
+        "good",
+        "sick",
+        "goat"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "The box is ____the chair .",
+      "type": "mcq",
+      "options": [
+        "to",
+        "under",
+        "of"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "What are Musa’s favourite vegetables?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Is Musa’s favourite drink milk?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What is Chi’s favourite meal?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What does Chi did not like?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Are Musa and chi healthy?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Underline the preposition in the following sentences.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Fill in the gaps",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Fill in the gaps",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

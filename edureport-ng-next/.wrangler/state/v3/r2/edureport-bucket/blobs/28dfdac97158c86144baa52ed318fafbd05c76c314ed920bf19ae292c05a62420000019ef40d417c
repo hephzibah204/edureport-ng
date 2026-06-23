@@ -1,0 +1,344 @@
+{
+  "id": "exam-5b0ef88a-b368-4b2a-af96-5699712ac622",
+  "subject": "Basic 1 2nd Maths Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "1. 6 onions + 5 onions = ___onions",
+      "type": "mcq",
+      "options": [
+        "25",
+        "11",
+        "65",
+        "40"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "2. 7 plus 6 plus 3 = ",
+      "type": "mcq",
+      "options": [
+        "16",
+        "36",
+        "63",
+        "76"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "3. 9 + 2 + 5 = ___",
+      "type": "mcq",
+      "options": [
+        "35",
+        "40",
+        "16",
+        "64"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "4. 5 + 8 = 10 + ___",
+      "type": "mcq",
+      "options": [
+        "3",
+        "30",
+        "40",
+        "11"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "5. What does the abacus below represents",
+      "type": "mcq",
+      "options": [
+        "100",
+        "41",
+        "23",
+        "35"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "6. Add fourteen and eleven, the answer is ____",
+      "type": "mcq",
+      "options": [
+        "twenty five",
+        "seventy",
+        "ninety-nine",
+        "forty-seven"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "7. 7 - 3 = ___",
+      "type": "mcq",
+      "options": [
+        "7",
+        "4",
+        "30",
+        "11"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "8. ____ + 6 = 8",
+      "type": "mcq",
+      "options": [
+        "11",
+        "17",
+        "2",
+        "6"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "9. 8 + ____ = 17",
+      "type": "mcq",
+      "options": [
+        "9",
+        "20",
+        "8",
+        "5"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "10. Sixteen + ___= twenty-eight",
+      "type": "mcq",
+      "options": [
+        "seventy",
+        "four",
+        "ninety",
+        "twelve"
+      ],
+      "correctAnswer": 3,
+      "explanation": ""
+    },
+    {
+      "question": "11. Sixteen - ____ = twelve",
+      "type": "mcq",
+      "options": [
+        "four",
+        "nine",
+        "ninety",
+        "thirteen"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "12. A in the box above is ___",
+      "type": "mcq",
+      "options": [
+        "30",
+        "5",
+        "50",
+        "25"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "13. B in the box above is equal to ___",
+      "type": "mcq",
+      "options": [
+        "8",
+        "14",
+        "30",
+        "44"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "15. 40 + 9 = ___",
+      "type": "mcq",
+      "options": [
+        "100",
+        "75",
+        "49",
+        "91"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "16. 97 = 90 + ___",
+      "type": "mcq",
+      "options": [
+        "7",
+        "8",
+        "100",
+        "90"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "17. Which is the greatest 97, 35, 30, 45",
+      "type": "mcq",
+      "options": [
+        "97",
+        "35",
+        "30",
+        "45"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "18. 2 x 11 = ___",
+      "type": "mcq",
+      "options": [
+        "44",
+        "88",
+        "22",
+        "50"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "19. 94 = 9tens and ___units",
+      "type": "mcq",
+      "options": [
+        "35",
+        "9",
+        "4",
+        "30"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "20. Fifteen plus seventeen = __",
+      "type": "mcq",
+      "options": [
+        "fifteen",
+        "seventeen",
+        "thirty-two",
+        "ninety"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "1. Arrange in order, smallest first 35, 20, 40, 56",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "2. T U + 2 5 3 8",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "3. 4 + 3 + 9",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "4. 6 +8 + 1",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "5. Arrange in order , biggest first 81, 82, 83, 84",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "6. ______ + 16 = 29",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "7. Find the missing numbers in words Nine - ______ = four Thirty - seven - ______= thirteen",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "8. 10 + 11 + 5 = _______",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "9. T U 4 9 - 1 7",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "10. T U 2 8 + 3 1",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "1. Write in words 55 , 23",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "2. T U 14 + 2 0 + 3 5",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "3. T U 2 3 x 3",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "4. T U 43 + 28",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "5. Write figures 101-200",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

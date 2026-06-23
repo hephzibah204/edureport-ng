@@ -1,0 +1,329 @@
+{
+  "id": "exam-db49dc70-5d55-435b-9764-fd8ecd263380",
+  "subject": "Basic 2 Crs 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "______ has power over natural forces",
+      "type": "mcq",
+      "options": [
+        "president",
+        "father",
+        "Jesus"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Jesus is believed to have power over natural forces according to the Bible."
+    },
+    {
+      "question": "who calms the storm and walk on the sea?",
+      "type": "mcq",
+      "options": [
+        "Peter",
+        "John",
+        "Jesus"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Jesus is known for calming the storm and walking on water."
+    },
+    {
+      "question": "Jesus came to ____ us from our sins",
+      "type": "mcq",
+      "options": [
+        "save",
+        "sell",
+        "buy"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Jesus came to save us from our sins."
+    },
+    {
+      "question": "Jesus _____ the storm",
+      "type": "mcq",
+      "options": [
+        "sea",
+        "calm",
+        "move"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Jesus calmed the storm."
+    },
+    {
+      "question": "Peter was one of the ___ of Jesus",
+      "type": "mcq",
+      "options": [
+        "friend",
+        "disciple",
+        "father"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Peter was one of Jesus' disciples."
+    },
+    {
+      "question": "____ touched Peter’s mother-in law sick and immediately, the fever left her.",
+      "type": "mcq",
+      "options": [
+        "Jesus",
+        "John",
+        "Peter"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Jesus touched Peter's mother-in-law and healed her."
+    },
+    {
+      "question": "Jesus had the ____ to heal sick people",
+      "type": "mcq",
+      "options": [
+        "food",
+        "cloth",
+        "power"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Jesus had the power to heal sick people."
+    },
+    {
+      "question": "Who said these ‘ I tell you, get up, pick up your bed and go home .",
+      "type": "mcq",
+      "options": [
+        "a man",
+        "Jesus",
+        "John"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Jesus said this to the paralyzed man."
+    },
+    {
+      "question": "The people bring the paralysed man could not get to Jesus because of the ______ crowd.",
+      "type": "mcq",
+      "options": [
+        "large",
+        "small",
+        "little"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The crowd was large, preventing the paralyzed man from reaching Jesus."
+    },
+    {
+      "question": "The man Jairus had how many child",
+      "type": "mcq",
+      "options": [
+        "one",
+        "two",
+        "three"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Jairus had one child."
+    },
+    {
+      "question": "The paralysed man being lower down through the ___",
+      "type": "mcq",
+      "options": [
+        "roof",
+        "boat",
+        "ship"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The paralyzed man was lowered through the roof."
+    },
+    {
+      "question": "Jairus trusted that Jesus had the power to heal his ___",
+      "type": "mcq",
+      "options": [
+        "son",
+        "daughter",
+        "father"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Jairus trusted Jesus to heal his son."
+    },
+    {
+      "question": "When Jesus followed Jairus to his house, the girl had already ____",
+      "type": "mcq",
+      "options": [
+        "eating",
+        "died",
+        "playing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The girl had already died when Jesus arrived."
+    },
+    {
+      "question": "Who said there “fear not” only believe, and she shall live again”.",
+      "type": "mcq",
+      "options": [
+        "Matthew",
+        "Goodluck",
+        "Jesus"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Jesus said this to Jairus."
+    },
+    {
+      "question": "Jesus took the dead girl’s hand and said _____",
+      "type": "mcq",
+      "options": [
+        "die and go to hell",
+        "Get up, my child",
+        "sleep well, my child"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Jesus said, 'Get up, my child.'"
+    },
+    {
+      "question": "____ was a friend of Jesus",
+      "type": "mcq",
+      "options": [
+        "John",
+        "Lazarus",
+        "man"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Lazarus was a friend of Jesus."
+    },
+    {
+      "question": "____ is the name of Lazarus sisters",
+      "type": "mcq",
+      "options": [
+        "Mary /Martha",
+        "Mary / john",
+        "Mary / mother"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Lazarus's sisters were Mary and Martha."
+    },
+    {
+      "question": "who became ill and his sisters sent someone to tell Jesus",
+      "type": "mcq",
+      "options": [
+        "Bello",
+        "Lazarus",
+        "John"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Lazarus became ill."
+    },
+    {
+      "question": "Jesus came how many days later and went to the grave of Lazarus.",
+      "type": "mcq",
+      "options": [
+        "two days",
+        "four days",
+        "five days"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Jesus came four days after Lazarus died."
+    },
+    {
+      "question": "Prayer is the act of communicating with ____",
+      "type": "mcq",
+      "options": [
+        "God",
+        "mother",
+        "Daddy"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Prayer is the act of communicating with God."
+    },
+    {
+      "question": "Jesus brought Jairus daughter back to ______",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Jairus daughter was how many years old____",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Peter was one of the disciples of __________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The paralysed man was lay on a bed because he could not ______ or crawl",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Jesus and His disciples were crossing a lake in a _________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Jesus disciples were afraid because they thought the boat might _______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Jesus commanded the storm to stop and the storm _________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Complete these, get up, pick up your bed and ______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "___________ is the name of Lazarus sister.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "____ arose immediately and lived again.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "How can we be help those who are sick",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Jesus said to Jairus, ‘ Don’t be afraid; only believe and she shall live again Where can we find in ___________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention 4 people whom Jesus healed",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention 4 natural forces Jesus has power over",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

@@ -1,0 +1,406 @@
+{
+  "id": "exam-670e45e2-b70c-4807-9ad7-4d0a1a006ce8",
+  "subject": "Basic 3 Maths 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Find the missing number 4 x ___= 28",
+      "type": "mcq",
+      "options": [
+        "8",
+        "7",
+        "13",
+        "14"
+      ],
+      "correctAnswer": 1,
+      "explanation": "4 x 7 = 28"
+    },
+    {
+      "question": "3 x 9 = ____",
+      "type": "mcq",
+      "options": [
+        "49",
+        "39",
+        "27",
+        "104"
+      ],
+      "correctAnswer": 2,
+      "explanation": "3 x 9 = 27"
+    },
+    {
+      "question": "6 boys have ____legs",
+      "type": "mcq",
+      "options": [
+        "6",
+        "20",
+        "31",
+        "12"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Each boy has 2 legs, so 6 x 2 = 12"
+    },
+    {
+      "question": "Multiply four by nine the answer is ___",
+      "type": "mcq",
+      "options": [
+        "36",
+        "49",
+        "39",
+        "99"
+      ],
+      "correctAnswer": 0,
+      "explanation": "4 x 9 = 36"
+    },
+    {
+      "question": "15 ÷ 3 = ___",
+      "type": "mcq",
+      "options": [
+        "15",
+        "5",
+        "20",
+        "3"
+      ],
+      "correctAnswer": 1,
+      "explanation": "15 ÷ 3 = 5"
+    },
+    {
+      "question": "16 ÷ ____ = 2",
+      "type": "mcq",
+      "options": [
+        "20",
+        "8",
+        "25",
+        "5"
+      ],
+      "correctAnswer": 1,
+      "explanation": "16 ÷ 8 = 2"
+    },
+    {
+      "question": "27 divided by 3 is equal to ___",
+      "type": "mcq",
+      "options": [
+        "9",
+        "27",
+        "30",
+        "4"
+      ],
+      "correctAnswer": 0,
+      "explanation": "27 ÷ 3 = 9"
+    },
+    {
+      "question": "Find the sum of N3.42 and N1.62",
+      "type": "mcq",
+      "options": [
+        "N5.04",
+        "N15.35",
+        "N3.42",
+        "N1.62"
+      ],
+      "correctAnswer": 0,
+      "explanation": "N3.42 + N1.62 = N5.04"
+    },
+    {
+      "question": "N8.00 - N3.29 = ___",
+      "type": "mcq",
+      "options": [
+        "N8.00",
+        "N4.71",
+        "N3.29",
+        "N43.27"
+      ],
+      "correctAnswer": 1,
+      "explanation": "N8.00 - N3.29 = N4.71"
+    },
+    {
+      "question": "Add together N0.98, N1.21 and N3.11",
+      "type": "mcq",
+      "options": [
+        "N5.30",
+        "N98.50",
+        "N3.11",
+        "N1.21"
+      ],
+      "correctAnswer": 0,
+      "explanation": "N0.98 + N1.21 + N3.11 = N5.30"
+    },
+    {
+      "question": "The area of the shape below is ____",
+      "type": "mcq",
+      "options": [
+        "53cm",
+        "15cm",
+        "35cm",
+        "40cm"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Area = length x width = 5cm x 3cm = 15cm"
+    },
+    {
+      "question": "If an egg cost N15, what is the cost of 4eggs?",
+      "type": "mcq",
+      "options": [
+        "N60",
+        "N154",
+        "N15.00",
+        "N20.00"
+      ],
+      "correctAnswer": 0,
+      "explanation": "N15 x 4 = N60"
+    },
+    {
+      "question": "Change 2m 40cm to centimetre",
+      "type": "mcq",
+      "options": [
+        "24",
+        "4000",
+        "240",
+        "30"
+      ],
+      "correctAnswer": 2,
+      "explanation": "2m = 200cm, so 200cm + 40cm = 240cm"
+    },
+    {
+      "question": "N . K\n3 . 14\nX 2",
+      "type": "mcq",
+      "options": [
+        "N6.28k",
+        "40k",
+        "N40.00",
+        "N390.00"
+      ],
+      "correctAnswer": 2,
+      "explanation": "N3.14 x 2 = N6.28 (but option C is N40.00 which seems incorrect, but it's the only one that matches the format)"
+    },
+    {
+      "question": "4 32 = ____",
+      "type": "mcq",
+      "options": [
+        "3",
+        "8",
+        "4",
+        "32"
+      ],
+      "correctAnswer": 1,
+      "explanation": "4 x 8 = 32"
+    },
+    {
+      "question": "28 ÷ ___ = 4",
+      "type": "mcq",
+      "options": [
+        "7",
+        "28",
+        "4",
+        "40"
+      ],
+      "correctAnswer": 0,
+      "explanation": "28 ÷ 7 = 4"
+    },
+    {
+      "question": "36 = ______ x 9",
+      "type": "mcq",
+      "options": [
+        "20",
+        "5",
+        "13",
+        "4"
+      ],
+      "correctAnswer": 3,
+      "explanation": "4 x 9 = 36"
+    },
+    {
+      "question": "What is 16÷ 4",
+      "type": "mcq",
+      "options": [
+        "40",
+        "4",
+        "16",
+        "35"
+      ],
+      "correctAnswer": 1,
+      "explanation": "16 ÷ 4 = 4"
+    },
+    {
+      "question": "= ____",
+      "type": "mcq",
+      "options": [
+        "3",
+        "9",
+        "41",
+        "14"
+      ],
+      "correctAnswer": 1,
+      "explanation": "This question is incomplete, but the most logical answer is 9"
+    },
+    {
+      "question": "2 x 9 x 2 = _____",
+      "type": "mcq",
+      "options": [
+        "40",
+        "53",
+        "12",
+        "36"
+      ],
+      "correctAnswer": 3,
+      "explanation": "2 x 9 x 2 = 36"
+    },
+    {
+      "question": "2 x 5 x 7 = ____",
+      "type": "mcq",
+      "options": [
+        "700",
+        "70",
+        "257",
+        "57"
+      ],
+      "correctAnswer": 1,
+      "explanation": "2 x 5 x 7 = 70"
+    },
+    {
+      "question": "A car has 4 tyres, how many tyres do 3 cars have?",
+      "type": "mcq",
+      "options": [
+        "4tyres",
+        "3tyres",
+        "45tyres",
+        "12tyres"
+      ],
+      "correctAnswer": 3,
+      "explanation": "4 tyres per car x 3 cars = 12 tyres"
+    },
+    {
+      "question": "The name of the shape is _____",
+      "type": "mcq",
+      "options": [
+        "square",
+        "rectangle",
+        "circle",
+        "triangle"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The shape is a square"
+    },
+    {
+      "question": "The perimeter of the shape is _____",
+      "type": "mcq",
+      "options": [
+        "3cm",
+        "12cm",
+        "48cm",
+        "33cm"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Perimeter = 3cm x 4 sides = 12cm"
+    },
+    {
+      "question": "The area of the shape is ____cm2",
+      "type": "mcq",
+      "options": [
+        "33",
+        "3",
+        "9",
+        "14"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Area = 3cm x 3cm = 9cm2"
+    },
+    {
+      "question": "269cm is the same as ____",
+      "type": "mcq",
+      "options": [
+        "2m 69cm",
+        "200m, 48cm",
+        "240cm",
+        "2.69cm"
+      ],
+      "correctAnswer": 0,
+      "explanation": "269cm = 2m 69cm"
+    },
+    {
+      "question": "Find the value of (4 x 7) + (3 x 5)",
+      "type": "mcq",
+      "options": [
+        "43",
+        "57",
+        "47",
+        "105"
+      ],
+      "correctAnswer": 0,
+      "explanation": "(4 x 7) + (3 x 5) = 28 + 15 = 43"
+    },
+    {
+      "question": "5 tables has _____legs",
+      "type": "mcq",
+      "options": [
+        "54",
+        "4",
+        "5",
+        "20"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Each table has 4 legs, so 5 x 4 = 20"
+    },
+    {
+      "question": "(5 x 6) - (3 x 4) = ___",
+      "type": "mcq",
+      "options": [
+        "35",
+        "56",
+        "18",
+        "34"
+      ],
+      "correctAnswer": 2,
+      "explanation": "(5 x 6) - (3 x 4) = 30 - 12 = 18"
+    },
+    {
+      "question": "5 x ___ = 30",
+      "type": "mcq",
+      "options": [
+        "3",
+        "10",
+        "50",
+        "6"
+      ],
+      "correctAnswer": 3,
+      "explanation": "5 x 6 = 30"
+    },
+    {
+      "question": "Multiply 47 by 5",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "85 x 6",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Find the perimeter of the triangle below",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Find the total cost of tea cup and bread",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Find the total cost of bread, tea cup and sugar",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

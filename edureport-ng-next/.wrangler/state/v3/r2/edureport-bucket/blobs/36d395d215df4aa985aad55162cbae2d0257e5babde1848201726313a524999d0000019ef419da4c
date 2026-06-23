@@ -1,0 +1,329 @@
+{
+  "id": "exam-dd612aa3-0937-4c5c-9e99-58d6c91568dc",
+  "subject": "Basic 3 2nd Crs Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Underline the correct answer",
+      "type": "mcq",
+      "options": [
+        "school and farm",
+        "God and father",
+        "care and table"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Jesus is the only way to God and father."
+    },
+    {
+      "question": "Sin ______ us from God .",
+      "type": "mcq",
+      "options": [
+        "separated",
+        "joined",
+        "builder"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Sin separates us from God."
+    },
+    {
+      "question": "Jesus says, I am the way, the ____ and the ____",
+      "type": "mcq",
+      "options": [
+        "truth & life",
+        "money & house",
+        "father & mother"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Jesus says, I am the way, the truth and the life."
+    },
+    {
+      "question": "Jesus told the ___ to fill six pots with water",
+      "type": "mcq",
+      "options": [
+        "Grooms",
+        "servants",
+        "teachers"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Jesus told the servants to fill six pots with water."
+    },
+    {
+      "question": "Jesus turn water into ______",
+      "type": "mcq",
+      "options": [
+        "wine",
+        "food",
+        "cake"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Jesus turned water into wine."
+    },
+    {
+      "question": "We should always be ____to help",
+      "type": "mcq",
+      "options": [
+        "weak",
+        "afraid",
+        "willing"
+      ],
+      "correctAnswer": 2,
+      "explanation": "We should always be willing to help."
+    },
+    {
+      "question": "The Iame was sick for ______ years",
+      "type": "mcq",
+      "options": [
+        "twenty",
+        "thirty-eight",
+        "sixty-eight"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Iame was sick for thirty-eight years."
+    },
+    {
+      "question": "_____prayed for the people who were stoning him.",
+      "type": "mcq",
+      "options": [
+        "Sunday",
+        "James",
+        "Stephen"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Stephen prayed for the people who were stoning him."
+    },
+    {
+      "question": "When we suffer for what is right we should _____",
+      "type": "mcq",
+      "options": [
+        "cry",
+        "sleep",
+        "rejoice"
+      ],
+      "correctAnswer": 2,
+      "explanation": "When we suffer for what is right we should rejoice."
+    },
+    {
+      "question": "Nicodemus was one of the rulers of the _____",
+      "type": "mcq",
+      "options": [
+        "Jews",
+        "Elias school",
+        "senate"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Nicodemus was one of the rulers of the Jews."
+    },
+    {
+      "question": "Jesus our ____ knows all our needs.",
+      "type": "mcq",
+      "options": [
+        "good shepherd",
+        "bad enemy",
+        "good parent"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Jesus our good shepherd knows all our needs."
+    },
+    {
+      "question": "_____ planned to kill the baby Jesus",
+      "type": "mcq",
+      "options": [
+        "king Jaja",
+        "King Herod",
+        "King David"
+      ],
+      "correctAnswer": 1,
+      "explanation": "King Herod planned to kill the baby Jesus."
+    },
+    {
+      "question": "The ______ followed the new star until it should over the place where baby Jesus was laid",
+      "type": "mcq",
+      "options": [
+        "sheep",
+        "farmers",
+        "wise men"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The wise men followed the new star until it should over the place where baby Jesus was laid."
+    },
+    {
+      "question": "_____ appeared to the shepherds in a great light and they were afraid.",
+      "type": "mcq",
+      "options": [
+        "An angel",
+        "a soldier",
+        "an officer"
+      ],
+      "correctAnswer": 0,
+      "explanation": "An angel appeared to the shepherds in a great light and they were afraid."
+    },
+    {
+      "question": "There was a marriage feast in a town called _____",
+      "type": "mcq",
+      "options": [
+        "Ghana south",
+        "south Africa",
+        "Cana of Galilae"
+      ],
+      "correctAnswer": 2,
+      "explanation": "There was a marriage feast in a town called Cana of Galilae."
+    },
+    {
+      "question": "Which of the disciples of Jesus asked him to show them the way to God?",
+      "type": "mcq",
+      "options": [
+        "Isaiah",
+        "Thomas",
+        "Victor"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Thomas asked Jesus to show them the way to God."
+    },
+    {
+      "question": "Jesus was a _____from God.",
+      "type": "mcq",
+      "options": [
+        "trader",
+        "painter",
+        "teacher"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Jesus was a teacher from God."
+    },
+    {
+      "question": "When we are born again we would have a deeper ____with God .",
+      "type": "mcq",
+      "options": [
+        "relationship",
+        "separation",
+        "dislike"
+      ],
+      "correctAnswer": 0,
+      "explanation": "When we are born again we would have a deeper relationship with God."
+    },
+    {
+      "question": "The lame man lied down by a pool of water called ______",
+      "type": "mcq",
+      "options": [
+        "London",
+        "Niger",
+        "Bethsaida"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The lame man lied down by a pool of water called Bethsaida."
+    },
+    {
+      "question": "The bread which is the word of God is the ____",
+      "type": "mcq",
+      "options": [
+        "textbook",
+        "Holy Bible",
+        "document"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The bread which is the word of God is the Holy Bible."
+    },
+    {
+      "question": "Jesus fed five thousand people with _______loaves of bread and _____________ fishes",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The parents of Jesus are _______________ and __________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_________________ came to Jesus by night and said, that, Jesus was a teacher from God.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "At the same time Jesus was born, three wise men saw a ____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Jesus told Nicodemus, You must be ______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "______ appeared to Mary and told her that she would give birth to a son whom to be called Jesus.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "God warned the wise men in a _______not to return to King Herod.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The bread of life is the _____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Light represent ___________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Darkness represent __________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention two state of a Christians as the salt of the earth when he/she joins bad people",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List three qualities of a good shepherd",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "How an we become a member of God’s family?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "State three Characteristic of light",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

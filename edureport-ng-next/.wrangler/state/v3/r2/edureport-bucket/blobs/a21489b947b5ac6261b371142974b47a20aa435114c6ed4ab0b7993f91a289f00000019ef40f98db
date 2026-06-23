@@ -1,0 +1,343 @@
+{
+  "id": "exam-487dbd33-b65c-4b3c-b4fc-57bb9d53b847",
+  "subject": "Basic 1 Agric 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Flat land is land that is used for ____",
+      "type": "mcq",
+      "options": [
+        "fighting",
+        "swimming",
+        "agriculture"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Farm animals provide _____for man",
+      "type": "mcq",
+      "options": [
+        "food",
+        "fork",
+        "frog"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "_____ is an example of food animal",
+      "type": "mcq",
+      "options": [
+        "lion",
+        "tiger",
+        "chicken"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "A ____can carry heavy load across the desert",
+      "type": "mcq",
+      "options": [
+        "camel",
+        "goat",
+        "rat"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "____is the uppermost layer of the earth surface",
+      "type": "mcq",
+      "options": [
+        "land",
+        "house",
+        "grass"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "_____ land is not good for agriculture",
+      "type": "mcq",
+      "options": [
+        "rocky",
+        "flat",
+        "sweet"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "____ cannot be moved",
+      "type": "mcq",
+      "options": [
+        "land",
+        "leg",
+        "car"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The ___ provides day light for people to see",
+      "type": "mcq",
+      "options": [
+        "fire",
+        "sun",
+        "eye"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Stones can be used to do one of the following",
+      "type": "mcq",
+      "options": [
+        "to eat",
+        "to sharpen a cutlass",
+        "to fight"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Animals ___on land",
+      "type": "mcq",
+      "options": [
+        "graze",
+        "fight",
+        "fish"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The sun give light to make ____grow well.",
+      "type": "mcq",
+      "options": [
+        "plant",
+        "bag",
+        "five"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Dry land is a land with very little ____ content",
+      "type": "mcq",
+      "options": [
+        "water",
+        "fire",
+        "sugar"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The _____is a very large object which shines above the earth.",
+      "type": "mcq",
+      "options": [
+        "glass",
+        "sun",
+        "sky"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Work animals are animal that are use to work on the ____",
+      "type": "mcq",
+      "options": [
+        "leg",
+        "tree",
+        "farm"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "A dog is a ___animal",
+      "type": "mcq",
+      "options": [
+        "play",
+        "song",
+        "guard"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "A chicken lay ____",
+      "type": "mcq",
+      "options": [
+        "head",
+        "egg",
+        "hen"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Farm animals provide _____ for farmers",
+      "type": "mcq",
+      "options": [
+        "grain",
+        "paper",
+        "income"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "____ are added to soil to get manure",
+      "type": "mcq",
+      "options": [
+        "animal dung",
+        "animal paper",
+        "animal clothes"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Food animals are animals reared to provide food for _____",
+      "type": "mcq",
+      "options": [
+        "man",
+        "thieves",
+        "lorries"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The sun is the _____ source of energy",
+      "type": "mcq",
+      "options": [
+        "secondary",
+        "nursery",
+        "primary"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "The ______is the primary source of energy",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "____ is used for grazing",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "There are ______types of land",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_______ and _______ produce milk for man",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_______ and _______are work animals",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Camels are used in the Northern art of _________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Forest trees are planted on _____________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Sunrise gives the _____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The _________________ gives heat to dry seeds",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Stones are used to scare ______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What are work animals?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Give two examples of work animal.\ni. ___________________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "ii. ___________________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What gives light to the earth?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List two uses of land.\ni. ________________________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "ii._______________________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

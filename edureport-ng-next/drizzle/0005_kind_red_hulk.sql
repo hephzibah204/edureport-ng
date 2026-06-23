@@ -1,0 +1,1 @@
+ALTER TABLE `schools` ADD `promotion_logic` text DEFAULT '{}' NOT NULL;

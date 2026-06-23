@@ -1,0 +1,145 @@
+{
+  "id": "exam-dbd83939-6783-4331-bce7-88fc1d7dea1b",
+  "subject": "Art B3 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "bad behavior",
+        "good behavior",
+        "minor behavior",
+        "none of the above"
+      ],
+      "question": "Acceptable values are known as ____",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 2,
+      "explanation": "",
+      "options": [
+        "good behaviours",
+        "nice behaviours",
+        "bad behaviours",
+        "none of the above"
+      ],
+      "question": "Unacceptable values are known as ___",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 2,
+      "explanation": "",
+      "options": [
+        "acceptable",
+        "major",
+        "unacceptable",
+        "none of the above"
+      ],
+      "question": "Eating on the road and fighting are examples of ___ values",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 2,
+      "explanation": "",
+      "options": [
+        "Bolu",
+        "Joy",
+        "Ada",
+        "none of the above"
+      ],
+      "question": "In the story you were told who was the honest girl?",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 2,
+      "explanation": "",
+      "options": [
+        "making up",
+        "hair styles",
+        "body decoration",
+        "none of the above"
+      ],
+      "question": "Tattoo and Ila (tribal marks) are examples of ___",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "male hair styles",
+        "make-up styles",
+        "male hair styles",
+        "female hair styles"
+      ],
+      "question": "Weaving and suku are examples of ___",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 2,
+      "explanation": "",
+      "options": [
+        "make up styles",
+        "male hair styles",
+        "female hair styles",
+        "none of the above"
+      ],
+      "question": "Galaxy and punk are examples of ____",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "folktale",
+        "make up materials",
+        "purification",
+        "none of the above"
+      ],
+      "question": "Lipstick and powder are examples of ____",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 2,
+      "explanation": "",
+      "options": [
+        "pedicure",
+        "fedicure",
+        "manicure",
+        "none of the above"
+      ],
+      "question": "The care of the hand and the finger nails are known as ___",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 2,
+      "explanation": "",
+      "options": [
+        "manicure",
+        "tedicure",
+        "pedicure",
+        "none of the above"
+      ],
+      "question": "The treatment of the feet and the toe nails and known as ___",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Draw the following objects: A Pot, A Book, An Hand",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Arrange shapes to make an award for the school",
+      "type": "theory"
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

@@ -1,0 +1,121 @@
+{
+  "id": "exam-b587e928-5406-4132-a6d9-27abe042d594",
+  "subject": "Art B5 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "_____ is the use of clay to make or farm object",
+      "type": "mcq",
+      "options": [
+        "papermache",
+        "origami",
+        "modelling"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "___is an example of collage object",
+      "type": "mcq",
+      "options": [
+        "buttons",
+        "book",
+        "bag"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The speed of the dance depends on the speed of the -_____",
+      "type": "mcq",
+      "options": [
+        "colour",
+        "music",
+        "size"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "The series of movements and steps that are usually performed to music is known as ___",
+      "type": "mcq",
+      "options": [
+        "drama",
+        "dance",
+        "artifacts"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "The use of straw to write or to draw is known as ___",
+      "type": "mcq",
+      "options": [
+        "strawmy",
+        "strawdinary",
+        "strawly"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Music for worshiping God is known as ___music ",
+      "type": "mcq",
+      "options": [
+        "secular",
+        "sacred",
+        "soft"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Music for entertaining people is known as ___music",
+      "type": "mcq",
+      "options": [
+        "sacred",
+        "solo",
+        "secular"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Music also serves as means of ___",
+      "type": "mcq",
+      "options": [
+        "transportation",
+        "craft work",
+        "communication"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Dry method and ___ method are methods of clay preparation",
+      "type": "mcq",
+      "options": [
+        "wet",
+        "glue",
+        "form"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "____ is one of the modelling methods",
+      "type": "mcq",
+      "options": [
+        "shaken",
+        "coiling",
+        "dabbling"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

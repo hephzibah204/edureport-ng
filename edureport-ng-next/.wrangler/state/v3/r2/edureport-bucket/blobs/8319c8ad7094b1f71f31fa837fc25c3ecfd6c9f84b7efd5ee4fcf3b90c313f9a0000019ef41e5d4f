@@ -1,0 +1,391 @@
+{
+  "id": "exam-8a7d98c6-57e6-4562-83e0-b6296d4c7aac",
+  "subject": "Basic 4 English 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "How did Udo and his sons earn their living?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What was their house made of?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Why was Udo not satisfied with his sons?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "With what did Udo teach his sons about unity?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "How did the sons break the brooms?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "How could the sons overcome all enemies and difficulties?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What important lesson did the sons learn?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Kalu was a ___________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Kalu took his flock to ______________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "When the villagers heard the alarm they ____________________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The villagers became annoyed when _______________________________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Kalu laughed and told the villagers that",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "One month afterwards, ______________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "When the wolf attacked killed some sheep, kalu",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Nobody came to Kalu’s aid because _____________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Kalu became poor and learnt the lesson __________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The boys have ________________ their promise. (keep)",
+      "type": "mcq",
+      "options": [
+        "kept",
+        "keeping",
+        "keeps",
+        "keep"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct form is 'kept' as it is the past participle."
+    },
+    {
+      "question": "We __________________ well last night. (sleep)",
+      "type": "mcq",
+      "options": [
+        "slept",
+        "sleep",
+        "sleeping",
+        "sleeps"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct form is 'slept' as it is the past tense."
+    },
+    {
+      "question": "Has Peter __________________ anything in the market? (buy)",
+      "type": "mcq",
+      "options": [
+        "bought",
+        "buy",
+        "buying",
+        "buys"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct form is 'bought' as it is the past participle."
+    },
+    {
+      "question": "The child has __________________ her finger (cut)",
+      "type": "mcq",
+      "options": [
+        "cut",
+        "cuts",
+        "cutting",
+        "cutted"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct form is 'cut' as it is the past participle."
+    },
+    {
+      "question": "He has ________________ the sheep out of the farm. (drive)",
+      "type": "mcq",
+      "options": [
+        "driven",
+        "driving",
+        "drive",
+        "drove"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct form is 'driven' as it is the past participle."
+    },
+    {
+      "question": "He is the (fastest, fat, fatter) boy in the class.",
+      "type": "mcq",
+      "options": [
+        "fastest",
+        "fat",
+        "fatter",
+        "fatter"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct form is 'fastest' as it is the superlative."
+    },
+    {
+      "question": "Give me the (best, good, better) of the apples.",
+      "type": "mcq",
+      "options": [
+        "best",
+        "good",
+        "better",
+        "better"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct form is 'best' as it is the superlative."
+    },
+    {
+      "question": "Ben is the (smallest , small, smaller) of the triplets.",
+      "type": "mcq",
+      "options": [
+        "smallest",
+        "small",
+        "smaller",
+        "smaller"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct form is 'smallest' as it is the superlative."
+    },
+    {
+      "question": "Of the two girls, Anna is (much, more, most) careful.",
+      "type": "mcq",
+      "options": [
+        "more",
+        "much",
+        "most",
+        "more"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The correct form is 'more' as it is the comparative."
+    },
+    {
+      "question": "Everest is the (high, higher , highest) mountain in the world.",
+      "type": "mcq",
+      "options": [
+        "highest",
+        "high",
+        "higher",
+        "higher"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct form is 'highest' as it is the superlative."
+    },
+    {
+      "question": "Audus brother works in enugu",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "we saw mr Tamuko at eight o clock ",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "he cant do the work I gave him  ",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "did you see the bag",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "they saw mr abus father in june",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Can you do your work ______(quietly)",
+      "type": "mcq",
+      "options": [
+        "quietly",
+        "more quietly",
+        "most quietly",
+        "quietly"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct form is 'quietly' as it is the base form of the adverb."
+    },
+    {
+      "question": "He drives the car ____________ than you. (carefully)",
+      "type": "mcq",
+      "options": [
+        "more carefully",
+        "carefully",
+        "most carefully",
+        "more carefully"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct form is 'more carefully' as it is the comparative."
+    },
+    {
+      "question": "The baby slept _____ in the cot than on the bed (peacefully)",
+      "type": "mcq",
+      "options": [
+        "peacefully",
+        "more peacefully",
+        "most peacefully",
+        "more peacefully"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The correct form is 'more peacefully' as it is the comparative."
+    },
+    {
+      "question": "quickly",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "In hospital",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Two days ago",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "In my room",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write a composition on one of the following topics",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

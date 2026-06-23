@@ -1,0 +1,849 @@
+{
+  "id": "exam-319845d3-6a80-4fdb-bfde-b7a4d15c6603",
+  "subject": "Kg 2 1",
+  "classLevel": "Nursery",
+  "questions": [
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "2",
+        "4",
+        "11",
+        "None of the above"
+      ],
+      "question": "1 + 1 =",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write the missing numbers 40, 41, 42, 43 ___ ____ ____",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "4",
+        "8",
+        "30",
+        "None of the above"
+      ],
+      "question": "3 + 1 +",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write the missing number 25, 26, 27, ___ ____ ____ 30",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "50",
+        "30",
+        "20",
+        "None of the above"
+      ],
+      "question": "Five and Zero is what?",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Count 1, 2, 3, _____ 40",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write 1 2 3 ___ 30",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": 2,
+      "explanation": "",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "question": "4 + 1 =",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write number thirty",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write number 48",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Fill in the gaps 1 3 5 7 9 11 13 15 17 19 21",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": 2,
+      "explanation": "",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "question": "2 + 5 =",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Fill in the gaps 1 4 7 10 13 16 19 22",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write number fifteen",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": 2,
+      "explanation": "",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "question": "1 + 3",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Re-write I Love my School",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Read A-Z",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write Aa-Hh",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "b",
+        "p",
+        "d",
+        "q"
+      ],
+      "question": "P sound",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "d",
+        "q",
+        "b",
+        "r"
+      ],
+      "question": "Q sound",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "b",
+        "r",
+        "d",
+        "p"
+      ],
+      "question": "R sound",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "s",
+        "k",
+        "d",
+        "p"
+      ],
+      "question": "S sound",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "t",
+        "l",
+        "d",
+        "p"
+      ],
+      "question": "T sound",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "We use eyes to see",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "We wash our mouth with oil and sand",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "We cut our finger nails with cutlass",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Leg is part of the body",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Coughing into other people’s mouth is good",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Nail is used for brushing teeth",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Dirty hair attract like",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Is good to wash your mouth once in a year",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "We hear with our ear",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "We must prevent our eyes from sharp object",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Father is the head of the family",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "It is good to lie",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Doctor works in a hospital",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Car can carry people from place to place",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Mother cooks for the family",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Good child must not fight",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Box can carry goods from place to place",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Farmer grows crop",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "It is good to eat in the toilet",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Children are part of the family",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Can balloon floats on water",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Apple is a type of fruit",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "We write with leg",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Hand is used for holding",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Ball can sink in water",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "We eat with our mouth",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Teeth is used for chewing",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Keg can floats on water",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Rice is a fruit",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "We use nose to eat",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Does God want us to be bad children",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Is it God that created Car",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "Is God a farmer",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "God is a man",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "God is a woman",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "God loves us all",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "God eats rice",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "God has Ten wives",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "God need Car to move",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "Yes",
+        "No",
+        "Maybe",
+        "Sometimes"
+      ],
+      "question": "God is a doctor",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write these Aa Bb Cc Dd Ee Ff",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Read A-Z",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Read a sound a-Z sound z",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write and say it Gg Gg Hh Hh",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "f",
+        "d",
+        "p",
+        "q"
+      ],
+      "question": "F sound",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "O",
+        "r",
+        "p",
+        "q"
+      ],
+      "question": "What is the sound of O",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "d",
+        "V",
+        "p",
+        "q"
+      ],
+      "question": "What is the sound of letter D",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "",
+      "options": [
+        "l",
+        "t",
+        "p",
+        "q"
+      ],
+      "question": "What is letter L’",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "",
+      "options": [
+        "f",
+        "r",
+        "p",
+        "q"
+      ],
+      "question": "What is the sound of letter R",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write 1-50",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Count 1-100",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Fill in the gaps 1 2 ___ ___ ____ ____ _____ _____ 9 10",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "9 10 ____ _____ ____ ____ _____ 16 17",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": 2,
+      "explanation": "",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "question": "Count this object O O O O O =",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write number Eight",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Write number six",
+      "type": "theory"
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

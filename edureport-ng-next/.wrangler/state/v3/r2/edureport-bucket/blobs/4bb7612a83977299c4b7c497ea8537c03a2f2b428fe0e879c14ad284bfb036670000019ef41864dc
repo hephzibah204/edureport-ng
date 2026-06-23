@@ -1,0 +1,326 @@
+{
+  "id": "exam-66c170b0-2647-4722-ade5-4334c9180d33",
+  "subject": "Basic 2 Science 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "______ and ______ are common plants in our locality and school compound",
+      "type": "mcq",
+      "options": [
+        "mango/orange",
+        "basket/bowl",
+        "school/church"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Mango and orange are common plants."
+    },
+    {
+      "question": "Plant are living thing that grow from the ___",
+      "type": "mcq",
+      "options": [
+        "heaven",
+        "soil",
+        "market"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Plants grow from the soil."
+    },
+    {
+      "question": "Plants have various shapes and ____",
+      "type": "mcq",
+      "options": [
+        "head",
+        "body",
+        "sizes"
+      ],
+      "correctAnswer": 2,
+      "explaination": "Plants have various shapes and sizes."
+    },
+    {
+      "question": "The texture of plant is _____",
+      "type": "mcq",
+      "options": [
+        "hard",
+        "soft",
+        "red"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The texture of a plant is usually soft."
+    },
+    {
+      "question": "Plant can be know by their features. True or False",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Plants consist of various ____ with different colours",
+      "type": "mcq",
+      "options": [
+        "hands",
+        "parts",
+        "bodies"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Plants consist of various parts with different colours."
+    },
+    {
+      "question": "______plant is not in the group of cashew, guava, orange",
+      "type": "mcq",
+      "options": [
+        "mango",
+        "pea",
+        "maize"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pea is not a fruit-bearing tree like cashew, guava, and orange."
+    },
+    {
+      "question": "Plant can be different in ____",
+      "type": "mcq",
+      "options": [
+        "shape",
+        "place",
+        "objects"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Plants can be different in shape."
+    },
+    {
+      "question": "Plant provide ___for man and animals.",
+      "type": "mcq",
+      "options": [
+        "food",
+        "animal",
+        "objects"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Plants provide food for man and animals."
+    },
+    {
+      "question": "We get ____ used for cooking food from plants",
+      "type": "mcq",
+      "options": [
+        "gun",
+        "fire wood",
+        "decoration"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Fire wood is used for cooking food from plants."
+    },
+    {
+      "question": "Plant can be used to ____ our surroundings both at home and in the school",
+      "type": "mcq",
+      "options": [
+        "bouncing",
+        "battle",
+        "beautify"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Plants can be used to beautify our surroundings."
+    },
+    {
+      "question": "____ are used in making furniture",
+      "type": "mcq",
+      "options": [
+        "plant",
+        "planent",
+        "planter"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Plants are used in making furniture."
+    },
+    {
+      "question": "_____ tell us about the appearance of things",
+      "type": "mcq",
+      "options": [
+        "sound",
+        "clothes",
+        "colours"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Colours tell us about the appearance of things."
+    },
+    {
+      "question": "Things around us have so many different ___",
+      "type": "mcq",
+      "options": [
+        "feather",
+        "colour",
+        "water"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Things around us have so many different colours."
+    },
+    {
+      "question": "The two major kind of colours are _____and ______",
+      "type": "mcq",
+      "options": [
+        "black/white",
+        "green/red",
+        "natural/artificial"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Black and white are the two major kinds of colours."
+    },
+    {
+      "question": "Animals in our surrounding include _____ and ______",
+      "type": "mcq",
+      "options": [
+        "butterfly/earthworms",
+        "lion/tiger",
+        "elephant/zebra"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Butterfly and earthworms are common animals in our surroundings."
+    },
+    {
+      "question": "The different ways animals move include ____and ____",
+      "type": "mcq",
+      "options": [
+        "crawling/flying",
+        "eating/dancing",
+        "bending/standing"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Crawling and flying are different ways animals move."
+    },
+    {
+      "question": "Some animals have shells while some have ____",
+      "type": "mcq",
+      "options": [
+        "bush",
+        "scales",
+        "comb"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Some animals have scales while others have shells."
+    },
+    {
+      "question": "Animal provide food for ____and other animals",
+      "type": "mcq",
+      "options": [
+        "bowl",
+        "food",
+        "compound",
+        "man"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Animals provide food for man and other animals."
+    },
+    {
+      "question": "We use the _____of animals to make shoes bags and clothes",
+      "type": "mcq",
+      "options": [
+        "skin",
+        "hair",
+        "water"
+      ],
+      "correctAnswer": 0,
+      "explanation": "We use the skin of animals to make shoes, bags, and clothes."
+    },
+    {
+      "question": "Orange is a common _____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "________ are plant used to decorate our homes and school.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "We can identify things with their __________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Animals have different ways of __________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Lion eats _______________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Snake moves by ________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "We use the skin of _________________ for shoes, bags and clothes",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The dog __________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "A pig __________________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List four features of plants",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write five common plants in our surroundings",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List four animals that have four legs",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List four uses of animals",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write three animals and their sound.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

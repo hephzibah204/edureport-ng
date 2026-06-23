@@ -1,0 +1,121 @@
+{
+  "id": "exam-564e06d2-ea64-455b-8585-493d49806fc3",
+  "subject": "CRS",
+  "classLevel": "Nursery",
+  "questions": [
+    {
+      "correctAnswer": 1,
+      "explanation": "The correct answer is Heavenly father.",
+      "options": [
+        "daddy and mummy",
+        "Heavenly father",
+        "sister and brother",
+        "other"
+      ],
+      "question": "Who is God?",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Mention 2 things created by God",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "The correct answer is Adam and Eve.",
+      "options": [
+        "Adam and Eve",
+        "Joseph and Mary",
+        "Mummy and daddy",
+        "other"
+      ],
+      "question": "Who were our first parents?",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "The correct answer is yes.",
+      "options": [
+        "yes",
+        "No",
+        "other",
+        "other"
+      ],
+      "question": "Do you love father Abraham?",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": -1,
+      "explanation": "",
+      "options": [],
+      "question": "Say the rhyme on Father Abraham",
+      "type": "theory"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "The correct answer is Yes.",
+      "options": [
+        "Yes",
+        "No",
+        "other",
+        "other"
+      ],
+      "question": "Did God create us?",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "The correct answer is Yes.",
+      "options": [
+        "Yes",
+        "No",
+        "other",
+        "other"
+      ],
+      "question": "Do you love God?",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "The correct answer is God.",
+      "options": [
+        "Daddy",
+        "God",
+        "other",
+        "other"
+      ],
+      "question": "____ created our first parents",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 1,
+      "explanation": "The correct answer is God.",
+      "options": [
+        "mummy",
+        "God",
+        "other",
+        "other"
+      ],
+      "question": "Human beings were created by ____",
+      "type": "mcq"
+    },
+    {
+      "correctAnswer": 0,
+      "explanation": "The correct answer is yes.",
+      "options": [
+        "yes",
+        "No",
+        "other",
+        "other"
+      ],
+      "question": "Are you are of father Abraham’s children.",
+      "type": "mcq"
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

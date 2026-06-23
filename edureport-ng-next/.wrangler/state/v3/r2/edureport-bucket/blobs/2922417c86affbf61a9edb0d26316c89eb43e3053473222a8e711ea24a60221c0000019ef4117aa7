@@ -1,0 +1,336 @@
+{
+  "id": "exam-9fd2015b-3466-4012-8a22-ebbec31b4dfa",
+  "subject": "Basic 1 Crs 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "The birth of baby is the time of joy and ___",
+      "type": "mcq",
+      "options": [
+        "celebration",
+        "sadness",
+        "hatred"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The birth of a baby is typically a joyful event, so 'celebration' is the correct answer."
+    },
+    {
+      "question": "The first people that visited baby Jesus were ___",
+      "type": "mcq",
+      "options": [
+        "the wise men",
+        "the foolish men",
+        "the harm men"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The first people to visit baby Jesus were the wise men, as mentioned in the Bible."
+    },
+    {
+      "question": "Christmas is celebrated to remember ____",
+      "type": "mcq",
+      "options": [
+        "the death of Jesus",
+        "the birth of Jesus",
+        "God’s favour"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Christmas is celebrated to remember the birth of Jesus."
+    },
+    {
+      "question": "____ wanted to kill Jesus",
+      "type": "mcq",
+      "options": [
+        "John",
+        "Herod",
+        "Peter"
+      ],
+      "correctAnswer": 1,
+      "explanation": "King Herod wanted to kill Jesus, as recorded in the Bible."
+    },
+    {
+      "question": "Jesus’ father was ___",
+      "type": "mcq",
+      "options": [
+        "Joseph the carpenter",
+        "James",
+        "Mary the carpenter"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Jesus' father was Joseph the carpenter."
+    },
+    {
+      "question": "_____ was sent to warn Joseph in a dream",
+      "type": "mcq",
+      "options": [
+        "Toyin",
+        "An angel",
+        "pot"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An angel was sent to warn Joseph in a dream."
+    },
+    {
+      "question": "Jesus had ___ disciples",
+      "type": "mcq",
+      "options": [
+        "14",
+        "12",
+        "11"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Jesus had 12 disciples."
+    },
+    {
+      "question": "The disciples were friends of Jesus because ___",
+      "type": "mcq",
+      "options": [
+        "they loved him",
+        "they hate him",
+        "they were many"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The disciples were friends of Jesus because they loved him."
+    },
+    {
+      "question": "Jesus showed his love to people often by ____",
+      "type": "mcq",
+      "options": [
+        "talking to them",
+        "abusing them",
+        "flogging them"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Jesus showed his love to people by talking to them."
+    },
+    {
+      "question": "God provides what we need through our ____",
+      "type": "mcq",
+      "options": [
+        "enemies",
+        "parents",
+        "animals"
+      ],
+      "correctAnswer": 1,
+      "explanation": "God provides what we need through our parents."
+    },
+    {
+      "question": "Jesus was crucified at a place called ____",
+      "type": "mcq",
+      "options": [
+        "Gilgal",
+        "Gethsemane",
+        "Goal"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Jesus was crucified at Gethsemane."
+    },
+    {
+      "question": "Mary _____ was the first person to see Jesus after he rose from the dead.",
+      "type": "mcq",
+      "options": [
+        "goat",
+        "Magdalene",
+        "John"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mary Magdalene was the first person to see Jesus after he rose from the dead."
+    },
+    {
+      "question": "The death and resurrection of Jesus bring ___ to mankind",
+      "type": "mcq",
+      "options": [
+        "salvation",
+        "death",
+        "sin"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The death and resurrection of Jesus bring salvation to mankind."
+    },
+    {
+      "question": "What did Jesus do to his killer on the cross?",
+      "type": "mcq",
+      "options": [
+        "He smack them",
+        "He pray for them",
+        "He curse them"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Jesus prayed for those who killed him on the cross."
+    },
+    {
+      "question": "A Christian must fight at all times.",
+      "type": "mcq",
+      "options": [
+        "yes",
+        "no",
+        "maybe"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A Christian must not fight at all times; instead, they should seek peace."
+    },
+    {
+      "question": "Commanded that all male children should be killed",
+      "type": "mcq",
+      "options": [
+        "king Herod",
+        "King Ajala",
+        "King Solomon"
+      ],
+      "correctAnswer": 0,
+      "explanation": "King Herod commanded that all male children should be killed."
+    },
+    {
+      "question": "____ stayed in Egypt until Herod died",
+      "type": "mcq",
+      "options": [
+        "Baby Jesus",
+        "Baby Ayo",
+        "Baby Motor"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Baby Jesus stayed in Egypt until Herod died."
+    },
+    {
+      "question": "___ and _____were Jesus’s parent",
+      "type": "mcq",
+      "options": [
+        "Mary, Joseph",
+        "goat, lion",
+        "Ronke, Tobi"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Mary and Joseph were Jesus's parents."
+    },
+    {
+      "question": "____ died on the cross",
+      "type": "mcq",
+      "options": [
+        "Mary",
+        "Joseph",
+        "Jesus"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Jesus died on the cross."
+    },
+    {
+      "question": "Christians celebrate Easter for a reason",
+      "type": "mcq",
+      "options": [
+        "yes",
+        "no",
+        "sometimes"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Christians celebrate Easter for a reason, as it commemorates the resurrection of Jesus."
+    },
+    {
+      "question": "Jesus Christ was born in a _______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Virgin _____________ was the mother of Jesus.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "__________ sent an angel to Joseph the carpenter.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "King ____________ ordered that the male children should be killed.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The three _____________ men visited Jesus in the manger.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Joseph had a ___________ about Mary.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Jesus had ________________ disciples",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Jesus died on the __________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "___________ care for us.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "We can live a sacrificial life in the ____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Mention three names of Jesus disciples",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "State three ways in which our parents can protect",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_______________ love little children",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "___________ of Cyrene help Jesus to carry his cross.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Jesus Christ was crucified with _______________ thieves beside him.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

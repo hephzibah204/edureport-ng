@@ -1,0 +1,231 @@
+{
+  "id": "exam-b5ef87de-6fe8-4e6a-94fb-4100e375c2da",
+  "subject": "Basic 3 P H E 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "The tool used to play table tennis is called ___",
+      "type": "mcq",
+      "options": [
+        "bat",
+        "boat",
+        "hand"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A bat is the tool used to hit the ball in table tennis."
+    },
+    {
+      "question": "Which of the following is not table tennis skill",
+      "type": "mcq",
+      "options": [
+        "fighting",
+        "grip",
+        "fore hand serving"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Fighting is not a table tennis skill."
+    },
+    {
+      "question": "The skill in table tennis that involve returning or playing the ball with the forehand to the opponent is called ____",
+      "type": "mcq",
+      "options": [
+        "left",
+        "right",
+        "forehand serving"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Forehand serving is the skill involving playing the ball with the forehand."
+    },
+    {
+      "question": "The skill in table tennis that involve playing the ball with the backhand to the opponent is called ___",
+      "type": "mcq",
+      "options": [
+        "speed",
+        "backhand serving",
+        "slow"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Backhand serving is the skill involving playing the ball with the backhand."
+    },
+    {
+      "question": "____is the process of being free from danger and accidents while physical activities are being performed",
+      "type": "mcq",
+      "options": [
+        "right",
+        "real",
+        "safety in physical education"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Safety in physical education refers to being free from danger during physical activities."
+    },
+    {
+      "question": "Safety in physical education helps to ____",
+      "type": "mcq",
+      "options": [
+        "save lives",
+        "kill lives",
+        "feed lives"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Safety in physical education helps to save lives."
+    },
+    {
+      "question": "Safety in physical education can ____",
+      "type": "mcq",
+      "options": [
+        "destroy",
+        "trouble",
+        "promotes good health"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Safety in physical education promotes good health."
+    },
+    {
+      "question": "Safety rules in physical education class says ___",
+      "type": "mcq",
+      "options": [
+        "fight",
+        "drink",
+        "avoid throwing objects carelessly"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Avoiding throwing objects carelessly is a safety rule in physical education."
+    },
+    {
+      "question": "Mental health is the state of ________ well being of an individual",
+      "type": "mcq",
+      "options": [
+        "school",
+        "mental",
+        "being"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mental health refers to the state of mental well-being."
+    },
+    {
+      "question": "Lack of rest can lead to _____ illness",
+      "type": "mcq",
+      "options": [
+        "mental",
+        "leg",
+        "laugh"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Lack of rest can lead to mental illness."
+    },
+    {
+      "question": "Good rest can prevent ______",
+      "type": "mcq",
+      "options": [
+        "food",
+        "savior",
+        "premature death"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Good rest can prevent premature death."
+    },
+    {
+      "question": "____is the ability to relate well with others in the family workplace etc.",
+      "type": "mcq",
+      "options": [
+        "local",
+        "International",
+        "social health"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Social health refers to the ability to relate well with others."
+    },
+    {
+      "question": "Social health promotes ____",
+      "type": "mcq",
+      "options": [
+        "effective communication",
+        "ulcer",
+        "sickness"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Social health promotes effective communication."
+    },
+    {
+      "question": "Which of the following is a sign of mentally sick person",
+      "type": "mcq",
+      "options": [
+        "happiness",
+        "joy",
+        "depression"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Depression is a sign of a mentally sick person."
+    },
+    {
+      "question": "Mentally sick person always ____ to himself, family and his immediate environment",
+      "type": "mcq",
+      "options": [
+        "dancing",
+        "misbehave",
+        "eat"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mentally sick persons may misbehave towards themselves and others."
+    },
+    {
+      "question": "One of the signs and symptoms of a socially sick person is _____",
+      "type": "mcq",
+      "options": [
+        "denial",
+        "self reproach",
+        "old"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Self reproach is a symptom of a socially sick person."
+    },
+    {
+      "question": "A mentally sick person can be taken care by ____",
+      "type": "mcq",
+      "options": [
+        "provision of adequate medical services",
+        "onion",
+        "bournvita"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Provision of adequate medical services is necessary for taking care of a mentally sick person."
+    },
+    {
+      "question": "Which of the following is not a part of the body",
+      "type": "mcq",
+      "options": [
+        "head",
+        "leg",
+        "school"
+      ],
+      "correctAnswer": 2,
+      "explanation": "School is not a part of the body."
+    },
+    {
+      "question": "____ is the unpleasant sound and noise that occur in our environment",
+      "type": "mcq",
+      "options": [
+        "work",
+        "noise pollution",
+        "faith"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Noise pollution refers to unpleasant sounds in the environment."
+    },
+    {
+      "question": "Which of the following is not a type of pollution",
+      "type": "mcq",
+      "options": [
+        "noise pollution",
+        "chemical pollution",
+        "chair pollution"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Chair pollution is not a recognized type of pollution."
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

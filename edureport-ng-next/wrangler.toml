@@ -1,0 +1,32 @@
+# Cloudflare Pages Configuration for Edureport NG
+# This configuration deploys the Next.js app to Cloudflare Pages
+
+name = "edureport-ng"
+
+# Build configuration
+pages_build_output_dir = "out"
+
+# Pages Functions configuration
+[pages.functions]
+path = "/functions"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "edureport-db"
+database_id = "51f27a1a-1451-4eeb-87f6-0ecf68108be2"
+migrations_dir = "drizzle"
+
+# Environment variables
+[vars]
+NODE_ENV = "production"
+
+[env.preview.vars]
+NODE_ENV = "development"
+
+[ai]
+binding = "AI"
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "edureport-bucket"

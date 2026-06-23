@@ -1,0 +1,231 @@
+{
+  "id": "exam-fdff6cca-c5db-4c66-b70e-f02789b24786",
+  "subject": "Basic 1 Civic 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "________ and _____guide  us  on what  to do.",
+      "type": "mcq",
+      "options": [
+        "five, light",
+        "rules , regulations",
+        "house, fire"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Children  should  obey  their  ___",
+      "type": "mcq",
+      "options": [
+        "parents",
+        "leg",
+        "head"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "We must  go to  ____early",
+      "type": "mcq",
+      "options": [
+        "school",
+        "toilet",
+        "state"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "When  we obey  rules  and  regulations, we will  get  ____",
+      "type": "mcq",
+      "options": [
+        "first",
+        "gifts",
+        "fruit"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "There  are  ___types  of  toilet",
+      "type": "mcq",
+      "options": [
+        "7",
+        "5",
+        "2"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "____ is the  way  of keeping  our  environment  clean.",
+      "type": "mcq",
+      "options": [
+        "sanitation",
+        "saint",
+        "sand"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Dirty  environment  causes  _________ and  __",
+      "type": "mcq",
+      "options": [
+        "fire, food",
+        "heat, fire",
+        "germs,  diseases"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "____ is an  example  of  a  traditional  toilet.",
+      "type": "mcq",
+      "options": [
+        "farm  toilet",
+        "pit  toilet",
+        "cup  toilet"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "We  should  always  ____on  the water  closet.",
+      "type": "mcq",
+      "options": [
+        "stand",
+        "sit",
+        "sleep"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Which  of these  is a  modern  type  of toilet?",
+      "type": "mcq",
+      "options": [
+        "pit  toilet",
+        "water  closet",
+        "bucket toilet"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "A  _____ is used  for  sweeping",
+      "type": "mcq",
+      "options": [
+        "rake",
+        "mop",
+        "broom"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "We  can  keep  our  surroundings  clean  by ",
+      "type": "mcq",
+      "options": [
+        "drying  it",
+        "sweeping  it",
+        "cooking it"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Water  closet  is made of  ____",
+      "type": "mcq",
+      "options": [
+        "paper",
+        "nylon",
+        "ceramic"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "We  can  be ___if  we  obey  community  rules  and  regulation",
+      "type": "mcq",
+      "options": [
+        "honoured",
+        "slapped",
+        "flogged"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Disobeying  rules  and  regulations  will attract______",
+      "type": "mcq",
+      "options": [
+        "fight",
+        "food",
+        "punishment"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Chemicals  and  ___are  used  to wash  the  toilets.",
+      "type": "mcq",
+      "options": [
+        "soap",
+        "sweet",
+        "kerosene"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "The  two  types  of toilet  are  ____and ___",
+      "type": "mcq",
+      "options": [
+        "house  and  house",
+        "kitchen and  toilet",
+        "traditional  and  modern"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Our  toilets  should be  kept  clean  to prevent  ____",
+      "type": "mcq",
+      "options": [
+        "life",
+        "food",
+        "germs"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Cutlass  is used  for  cutting  ___",
+      "type": "mcq",
+      "options": [
+        "hair",
+        "grass",
+        "hand"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "We  keep  our  environments  clean  to live  a  _____lifes.",
+      "type": "mcq",
+      "options": [
+        "healthy",
+        "dirty",
+        "small"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

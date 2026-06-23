@@ -1,0 +1,335 @@
+{
+  "id": "exam-befe7cd1-ba70-4fc2-94a0-9f26f7452a41",
+  "subject": "Basic 2 2nd Agric Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Harmful farm insects are insects which cause ___ to human beings, animals and farm crops.",
+      "type": "mcq",
+      "options": [
+        "happiness",
+        "stain",
+        "damage"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Harmful farm insects cause damage to human beings, animals, and crops."
+    },
+    {
+      "question": "____ and ____ are harmful farm insects",
+      "type": "mcq",
+      "options": [
+        "caterpillar/beetle",
+        "beans/ termites",
+        "butterfly/chicken"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Caterpillars and beetles are harmful farm insects."
+    },
+    {
+      "question": "Some insects bite and transmit ____ to human beings and animas",
+      "type": "mcq",
+      "options": [
+        "money",
+        "diseases",
+        "dishonest"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Some insects transmit diseases to humans and animals."
+    },
+    {
+      "question": "_____ eat the stems and roots of plants",
+      "type": "mcq",
+      "options": [
+        "termites",
+        "tiger",
+        "beetle"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Termites eat the stems and roots of plants."
+    },
+    {
+      "question": "Yams are stored in ____ to reduce beetle attack.",
+      "type": "mcq",
+      "options": [
+        "water",
+        "river",
+        "barns"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Yams are stored in barns to reduce beetle attack."
+    },
+    {
+      "question": "Clearing of surrounding bushes prevent ____ from hiding in them",
+      "type": "mcq",
+      "options": [
+        "insult",
+        "insects",
+        "inside"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Clearing bushes prevents insects from hiding in them."
+    },
+    {
+      "question": "An _____ is an animal that is found mainly in the wet soils of grassland, woodland, shrub lands and forest.",
+      "type": "mcq",
+      "options": [
+        "earth worm",
+        "earthring",
+        "earth"
+      ],
+      "correctAnswer": 0,
+      "explanation": "An earthworm is an animal found in wet soils."
+    },
+    {
+      "question": "An earthworm has a swollen section of the body called ____",
+      "type": "mcq",
+      "options": [
+        "cell",
+        "site",
+        "clitellum"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The swollen section of an earthworm's body is called the clitellum."
+    },
+    {
+      "question": "An earthworm has both male and _____ reproductive organ",
+      "type": "mcq",
+      "options": [
+        "female",
+        "male",
+        "mate"
+      ],
+      "correctAnswer": 0,
+      "explanation": "An earthworm has both male and female reproductive organs."
+    },
+    {
+      "question": "The body of an earthworm is long and _____",
+      "type": "mcq",
+      "options": [
+        "cycle",
+        "cylindrical"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The body of an earthworm is long and cylindrical."
+    },
+    {
+      "question": "Earthworm provides food for many animals .",
+      "type": "mcq",
+      "options": [
+        "true",
+        "false",
+        "none of the above"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Earthworms provide food for many animals."
+    },
+    {
+      "question": "An earthworm makes water ____ in the soil though the burrowing activities",
+      "type": "mcq",
+      "options": [
+        "circulate",
+        "calculate",
+        "calm"
+      ],
+      "correctAnswer": 0,
+      "explanation": "An earthworm makes water circulate in the soil through its burrowing activities."
+    },
+    {
+      "question": "____ and ____ are energy giving food.",
+      "type": "mcq",
+      "options": [
+        "beans/egg",
+        "meat/ fish",
+        "yam/ maize"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Yam and maize are energy giving foods."
+    },
+    {
+      "question": "Energy giving food allow humans to be able to perform their activities without _____",
+      "type": "mcq",
+      "options": [
+        "stepping",
+        "tiredness",
+        "crying"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Energy giving food allows humans to perform activities without tiredness."
+    },
+    {
+      "question": "Body building foods protect us against ____",
+      "type": "mcq",
+      "options": [
+        "fighting",
+        "dancing",
+        "disease"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Body building foods protect us against disease."
+    },
+    {
+      "question": "_________ and ______ are body building foods",
+      "type": "mcq",
+      "options": [
+        "rice /fat",
+        "butter /leaf",
+        "fish/milk"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Fish and milk are body building foods."
+    },
+    {
+      "question": "We can get ____ from fruit",
+      "type": "mcq",
+      "options": [
+        "sugar",
+        "vitamin",
+        "yam"
+      ],
+      "correctAnswer": 1,
+      "explanation": "We can get vitamins from fruit."
+    },
+    {
+      "question": "The categories of vitamins are",
+      "type": "mcq",
+      "options": [
+        "B,D,E,C,T",
+        "G,T,B,C,N AND b",
+        "A,B,C,D,E and K"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The categories of vitamins include A, B, C, D, E, and K."
+    },
+    {
+      "question": "Vitamins help in developing ___ tissue",
+      "type": "mcq",
+      "options": [
+        "health",
+        "hand",
+        "handball"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Vitamins help in developing healthy tissue."
+    },
+    {
+      "question": "____ help the body to grow properly",
+      "type": "mcq",
+      "options": [
+        "fat / oil",
+        "protein",
+        "water"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Protein helps the body to grow properly."
+    },
+    {
+      "question": "__________ and ______ are harmful insects",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Termites eat the stems and __________of a plant.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_____ are stored in barn to reduce beetle attack.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "An ____has both male and female reproduction organ.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Body building food ____the body against diseases.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Some _____bite and transmit to human beings and animals",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Insect ________other food items in storage",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Examples of energy giving food are ____________ and _________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Egg and fish help to _____________the body and also protect against diseases",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Grasshoppers and _____________ eat the leaves of plants.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List four harmful farm insects",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List four carbohydrate food",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write three damage caused by harmful farm insects",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write two methods of controlling harmful farm insects.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Draw and label an earthworm",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

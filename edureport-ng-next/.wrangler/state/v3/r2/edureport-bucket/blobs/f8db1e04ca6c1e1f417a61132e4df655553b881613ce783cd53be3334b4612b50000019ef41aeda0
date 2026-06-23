@@ -1,0 +1,287 @@
+{
+  "id": "exam-69b1fc99-1b88-4e87-8107-facc48a72c93",
+  "subject": "Basic 3 English 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Fill in the blanks with suitable conjunction’s to make meaningful sentences. Would you like something to eat ________ drink?",
+      "type": "mcq",
+      "options": [
+        "and",
+        "or",
+        "but",
+        "so"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The correct conjunction is 'or' because it presents an alternative."
+    },
+    {
+      "question": "Fill in the blanks with suitable conjunction’s to make meaningful sentences. I will go to the party ____you come with me",
+      "type": "mcq",
+      "options": [
+        "if",
+        "and",
+        "but",
+        "so"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct conjunction is 'if' because it introduces a condition."
+    },
+    {
+      "question": "Fill in the blanks with suitable conjunction’s to make meaningful sentences. Taiwo is kind ____helpful",
+      "type": "mcq",
+      "options": [
+        "and",
+        "but",
+        "or",
+        "so"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct conjunction is 'and' because it connects two positive adjectives."
+    },
+    {
+      "question": "Fill in the blanks with suitable conjunction’s to make meaningful sentences. She was extremely careful ________she made mistakes",
+      "type": "mcq",
+      "options": [
+        "but",
+        "yet",
+        "and",
+        "so"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The correct conjunction is 'but' because it shows contrast."
+    },
+    {
+      "question": "Fill in the simple past tense of the verbs in the brackets. He ________ his toy (break)",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Fill in the simple past tense of the verbs in the brackets. We _____ not like the food yesterday (do)",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Fill in the simple past tense of the verbs in the brackets. I ______ the rubbish into the dust bin just now (throw)",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Rewrite the following sentences in the future continuous tense. We shall paint the house before shifting in",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Rewrite the following sentences in the future continuous tense. He will help us to pack out things.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Rewrite the following sentences in the future continuous tense. They will do their homework after school.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Use your own words to form compound words below. traffic ___________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Use your own words to form compound words below. note = _____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Use your own words to form compound words below. net = _____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Use your own words to form compound words below. tea = ______________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Use your own words to form compound words below. key = _____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Complete the sentences below with the correct. ____________________ book do you want?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Complete the sentences below with the correct. ____________________ is your birthday?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Complete the sentences below with the correct. _____________________ is your ambition?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Fill in the blanks with the present continuous tense of the verb given in brackets. My neighbours _____(make) a lot of noise.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Fill in the blanks with the present continuous tense of the verb given in brackets. They _______(go) to india",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "COMPREHENSION: Where was Fatima going when she heard the loud noise?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "COMPREHENSION: What was one man holding?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "COMPREHENSION: What did Fatima do when she saw the men?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "COMPREHENSION: Why did Fatima think they were bank robbers.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "COMPREHENSION: How did she remember the number of the car?",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "COMPOSITION: Choose and write on one of the following (Ten sentences). My classroom",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "COMPOSITION: Choose and write on one of the following (Ten sentences). My class teacher",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "COMPOSITION: Choose and write on one of the following (Ten sentences). My best friend",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Underline the correct answer. One who works on a ship (farmer, sailor)",
+      "type": "mcq",
+      "options": [
+        "farmer",
+        "sailor",
+        "teacher",
+        "soldier"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A sailor works on a ship."
+    },
+    {
+      "question": "Underline the correct answer. One who tests eyesight and prescribes spectacles (optician , nurse)",
+      "type": "mcq",
+      "options": [
+        "optician",
+        "nurse",
+        "teacher",
+        "soldier"
+      ],
+      "correctAnswer": 0,
+      "explanation": "An optician tests eyesight and prescribes spectacles."
+    },
+    {
+      "question": "Underline the correct answer. One who sell meat in a market (seamistress, butcher)",
+      "type": "mcq",
+      "options": [
+        "seamistress",
+        "butcher",
+        "teacher",
+        "soldier"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A butcher sells meat in a market."
+    },
+    {
+      "question": "Underline the correct answer. One who sells fish (fishmonger, fishdriver)",
+      "type": "mcq",
+      "options": [
+        "fishmonger",
+        "fishdriver",
+        "teacher",
+        "soldier"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A fishmonger sells fish."
+    },
+    {
+      "question": "Underline the correct answer. One who serves in an army (teacher, soldier)",
+      "type": "mcq",
+      "options": [
+        "teacher",
+        "soldier",
+        "farmer",
+        "sailor"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A soldier serves in an army."
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

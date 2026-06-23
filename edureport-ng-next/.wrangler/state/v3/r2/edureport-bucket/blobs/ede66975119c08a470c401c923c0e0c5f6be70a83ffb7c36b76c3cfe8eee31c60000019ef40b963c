@@ -1,0 +1,145 @@
+{
+  "id": "exam-ec66aa1f-7dff-4033-a4e4-bfe13b732439",
+  "subject": "Art B1 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "Decorative artworks are for decorating",
+      "type": "mcq",
+      "options": [
+        "field",
+        "house",
+        "forest",
+        "sky"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Decorative artworks are typically used to enhance the aesthetic appeal of spaces like houses."
+    },
+    {
+      "question": "Foot mat and _____are examples of decorative artworks",
+      "type": "mcq",
+      "options": [
+        "table mat",
+        "ice-cream",
+        "car",
+        "stone"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Both foot mats and table mats are common household items used for decoration and utility."
+    },
+    {
+      "question": "Folktale is about",
+      "type": "mcq",
+      "options": [
+        "drama",
+        "story",
+        "math",
+        "science"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A folktale is a traditional story originating from popular culture, typically passed on by word of mouth."
+    },
+    {
+      "question": "Primary colours are _______, _______ and _______ colour",
+      "type": "mcq",
+      "options": [
+        "purple, green and orange",
+        "red, blue and yellow",
+        "black, white and grey",
+        "pink, brown and cyan"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The primary colours in subtractive colour mixing (used in art) are red, blue, and yellow."
+    },
+    {
+      "question": "Colour _____, ____ and ______ are secondary colours",
+      "type": "mcq",
+      "options": [
+        "red, blue and yellow",
+        "purple, green and orange",
+        "black, white and grey",
+        "pink, brown and magenta"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Secondary colours (purple, green, orange) are created by mixing two primary colours."
+    },
+    {
+      "question": "___ consists of husband, wife and children",
+      "type": "mcq",
+      "options": [
+        "school",
+        "family",
+        "hospital",
+        "park"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A family unit typically consists of a husband, wife, and their children."
+    },
+    {
+      "question": "___breast feed the baby at home",
+      "type": "mcq",
+      "options": [
+        "father",
+        "mother",
+        "neighbour",
+        "doctor"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mothers breastfeed babies."
+    },
+    {
+      "question": "______ is the head of the family",
+      "type": "mcq",
+      "options": [
+        "uncle",
+        "father",
+        "child",
+        "pet"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In many traditional family structures, the father is recognized as the head of the household."
+    },
+    {
+      "question": "______ is to create excitement in a story",
+      "type": "mcq",
+      "options": [
+        "money",
+        "song",
+        "silence",
+        "sadness"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Songs or music can be used effectively to build excitement and atmosphere in a story."
+    },
+    {
+      "question": "____must help in washing the plates at home.",
+      "type": "mcq",
+      "options": [
+        "children",
+        "neighbour",
+        "pets",
+        "plants"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Children are often taught to help with household chores like washing plates."
+    },
+    {
+      "question": "Draw the following objects at home: Cup, bowl, spoon, knife.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": "This question requires students to draw specific objects found at home."
+    },
+    {
+      "question": "Draw your hand and beautify it with colour.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": "This question requires students to draw their hand and then color it creatively."
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

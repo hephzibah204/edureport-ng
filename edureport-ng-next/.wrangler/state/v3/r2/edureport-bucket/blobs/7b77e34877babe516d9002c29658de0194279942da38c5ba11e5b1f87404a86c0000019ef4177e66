@@ -1,0 +1,342 @@
+{
+  "id": "exam-2a2319c7-5649-4d68-b6c8-c8d11584190c",
+  "subject": "Basic 2 Maths 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "23 + 34 = ___",
+      "type": "mcq",
+      "options": [
+        "30",
+        "23",
+        "57",
+        "95"
+      ],
+      "correctAnswer": 2,
+      "explanation": "23 + 34 equals 57."
+    },
+    {
+      "question": "Add 68 to 17 the answer is ____",
+      "type": "mcq",
+      "options": [
+        "85",
+        "99",
+        "105",
+        "20"
+      ],
+      "correctAnswer": 0,
+      "explanation": "68 + 17 equals 85."
+    },
+    {
+      "question": "9 _____ (a) 15 (b) 10 (c) 96 (d) 69",
+      "type": "mcq",
+      "options": [
+        "15",
+        "10",
+        "96",
+        "69"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Adding 6 to 9 gives 15."
+    },
+    {
+      "question": "10 _____ (a) 36 (b) 20 (c) 16 (d) 49",
+      "type": "mcq",
+      "options": [
+        "36",
+        "20",
+        "16",
+        "49"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Adding 6 to 10 gives 16."
+    },
+    {
+      "question": "7 _____ (a) 11 (b) 76 (c) 13 (d) 50",
+      "type": "mcq",
+      "options": [
+        "11",
+        "76",
+        "13",
+        "50"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Adding 6 to 7 gives 13."
+    },
+    {
+      "question": "18 + 7 + 4 = ___",
+      "type": "mcq",
+      "options": [
+        "100",
+        "29",
+        "74",
+        "105"
+      ],
+      "correctAnswer": 1,
+      "explanation": "18 + 7 + 4 equals 29."
+    },
+    {
+      "question": "I have 26 groundnuts, you have 39 groundnuts, we both have ____ groundnuts",
+      "type": "mcq",
+      "options": [
+        "100",
+        "39",
+        "26",
+        "65"
+      ],
+      "correctAnswer": 3,
+      "explanation": "26 + 39 equals 65."
+    },
+    {
+      "question": "Which of the following number is an odd number 7,6,4,12",
+      "type": "mcq",
+      "options": [
+        "7",
+        "6",
+        "4",
+        "12"
+      ],
+      "correctAnswer": 0,
+      "explanation": "7 is an odd number."
+    },
+    {
+      "question": "From 43 take away 15 the answer is ___",
+      "type": "mcq",
+      "options": [
+        "15",
+        "28",
+        "43",
+        "10"
+      ],
+      "correctAnswer": 1,
+      "explanation": "43 - 15 equals 28."
+    },
+    {
+      "question": "34 - 19 = ____",
+      "type": "mcq",
+      "options": [
+        "34",
+        "19",
+        "51",
+        "15"
+      ],
+      "correctAnswer": 3,
+      "explanation": "34 - 19 equals 15."
+    },
+    {
+      "question": "15 (a) 8 (b) 10 (c) 15 (d) 7",
+      "type": "mcq",
+      "options": [
+        "8",
+        "10",
+        "15",
+        "7"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Subtracting 7 from 15 gives 8."
+    },
+    {
+      "question": "8 (a) 12 (b) 1 (c) 87 (d) 25",
+      "type": "mcq",
+      "options": [
+        "12",
+        "1",
+        "87",
+        "25"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Subtracting 7 from 8 gives 1."
+    },
+    {
+      "question": "13 (a) 13 (b) 8 (c) 6 (d) 26",
+      "type": "mcq",
+      "options": [
+        "13",
+        "8",
+        "6",
+        "26"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Subtracting 7 from 13 gives 6."
+    },
+    {
+      "question": "3 x 9= ____",
+      "type": "mcq",
+      "options": [
+        "27",
+        "41",
+        "90",
+        "39"
+      ],
+      "correctAnswer": 0,
+      "explanation": "3 multiplied by 9 equals 27."
+    },
+    {
+      "question": "5 x 6 = ____",
+      "type": "mcq",
+      "options": [
+        "65",
+        "56",
+        "30",
+        "100"
+      ],
+      "correctAnswer": 2,
+      "explanation": "5 multiplied by 6 equals 30."
+    },
+    {
+      "question": "4 boys have ___ ears altogether",
+      "type": "mcq",
+      "options": [
+        "65",
+        "39",
+        "34",
+        "8"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Each boy has 2 ears, so 4 boys have 8 ears."
+    },
+    {
+      "question": "5 tables have _____ legs",
+      "type": "mcq",
+      "options": [
+        "54",
+        "20",
+        "46",
+        "59"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Each table has 4 legs, so 5 tables have 20 legs."
+    },
+    {
+      "question": "7 (a) 73 (b) 37 (c) 21 (d) 54",
+      "type": "mcq",
+      "options": [
+        "73",
+        "37",
+        "21",
+        "54"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Multiplying 7 by 3 gives 21."
+    },
+    {
+      "question": "9 (a) 94 (b) 49 (c) 30 (d) 36",
+      "type": "mcq",
+      "options": [
+        "94",
+        "49",
+        "30",
+        "36"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Multiplying 9 by 4 gives 36."
+    },
+    {
+      "question": "8 (a) 80 (b) 10 (c) 8 (d) 88",
+      "type": "mcq",
+      "options": [
+        "80",
+        "10",
+        "8",
+        "88"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Multiplying 8 by 10 gives 80."
+    },
+    {
+      "question": "T U\n39\n+ 42",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "T U\n58\n-19",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "H T U\n2 5 5\n+ 4 2 4",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "51 minus 27",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "H T U\n3 5\nx 4",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "57 - 49 = ______\n20 - 6 = _______",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "5 boys have ______ x _____ eyes = ____eyes",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "5 x 7 = _______\n3 x 8 = _______",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write the following in words\n125 - _______________\n85 - ________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Circle all the odd numbers in the numbers below 24 , 19 , 39 , 46",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Subtract 29 from 65",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Find the sum of 56 and 38",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "H T U\n4 4\nx 3",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

@@ -1,0 +1,343 @@
+{
+  "id": "exam-8a7b63a4-8603-4b83-aa19-e4a5d7e78445",
+  "subject": "Basic 1 Science 2nd Que",
+  "classLevel": "Primary 1",
+  "questions": [
+    {
+      "question": "_____ makes our environment beautiful.",
+      "type": "mcq",
+      "options": [
+        "fire",
+        "colours",
+        "legs"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "The traffic light has _ colours",
+      "type": "mcq",
+      "options": [
+        "9",
+        "2",
+        "3"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Living things are things that ___",
+      "type": "mcq",
+      "options": [
+        "breathe",
+        "steal",
+        "dry"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Why is tree a living thing?",
+      "type": "mcq",
+      "options": [
+        "because it can grow?",
+        "because it can walk",
+        "because it can eat"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "All _____ die when they grow old.",
+      "type": "mcq",
+      "options": [
+        "plates",
+        "stones",
+        "living things"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "____ is the colour of a leaf",
+      "type": "mcq",
+      "options": [
+        "white",
+        "black",
+        "green"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "What colour on the traffic light stops the traffic from proceeding?",
+      "type": "mcq",
+      "options": [
+        "red",
+        "black",
+        "white"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "One of the road traffic marking is ____",
+      "type": "mcq",
+      "options": [
+        "center line",
+        "dirty line",
+        "clean line"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Across the carriage way you must ____",
+      "type": "mcq",
+      "options": [
+        "give way to traffic on major road",
+        "play on the road",
+        "sleep on the road"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "___is an example of a living thing",
+      "type": "mcq",
+      "options": [
+        "dog",
+        "stone",
+        "stick"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Non-living things are thing that have no ___",
+      "type": "mcq",
+      "options": [
+        "head",
+        "nose",
+        "life"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Things made by man are called ___",
+      "type": "mcq",
+      "options": [
+        "natural things",
+        "man-made things",
+        "fresh things"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Human being have ______senses organs",
+      "type": "mcq",
+      "options": [
+        "7",
+        "5",
+        "10"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Why are you a living thing?",
+      "type": "mcq",
+      "options": [
+        "because I can breathe",
+        "because I can steal",
+        "because I cannot eat"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "_____ are sensitive",
+      "type": "mcq",
+      "options": [
+        "living things",
+        "non living thing",
+        "plates"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Traffic lights are used to _____the flow of traffic",
+      "type": "mcq",
+      "options": [
+        "disturb",
+        "dirty",
+        "control"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "________ and _____ are examples of non -living things",
+      "type": "mcq",
+      "options": [
+        "fight, cat",
+        "ball , stone",
+        "dog, lion"
+      ],
+      "correctAnswer": 1,
+      "explanation": ""
+    },
+    {
+      "question": "Bicycles are made in the _____",
+      "type": "mcq",
+      "options": [
+        "factory",
+        "house",
+        "shop"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "______, ____ and ____ are the colours of the traffic light",
+      "type": "mcq",
+      "options": [
+        "red, yellow , green",
+        "white, yellow, green",
+        "green , red, black"
+      ],
+      "correctAnswer": 0,
+      "explanation": ""
+    },
+    {
+      "question": "Non-living things are ___",
+      "type": "mcq",
+      "options": [
+        "fire",
+        "water",
+        "objects"
+      ],
+      "correctAnswer": 2,
+      "explanation": ""
+    },
+    {
+      "question": "Living things have ____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "___________ and __________ are example of non-living things.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "_______, _______ and ___________ are the colours of the traffic light.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Traffic lights are positioned on the _________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Living things can _______________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Man made things are things made by _______",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "___________ is the creator of all living thing.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "__________ is the colour of a tomato.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Colours make our environment ___________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "The colours of the zebra crossing are ___________ and _____________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "What are living things? _____________________",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List four examples of living things",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Colour the objects in green",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Red",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "List two non living things",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    },
+    {
+      "question": "Write one importance of the traffic light",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": ""
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

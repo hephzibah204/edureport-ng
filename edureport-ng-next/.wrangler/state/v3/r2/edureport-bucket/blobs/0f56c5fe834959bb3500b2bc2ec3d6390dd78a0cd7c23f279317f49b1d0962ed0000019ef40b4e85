@@ -1,0 +1,83 @@
+{
+  "id": "exam-ce522066-3a58-4b21-bc55-b012458db0d2",
+  "subject": "Nursery Rhyme 2nd Que",
+  "classLevel": "Nursery",
+  "questions": [
+    {
+      "question": "Recite the following rhymes",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "1. I write a letter to my friend",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "2. I love my mummy and daddy",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "3. London bridge is falling down",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "4. Once I saw a little bird",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "5. I will nevernever disobey my parent",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "Recite the following rhymes",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "1. I write a letter to my friend",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "2. I love my mummy and daddy",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "3. London bridge is falling down",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "4. Once I saw a little bird",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    },
+    {
+      "question": "5. I will nevernever disobey my parent",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

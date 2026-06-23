@@ -1,0 +1,121 @@
+{
+  "id": "exam-c03a2383-c262-401b-a2db-15dad411bf2d",
+  "subject": "K G 2 Crs 2nd Que",
+  "classLevel": "Nursery",
+  "questions": [
+    {
+      "question": "Who is God?",
+      "type": "mcq",
+      "options": [
+        "daddy and mummy",
+        "Heavenly father",
+        "sister and brother",
+        ""
+      ],
+      "correctAnswer": 1,
+      "explanation": "In Christian teaching, God is commonly referred to as the Heavenly Father."
+    },
+    {
+      "question": "Mention 2 things created by God.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": "This question requires students to list two creations of God, such as the sky, trees, animals, or humans."
+    },
+    {
+      "question": "Who were our first parents?",
+      "type": "mcq",
+      "options": [
+        "Adam and Eve",
+        "Joseph and Mary",
+        "Mummy and daddy",
+        ""
+      ],
+      "correctAnswer": 0,
+      "explanation": "According to the Bible, Adam and Eve were the first human parents created by God."
+    },
+    {
+      "question": "Do you love Father Abraham?",
+      "type": "mcq",
+      "options": [
+        "Yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 0,
+      "explanation": "In the context of Christian Religious Knowledge (CRK), Father Abraham is a revered figure, and an affirmative answer reflects adherence to faith."
+    },
+    {
+      "question": "Say the rhyme on Father Abraham.",
+      "type": "theory",
+      "options": [],
+      "correctAnswer": -1,
+      "explanation": "This question assesses the student's ability to recall and recite a specific rhyme about Father Abraham, common in children's religious education."
+    },
+    {
+      "question": "Did God create us?",
+      "type": "mcq",
+      "options": [
+        "Yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 0,
+      "explanation": "A fundamental belief in Christianity is that God is the creator of all humanity."
+    },
+    {
+      "question": "Do you love God?",
+      "type": "mcq",
+      "options": [
+        "Yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 0,
+      "explanation": "Loving God is a central commandment and tenet of the Christian faith."
+    },
+    {
+      "question": "Who created our first parents?",
+      "type": "mcq",
+      "options": [
+        "Daddy",
+        "God",
+        "",
+        ""
+      ],
+      "correctAnswer": 1,
+      "explanation": "According to Christian belief, God created Adam and Eve, who were the first parents."
+    },
+    {
+      "question": "Who created human beings?",
+      "type": "mcq",
+      "options": [
+        "mummy",
+        "God",
+        "",
+        ""
+      ],
+      "correctAnswer": 1,
+      "explanation": "God is universally believed in Christian teaching to be the creator of all human beings."
+    },
+    {
+      "question": "Are you one of Father Abraham’s children?",
+      "type": "mcq",
+      "options": [
+        "yes",
+        "No",
+        "",
+        ""
+      ],
+      "correctAnswer": 0,
+      "explanation": "In a spiritual sense, followers of faith are often referred to as Abraham's children, signifying their spiritual lineage."
+    }
+  ],
+  "term": "2nd Term",
+  "session": "2025/2026",
+  "examType": "Terminal Exam",
+  "duration": "1 Hour"
+}

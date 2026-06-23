@@ -1,0 +1,45 @@
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  const url = request.nextUrl;
+  const hostname = request.headers.get('host') || '';
+  
+  // Define your main domain (e.g., reportsheet.com.ng)
+  const mainDomain = process.env.NEXT_PUBLIC_MAIN_DOMAIN || 'localhost:3000';
+  
+  // Check if we are on a subdomain
+  const isSubdomain = hostname.endsWith(`.${mainDomain}`) && hostname !== mainDomain && hostname !== `www.${mainDomain}`;
+
+  if (isSubdomain) {
+    const subdomain = hostname.split('.')[0];
+    
+    // Redirect logic for subdomains
+    // If a user on a subdomain tries to access the root path, send them to login
+    if (url.pathname === '/') {
+      return NextResponse.rewrite(new URL(`/login?school=${subdomain}`, request.url));
+    }
+    
+    // Allow school admin routes on the subdomain
+    // Super admins might use the main domain, but school admins use the subdomain.
+  } else {
+    // On main domain
+    // If it's a school admin trying to access /app without a session, they stay here
+    // But we don't allow "portal" or "teacher" logins on the main domain ideally
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
+};
