@@ -10,6 +10,7 @@ import {
 import { useState, useEffect } from 'react';
 import { cn } from '@/src/lib/utils';
 import { motion } from 'framer-motion';
+import { toast } from 'sonner';
 
 export default function CampusAttendance() {
   const [selectedDate, setSelectedDate] = useState<string>(() => new Date().toISOString().split('T')[0]);
@@ -58,8 +59,10 @@ export default function CampusAttendance() {
                 />
              </div>
           </div>
-          <button className="px-6 py-2.5 bg-indigo-600 text-white rounded-xl text-sm font-bold shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 transition-all">
-            Download Daily Log
+          <button 
+            onClick={() => toast.info("Download functionality coming soon")}
+            className="px-6 py-2.5 bg-indigo-600 text-white rounded-xl text-sm font-bold shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 transition-all"
+          >
           </button>
         </div>
 

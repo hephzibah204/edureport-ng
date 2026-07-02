@@ -6,6 +6,7 @@ import { CreditCard, ShieldCheck, Zap, Star, ArrowUpRight, HelpCircle, Loader2, 
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import Script from "next/script";
+import { Checkout } from "payvessel-checkout";
 
 declare global {
   interface Window {
@@ -17,6 +18,7 @@ export default function SchoolBillingPage() {
   const [loading, setLoading] = useState(true);
   const [processingPlan, setProcessingPlan] = useState<string | null>(null);
   const [school, setSchool] = useState<any>(null);
+  const [paymentProvider, setPaymentProvider] = useState<"PAYSTACK" | "PAYVESSEL">("PAYSTACK");
 
   useEffect(() => {
     async function fetchSchool() {
@@ -43,7 +45,7 @@ export default function SchoolBillingPage() {
       const res = await fetch("/api/billing/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan: planId })
+        body: JSON.stringify({ plan: planId, provider: paymentProvider })
       });
       
       const checkoutData = await res.json() as any;
@@ -51,41 +53,85 @@ export default function SchoolBillingPage() {
         throw new Error(checkoutData.error?.message || "Failed to initialize payment.");
       }
 
-      const paystackKey = "pk_test_mockpublickey123456789"; // Replace with your real public key when ready
+      if (paymentProvider === "PAYSTACK") {
+        const paystackKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY || "pk_test_mockpublickey123456789"; 
 
-      if (!window.PaystackPop) {
-        throw new Error("Paystack SDK not loaded. Please try again in a few seconds.");
-      }
-
-      // 2. Open Paystack Inline Checkout
-      const handler = window.PaystackPop.setup({
-        key: paystackKey,
-        email: checkoutData.email,
-        amount: checkoutData.amountKobo,
-        ref: checkoutData.reference,
-        callback: async function (response: any) {
-          toast.info("Verifying payment...");
-          
-          // 3. Verify on server
-          const verifyRes = await fetch("/api/billing/verify", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ reference: response.reference })
-          });
-          
-          const verifyData = await verifyRes.json() as any;
-          if (verifyRes.ok && verifyData.success) {
-            toast.success(`Success! Plan upgraded.`);
-            setSchool((prev: any) => ({ ...prev, plan: planId, trialEndsAt: null }));
-          } else {
-            toast.error(verifyData.error?.message || "Verification failed. Contact support.");
-          }
-        },
-        onClose: function () {
-          toast.warning("Payment window closed.");
+        if (!window.PaystackPop) {
+          throw new Error("Paystack SDK not loaded. Please try again in a few seconds.");
         }
-      });
-      handler.openIframe();
+
+        // 2. Open Paystack Inline Checkout
+        const handler = window.PaystackPop.setup({
+          key: paystackKey,
+          email: checkoutData.email,
+          amount: checkoutData.amountKobo,
+          ref: checkoutData.reference,
+          callback: function (response: any) {
+            toast.info("Verifying payment...");
+            
+            // 3. Verify on server (fire async inside sync callback)
+            fetch("/api/billing/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ reference: response.reference })
+            })
+              .then(res => res.json() as Promise<any>)
+              .then(verifyData => {
+                if (verifyData.success) {
+                  toast.success(`Success! Plan upgraded.`);
+                  setSchool((prev: any) => ({ ...prev, plan: planId, trialEndsAt: null }));
+                } else {
+                  toast.error(verifyData.error?.message || "Verification failed. Contact support.");
+                }
+              })
+              .catch(() => toast.error("Verification request failed. Please contact support."));
+          },
+          onClose: function () {
+            toast.warning("Payment window closed.");
+          }
+        });
+        handler.openIframe();
+      } else {
+        // Payvessel Flow
+        const pvKey = process.env.NEXT_PUBLIC_PAYVESSEL_PUBLIC_KEY || "pk_test_mockkey123456789";
+        const pvInit = Checkout({
+          api_key: pvKey,
+        });
+
+        await pvInit.initializeCheckout({
+          customer_email: checkoutData.email,
+          customer_phone_number: checkoutData.phone || school?.contact || "08000000000",
+          customer_name: checkoutData.schoolName || school?.name || "School",
+          amount: (checkoutData.amountKobo / 100).toString(),
+          currency: "NGN",
+          description: `ReportSheet ${planId} Plan Subscription`,
+          reference: checkoutData.reference,
+          callback_url: window.location.href,
+          metadata: {
+            schoolName: checkoutData.schoolName
+          },
+          onError: (error: any) => toast.error(error?.message || "Payvessel checkout failed"),
+          onSuccessfulOrder: (response: any) => {
+            toast.info("Verifying payment...");
+            fetch("/api/billing/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ reference: checkoutData.reference })
+            })
+              .then(res => res.json() as Promise<any>)
+              .then(verifyData => {
+                if (verifyData.success) {
+                  toast.success(`Success! Plan upgraded.`);
+                  setSchool((prev: any) => ({ ...prev, plan: planId, trialEndsAt: null }));
+                } else {
+                  toast.error(verifyData.error?.message || "Verification failed.");
+                }
+              })
+              .catch(() => toast.error("Verification request failed."));
+          },
+          onClose: () => toast.warning("Payment window closed.")
+        });
+      }
 
     } catch (error: any) {
       toast.error(error.message || "Failed to process transaction.");
@@ -216,6 +262,33 @@ export default function SchoolBillingPage() {
               </p>
             </div>
           )}
+        </section>
+
+        {/* Payment Method Selection */}
+        <section className="flex flex-col gap-4 max-w-sm">
+          <label className="text-sm font-bold text-[#0b1c30]">Select Payment Gateway</label>
+          <div className="flex bg-[#f8f9ff] p-1.5 rounded-xl border border-[#0b1c30]/5 shadow-inner">
+            <button
+              onClick={() => setPaymentProvider("PAYSTACK")}
+              className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all ${
+                paymentProvider === "PAYSTACK"
+                  ? "bg-white shadow-sm border border-[#0b1c30]/5 text-indigo-600"
+                  : "text-[#464555]/60 hover:text-[#0b1c30]"
+              }`}
+            >
+              Paystack
+            </button>
+            <button
+              onClick={() => setPaymentProvider("PAYVESSEL")}
+              className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all ${
+                paymentProvider === "PAYVESSEL"
+                  ? "bg-white shadow-sm border border-[#0b1c30]/5 text-indigo-600"
+                  : "text-[#464555]/60 hover:text-[#0b1c30]"
+              }`}
+            >
+              Payvessel
+            </button>
+          </div>
         </section>
 
         {/* Pricing Cards Grid */}

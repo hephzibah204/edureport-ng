@@ -3,7 +3,7 @@ import { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { GraduationCap, Lock, Loader2, ArrowLeft, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, Lock, Loader2, ArrowLeft, ShieldCheck, CheckCircle2, Eye, EyeOff } from 'lucide-react';
 import { toast } from 'sonner';
 
 function ResetPasswordForm() {
@@ -13,6 +13,8 @@ function ResetPasswordForm() {
   const token = searchParams.get('token') || '';
 
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [completed, setCompleted] = useState(false);
@@ -78,34 +80,52 @@ function ResetPasswordForm() {
             <div className="space-y-2">
               <label className="text-[10px] font-extrabold text-[#0b1c30] uppercase tracking-[0.15em] ml-1">New Password</label>
               <div className="relative group">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#464555]/40 group-focus-within:text-indigo-600 transition-colors">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#464555]/40 group-focus-within:text-indigo-600 transition-colors z-10">
                   <Lock className="w-5 h-5" />
                 </div>
                 <input 
-                  type="password" 
+                  type={showPassword ? "text" : "password"}
                   placeholder="Minimum 8 characters"
-                  className="w-full pl-12 pr-4 py-4 bg-white/50 border border-[#0b1c30]/5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-600/10 focus:border-indigo-600 transition-all font-medium text-sm"
+                  autoComplete="new-password"
+                  className="w-full pl-12 pr-12 py-4 bg-white/50 border border-[#0b1c30]/5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-600/10 focus:border-indigo-600 transition-all font-medium text-sm"
                   value={newPassword}
                   onChange={e => setNewPassword(e.target.value)}
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#464555]/40 hover:text-indigo-600 transition-colors min-tap"
+                  tabIndex={-1}
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
               </div>
             </div>
 
             <div className="space-y-2">
               <label className="text-[10px] font-extrabold text-[#0b1c30] uppercase tracking-[0.15em] ml-1">Confirm New Password</label>
               <div className="relative group">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#464555]/40 group-focus-within:text-indigo-600 transition-colors">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#464555]/40 group-focus-within:text-indigo-600 transition-colors z-10">
                   <Lock className="w-5 h-5" />
                 </div>
                 <input 
-                  type="password" 
+                  type={showConfirmPassword ? "text" : "password"}
                   placeholder="Repeat new password"
-                  className="w-full pl-12 pr-4 py-4 bg-white/50 border border-[#0b1c30]/5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-600/10 focus:border-indigo-600 transition-all font-medium text-sm"
+                  autoComplete="new-password"
+                  className="w-full pl-12 pr-12 py-4 bg-white/50 border border-[#0b1c30]/5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-600/10 focus:border-indigo-600 transition-all font-medium text-sm"
                   value={confirmPassword}
                   onChange={e => setConfirmPassword(e.target.value)}
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#464555]/40 hover:text-indigo-600 transition-colors min-tap"
+                  tabIndex={-1}
+                >
+                  {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
               </div>
             </div>
 

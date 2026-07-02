@@ -19,7 +19,7 @@ export default function CommunicationsBroadcast() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      alert(`Broadcast sent successfully to ${formData.target} via ${activeTab.toUpperCase()}.`);
+      toast.success(`Broadcast sent successfully to ${formData.target} via ${activeTab.toUpperCase()}.`);
       setFormData({ ...formData, subject: '', message: '' });
     }, 2000);
   };

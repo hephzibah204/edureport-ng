@@ -3,12 +3,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { GraduationCap, Mail, Lock, Loader2, ArrowRight, ShieldCheck } from 'lucide-react';
+import { GraduationCap, Mail, Lock, Loader2, ArrowRight, ShieldCheck, Eye, EyeOff } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -33,8 +34,9 @@ export default function LoginPage() {
 
       toast.success('Successfully authenticated');
 
-      const targetPath = 
-        data.user?.role === 'SUPER_ADMIN' || data.user?.role === 'SCHOOL' ? '/admin' :
+      const targetPath =
+        (data.user?.role === 'ADMIN' || data.user?.role === 'STAFF') ? '/app/admin' :
+        data.user?.role === 'SCHOOL' ? '/admin' :
         data.user?.role === 'TEACHER' ? '/teacher' : '/portal';
 
       if (data.school?.subdomain) {
@@ -97,6 +99,7 @@ export default function LoginPage() {
                 <input 
                   type="email" 
                   placeholder="admin@institution.edu"
+                  autoComplete="email"
                   className="w-full pl-12 pr-4 py-4 bg-white/50 border border-[#0b1c30]/5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-600/10 focus:border-indigo-600 transition-all font-medium text-sm"
                   value={formData.email}
                   onChange={e => setFormData({...formData, email: e.target.value})}
@@ -111,17 +114,26 @@ export default function LoginPage() {
                 <Link href="/forgot-password" title="Forgot Password" className="text-[10px] font-bold text-indigo-600 hover:underline uppercase tracking-wider">Recover</Link>
               </div>
               <div className="relative group">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#464555]/40 group-focus-within:text-indigo-600 transition-colors">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#464555]/40 group-focus-within:text-indigo-600 transition-colors z-10">
                   <Lock className="w-5 h-5" />
                 </div>
                 <input 
-                  type="password" 
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
-                  className="w-full pl-12 pr-4 py-4 bg-white/50 border border-[#0b1c30]/5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-600/10 focus:border-indigo-600 transition-all font-medium text-sm"
+                  autoComplete="current-password"
+                  className="w-full pl-12 pr-12 py-4 bg-white/50 border border-[#0b1c30]/5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-600/10 focus:border-indigo-600 transition-all font-medium text-sm"
                   value={formData.password}
                   onChange={e => setFormData({...formData, password: e.target.value})}
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#464555]/40 hover:text-indigo-600 transition-colors min-tap"
+                  tabIndex={-1}
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
               </div>
             </div>
 

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { DashboardLayout } from "@/src/components/dashboard/DashboardLayout";
 import useSWR from "swr";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TrendingUp, Award, BookOpen } from "lucide-react";
 
 const fetcher = (url: string) =>
@@ -14,10 +14,12 @@ export default function PerformancePage() {
   const students = portalData?.students || [];
   const [selectedStudentId, setSelectedStudentId] = useState<string | null>(null);
 
-  // Set default student
-  if (!selectedStudentId && students.length > 0) {
-    setSelectedStudentId(students[0].id);
-  }
+  // Set default student when data loads
+  useEffect(() => {
+    if (!selectedStudentId && students.length > 0) {
+      setSelectedStudentId(students[0].id);
+    }
+  }, [students, selectedStudentId]);
 
   const { data: scoreData, isLoading: scoresLoading } = useSWR(
     selectedStudentId ? `/api/portal/api/scores/${selectedStudentId}` : null,

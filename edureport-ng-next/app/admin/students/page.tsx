@@ -288,92 +288,92 @@ export default function StudentsList() {
         {/* Students Table */}
         <section className="glass rounded-[2.5rem] shadow-elite overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full text-left border-collapse min-w-[600px] md:min-w-0">
               <thead>
                 <tr className="text-[10px] font-extrabold text-[#464555]/40 uppercase tracking-widest border-b border-[#0b1c30]/5 bg-[#f8f9ff]/50">
-                  <th className="px-8 py-6">Student Info</th>
-                  <th className="px-8 py-6">Admission No</th>
-                  <th className="px-8 py-6">Current Class</th>
-                  <th className="px-8 py-6">Gender</th>
-                  <th className="px-8 py-6">Status</th>
-                  <th className="px-8 py-6 text-right">Actions</th>
+                  <th className="px-3 py-3 md:px-8 md:py-6">Student Info</th>
+                  <th className="px-3 py-3 md:px-8 md:py-6">Admission No</th>
+                  <th className="px-3 py-3 md:px-8 md:py-6">Current Class</th>
+                  <th className="px-3 py-3 md:px-8 md:py-6">Gender</th>
+                  <th className="px-3 py-3 md:px-8 md:py-6">Status</th>
+                  <th className="px-3 py-3 md:px-8 md:py-6 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#0b1c30]/5">
                 {isLoading ? (
                   [1,2,3,4,5].map(i => (
                     <tr key={i} className="animate-pulse">
-                      <td className="px-8 py-6"><div className="h-10 w-48 bg-gray-200 rounded-xl" /></td>
-                      <td className="px-8 py-6"><div className="h-4 w-24 bg-gray-200 rounded" /></td>
-                      <td className="px-8 py-6"><div className="h-4 w-16 bg-gray-200 rounded" /></td>
-                      <td className="px-8 py-6"><div className="h-4 w-12 bg-gray-200 rounded" /></td>
-                      <td className="px-8 py-6"><div className="h-6 w-20 bg-gray-200 rounded-full" /></td>
-                      <td className="px-8 py-6 text-right"><div className="h-8 w-8 bg-gray-200 rounded-lg ml-auto" /></td>
+                      <td className="px-3 py-3 md:px-8 md:py-6"><div className="h-10 w-32 md:w-48 bg-gray-200 rounded-xl" /></td>
+                      <td className="px-3 py-3 md:px-8 md:py-6"><div className="h-4 w-20 md:w-24 bg-gray-200 rounded" /></td>
+                      <td className="px-3 py-3 md:px-8 md:py-6"><div className="h-4 w-16 bg-gray-200 rounded" /></td>
+                      <td className="px-3 py-3 md:px-8 md:py-6"><div className="h-4 w-12 bg-gray-200 rounded" /></td>
+                      <td className="px-3 py-3 md:px-8 md:py-6"><div className="h-6 w-20 bg-gray-200 rounded-full" /></td>
+                      <td className="px-3 py-3 md:px-8 md:py-6 text-right"><div className="h-8 w-8 bg-gray-200 rounded-lg ml-auto" /></td>
                     </tr>
                   ))
                 ) : filteredStudents.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="px-8 py-20 text-center">
+                    <td colSpan={6} className="px-4 md:px-8 py-12 md:py-20 text-center">
                       <div className="flex flex-col items-center gap-3">
-                        <Users className="w-12 h-12 text-[#464555]/20" />
-                        <p className="text-lg font-bold text-[#0b1c30]">No students found</p>
-                        <p className="text-sm text-[#464555]/60">Try adjusting your search or filters</p>
+                        <Users className="w-10 h-10 md:w-12 md:h-12 text-[#464555]/20" />
+                        <p className="text-base md:text-lg font-bold text-[#0b1c30]">No students found</p>
+                        <p className="text-xs md:text-sm text-[#464555]/60">Try adjusting your search or filters</p>
                       </div>
                     </td>
                   </tr>
                 ) : filteredStudents.map((student) => (
                   <tr key={student.id} className="group hover:bg-indigo-50/30 transition-colors">
-                    <td className="px-8 py-6">
-                      <div className="flex items-center gap-4">
+                    <td className="px-3 py-3 md:px-8 md:py-6">
+                      <div className="flex items-center gap-3 md:gap-4">
                         {student.photoUrl ? (
                           <img 
                             src={student.photoUrl} 
                             alt={student.name} 
-                            className="w-12 h-12 rounded-2xl object-cover border border-[#0b1c30]/10" 
+                            className="w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl object-cover border border-[#0b1c30]/10" 
                           />
                         ) : (
-                          <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 font-extrabold text-sm uppercase group-hover:scale-110 transition-transform duration-500">
+                          <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 font-extrabold text-[10px] md:text-sm uppercase group-hover:scale-110 transition-transform duration-500">
                             {student.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2)}
                           </div>
                         )}
                         <div>
-                          <div className="font-bold text-[#0b1c30] group-hover:text-indigo-600 transition-colors">{student.name}</div>
-                          <div className="text-xs font-medium text-[#464555]/50 mt-0.5">Joined {student.createdAt ? new Date(student.createdAt).toLocaleDateString() : 'N/A'}</div>
+                          <div className="text-xs md:text-sm font-bold text-[#0b1c30] group-hover:text-indigo-600 transition-colors leading-tight">{student.name}</div>
+                          <div className="text-[10px] md:text-xs font-medium text-[#464555]/50 mt-0.5">Joined {student.createdAt ? new Date(student.createdAt).toLocaleDateString() : 'N/A'}</div>
                         </div>
                       </div>
                     </td>
-                    <td className="px-8 py-6">
-                      <span className="text-sm font-semibold text-[#464555]">{student.admissionNo}</span>
+                    <td className="px-3 py-3 md:px-8 md:py-6">
+                      <span className="text-[11px] md:text-sm font-semibold text-[#464555]">{student.admissionNo}</span>
                     </td>
-                    <td className="px-8 py-6">
-                      <span className="px-3 py-1.5 rounded-xl bg-indigo-50 text-indigo-600 text-xs font-bold border border-indigo-100">
+                    <td className="px-3 py-3 md:px-8 md:py-6">
+                      <span className="px-2 py-1 md:px-3 md:py-1.5 rounded-lg md:rounded-xl bg-indigo-50 text-indigo-600 text-[10px] md:text-xs font-bold border border-indigo-100 whitespace-nowrap">
                         {student.className}
                       </span>
                     </td>
-                    <td className="px-8 py-6 text-sm font-bold text-[#0b1c30]">
+                    <td className="px-3 py-3 md:px-8 md:py-6 text-[11px] md:text-sm font-bold text-[#0b1c30]">
                       {student.gender === 'M' ? 'Male' : 'Female'}
                     </td>
-                    <td className="px-8 py-6">
-                      <span className="flex items-center gap-1.5 text-[10px] font-black text-emerald-600 uppercase tracking-wider bg-emerald-50 px-3 py-1 rounded-full w-fit">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                    <td className="px-3 py-3 md:px-8 md:py-6">
+                      <span className="flex items-center gap-1 text-[8px] md:text-[10px] font-black text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2 md:px-3 py-0.5 md:py-1 rounded-full w-fit whitespace-nowrap">
+                        <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-emerald-600 animate-pulse" />
                         Active
                       </span>
                     </td>
-                    <td className="px-8 py-6 text-right">
-                      <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <td className="px-3 py-3 md:px-8 md:py-6 text-right">
+                      <div className="flex justify-end gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                         <button 
                           onClick={() => openEditModal(student)}
-                          className="w-8 h-8 rounded-lg flex items-center justify-center text-indigo-600 hover:bg-indigo-50 transition-all"
+                          className="w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center text-indigo-600 hover:bg-indigo-50 transition-all min-tap"
                           title="Edit Student"
                         >
-                          <Edit className="w-4 h-4" />
+                          <Edit className="w-3.5 h-3.5 md:w-4 md:h-4" />
                         </button>
                         <button 
                           onClick={() => handleDeleteStudent(student.id)}
-                          className="w-8 h-8 rounded-lg flex items-center justify-center text-rose-600 hover:bg-rose-50 transition-all"
+                          className="w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center text-rose-600 hover:bg-rose-50 transition-all min-tap"
                           title="Delete Student"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash2 className="w-3.5 h-3.5 md:w-4 md:h-4" />
                         </button>
                       </div>
                     </td>
@@ -384,7 +384,7 @@ export default function StudentsList() {
           </div>
 
           {/* Pagination */}
-          <div className="px-8 py-6 border-t border-[#0b1c30]/5 flex items-center justify-between bg-[#f8f9ff]/30">
+          <div className="px-4 md:px-8 py-4 md:py-6 border-t border-[#0b1c30]/5 flex items-center justify-between bg-[#f8f9ff]/30">
             <p className="text-xs font-bold text-[#464555]/60">
               Showing <span className="text-[#0b1c30]">{filteredStudents.length}</span> of <span className="text-[#0b1c30]">{students.length}</span> students
             </p>

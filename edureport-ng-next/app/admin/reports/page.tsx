@@ -39,7 +39,7 @@ import ShareReportModal from '@/src/components/modals/ShareReportModal';
 const fetcher = (url: string) => fetch(url).then((res) => res.json() as Promise<any>);
 
 export default function AdminReports() {
-  const [selectedTerm, setSelectedTerm] = useState("First Term 2025/2026");
+  const [selectedTerm, setSelectedTerm] = useState("First Term");
   const [selectedSession, setSelectedSession] = useState<string>("");
   const [viewingClass, setViewingClass] = useState<string | null>(null);
   const [generatingClass, setGeneratingClass] = useState<string | null>(null);
@@ -62,7 +62,10 @@ export default function AdminReports() {
   // SWR data fetching
   const { data: schoolData, isLoading: schoolLoading } = useSWR('/api/school', fetcher);
   const { data: studentsData, isLoading: studentsLoading } = useSWR('/api/students', fetcher);
-  const { data: scoresData, isLoading: scoresLoading, mutate: mutateScores } = useSWR(`/api/scores?session=${selectedSession}&term=${selectedTerm}`, fetcher);
+  const { data: scoresData, isLoading: scoresLoading, mutate: mutateScores } = useSWR(
+    selectedSession ? `/api/scores?session=${encodeURIComponent(selectedSession)}&term=${encodeURIComponent(selectedTerm)}` : null,
+    fetcher
+  );
 
   const isLoading = schoolLoading || studentsLoading || scoresLoading;
 
@@ -71,12 +74,15 @@ export default function AdminReports() {
   const scores = scoresData?.scores || {};
   const reportExtras = scoresData?.reportExtras || {};
 
-  // Set default session when school data loads
+  // Set default session and term when school data loads
   useEffect(() => {
     if (school?.session) {
       setSelectedSession(school.session);
     }
-  }, [school?.session]);
+    if (school?.term) {
+      setSelectedTerm(school.term);
+    }
+  }, [school?.session, school?.term]);
 
   // Auto-set the school's configured template once settings load
   useEffect(() => {
@@ -351,7 +357,7 @@ export default function AdminReports() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.setAttribute("href", url);
-    link.setAttribute("download", `Broadsheet_${viewingClass.replace(/\s+/g, '_')}_${selectedTerm.replace(/\s+/g, '_')}.csv`);
+    link.setAttribute("download", `Broadsheet_${viewingClass.replace(/\s+/g, '_')}_${selectedTerm.replace(/\s+/g, '_')}_${selectedSession.replace(/\s+/g, '_')}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -727,7 +733,7 @@ export default function AdminReports() {
                     <option value="All Sessions">All Sessions</option>
                   </select>
                 </div>
-                <p className="text-sm font-semibold text-[#464555]/60 mt-1">{selectedTerm} | Total Students: {rawBroadsheetData.length}</p>
+                <p className="text-sm font-semibold text-[#464555]/60 mt-1">{selectedTerm} {selectedSession} | Total Students: {rawBroadsheetData.length}</p>
               </div>
               
               {/* AT-RISK ALERTS SUMMARY */}
@@ -987,9 +993,9 @@ export default function AdminReports() {
                       value={selectedTerm}
                       onChange={(e) => setSelectedTerm(e.target.value)}
                     >
-                      <option>First Term 2025/2026</option>
-                      <option>Second Term 2025/2026</option>
-                      <option>Third Term 2025/2026</option>
+                      <option value="First Term">First Term</option>
+                      <option value="Second Term">Second Term</option>
+                      <option value="Third Term">Third Term</option>
                     </select>
                  </div>
               </div>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Question Bank | ReportSheet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .glass-input {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d3e4fe;
+            border-radius: 10px;
+        }
+        .active-nav-link {
+            border-bottom: 2px solid #3525cd;
+            padding-bottom: 4px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "on-tertiary-container": "#ffd2be",
+                "primary": "#3525cd",
+                "on-primary-fixed": "#0f0069",
+                "tertiary-fixed-dim": "#ffb695",
+                "surface-container-lowest": "#ffffff",
+                "on-error": "#ffffff",
+                "surface-container": "#e5eeff",
+                "on-secondary-fixed-variant": "#005236",
+                "inverse-primary": "#c3c0ff",
+                "inverse-surface": "#213145",
+                "on-primary": "#ffffff",
+                "error-container": "#ffdad6",
+                "on-surface": "#0b1c30",
+                "surface": "#f8f9ff",
+                "on-secondary": "#ffffff",
+                "outline-variant": "#c7c4d8",
+                "on-background": "#0b1c30",
+                "on-primary-container": "#dad7ff",
+                "surface-container-highest": "#d3e4fe",
+                "surface-container-low": "#eff4ff",
+                "tertiary-container": "#a44100",
+                "outline": "#777587",
+                "on-surface-variant": "#464555",
+                "tertiary": "#7e3000",
+                "error": "#ba1a1a",
+                "secondary-fixed": "#6ffbbe",
+                "inverse-on-surface": "#eaf1ff",
+                "on-tertiary": "#ffffff",
+                "on-error-container": "#93000a",
+                "surface-container-high": "#dce9ff",
+                "primary-fixed-dim": "#c3c0ff",
+                "primary-fixed": "#e2dfff",
+                "surface-tint": "#4d44e3",
+                "surface-dim": "#cbdbf5",
+                "secondary-container": "#6cf8bb",
+                "primary-container": "#4f46e5",
+                "on-primary-fixed-variant": "#3323cc",
+                "on-tertiary-fixed": "#351000",
+                "tertiary-fixed": "#ffdbcc",
+                "secondary": "#006c49",
+                "background": "#f8f9ff",
+                "surface-variant": "#d3e4fe",
+                "secondary-fixed-dim": "#4edea3",
+                "on-secondary-fixed": "#002113",
+                "surface-bright": "#f8f9ff",
+                "on-tertiary-fixed-variant": "#7b2f00",
+                "on-secondary-container": "#00714d"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "2xl": "24px",
+                "full": "9999px"
+              },
+              "spacing": {
+                "unit-xl": "48px",
+                "gutter": "24px",
+                "unit-xs": "4px",
+                "unit-sm": "8px",
+                "unit-md": "16px",
+                "unit-lg": "24px",
+                "margin-desktop": "64px",
+                "container-max": "1440px",
+                "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                "display-lg": ["Plus Jakarta Sans"],
+                "headline-lg": ["Plus Jakarta Sans"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "body-lg": ["Plus Jakarta Sans"],
+                "body-md": ["Plus Jakarta Sans"],
+                "label-md": ["Plus Jakarta Sans"],
+                "label-sm": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen overflow-x-hidden">
+<!-- Global SideNavBar (Integrated via Fixed Positioning) -->
+<aside class="hidden md:flex h-screen w-64 flex-col fixed left-0 top-0 bg-white/70 backdrop-blur-2xl border-r border-white/40 z-[60] p-unit-md gap-unit-sm shadow-[20px_0_50px_-12px_rgba(0,0,0,0.08)]">
+<div class="flex items-center gap-3 px-2 py-4 mb-4">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+</div>
+<div>
+<h1 class="font-headline-md text-[20px] font-extrabold text-primary leading-tight">ReportSheet</h1>
+<p class="font-label-sm text-on-surface-variant">Academic Rigor</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high/50 transition-all active:translate-x-1 rounded-xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 bg-primary-container/30 text-primary font-bold rounded-xl active:translate-x-1 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-md">Library</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high/50 transition-all active:translate-x-1 rounded-xl" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md">Assignments</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high/50 transition-all active:translate-x-1 rounded-xl" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high/50 transition-all active:translate-x-1 rounded-xl" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Users</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-1 pt-4 border-t border-white/40">
+<div class="bg-primary/5 rounded-2xl p-4 mb-4">
+<p class="font-label-sm text-primary mb-2">Pro Institutional Plan</p>
+<button class="w-full py-2 bg-primary text-on-primary font-label-md rounded-lg shadow-lg active:scale-95 transition-all">Upgrade Plan</button>
+</div>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-high/50 transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-error hover:bg-error-container/20 transition-all rounded-xl" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md">Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:pl-64 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 w-full bg-white/70 backdrop-blur-2xl border-b border-white/40 px-gutter py-unit-sm flex items-center justify-between shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-gutter">
+<div class="flex items-center gap-unit-lg ml-2">
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Question Bank</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Assessments</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Analytics</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Curriculum</a>
+</div>
+</div>
+<div class="flex items-center gap-unit-md">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">settings</span></button>
+<div class="w-9 h-9 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzU3qtQKDf7VgZLi-ENXvhpGVR_eazNLlUivZNRph38d7GcsGQ0MDA0XE10izAf5wzSXwK50RB-GOy9lxbbVP_T1ts8RF-0qNSOuU9AuO9LsqFNVvPSGh-XWD6kEjxp6FrLcNxcbI4NJfXACDx9n2uiHR97hvwmLDgVGRohikk_iaZPj_bP8J2DDF6TzIFIm783LyhCnhA1T2aF6RaJ516Y5OytX7IL-guMUd1RxOOWlLsaJKF8v5zT5RYl4UxawPFeIBGieT3l_k"/>
+</div>
+</div>
+</header>
+<!-- Secondary Toolbar -->
+<section class="px-gutter py-unit-md flex flex-wrap items-center justify-between gap-unit-md">
+<div class="flex-1 min-w-[300px] max-w-2xl relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-12 pr-4 py-3 glass-input rounded-2xl focus:ring-2 focus:ring-primary/20 outline-none transition-all font-body-md" placeholder="Search questions by topic, ID, or keywords..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-5 py-3 glass-card rounded-2xl font-label-md text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined">select_all</span>
+                    Bulk Actions
+                    <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-2xl font-label-md shadow-xl hover:shadow-primary/20 hover:translate-y-[-2px] active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+                    Create Question
+                </button>
+<button class="flex items-center gap-2 px-5 py-3 glass-card rounded-2xl font-label-md text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined">file_upload</span>
+                    Bulk Import
+                </button>
+</div>
+</section>
+<!-- Main Workspace: Three-Column Layout (Logic) -->
+<div class="flex-1 flex overflow-hidden px-gutter pb-unit-xl gap-gutter">
+<!-- Filter Drawer (Left) -->
+<aside class="w-72 flex-shrink-0 flex flex-col gap-6">
+<div class="glass-card rounded-2xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-[18px] text-primary">Filters</h3>
+<button class="text-primary font-label-sm hover:underline">Reset</button>
+</div>
+<!-- Subjects -->
+<div class="mb-6">
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-3">Subjects</p>
+<div class="flex flex-col gap-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20 transition-all" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Mathematics</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20 transition-all" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Science</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20 transition-all" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">History</span>
+</label>
+</div>
+</div>
+<!-- Difficulty -->
+<div class="mb-6">
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-3">Difficulty</p>
+<div class="flex flex-col gap-3">
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant text-primary" type="checkbox"/>
+<span class="font-body-md">Easy</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary" type="checkbox"/>
+<span class="font-body-md">Medium</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant text-primary" type="checkbox"/>
+<span class="font-body-md">Hard</span>
+</label>
+</div>
+</div>
+<!-- Bloom's Taxonomy -->
+<div class="mb-6">
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-3">Cognitive Level</p>
+<select class="w-full glass-input rounded-xl px-3 py-2 font-body-md outline-none focus:ring-2 focus:ring-primary/20">
+<option>All Levels</option>
+<option>L1: Remember</option>
+<option>L2: Understand</option>
+<option>L3: Apply</option>
+<option>L4: Analyze</option>
+<option>L5: Evaluate</option>
+<option>L6: Create</option>
+</select>
+</div>
+<!-- Question Types -->
+<div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider mb-3">Question Types</p>
+<div class="flex flex-col gap-3">
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary" type="checkbox"/>
+<span class="font-body-md">Multiple Choice</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant text-primary" type="checkbox"/>
+<span class="font-body-md">Open Ended</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Stats Summary Mini-Card -->
+<div class="bg-primary-container/20 rounded-2xl p-6 border border-primary/10">
+<p class="font-label-sm text-primary uppercase tracking-widest mb-1">Total Pool</p>
+<p class="font-display-lg text-[32px] text-primary">1,402</p>
+<p class="font-label-sm text-on-surface-variant mt-2">Questions available in active bank</p>
+</div>
+</aside>
+<!-- Main Content Grid -->
+<div class="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-gutter content-start">
+<!-- Question Card 1 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4 shadow-sm hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] transition-all group">
+<div class="flex items-center justify-between">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container rounded-full font-label-sm">MCQ</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-label-sm text-on-surface-variant">Active</span>
+</div>
+</div>
+<p class="font-headline-md text-[18px] text-on-surface leading-snug">
+                        Which of the following organic compounds is the primary component of natural gas used in domestic heating?
+                    </p>
+<div class="flex flex-wrap gap-4 mt-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">analytics</span>
+<span class="font-label-sm text-on-surface-variant">Success: 72%</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">history_edu</span>
+<span class="font-label-sm text-on-surface-variant">Used: 12 Exams</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">psychology</span>
+<span class="font-label-sm text-on-surface-variant">Bloom's: L4</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="p-2 glass-card rounded-xl hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">visibility</span></button>
+<button class="p-2 glass-card rounded-xl hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">edit</span></button>
+</div>
+<button class="px-4 py-2 bg-primary/10 text-primary hover:bg-primary hover:text-on-primary font-label-md rounded-xl transition-all">Add to Exam</button>
+</div>
+</div>
+<!-- Question Card 2 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4 shadow-sm hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] transition-all group">
+<div class="flex items-center justify-between">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full font-label-sm">Open Ended</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-label-sm text-on-surface-variant">Active</span>
+</div>
+</div>
+<p class="font-headline-md text-[18px] text-on-surface leading-snug">
+                        Evaluate the impact of the Industrial Revolution on urban development in 19th-century Britain...
+                    </p>
+<div class="flex flex-wrap gap-4 mt-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">analytics</span>
+<span class="font-label-sm text-on-surface-variant">Success: 45%</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">history_edu</span>
+<span class="font-label-sm text-on-surface-variant">Used: 8 Exams</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">psychology</span>
+<span class="font-label-sm text-on-surface-variant">Bloom's: L5</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="p-2 glass-card rounded-xl hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">visibility</span></button>
+<button class="p-2 glass-card rounded-xl hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">edit</span></button>
+</div>
+<button class="px-4 py-2 bg-primary/10 text-primary hover:bg-primary hover:text-on-primary font-label-md rounded-xl transition-all">Add to Exam</button>
+</div>
+</div>
+<!-- Question Card 3 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4 shadow-sm hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] transition-all group">
+<div class="flex items-center justify-between">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container rounded-full font-label-sm">MCQ</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-orange-400"></span>
+<span class="font-label-sm text-on-surface-variant">Review Required</span>
+</div>
+</div>
+<p class="font-headline-md text-[18px] text-on-surface leading-snug">
+                        Solve for x in the equation 2x² - 8x + 6 = 0 using the quadratic formula.
+                    </p>
+<div class="flex flex-wrap gap-4 mt-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">analytics</span>
+<span class="font-label-sm text-on-surface-variant">Success: 88%</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">history_edu</span>
+<span class="font-label-sm text-on-surface-variant">Used: 31 Exams</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">psychology</span>
+<span class="font-label-sm text-on-surface-variant">Bloom's: L3</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="p-2 glass-card rounded-xl hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">visibility</span></button>
+<button class="p-2 glass-card rounded-xl hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">edit</span></button>
+</div>
+<button class="px-4 py-2 bg-primary/10 text-primary hover:bg-primary hover:text-on-primary font-label-md rounded-xl transition-all">Add to Exam</button>
+</div>
+</div>
+<!-- Question Card 4 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4 shadow-sm hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] transition-all group">
+<div class="flex items-center justify-between">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container rounded-full font-label-sm">MCQ</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-label-sm text-on-surface-variant">Active</span>
+</div>
+</div>
+<p class="font-headline-md text-[18px] text-on-surface leading-snug">
+                        What is the capital city of France during the period of the First Empire under Napoleon?
+                    </p>
+<div class="flex flex-wrap gap-4 mt-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">analytics</span>
+<span class="font-label-sm text-on-surface-variant">Success: 94%</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">history_edu</span>
+<span class="font-label-sm text-on-surface-variant">Used: 42 Exams</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary/60">psychology</span>
+<span class="font-label-sm text-on-surface-variant">Bloom's: L1</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="p-2 glass-card rounded-xl hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">visibility</span></button>
+<button class="p-2 glass-card rounded-xl hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">edit</span></button>
+</div>
+<button class="px-4 py-2 bg-primary/10 text-primary hover:bg-primary hover:text-on-primary font-label-md rounded-xl transition-all">Add to Exam</button>
+</div>
+</div>
+<!-- Empty State / Add Placeholder -->
+<button class="glass-card rounded-2xl border-dashed border-2 border-primary/20 p-8 flex flex-col items-center justify-center gap-3 group hover:border-primary transition-all min-h-[220px]">
+<div class="w-14 h-14 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary transition-all">
+<span class="material-symbols-outlined text-primary group-hover:text-on-primary">add_circle</span>
+</div>
+<span class="font-headline-md text-[18px] text-primary">New Question</span>
+<span class="font-label-md text-on-surface-variant">Expand the library bank</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Interactive Layer: FAB for quick creation on mobile -->
+<button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center z-[70] active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+<script>
+        // Micro-interactions for glass effects
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

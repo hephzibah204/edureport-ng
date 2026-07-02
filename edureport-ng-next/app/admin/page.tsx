@@ -172,8 +172,8 @@ export default function SchoolAdminOverview() {
               </Link>
             </div>
 
-            <div className="overflow-hidden">
-              <table className="w-full text-left">
+            <div className="overflow-x-auto scroll-native -mx-4 md:mx-0 px-4 md:px-0">
+              <table className="w-full min-w-[500px] text-left">
                 <thead>
                   <tr className="text-[10px] font-extrabold text-[#464555]/40 uppercase tracking-widest border-b border-[#0b1c30]/5">
                     <th className="pb-4">Student Name</th>

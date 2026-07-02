@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ReportSheet Super Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8f9ff;
+            color: #0b1c30;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.08);
+            border-radius: 24px;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(53, 37, 205, 0.1);
+            border-radius: 10px;
+        }
+        .active-glow {
+            box-shadow: 0 0 20px rgba(53, 37, 205, 0.2);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#e5eeff",
+                    "on-tertiary-container": "#ffd2be",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "tertiary": "#7e3000",
+                    "surface-bright": "#f8f9ff",
+                    "secondary-container": "#6cf8bb",
+                    "surface-dim": "#cbdbf5",
+                    "tertiary-fixed": "#ffdbcc",
+                    "inverse-surface": "#213145",
+                    "on-tertiary-fixed": "#351000",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "error": "#ba1a1a",
+                    "on-background": "#0b1c30",
+                    "on-secondary-fixed-variant": "#005236",
+                    "outline": "#777587",
+                    "inverse-primary": "#c3c0ff",
+                    "surface-container-low": "#eff4ff",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-primary-fixed": "#0f0069",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "on-secondary-fixed": "#002113",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "secondary-fixed": "#6ffbbe",
+                    "outline-variant": "#c7c4d8",
+                    "tertiary-container": "#a44100",
+                    "on-error": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "secondary": "#006c49",
+                    "on-primary-container": "#dad7ff",
+                    "primary": "#3525cd",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#00714d",
+                    "surface-tint": "#4d44e3",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-surface-variant": "#464555",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f8f9ff",
+                    "primary-container": "#4f46e5",
+                    "on-primary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "primary-fixed": "#e2dfff",
+                    "tertiary-fixed-dim": "#ffb695"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit-sm": "8px",
+                    "gutter": "24px",
+                    "unit-xl": "48px",
+                    "container-max": "1440px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "unit-lg": "24px",
+                    "unit-xs": "4px",
+                    "unit-md": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface antialiased">
+<!-- Global Layout Wrapper -->
+<div class="flex min-h-screen">
+<!-- SideNavBar - JSON Defined -->
+<aside class="fixed left-0 top-0 h-screen w-72 p-unit-md flex flex-col gap-unit-md z-[60] bg-white/70 backdrop-blur-2xl border-r border-white/40 shadow-[20px_0_50px_-12px_rgba(0,0,0,0.08)] hidden md:flex">
+<!-- Header -->
+<div class="flex flex-col px-4 py-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-extrabold text-primary">ReportSheet</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant opacity-70">Enterprise Portal</p>
+</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 flex flex-col gap-1 overflow-y-auto custom-scrollbar px-2">
+<!-- Active Tab: Dashboard -->
+<a class="bg-primary/10 text-primary rounded-xl px-4 py-3 flex items-center gap-3 transition-all duration-300 hover:translate-x-1 active-glow" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-label-md font-label-md">Dashboard</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low rounded-xl transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-label-md font-label-md">Analytics</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low rounded-xl transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="text-label-md font-label-md">Academic records</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low rounded-xl transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-label-md font-label-md">User Management</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low rounded-xl transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="text-label-md font-label-md">Resources</span>
+</a>
+<div class="my-4 border-t border-white/40"></div>
+<button class="mx-4 mt-2 bg-secondary/10 text-secondary border border-secondary/20 font-label-md text-label-md py-3 rounded-xl hover:bg-secondary/20 transition-all">
+                    Switch Role
+                </button>
+</nav>
+<!-- Footer Tabs -->
+<div class="px-2 pb-6 flex flex-col gap-1">
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low rounded-xl transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="text-label-md font-label-md">Help Center</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-error/10 hover:text-error rounded-xl transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-label-md font-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-72 flex flex-col min-h-screen">
+<!-- TopNavBar - JSON Defined -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-desktop py-unit-sm bg-white/70 backdrop-blur-2xl border-b border-white/40 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)]">
+<div class="flex items-center gap-unit-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary/20 w-64 transition-all" placeholder="Search enterprise..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-unit-md">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary/20 cursor-pointer hover:border-primary transition-all">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a senior executive in a dark navy suit against a clean, modern architectural background with soft natural lighting. The subject has a confident, warm expression, embodying leadership and corporate expertise. The image is captured with a shallow depth of field, highlighting the person's sharp features in a minimalist light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9DFKatnUJIEJ6Mb_LngFrY0FrVuGsCq3AqDroz3LrP-m5RLoJevfTzfTGkOLELlSXID35E3Avd_CcamGLkLbEtoDj41kZjygNAe2xF2IQdcaVAIlKXkeyNEuFKu7QbAu0SzcAMYFukq3yICDVrOLcuRAdz3IfRCJYGUMcgrQUU9sFhjvu2D1lgL8etzZ_sG5DGMnw5c0EmYeZSvHa0BmyV2fhHPli-GpSa7VhXorZWPxrKhR_kZjmAKrJFwZLvjFnzFTlGfeAKTk"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="px-margin-desktop py-unit-xl space-y-unit-xl">
+<!-- Welcome Section -->
+<section class="space-y-unit-sm">
+<h2 class="text-display-lg font-display-lg text-on-background">Super Admin Dashboard</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl">Overview of the ReportSheet ecosystem performance and school enrollment metrics.</p>
+</section>
+<!-- SaaS Metrics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- MRR Card -->
+<div class="glass-card p-unit-lg flex flex-col gap-4 group">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<span class="text-secondary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12.4%
+                            </span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">Monthly Recurring Revenue</p>
+<h3 class="text-headline-lg font-headline-lg">$142,850.00</h3>
+</div>
+<div class="h-16 w-full mt-2 relative overflow-hidden rounded-lg">
+<canvas class="w-full h-full" id="mrrChart"></canvas>
+</div>
+</div>
+<!-- Active Schools Card -->
+<div class="glass-card p-unit-lg flex flex-col gap-4 group">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">apartment</span>
+</div>
+<span class="text-secondary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +5 new
+                            </span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">Active Schools</p>
+<h3 class="text-headline-lg font-headline-lg">1,284</h3>
+</div>
+<div class="h-16 w-full mt-2 relative overflow-hidden rounded-lg">
+<canvas class="w-full h-full" id="schoolsChart"></canvas>
+</div>
+</div>
+<!-- Churn Rate Card -->
+<div class="glass-card p-unit-lg flex flex-col gap-4 group">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-error/10 rounded-2xl flex items-center justify-center text-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_down</span>
+</div>
+<span class="text-error font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span> -0.2%
+                            </span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface-variant">Churn Rate</p>
+<h3 class="text-headline-lg font-headline-lg">1.4%</h3>
+</div>
+<div class="h-16 w-full mt-2 relative overflow-hidden rounded-lg">
+<canvas class="w-full h-full" id="churnChart"></canvas>
+</div>
+</div>
+</section>
+<!-- Schools Management & Activity -->
+<section class="grid grid-cols-1 xl:grid-cols-3 gap-gutter">
+<!-- Main Table -->
+<div class="xl:col-span-2 glass-card flex flex-col">
+<div class="p-unit-lg flex flex-col sm:flex-row justify-between items-center gap-4">
+<h4 class="text-headline-md font-headline-md">Schools Management</h4>
+<div class="flex gap-2 w-full sm:w-auto">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-low text-on-surface rounded-xl hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+<span class="text-label-md">Filter</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">add</span>
+<span class="text-label-md">Add School</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead class="bg-surface-container-low/50 border-y border-white/40">
+<tr>
+<th class="px-6 py-4 text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Institution</th>
+<th class="px-6 py-4 text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Plan</th>
+<th class="px-6 py-4 text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-left text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Students</th>
+<th class="px-6 py-4 text-right text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/20">
+<tr class="hover:bg-white/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-primary font-bold">HS</div>
+<div>
+<div class="text-body-md font-semibold">Horizon Springs Academy</div>
+<div class="text-label-sm text-on-surface-variant">London, UK</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md">Enterprise</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-label-sm font-label-sm">Active</span>
+</td>
+<td class="px-6 py-4">
+<div class="text-body-md">4,250</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-white/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-secondary font-bold">GC</div>
+<div>
+<div class="text-body-md font-semibold">Gideon Christian High</div>
+<div class="text-label-sm text-on-surface-variant">Lagos, NG</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md">Professional</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-label-sm font-label-sm">Active</span>
+</td>
+<td class="px-6 py-4">
+<div class="text-body-md">1,820</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-white/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center text-tertiary font-bold">SM</div>
+<div>
+<div class="text-body-md font-semibold">St. Mary's International</div>
+<div class="text-label-sm text-on-surface-variant">New York, US</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md">Starter</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-error/10 text-error rounded-full text-label-sm font-label-sm">Suspended</span>
+</td>
+<td class="px-6 py-4">
+<div class="text-body-md">940</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-white/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-violet-50 flex items-center justify-center text-primary font-bold">OA</div>
+<div>
+<div class="text-body-md font-semibold">Oakwood Academy</div>
+<div class="text-label-sm text-on-surface-variant">Toronto, CA</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-body-md">Enterprise</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-label-sm font-label-sm">Active</span>
+</td>
+<td class="px-6 py-4">
+<div class="text-body-md">3,110</div>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-white/40 flex justify-center">
+<button class="text-primary font-label-md hover:underline">View All Schools</button>
+</div>
+</div>
+<!-- Recent Activity Feed -->
+<div class="glass-card flex flex-col overflow-hidden">
+<div class="p-unit-lg border-b border-white/40">
+<h4 class="text-headline-md font-headline-md">Recent Activity</h4>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-unit-lg space-y-6">
+<!-- Signup Event -->
+<div class="flex gap-4">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">person_add</span>
+</div>
+<div class="absolute top-10 left-1/2 -translate-x-1/2 w-[1px] h-full bg-white/40"></div>
+</div>
+<div class="pb-6">
+<p class="text-body-md font-semibold">New School Signup</p>
+<p class="text-label-sm text-on-surface-variant">Bright Futures Academy joined the Professional plan.</p>
+<span class="text-xs text-on-surface-variant/60 font-medium mt-1 inline-block">2 minutes ago</span>
+</div>
+</div>
+<!-- Billing Event -->
+<div class="flex gap-4">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">receipt_long</span>
+</div>
+<div class="absolute top-10 left-1/2 -translate-x-1/2 w-[1px] h-full bg-white/40"></div>
+</div>
+<div class="pb-6">
+<p class="text-body-md font-semibold">Payment Received</p>
+<p class="text-label-sm text-on-surface-variant">Invoice #RS-9921 for $12,500.00 was paid by Horizon Springs.</p>
+<span class="text-xs text-on-surface-variant/60 font-medium mt-1 inline-block">45 minutes ago</span>
+</div>
+</div>
+<!-- Security Event -->
+<div class="flex gap-4">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-lg">lock</span>
+</div>
+<div class="absolute top-10 left-1/2 -translate-x-1/2 w-[1px] h-full bg-white/40"></div>
+</div>
+<div class="pb-6">
+<p class="text-body-md font-semibold">Security Alert</p>
+<p class="text-label-sm text-on-surface-variant">Multiple failed login attempts from IP: 192.168.1.42.</p>
+<span class="text-xs text-on-surface-variant/60 font-medium mt-1 inline-block">3 hours ago</span>
+</div>
+</div>
+<!-- New Resource -->
+<div class="flex gap-4">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-lg">library_add</span>
+</div>
+</div>
+<div>
+<p class="text-body-md font-semibold">Resource Updated</p>
+<p class="text-label-sm text-on-surface-variant">Enterprise Compliance Pack v2.4 uploaded.</p>
+<span class="text-xs text-on-surface-variant/60 font-medium mt-1 inline-block">Yesterday at 4:20 PM</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Data Visualizer (Large Chart) -->
+<section class="glass-card p-unit-lg h-[400px] flex flex-col gap-unit-md">
+<div class="flex justify-between items-center">
+<h4 class="text-headline-md font-headline-md">Revenue Growth Projection</h4>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-label-sm font-label-sm">Actual Revenue</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary/30"></div>
+<span class="text-label-sm font-label-sm">Projected</span>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full relative">
+
+<canvas class="w-full h-full" id="growthChart"></canvas>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Script for Mock Charts (Minimal Visuals) -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const createLineChart = (id, color, points) => {
+                const canvas = document.getElementById(id);
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                const width = canvas.width = canvas.offsetWidth;
+                const height = canvas.height = canvas.offsetHeight;
+                
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 3;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                
+                const step = width / (points.length - 1);
+                ctx.beginPath();
+                points.forEach((p, i) => {
+                    const x = i * step;
+                    const y = height - (p * height);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.stroke();
+
+                // Gradient Fill
+                const gradient = ctx.createLinearGradient(0, 0, 0, height);
+                gradient.addColorStop(0, color.replace(')', ', 0.2)').replace('rgb', 'rgba'));
+                gradient.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.lineTo(width, height);
+                ctx.lineTo(0, height);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+            };
+
+            // Mock Data
+            createLineChart('mrrChart', 'rgb(53, 37, 205)', [0.2, 0.4, 0.3, 0.6, 0.5, 0.8, 0.7, 0.9]);
+            createLineChart('schoolsChart', 'rgb(0, 108, 73)', [0.1, 0.3, 0.2, 0.5, 0.4, 0.6, 0.8, 0.75]);
+            createLineChart('churnChart', 'rgb(186, 26, 26)', [0.8, 0.7, 0.75, 0.6, 0.5, 0.4, 0.3, 0.25]);
+
+            // Growth Chart Simulation
+            const growthCanvas = document.getElementById('growthChart');
+            if (growthCanvas) {
+                const gCtx = growthCanvas.getContext('2d');
+                const gW = growthCanvas.width = growthCanvas.offsetWidth;
+                const gH = growthCanvas.height = growthCanvas.offsetHeight;
+
+                gCtx.beginPath();
+                gCtx.setLineDash([5, 5]);
+                gCtx.strokeStyle = 'rgba(53, 37, 205, 0.3)';
+                gCtx.moveTo(0, gH * 0.8);
+                gCtx.lineTo(gW, gH * 0.2);
+                gCtx.stroke();
+                
+                gCtx.setLineDash([]);
+                gCtx.beginPath();
+                gCtx.strokeStyle = 'rgb(53, 37, 205)';
+                gCtx.lineWidth = 4;
+                const gPoints = [0.1, 0.2, 0.15, 0.3, 0.45, 0.4, 0.6, 0.55, 0.7];
+                const gStep = gW / 12;
+                gPoints.forEach((p, i) => {
+                    const x = i * gStep;
+                    const y = gH - (p * gH);
+                    if (i === 0) gCtx.moveTo(x, y);
+                    else gCtx.bezierCurveTo(x - gStep/2, gH - gPoints[i-1]*gH, x - gStep/2, y, x, y);
+                });
+                gCtx.stroke();
+            }
+        });
+    </script>
+</body></html>

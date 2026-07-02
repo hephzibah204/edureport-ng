@@ -1,0 +1,2109 @@
+[
+  {
+    "id": "exam-849194dc36f04789d38f0fcfadc8130b",
+    "subject": "AGRICULTURAL SCIENCE EXAMINATION",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340414-y0sfku.docx"
+  },
+  {
+    "id": "exam-e0b4bb36d03bf4b453fc166391e47c65",
+    "subject": "BASIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340415-nhzn63.docx"
+  },
+  {
+    "id": "exam-6a83bb17c788c2ebabe0cb963d7b1aed",
+    "subject": "basic tech",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340415-o7noq1.docx"
+  },
+  {
+    "id": "exam-f06ff1ca9d1aa0abad06d17393698e83",
+    "subject": "CIVIC EDUCATION",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340415-qxglmo.docx"
+  },
+  {
+    "id": "exam-99aed59b77403a832abffc9da9090276",
+    "subject": "crs",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340415-oefdkj.docx"
+  },
+  {
+    "id": "exam-6cf5866218bd4a7bf619cc64131f724e",
+    "subject": "HOME ECONOMICS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340415-v95lfj.docx"
+  },
+  {
+    "id": "exam-09f4313cdc8db2e2cbdfa8127c3e6d9b",
+    "subject": "JSS1 IST TERM ENGLISH LANGUAGE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340415-fl224w.docx"
+  },
+  {
+    "id": "exam-0dad93b36220290af1541e5cdbebef74",
+    "subject": "JSS1 IST TERM ICT",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340415-a13g0m.docx"
+  },
+  {
+    "id": "exam-646414ec4488447a5604ebe38bd3d1a5",
+    "subject": "JSS1 SOCIAL STUDIES",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340415-8eox9n.docx"
+  },
+  {
+    "id": "exam-c77827d7277ee2ca1b800bfbda323374",
+    "subject": "MATHS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340415-b6hoz1.docx"
+  },
+  {
+    "id": "exam-28979aa11991493d04658a67bc0b9129",
+    "subject": "MUSIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-vauovw.docx"
+  },
+  {
+    "id": "exam-c9876b54dd5378aeb4bc33aa90dadc05",
+    "subject": "SECURITY EDU",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-var39n.docx"
+  },
+  {
+    "id": "exam-31746fec77b78dd6f700f7c4d0262a48",
+    "subject": "AGRIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-43it9d.docx"
+  },
+  {
+    "id": "exam-ff0f5b866cfa18bd3745af06e6c5efa1",
+    "subject": "BASIC TECH",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-yoh1kj.docx"
+  },
+  {
+    "id": "exam-1172532d54fa015a3f412ec19ef3716b",
+    "subject": "CCA",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-zdc0vp.docx"
+  },
+  {
+    "id": "exam-0a9e8a9e587218cc5e4cddb3d0b3303a",
+    "subject": "CRS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-hhctu4.docx"
+  },
+  {
+    "id": "exam-f822a17167d322bdf02f79091c9e3b65",
+    "subject": "English",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-ico9j3.docx"
+  },
+  {
+    "id": "exam-3522585aa01e555624b730f41ea864b8",
+    "subject": "HOME ECONOMICS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-tw7i5o.docx"
+  },
+  {
+    "id": "exam-d342363e9666002a5ae71b2ac85d71af",
+    "subject": "JSS  2 ICT QUESTIONS (1)",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-2mit7x.docx"
+  },
+  {
+    "id": "exam-c7ca135b66c4df09416a222ea0b0207e",
+    "subject": "jss 2 civic",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-1juw0c.docx"
+  },
+  {
+    "id": "exam-c4c216fef56622a623b024ae5e07be0c",
+    "subject": "JSS 2 FRENCH EXAMS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-u2gz1e.docx"
+  },
+  {
+    "id": "exam-42cc830a75c35c3c360743654cbb2500",
+    "subject": "JSS2 Gen Maths.Exam.",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-v1xzxk.docx"
+  },
+  {
+    "id": "exam-d479ed80af7c220ee2d980fb24661c4f",
+    "subject": "MUSIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-mujua3.docx"
+  },
+  {
+    "id": "exam-23b43ea99f9888f28a02b30210243c1d",
+    "subject": "PHE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340416-o1cigv.docx"
+  },
+  {
+    "id": "exam-7fbfc048f9de8ae9e0bc66c14eeb901d",
+    "subject": "SECURITY",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-mb6hcj.docx"
+  },
+  {
+    "id": "exam-0d217da8f5447cc007e761024980d61a",
+    "subject": "social studies",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-j6qem0.docx"
+  },
+  {
+    "id": "exam-d4228499a3aacbc8e57148620d9f1f2c",
+    "subject": "AGRIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-31q8lh.docx"
+  },
+  {
+    "id": "exam-38383a0837cd9bfcd34067abb61c73c2",
+    "subject": "BASIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-qv4rpn.docx"
+  },
+  {
+    "id": "exam-282e5607a3a536d4d0715c7e982656fa",
+    "subject": "BASIC TECH",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-boaici.docx"
+  },
+  {
+    "id": "exam-b226dd10cf5e956565490558b348afd4",
+    "subject": "CCA",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-9kim4d.docx"
+  },
+  {
+    "id": "exam-0eb3d25fa7d7d20224b9a2b84f1c8247",
+    "subject": "CIVIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-978s98.docx"
+  },
+  {
+    "id": "exam-cfc378aee8a55ab5f2a9deead6cc59c0",
+    "subject": "Computer",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-q5btih.docx"
+  },
+  {
+    "id": "exam-401145e53cba596f83b33037d145be37",
+    "subject": "CRS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-l3airi.docx"
+  },
+  {
+    "id": "exam-0f81a5fdc8dbd22cba30b85fd5a54ffa",
+    "subject": "HOME ECONOMICS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-56kept.docx"
+  },
+  {
+    "id": "exam-e220e4f43606485c8528d13c6e159083",
+    "subject": "JSS3 IST TERM ENGLISH",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-fu869n.docx"
+  },
+  {
+    "id": "exam-f4f0f0eb20dd83e224b506d4bec49762",
+    "subject": "maths",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-2hmauq.docx"
+  },
+  {
+    "id": "exam-4b17808aecafdcfeb5c19c7a0a5fbb64",
+    "subject": "MUSIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-o98ge4.docx"
+  },
+  {
+    "id": "exam-236b571009c3bbc3812b9e732f46ecba",
+    "subject": "PHE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-2fp1is.docx"
+  },
+  {
+    "id": "exam-792a7b396821a0d6bf27bbfc3aaefb68",
+    "subject": "social studies",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-jwhcqn.docx"
+  },
+  {
+    "id": "exam-f1cf94eca5d51ebf56201d7f14bcbbd8",
+    "subject": "agric science (1)",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-qfgilr.docx"
+  },
+  {
+    "id": "exam-4346213a539b5d47ef557c5a7d5b37ef",
+    "subject": "BASIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-1z46so.docx"
+  },
+  {
+    "id": "exam-c8a25c6796100d9bcce3fe6807e29264",
+    "subject": "BASIC TECHNOLOGY.jss1docx",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-v1jmmo.docx"
+  },
+  {
+    "id": "exam-54e671718577a40b157013be0fe71cbe",
+    "subject": "CCA",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-n75uvg.docx"
+  },
+  {
+    "id": "exam-eef5a088c891a152e268f21ddd51abd5",
+    "subject": "CIVIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340417-ny6u92.docx"
+  },
+  {
+    "id": "exam-09bbeb5e680aacc467fd830de4b219af",
+    "subject": "COMPUTER JSS 1",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-9wu1nh.docx"
+  },
+  {
+    "id": "exam-3bd19151d12af52a8c3847db8898ea36",
+    "subject": "crs",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-ccmp2q.docx"
+  },
+  {
+    "id": "exam-de32547299b9519a56c5122c4760f06e",
+    "subject": "ENGLISH LANGUAGE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-gstvrz.docx"
+  },
+  {
+    "id": "exam-bf972b8824daf7b6833b5d75e9dda1d4",
+    "subject": "HOME ECONS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-zh0bm1.docx"
+  },
+  {
+    "id": "exam-c253d94acd4b49249c2bf735b69780b2",
+    "subject": "MATHS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-pk2jxy.docx"
+  },
+  {
+    "id": "exam-e0fd0bf8f25194da9b2cad468e2151c3",
+    "subject": "MUSIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-hbwy18.docx"
+  },
+  {
+    "id": "exam-76a75055374a2aab2a8915c617e5f9c6",
+    "subject": "SECURITY JSS 1",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-17g09b.docx"
+  },
+  {
+    "id": "exam-1e83ec22ba5037106cbc3ea2f5de4310",
+    "subject": "social studies",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-313bxy.docx"
+  },
+  {
+    "id": "exam-0c78629da58e9ed271f01ac7873bfd9c",
+    "subject": "AGRIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-k0f9z9.docx"
+  },
+  {
+    "id": "exam-26f5ca66c48a279d6795ae3807ccc509",
+    "subject": "BASIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-2zfgjl.docx"
+  },
+  {
+    "id": "exam-8951dd9c234121f2d11a4825528e6ec9",
+    "subject": "BASIC TECHNOLOGY",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-mnm9np.docx"
+  },
+  {
+    "id": "exam-fe23eb194fc39311d4c176c56004482f",
+    "subject": "CCA",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340418-yvf2j8.docx"
+  },
+  {
+    "id": "exam-b39647f88be317bbabc104bda4c18d9f",
+    "subject": "civic",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340419-4550gk.docx"
+  },
+  {
+    "id": "exam-fc3fd3bac3b2ebd65aad4d95424c9cfb",
+    "subject": "CRS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340419-oqncqn.docx"
+  },
+  {
+    "id": "exam-dd9b7280ed47b5a0dc04f06000fd8bf4",
+    "subject": "English Studies",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340419-r46v0j.docx"
+  },
+  {
+    "id": "exam-776023150dca0f83a65872d7a4ef13bc",
+    "subject": "HOME ECONOMICS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340419-6wxycz.docx"
+  },
+  {
+    "id": "exam-b93904cfbfea92fc5dbf7bbb403ed11d",
+    "subject": "ICT",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340419-6v84bs.docx"
+  },
+  {
+    "id": "exam-2ae12573e831c9b4e291aca5006bbf9e",
+    "subject": "JS 2 MATHS 2ND TERM EXAM",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340419-t1achk.docx"
+  },
+  {
+    "id": "exam-40f985f4f191a545617c4bde445b3c5e",
+    "subject": "MUSIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340419-8kcz39.docx"
+  },
+  {
+    "id": "exam-c0850d26c2fe21ea763e1b1d2436235c",
+    "subject": "PHE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-ohkrwc.docx"
+  },
+  {
+    "id": "exam-49a21da18d3b66532ac724e4c132ba6d",
+    "subject": "SECURITY",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-nwnibf.docx"
+  },
+  {
+    "id": "exam-30c685ca25f126bbc364d6c58494f035",
+    "subject": "SOCIAL STUDIES",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-86qztf.docx"
+  },
+  {
+    "id": "exam-d97b835aa0a59c954f47f377a900d0f6",
+    "subject": "AGRIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-lzxesk.docx"
+  },
+  {
+    "id": "exam-7f7b92efdba173befc817ab0923c30af",
+    "subject": "BASIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-qd05t5.docx"
+  },
+  {
+    "id": "exam-69777d16f01d89348c8133462344fdf7",
+    "subject": "CCA",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-ih58l9.docx"
+  },
+  {
+    "id": "exam-0e734f6c18227e433aadf0bda7c0577a",
+    "subject": "CRS JSS3",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-mytr47.docx"
+  },
+  {
+    "id": "exam-897e8c7408086bef505bceb232915748",
+    "subject": "ENGLISH",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-jx691r.docx"
+  },
+  {
+    "id": "exam-818bab0c6b854f9b0322efdf50170db9",
+    "subject": "HOME ECONS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-327lce.docx"
+  },
+  {
+    "id": "exam-44098c78d0f44b61e18d6b350949f0a8",
+    "subject": "ICT",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-u45isr.docx"
+  },
+  {
+    "id": "exam-ffdc51c41a0ccbe34930e00966c57188",
+    "subject": "JSS3 2nd term BASIC TECH",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-77mfop.docx"
+  },
+  {
+    "id": "exam-35bfc9e2d1a6309241829e879f35f5a5",
+    "subject": "JSS3 2nd term PHE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-wkg77e.docx"
+  },
+  {
+    "id": "exam-0225d908170372c35b0fb197e2e32bd5",
+    "subject": "MATHEMATICS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-adi7ab.docx"
+  },
+  {
+    "id": "exam-975800c67fd8afe0d48930ba31b0f298",
+    "subject": "social studies",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-3qfcmw.docx"
+  },
+  {
+    "id": "exam-49572ee4e682079a48dacc9c20ba947a",
+    "subject": "AGRIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-roctbi.docx"
+  },
+  {
+    "id": "exam-7e9d1c02ae9689ab822b8de907d5b525",
+    "subject": "BASIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-eot5pv.docx"
+  },
+  {
+    "id": "exam-a25a500b510b6c54751204ff9ed2f78b",
+    "subject": "basic tech",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-plw1kn.docx"
+  },
+  {
+    "id": "exam-888cf53ac56a309f14bf3b545e311896",
+    "subject": "BUSINESS STUDIES",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-9x0gdh.docx"
+  },
+  {
+    "id": "exam-be90f7e4a7aafaacb0f39bfb7d1f89bd",
+    "subject": "CCA",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-pzui7l.docx"
+  },
+  {
+    "id": "exam-49a02754e96c0e1bedef5bafe347cb0f",
+    "subject": "CIVIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-lrlh30.docx"
+  },
+  {
+    "id": "exam-3f3319b5f615ebfcb93ff296ac8186de",
+    "subject": "COMPUTER",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340420-ub17zj.docx"
+  },
+  {
+    "id": "exam-a4de24c58cdf5c2e058417fdf1aa67b8",
+    "subject": "CRS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-3759zg.docx"
+  },
+  {
+    "id": "exam-cbc5162577a109fdc97b88fa007b74d3",
+    "subject": "ENGLISH",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-ka4ci1.docx"
+  },
+  {
+    "id": "exam-61504ba6b9b2d16cd230c7acaf84c36b",
+    "subject": "FINE ART",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-m48f3k.docx"
+  },
+  {
+    "id": "exam-8e40e6724e45663f5651bf09bdfec617",
+    "subject": "FRENCH",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-psqoig.docx"
+  },
+  {
+    "id": "exam-ddf9ea695f4c8de8a7eb3e183cd2ebea",
+    "subject": "HOME ECONS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-5sbwq4.docx"
+  },
+  {
+    "id": "exam-85be99a1ef84fe0290f9564876be3d19",
+    "subject": "MATHEMATICS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-p64fxv.docx"
+  },
+  {
+    "id": "exam-ae538d54df714dbc8cb95e1dbc162144",
+    "subject": "P H E",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-kh9moy.docx"
+  },
+  {
+    "id": "exam-ed65f1ed6c7c5e0646e4762282df2899",
+    "subject": "SECURITY",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-yg29ei.docx"
+  },
+  {
+    "id": "exam-cdad668aa8a11c9575d6dc79f66f0a5b",
+    "subject": "SOCIAL STUDIES",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-8hi78h.docx"
+  },
+  {
+    "id": "exam-b5827cee837eb61943db6dbc822625f4",
+    "subject": "YORUBA JS 1",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-223lgv.docx"
+  },
+  {
+    "id": "exam-f47989acafd0e3f8617ce9fcd4c27a1f",
+    "subject": "AGRIC EXAM",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-j63lon.docx"
+  },
+  {
+    "id": "exam-6dff05c257125a044e26d6f77921ea24",
+    "subject": "BASIC SCI",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-fiohf4.docx"
+  },
+  {
+    "id": "exam-0da447bcdf51e823078431b6e7e84835",
+    "subject": "basic tech",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-o06n9h.docx"
+  },
+  {
+    "id": "exam-342e725e75ce88815a5f38a4ffd1ad5e",
+    "subject": "BUSINESS STUDIES",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340421-ax3yxe.docx"
+  },
+  {
+    "id": "exam-d83df20b25dae928d04f9adba2b51014",
+    "subject": "CIVIC",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-grc7fh.docx"
+  },
+  {
+    "id": "exam-2d034bc48138b9d9716b2b9b68e17f39",
+    "subject": "COMPUTER",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-7od36e.docx"
+  },
+  {
+    "id": "exam-d24dd1cb1971dbd24277848fcbc87c34",
+    "subject": "CRS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-i4uz20.docx"
+  },
+  {
+    "id": "exam-2fd946178444204b0749a24ebd96044a",
+    "subject": "ENGLISH LANGUAGE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-hwck7x.docx"
+  },
+  {
+    "id": "exam-7203c488adc4ccb07e6435e5e8070cf0",
+    "subject": "FINE ART",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-lqop5i.docx"
+  },
+  {
+    "id": "exam-c099a6969e267019c40c669920e6997e",
+    "subject": "FRENCH",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-jgcum9.docx"
+  },
+  {
+    "id": "exam-52b7c07ec9103365b051796776b2c3d7",
+    "subject": "HOME ECONS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-g8fokb.docx"
+  },
+  {
+    "id": "exam-d2d75ead2589c180de47c710f65f5250",
+    "subject": "JSS2 3rd term MATHS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-929rv5.docx"
+  },
+  {
+    "id": "exam-31a51529ebbe82dee455e15121ea07ce",
+    "subject": "Lit in English JSS2",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-r39pyx.docx"
+  },
+  {
+    "id": "exam-2a9f10f2315a0bc6d87601adbeb29828",
+    "subject": "P H E",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-k5tiyp.docx"
+  },
+  {
+    "id": "exam-3e534ebba8e798f5ebc8511fb138e7ac",
+    "subject": "SECURITY",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-97yn90.docx"
+  },
+  {
+    "id": "exam-fc429831f5191bee0fdccf549b8087c6",
+    "subject": "SOCIAL STUDIES",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-x6bfea.docx"
+  },
+  {
+    "id": "exam-172ffb706331fa34716d6d78359c61e7",
+    "subject": "YORUBA JS 2",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-itw1j0.docx"
+  },
+  {
+    "id": "exam-09e0196896813306a0b2065fbc8f689f",
+    "subject": "AGRIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-44845l.docx"
+  },
+  {
+    "id": "exam-116a5dd440618372a269ac5cf4d944e8",
+    "subject": "BASIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-grex0j.docx"
+  },
+  {
+    "id": "exam-ad7c4845cc7d0707caa43dc35a6e9d8e",
+    "subject": "BASIC TECH",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-nl5x7i.docx"
+  },
+  {
+    "id": "exam-7c198fb754bc6b9f98c3cfafd5cdd767",
+    "subject": "CCA JSS3",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-lrwu4h.docx"
+  },
+  {
+    "id": "exam-04615fe702e22e557edd9ecb37378dd2",
+    "subject": "CRS JSS3",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340422-qvi74r.docx"
+  },
+  {
+    "id": "exam-3ef99d7805130c189f4ab464aa1f4cf5",
+    "subject": "ENGLISH",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340423-qupezd.docx"
+  },
+  {
+    "id": "exam-8ebf93571ce99c9bad01916dc8405ac4",
+    "subject": "HOME ECONS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340423-l7m5x0.docx"
+  },
+  {
+    "id": "exam-01d526d44a68940de4b0f33f1317f9b5",
+    "subject": "ICT",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340423-fc7bfb.docx"
+  },
+  {
+    "id": "exam-62eb7f70a9e853771d5495a650d30c43",
+    "subject": "MATHEMATICS",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340423-za7iwg.docx"
+  },
+  {
+    "id": "exam-cfef2b4380d9d859d83808a7dc7a9a9c",
+    "subject": "PHE",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340423-89275o.docx"
+  },
+  {
+    "id": "exam-7f8f2fc27cb8a623494e2e4090b34a96",
+    "subject": "social studies",
+    "class_level": "Secondary",
+    "term": "JSS",
+    "file_url": "/api/files/1782229340423-5bkvtf.docx"
+  },
+  {
+    "id": "exam-44fd7cc65717a5eb35be1fa993f05e27",
+    "subject": "SS3  IST TERM fmaths",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340423-q3ofvv.docx"
+  },
+  {
+    "id": "exam-227da6ed10b821167f13bedbdf77bc2d",
+    "subject": "SS3 AGRIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340423-ghmk3p.docx"
+  },
+  {
+    "id": "exam-864db9811d81ac462dfcfc4fd6972a41",
+    "subject": "SS3 BIOLOGY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-phokap.docx"
+  },
+  {
+    "id": "exam-527d3cb0bda22927fa233adf6893fd73",
+    "subject": "SS3 CHEMISTRY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-bsb34z.docx"
+  },
+  {
+    "id": "exam-8a63b7ec18e875fd8e374e00ddec8f4d",
+    "subject": "SS3 CIVIC",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-70gp02.docx"
+  },
+  {
+    "id": "exam-5bdf3804d20ee539542848734c6ef282",
+    "subject": "SS3 CRS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-ldumph.docx"
+  },
+  {
+    "id": "exam-19af23aed4a1817d7ca17d4c2f74792f",
+    "subject": "SS3 ENGLISH Paper I & II E",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-u5v7r8.docx"
+  },
+  {
+    "id": "exam-c74166ec2f8deb4e2e72e04d9ca325b5",
+    "subject": "SS3 ENGLISH Paper III",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-zkxlk5.docx"
+  },
+  {
+    "id": "exam-89a9c05af1b36faaaca731f175703868",
+    "subject": "SS3 FOODS AND NUTRITION",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-ivh0xu.docx"
+  },
+  {
+    "id": "exam-87a0ebb6fe7cddf49675b294c6ae6372",
+    "subject": "SS3 Geography",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-hvvvdz.docx"
+  },
+  {
+    "id": "exam-70864d247ef3cdaef1ca4c803f15a223",
+    "subject": "SS3 ICT FIRST TERM EXAMINATION",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-d32eas.docx"
+  },
+  {
+    "id": "exam-0d667ac9cfdca547b02556412cd3087d",
+    "subject": "SS3 IST TERM Economics",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-l7eomw.docx"
+  },
+  {
+    "id": "exam-9e4cd465e364de3e3f26b381677684c6",
+    "subject": "SS3 MATHS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-vrksfk.docx"
+  },
+  {
+    "id": "exam-c03550274fa75175a0ebb9b9724714d1",
+    "subject": "SS3 PHYSICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-6uq3wf.docx"
+  },
+  {
+    "id": "exam-307049a51a9530570d228c4ea10473b8",
+    "subject": "Computer exam sss 1 & 2",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340424-dd9z7h.docx"
+  },
+  {
+    "id": "exam-172b088ec3a983f41c320aaf0d950d91",
+    "subject": "SS1 ACCOUNT",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340425-gb376p.docx"
+  },
+  {
+    "id": "exam-bd63f38c2e7bdad163c0e1d3558a4901",
+    "subject": "SS1 AGRIC",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340425-uj9few.docx"
+  },
+  {
+    "id": "exam-d47163ce25f2d47376538f7ae4dd2a0e",
+    "subject": "SS1 BIOLOGY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340425-phh3bn.docx"
+  },
+  {
+    "id": "exam-2ea08e7c785ab7ccd18e41171cd6a4a8",
+    "subject": "SS1 book keeping",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340425-9n4o8o.docx"
+  },
+  {
+    "id": "exam-1fcae23c78b678e184029b6c37577138",
+    "subject": "SS1 C R S",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340425-ejgfo3.docx"
+  },
+  {
+    "id": "exam-09472a3dfc7542644ec6c29b3f51aa97",
+    "subject": "SS1 CHEMISTRY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340425-8v2xfl.docx"
+  },
+  {
+    "id": "exam-1f48e21fb374d2c36dc2646353a6312d",
+    "subject": "SS1 CIVIC EDUCATION",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340427-d96gpm.docx"
+  },
+  {
+    "id": "exam-3ab6f2cdbf74cc9374fc91938443ff2a",
+    "subject": "SS1 ECONOMICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340427-b85w0h.docx"
+  },
+  {
+    "id": "exam-2f85b40c0df88acdf4142a02af579872",
+    "subject": "SS1 ENGLISH DLHS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340427-zdtuz4.docx"
+  },
+  {
+    "id": "exam-0c4bd087549616a0f5145e5366a1ea60",
+    "subject": "SS1 English Ist term Eti- Osa",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340427-wxkyo8.docx"
+  },
+  {
+    "id": "exam-306fdbd35f5056b2cd9f377ec79983aa",
+    "subject": "SS1 English language",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340427-rku4tp.docx"
+  },
+  {
+    "id": "exam-2be74728aa75c1c60d922ccf0a95f9ff",
+    "subject": "SS1 English",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340428-9g3l7v.docx"
+  },
+  {
+    "id": "exam-83ba9c2b655bc8586d68c3d43641119f",
+    "subject": "SS1 Eti Osa Literature Ist term",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340428-m3izny.docx"
+  },
+  {
+    "id": "exam-6df3020c9ec2c562f219cbc44d36e8e6",
+    "subject": "SS1 food and nutrition",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340428-4t5w45.docx"
+  },
+  {
+    "id": "exam-b8c15091342b1646702f92becc10ee45",
+    "subject": "SS1 GEOGRAPHY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340428-6hkkj4.docx"
+  },
+  {
+    "id": "exam-e3275cf0b56dbbeb8f9df0dd19dfe2eb",
+    "subject": "SS1 Ist term Marketing Examination Questions",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340428-ysy69n.docx"
+  },
+  {
+    "id": "exam-71078b7d8a5371437eb34853469ad034",
+    "subject": "SS1 Literature-In-English Exam",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340428-1pd59k.docx"
+  },
+  {
+    "id": "exam-4467779475d2510cf7287d1d9a6dee3d",
+    "subject": "SS1 Literature",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340428-88giak.docx"
+  },
+  {
+    "id": "exam-0ff0f909cac2408fb4b09760d6727228",
+    "subject": "SS1 MATHEMATICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340428-4sc14d.docx"
+  },
+  {
+    "id": "exam-595d6bf3523380e0f884c45659775562",
+    "subject": "SS1 PHYSICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340428-6nfpfn.docx"
+  },
+  {
+    "id": "exam-05cbbcfb2f96c43480dfe459ddafcd35",
+    "subject": "BOOK KEEPING S S 2",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340428-0gnby1.docx"
+  },
+  {
+    "id": "exam-69577c757b962857e246fcd50968d372",
+    "subject": "FIRST TERM Marketing Exam SS2",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340428-4k7cty.docx"
+  },
+  {
+    "id": "exam-5b168301522b83b5d158c2967f9c3be2",
+    "subject": "SS 2 Economics",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-tgyjto.docx"
+  },
+  {
+    "id": "exam-1a2233adc7326836af92891ee186a623",
+    "subject": "SS2 Agric science (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-mbtknl.docx"
+  },
+  {
+    "id": "exam-9cbdf72bd58e16a9340e580ee131154d",
+    "subject": "SS2 BIOLOGY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-37066c.docx"
+  },
+  {
+    "id": "exam-4bba3ba0179203ef1d16098ab56d3d65",
+    "subject": "SS2 Chemistry",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-lszo23.docx"
+  },
+  {
+    "id": "exam-962719a897cf0b66e3f762985d761f2a",
+    "subject": "SS2 CIVIC",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-39s1vr.docx"
+  },
+  {
+    "id": "exam-f8ae8e1c10b53d009746b0bc240795d8",
+    "subject": "SS2 CRS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-0xc2u3.docx"
+  },
+  {
+    "id": "exam-8f44b83041dd24989dc033e0abdcf453",
+    "subject": "SS2 English",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-r0vr1x.docx"
+  },
+  {
+    "id": "exam-1ffaddb75ca438360cc3718458b3a516",
+    "subject": "SS2 FOOD AND NUTRITION",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-ahrghu.docx"
+  },
+  {
+    "id": "exam-21e1acaea1fe6d913aa48fff32f68a28",
+    "subject": "SS2 GEOGRAPHY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-2jxj3i.docx"
+  },
+  {
+    "id": "exam-4ba0a03065a8d0837c7e0924223c10df",
+    "subject": "SS2 IST FUTHER MATHS ",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-sjqksf.docx"
+  },
+  {
+    "id": "exam-56bf75cd0381c6513a70caad5930cc6e",
+    "subject": "SS2 IST TERM ENG Exam",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-f6etn8.docx"
+  },
+  {
+    "id": "exam-2cb9a71224de43f6aa6828988e33741d",
+    "subject": "SS2 LIT-IN-ENGLISH",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340429-du04hx.docx"
+  },
+  {
+    "id": "exam-a03496befcd6897c67450810b3d5bcff",
+    "subject": "SS2 Literature Ist term exam",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-xvblb8.docx"
+  },
+  {
+    "id": "exam-85f38770700dda201683c9e2fe5ba60b",
+    "subject": "SS2 Mathematics",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-rykvm1.docx"
+  },
+  {
+    "id": "exam-b589367e929465ff2fb016af6ec3506e",
+    "subject": "SS2 PHYSICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-j5vfr7.docx"
+  },
+  {
+    "id": "exam-13f057ad5c67deef2722a21c23a0368b",
+    "subject": "ACCOUNT",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-iptvpr.docx"
+  },
+  {
+    "id": "exam-265c55d70ad3e8e05d0901703be3d83c",
+    "subject": "AGRIC",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-7shv1y.docx"
+  },
+  {
+    "id": "exam-d149835bac9e858a451f88e9c04d1c84",
+    "subject": "BOOK KEEPING",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-2b9pn7.docx"
+  },
+  {
+    "id": "exam-05a82abf1adc5bec15ba53fba626fda0",
+    "subject": "crs",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-x7dh2k.docx"
+  },
+  {
+    "id": "exam-81e64dfaa6545cf4d12bf775bbe32856",
+    "subject": "ENGLISH LANGUAGE",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-5k50bj.docx"
+  },
+  {
+    "id": "exam-32623fc1ae7288768ecf12caab4035b4",
+    "subject": "FNUT",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-ot19gz.docx"
+  },
+  {
+    "id": "exam-11efa12ef7e81aaaa61253285f836c9b",
+    "subject": "GEOGRAPHY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-22tb2s.docx"
+  },
+  {
+    "id": "exam-4c2d4efd4559f855ee6165aba652bc19",
+    "subject": "LIT-IN-ENGLISH",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-did0wi.docx"
+  },
+  {
+    "id": "exam-5324ce0c25bd6d02a88885557bc7ad9a",
+    "subject": "PHYSICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-uf9vja.docx"
+  },
+  {
+    "id": "exam-324a1313c7fcf6ec95d542c4f312639f",
+    "subject": "SS 1 PHYSICS 2ND TERM EXAM",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-w8k5an.docx"
+  },
+  {
+    "id": "exam-c9b0d2dd03bfb290e5628ce44abe68bc",
+    "subject": "SS1 2nd term CHEMISTRY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340430-bagclz.docx"
+  },
+  {
+    "id": "exam-b1a2a6ecbad8dce3f308846af92fa7de",
+    "subject": "SS1 2nd term ECONOMICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-chg15h.docx"
+  },
+  {
+    "id": "exam-4950b43ee7ef37ae1360393fc675fe53",
+    "subject": "SS1 2nd term exam BIOLOGY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-yk83be.docx"
+  },
+  {
+    "id": "exam-7d96967d1e939ac08aa27dd0c1c05095",
+    "subject": "SS1 2nd term FMATHS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-tseegf.docx"
+  },
+  {
+    "id": "exam-e1e553c46bbf2ef575f530845ef4fe44",
+    "subject": "SS1 2ND TERM GEOGRAPHY marking guide ",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-e780bj.docx"
+  },
+  {
+    "id": "exam-ff83d419f9884c17a0f2e1af3f3569ff",
+    "subject": "SS1 2ND TERM MATHEMATICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-r6uiwh.docx"
+  },
+  {
+    "id": "exam-6eaea0bf4aa6aa2599300b6bb3eafe38",
+    "subject": "ACCOUNT",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-ivxzbk.docx"
+  },
+  {
+    "id": "exam-e73b8c2836dfe48055ca86cd65c3d660",
+    "subject": "AGRIC",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-az9rsb.docx"
+  },
+  {
+    "id": "exam-bdc4ca538a60a64421a157d9e97d5650",
+    "subject": "BIOLOGY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-gw4a1p.docx"
+  },
+  {
+    "id": "exam-fe6794bfd63655220286a413781bcd12",
+    "subject": "BOOK KEEPING",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-858wx9.docx"
+  },
+  {
+    "id": "exam-162188e82715f99bc50d3a0898b4e4e3",
+    "subject": "CHEMISTRY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-k15ghm.docx"
+  },
+  {
+    "id": "exam-cff82c38be50ebe801ed1b460766caef",
+    "subject": "COMMERCE",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-947fji.docx"
+  },
+  {
+    "id": "exam-56e814cbbc73c93dc6a5542fa329ee19",
+    "subject": "CRS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-jyjzdu.docx"
+  },
+  {
+    "id": "exam-72bf1eafa726434362d8e8a3c456a783",
+    "subject": "ENGLISH",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-n9x2ow.docx"
+  },
+  {
+    "id": "exam-562d336d7ecd3e440afb09e6e4f5cd17",
+    "subject": "GEOGRAPHY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-woxvx2.docx"
+  },
+  {
+    "id": "exam-26ac806e7bf4d89deed8ad0c338532cb",
+    "subject": "LIT-IN-ENGLISH",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340431-7w4vf5.docx"
+  },
+  {
+    "id": "exam-a0dca3d1d6e8b7d41f4e192d20705472",
+    "subject": "PHYSICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-4qgncx.docx"
+  },
+  {
+    "id": "exam-d17717b934ef048611d6a0559b06e03b",
+    "subject": "SS 2 2ND TERM PHYSICS EXAM & Mark guide",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-gjpg1n.docx"
+  },
+  {
+    "id": "exam-939d4da654d035a6cc30ae467a698f92",
+    "subject": "SS2 2ND term FURTHER MATHS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-k1g6c0.docx"
+  },
+  {
+    "id": "exam-036de8c3bdd5d77790eabf7e176825ea",
+    "subject": "SS2 2nd term Geography MARKING SCHEME",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-scgo2u.docx"
+  },
+  {
+    "id": "exam-726d5fc2701094dd2f7a215eeb522a4c",
+    "subject": "SS2 second term Economics",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-x0x5ey.docx"
+  },
+  {
+    "id": "exam-a90e86d3f53cca9985a3d4cc160ec537",
+    "subject": "SS2 SECOND TERM MARKETING EXAM",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-78jhni.docx"
+  },
+  {
+    "id": "exam-78ff9eb689d79beab8e6782003193098",
+    "subject": "SS2 second term MATHS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-bcqdk9.docx"
+  },
+  {
+    "id": "exam-afce39a5a85bc727a17415a46eabe0a3",
+    "subject": "_FOOD & NUTRITION",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-hbitu9.docx"
+  },
+  {
+    "id": "exam-4d8bae01040dcd1b80d5fb13f9756f8a",
+    "subject": "ACCOUNT",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-qwmmzl.docx"
+  },
+  {
+    "id": "exam-6dbc84cf5f65d516df0127baa4d7a1bf",
+    "subject": "AGRIC SCIENCE",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-o85cxc.docx"
+  },
+  {
+    "id": "exam-7b228adab143af8d8b7349aa6f18e7b9",
+    "subject": "BIOLOGY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-mh2ccd.docx"
+  },
+  {
+    "id": "exam-3c48ecbe3e815e618d53f1904e62511c",
+    "subject": "chemistry",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-cy1wj2.docx"
+  },
+  {
+    "id": "exam-be29c16d3582ef61de22ec357ded67c2",
+    "subject": "CRS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-rgf074.docx"
+  },
+  {
+    "id": "exam-22eebee6237a9a98001a5a9dd058656e",
+    "subject": "economics",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340432-71uhsg.docx"
+  },
+  {
+    "id": "exam-287aa7bef7f9189880f108018c81497b",
+    "subject": "English I & II",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-dnolf4.docx"
+  },
+  {
+    "id": "exam-b1ce9013cdfa68a72fba10c59f943260",
+    "subject": "English III ORAL",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-0tm6cw.docx"
+  },
+  {
+    "id": "exam-34c1da30e7952f4c075956423a0bf9b9",
+    "subject": "FOOD AND NUTRI",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-c3xpgk.docx"
+  },
+  {
+    "id": "exam-71b111ad1fac77f81c67f20fd3efaae0",
+    "subject": "Geography",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-ea0jsj.docx"
+  },
+  {
+    "id": "exam-469d4204baf8fcba1518bf53079d41c4",
+    "subject": "LITERATURE",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-6tbk71.docx"
+  },
+  {
+    "id": "exam-9c4985008f6104fdf678236ed1090f32",
+    "subject": "SS3 2nd term FURTHER MATHS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-epk9iw.docx"
+  },
+  {
+    "id": "exam-1565be5f27fd1c6c17e08cc2c752ec82",
+    "subject": "SS3 2ND TERM PHYSICS MOCK EXA",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-yv1zvx.docx"
+  },
+  {
+    "id": "exam-6a8dcb3902e85af6224afb0888c0c97f",
+    "subject": "SS3 Mock Exam CHRISTIAN RELIGIOUS STUDIES",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-clcd0q.docx"
+  },
+  {
+    "id": "exam-04bc0305a217641f2303c2e4e194d442",
+    "subject": "SS3 mock exam PHYSICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-h6icux.docx"
+  },
+  {
+    "id": "exam-4543b22da03f5877cd4de76d5fa773df",
+    "subject": "SS3 mock MATHEMATICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-wy1h0z.docx"
+  },
+  {
+    "id": "exam-cce16bd1d097d3174e7bc99f05f71c2c",
+    "subject": "ACCT",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-k8jnk6.docx"
+  },
+  {
+    "id": "exam-db677373576179af9b2e8dbe410cc1db",
+    "subject": "AGRIC (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-dhit5b.docx"
+  },
+  {
+    "id": "exam-d37e1ad8f665f0fff8296184fce907aa",
+    "subject": "AGRIC",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-onx5ec.docx"
+  },
+  {
+    "id": "exam-58b5446ba7608ff73b95c19753fad6eb",
+    "subject": "BIOLOGY (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-wfix0t.docx"
+  },
+  {
+    "id": "exam-6ab236c767e71abefd81ae5e5511095b",
+    "subject": "BIOLOGY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340433-ogwgtj.docx"
+  },
+  {
+    "id": "exam-d3949d780a5b8f0cec1bd5f833bbd6ba",
+    "subject": "BOOK KEEPING S S 2",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-c4c083.docx"
+  },
+  {
+    "id": "exam-f6120100f6d1081a6dfe9f6d89fd62f7",
+    "subject": "C R S",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-9o3q6h.docx"
+  },
+  {
+    "id": "exam-fddac8cf7c556ee74dc793e6335c49c0",
+    "subject": "CHEMISTRY (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-u6cehs.docx"
+  },
+  {
+    "id": "exam-752a370c45b8c436426dd7921726ad1d",
+    "subject": "CHEMISTRY PRACTICAL",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-pm0nd9.docx"
+  },
+  {
+    "id": "exam-17524d4cd7d9157f183d067819939d08",
+    "subject": "CHEMISTRY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-4vl5wv.docx"
+  },
+  {
+    "id": "exam-3fcd138764ff5b0e75973e45f2b1fb43",
+    "subject": "CIVIC S S 2 OMEGA",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-53psoj.docx"
+  },
+  {
+    "id": "exam-fd549b2145e648a2a99f37499f402381",
+    "subject": "civic",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-fz8gqa.docx"
+  },
+  {
+    "id": "exam-341231a30cded4fe17983dbe7df98e51",
+    "subject": "COMMERCE (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-1h8joy.docx"
+  },
+  {
+    "id": "exam-28cc023141f775164b04ec4ecc329b0b",
+    "subject": "COMMERCE",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-ztw2rw.docx"
+  },
+  {
+    "id": "exam-60c0f6a1ba03558332196a375f349165",
+    "subject": "COMPUTER (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-csj4b3.docx"
+  },
+  {
+    "id": "exam-664adaec1f7b3ad4764bbc76cf8cb990",
+    "subject": "COMPUTER",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-tuoyeb.docx"
+  },
+  {
+    "id": "exam-33a10a1c8bcbc1654fdfc37a016332b4",
+    "subject": "CRS  SS2",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-gtc2mp.docx"
+  },
+  {
+    "id": "exam-631b5722c747bb097efbae2feff375ca",
+    "subject": "crs",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-s8y0dp.docx"
+  },
+  {
+    "id": "exam-884bce468e1df241a0584aadf5108de1",
+    "subject": "DATA (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-oklm9c.docx"
+  },
+  {
+    "id": "exam-251258dc4f2795152370a08e858f7c24",
+    "subject": "DATA",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-i8hk6r.docx"
+  },
+  {
+    "id": "exam-01c086d7243f2e65dc8931f7d96a5518",
+    "subject": "ECONOMICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-mcq0fa.docx"
+  },
+  {
+    "id": "exam-ff966ac19acbb29ecea705cc1dfa79a7",
+    "subject": "eng paper 2",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-wa2vn3.docx"
+  },
+  {
+    "id": "exam-fd023a0eab8d072af463101ffa38a7e2",
+    "subject": "ENGLISH LANGUAGE SS 2 paper 1",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340434-3mrymx.docx"
+  },
+  {
+    "id": "exam-78932940ad61ff0b0a979b2eaf355430",
+    "subject": "ENGLISH",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-eff9dl.docx"
+  },
+  {
+    "id": "exam-9446440b81b3acc547d1e13a8fdd6922",
+    "subject": "FOOD & NUTRITION (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-noanlc.docx"
+  },
+  {
+    "id": "exam-2f807e523e57d45eea65a0a90e7bcd60",
+    "subject": "food & nutrition",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-wal4mb.docx"
+  },
+  {
+    "id": "exam-ca494a701ad9feda8d6184933a6237b4",
+    "subject": "FRENCH (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-dyx2d7.docx"
+  },
+  {
+    "id": "exam-5478e4ee2bee5cacc525fff73868f53f",
+    "subject": "FRENCH",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-j4ozht.docx"
+  },
+  {
+    "id": "exam-3244b27c6de5bade15bf63c4c8b67d49",
+    "subject": "FUTHER MATHS SS2",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-ot4vzr.docx"
+  },
+  {
+    "id": "exam-7b31846c1d3caf7364567136d8e7c828",
+    "subject": "GEOGRAPHY (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-rbug3z.docx"
+  },
+  {
+    "id": "exam-fdd95abc56b60a6a1c2491e8a5399a2d",
+    "subject": "GEOGRAPHY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-ixvsbh.docx"
+  },
+  {
+    "id": "exam-96b2abf2d50d7b2f8a7c56da290a715b",
+    "subject": "GOVENRMENT",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-r7rd8w.docx"
+  },
+  {
+    "id": "exam-0be1b122a43cf5b1194acb5031252375",
+    "subject": "GOVT",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-j6hb13.docx"
+  },
+  {
+    "id": "exam-a0061bc5bd0ebe92148ccbdb65ab02c3",
+    "subject": "MATHEMATICS SS2",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-xcyc3w.docx"
+  },
+  {
+    "id": "exam-6c54e6f3b92d5ef2cef0d7f3e632eff0",
+    "subject": "MATHS THEORY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-641535.docx"
+  },
+  {
+    "id": "exam-a4545b0f077ac3581107315f682813ed",
+    "subject": "ORAL ENGLISH (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-bqxx56.docx"
+  },
+  {
+    "id": "exam-cbadfd76e0f652a96f716202f0f08453",
+    "subject": "ORAL ENGLISH",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-3e7bi4.docx"
+  },
+  {
+    "id": "exam-bf9cc78376cf492794498f0ff5d5381c",
+    "subject": "PHYSICS ESSAY",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340435-my6imt.docx"
+  },
+  {
+    "id": "exam-e3be4d200aa6365c9564c25736599c72",
+    "subject": "PHYSICS OBJ",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340436-bq9nf8.docx"
+  },
+  {
+    "id": "exam-683c11ed19f41e091dcfd27d5bed1e0a",
+    "subject": "PHYSICS",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340436-vooc66.docx"
+  },
+  {
+    "id": "exam-ec1a0d2d1fd0bc263375198d6020b622",
+    "subject": "S S 1  BOOK KEEPING",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340436-8we5u6.docx"
+  },
+  {
+    "id": "exam-369c9cd12d405bbcb8cad4373be6f34d",
+    "subject": "SS1 ENGLISH LIT",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340436-qciud2.docx"
+  },
+  {
+    "id": "exam-5b7b899206dcf1c467d3be10e7a3a339",
+    "subject": "SS2 Economics exam",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340436-1ldyea.docx"
+  },
+  {
+    "id": "exam-922b7cee1eadd852cd42416b78477a51",
+    "subject": "YORUBA (2)",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340436-jc66gi.docx"
+  },
+  {
+    "id": "exam-65ff0e88b8fd16ba9bb0ce703ed47a59",
+    "subject": "YORUBA",
+    "class_level": "Secondary",
+    "term": "SS",
+    "file_url": "/api/files/1782229340436-nolo3t.docx"
+  },
+  {
+    "id": "exam-a62e4efbe705ce555d445ad31fda77f1",
+    "subject": "J S S 1(1)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-0onagf.docx"
+  },
+  {
+    "id": "exam-c83b619502f15822dbdec01c57a95de9",
+    "subject": "J S S 1",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-x6cj9n.docx"
+  },
+  {
+    "id": "exam-d5fbff8b7c76455da18e4cd43b020bdf",
+    "subject": "J S S 2(1)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-2xn70q.docx"
+  },
+  {
+    "id": "exam-635dfa4b7894127fe73119a7bbbe5aed",
+    "subject": "J S S 2",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-5yyis0.docx"
+  },
+  {
+    "id": "exam-428c3b8032546c0d6e181cbb03975b18",
+    "subject": "J S S 3(1)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-fx32r9.docx"
+  },
+  {
+    "id": "exam-d68d49c2397345de05cb98d7fb1c4095",
+    "subject": "J S S 3-1",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-q5579w.docx"
+  },
+  {
+    "id": "exam-1c4e675196127e7823095b3ca4885472",
+    "subject": "J S S 3",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-tzx0yv.docx"
+  },
+  {
+    "id": "exam-57678f195ec805e10b290cd05e3b9e9f",
+    "subject": "J S S1 (1)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-3sw8zx.docx"
+  },
+  {
+    "id": "exam-4ff7fc301f73549fa09d256d562069ef",
+    "subject": "J S S1(1)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-gxux6u.docx"
+  },
+  {
+    "id": "exam-796832389c8f351220eca64b55135023",
+    "subject": "J S S1",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-f0w990.docx"
+  },
+  {
+    "id": "exam-e83d62dec17ef4d3df14362cd5689395",
+    "subject": "J S S2 (1)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-9kprjq.docx"
+  },
+  {
+    "id": "exam-1d3cad351dfb8fb36f104d18910a9d2c",
+    "subject": "J S S2 (2)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-pnngg3.docx"
+  },
+  {
+    "id": "exam-270e5dc505965575009c791a7405b92b",
+    "subject": "J S S2 (3)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340436-28362c.docx"
+  },
+  {
+    "id": "exam-801809a597905986dc652293bd15ab45",
+    "subject": "J S S2(1)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-hfsq83.docx"
+  },
+  {
+    "id": "exam-bd44fd1d911ecd606233524153dbbca3",
+    "subject": "J S S2(2)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-ri4q8o.docx"
+  },
+  {
+    "id": "exam-186d8fc216db1fba2c659cd3d217ab9a",
+    "subject": "J S S2",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-bcwhow.docx"
+  },
+  {
+    "id": "exam-e5ca0f81a7d067dec095947adeb6bfa1",
+    "subject": "JS2 third term exam Questions",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-55n2p7.docx"
+  },
+  {
+    "id": "exam-354edd5397f3aed137fbb8980fd8fded",
+    "subject": "JSS 1",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-3q68et.docx"
+  },
+  {
+    "id": "exam-87521ecfc14d4f579badbf32051c46f1",
+    "subject": "S S 1-1 (1)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-yn81ux.docx"
+  },
+  {
+    "id": "exam-7d8424668daee01212dfeb417f8089d6",
+    "subject": "S S 1-1",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-mwp3qt.docx"
+  },
+  {
+    "id": "exam-7653e4c6140639848142c68a33a20c90",
+    "subject": "S S 1",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-z7w693.docx"
+  },
+  {
+    "id": "exam-9437e4ef65e46d098fafe7aa4b03fff2",
+    "subject": "S S 2-1 (1)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-g0ko86.docx"
+  },
+  {
+    "id": "exam-e608241222979059ea6d823b12eb2a3c",
+    "subject": "S S 2-1 (2)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-fpir0k.docx"
+  },
+  {
+    "id": "exam-66296b625ddbddb245e930aa44ff0f52",
+    "subject": "S S 2-1",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-7gua08.docx"
+  },
+  {
+    "id": "exam-ab243f25b86f2aab8503e943831e1e03",
+    "subject": "S S 2-2 (1)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-vwd24z.docx"
+  },
+  {
+    "id": "exam-ec0c9f45c07ae2a91bfceba5114f45df",
+    "subject": "S S 2-2",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-o1eivr.docx"
+  },
+  {
+    "id": "exam-5a4559c1d99d1f50cc5417fd79b6e56a",
+    "subject": "S S 2",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-4dmhvf.docx"
+  },
+  {
+    "id": "exam-dbff49175b029f4739c00eee2bbaff99",
+    "subject": "S S 3 (1)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-19uqkn.docx"
+  },
+  {
+    "id": "exam-c157d298246d3e1a68a0bdaee6238f33",
+    "subject": "S S 3 (2)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-u3lrhh.docx"
+  },
+  {
+    "id": "exam-a52eba13a1c206b91cd3be973ea1864f",
+    "subject": "S S 3 (3)",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-cpbqsg.docx"
+  },
+  {
+    "id": "exam-b5ece8542a826e97d4bbb6709a9a03e0",
+    "subject": "S S 3",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-gdkpsj.docx"
+  },
+  {
+    "id": "exam-279bf408be02d56f40ad33193fc8de4e",
+    "subject": "S S ONE",
+    "class_level": "Secondary",
+    "term": "Unified Classes In Secondary School",
+    "file_url": "/api/files/1782229340437-x96s46.docx"
+  }
+]

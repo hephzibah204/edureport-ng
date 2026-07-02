@@ -6,10 +6,10 @@ import { Search, UserPlus, Shield, Mail, MoreVertical } from "lucide-react";
 
 export default function UsersPage() {
   const users = [
-    { id: 1, name: "Alice Freeman", email: "alice@edureport.com", role: "Super Admin", lastActive: "2 mins ago" },
-    { id: 2, name: "Bob Chen", email: "bob@edureport.com", role: "Support Staff", lastActive: "1 hr ago" },
-    { id: 3, name: "Carol Davis", email: "carol@edureport.com", role: "Super Admin", lastActive: "Yesterday" },
-    { id: 4, name: "David Kim", email: "david@edureport.com", role: "Support Staff", lastActive: "3 days ago" },
+    { id: 1, name: "Alice Freeman", email: "alice@reportsheet.com.ng", role: "Super Admin", lastActive: "2 mins ago" },
+    { id: 2, name: "Bob Chen", email: "bob@reportsheet.com.ng", role: "Support Staff", lastActive: "1 hr ago" },
+    { id: 3, name: "Carol Davis", email: "carol@reportsheet.com.ng", role: "Super Admin", lastActive: "Yesterday" },
+    { id: 4, name: "David Kim", email: "david@reportsheet.com.ng", role: "Support Staff", lastActive: "3 days ago" },
   ];
 
   return (

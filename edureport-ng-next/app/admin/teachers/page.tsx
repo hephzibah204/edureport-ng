@@ -129,30 +129,30 @@ export default function TeachersList() {
         {/* Teachers Table */}
         <section className="glass rounded-[2.5rem] shadow-elite overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full text-left border-collapse min-w-[550px] md:min-w-0">
               <thead>
                 <tr className="text-[10px] font-extrabold text-[#464555]/40 uppercase tracking-widest border-b border-[#0b1c30]/5 bg-[#f8f9ff]/50">
-                  <th className="px-8 py-6">Faculty Member</th>
-                  <th className="px-8 py-6">Contact Info</th>
-                  <th className="px-8 py-6">Assigned Classes</th>
-                  <th className="px-8 py-6">Account Status</th>
-                  <th className="px-8 py-6 text-right">Actions</th>
+                  <th className="px-3 py-3 md:px-8 md:py-6">Faculty Member</th>
+                  <th className="px-3 py-3 md:px-8 md:py-6">Contact Info</th>
+                  <th className="px-3 py-3 md:px-8 md:py-6">Assigned Classes</th>
+                  <th className="px-3 py-3 md:px-8 md:py-6">Account Status</th>
+                  <th className="px-3 py-3 md:px-8 md:py-6 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#0b1c30]/5">
                 {isLoading ? (
                   [1,2,3].map(i => (
                     <tr key={i} className="animate-pulse">
-                      <td className="px-8 py-6"><div className="h-10 w-48 bg-gray-200 rounded-xl" /></td>
-                      <td className="px-8 py-6"><div className="h-4 w-32 bg-gray-200 rounded" /></td>
-                      <td className="px-8 py-6"><div className="h-4 w-24 bg-gray-200 rounded" /></td>
-                      <td className="px-8 py-6"><div className="h-6 w-20 bg-gray-200 rounded-full" /></td>
-                      <td className="px-8 py-6 text-right"><div className="h-8 w-8 bg-gray-200 rounded-lg ml-auto" /></td>
+                      <td className="px-3 py-3 md:px-8 md:py-6"><div className="h-10 w-32 md:w-48 bg-gray-200 rounded-xl" /></td>
+                      <td className="px-3 py-3 md:px-8 md:py-6"><div className="h-4 w-20 md:w-32 bg-gray-200 rounded" /></td>
+                      <td className="px-3 py-3 md:px-8 md:py-6"><div className="h-4 w-16 md:w-24 bg-gray-200 rounded" /></td>
+                      <td className="px-3 py-3 md:px-8 md:py-6"><div className="h-6 w-20 bg-gray-200 rounded-full" /></td>
+                      <td className="px-3 py-3 md:px-8 md:py-6 text-right"><div className="h-8 w-8 bg-gray-200 rounded-lg ml-auto" /></td>
                     </tr>
                   ))
                 ) : filteredTeachers.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="px-8 py-20 text-center">
+                    <td colSpan={5} className="px-4 md:px-8 py-12 md:py-20 text-center">
                       <div className="flex flex-col items-center gap-3">
                         <UserSquare2 className="w-12 h-12 text-[#464555]/20" />
                         <p className="text-lg font-bold text-[#0b1c30]">No teachers found</p>
@@ -162,60 +162,60 @@ export default function TeachersList() {
                   </tr>
                 ) : filteredTeachers.map((teacher) => (
                   <tr key={teacher.id} className="group hover:bg-emerald-50/30 transition-colors">
-                    <td className="px-8 py-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 font-extrabold text-sm uppercase group-hover:scale-110 transition-transform duration-500">
+                    <td className="px-3 py-3 md:px-8 md:py-6">
+                      <div className="flex items-center gap-3 md:gap-4">
+                        <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 font-extrabold text-[10px] md:text-sm uppercase group-hover:scale-110 transition-transform duration-500">
                           {teacher.displayName.split(' ').map((n: string) => n[0]).join('').slice(0, 2)}
                         </div>
                         <div>
-                          <div className="font-bold text-[#0b1c30] group-hover:text-emerald-600 transition-colors">{teacher.displayName}</div>
-                          <div className="flex items-center gap-1.5 text-[10px] font-bold text-indigo-600 mt-0.5">
-                            <ShieldCheck className="w-3 h-3" />
+                          <div className="text-xs md:text-sm font-bold text-[#0b1c30] group-hover:text-emerald-600 transition-colors leading-tight">{teacher.displayName}</div>
+                          <div className="flex items-center gap-1 text-[8px] md:text-[10px] font-bold text-indigo-600 mt-0.5">
+                            <ShieldCheck className="w-2.5 h-2.5 md:w-3 md:h-3" />
                             STAFF ID: {teacher.id.slice(-6).toUpperCase()}
                           </div>
                         </div>
                       </div>
                     </td>
-                    <td className="px-8 py-6">
+                    <td className="px-3 py-3 md:px-8 md:py-6">
                       <div className="flex flex-col gap-1">
-                        <div className="flex items-center gap-2 text-sm font-medium text-[#464555]">
-                          <Mail className="w-3.5 h-3.5 text-[#464555]/30" />
-                          {teacher.email}
+                        <div className="flex items-center gap-1.5 md:gap-2 text-[11px] md:text-sm font-medium text-[#464555]">
+                          <Mail className="w-3 h-3 md:w-3.5 md:h-3.5 text-[#464555]/30" />
+                          <span className="truncate max-w-[120px] md:max-w-none">{teacher.email}</span>
                         </div>
                       </div>
                     </td>
-                    <td className="px-8 py-6">
-                      <div className="flex flex-wrap gap-1.5 max-w-[200px]">
+                    <td className="px-3 py-3 md:px-8 md:py-6">
+                      <div className="flex flex-wrap gap-1 md:gap-1.5 max-w-[120px] md:max-w-[200px]">
                         {teacher.classes && teacher.classes.length > 0 ? (
                           teacher.classes.map((cls: string, idx: number) => (
-                            <span key={idx} className="px-2 py-1 rounded-lg bg-white border border-[#0b1c30]/5 text-[#464555] text-[10px] font-bold whitespace-nowrap">
+                            <span key={idx} className="px-1.5 md:px-2 py-0.5 md:py-1 rounded-lg bg-white border border-[#0b1c30]/5 text-[#464555] text-[8px] md:text-[10px] font-bold whitespace-nowrap">
                               {cls}
                             </span>
                           ))
                         ) : (
-                          <span className="text-xs font-medium text-[#464555]/40 italic">No classes assigned</span>
+                          <span className="text-[10px] md:text-xs font-medium text-[#464555]/40 italic">No classes assigned</span>
                         )}
                       </div>
                     </td>
-                    <td className="px-8 py-6">
+                    <td className="px-3 py-3 md:px-8 md:py-6">
                       <span className={cn(
-                        "px-3 py-1 rounded-full text-[10px] font-bold",
+                        "px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[8px] md:text-[10px] font-bold whitespace-nowrap",
                         teacher.status === 'ACTIVE' ? "bg-emerald-100 text-emerald-600" : "bg-amber-100 text-amber-600"
                       )}>
                         {teacher.status || 'ACTIVE'}
                       </span>
                     </td>
-                    <td className="px-8 py-6 text-right">
-                      <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <td className="px-3 py-3 md:px-8 md:py-6 text-right">
+                      <div className="flex justify-end gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                         <button 
                           onClick={() => handleDeleteTeacher(teacher.id)}
-                          className="w-8 h-8 rounded-lg flex items-center justify-center text-rose-600 hover:bg-rose-50 transition-all"
+                          className="w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center text-rose-600 hover:bg-rose-50 transition-all min-tap"
                           title="Delete Teacher"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash2 className="w-3.5 h-3.5 md:w-4 md:h-4" />
                         </button>
-                        <button className="w-8 h-8 rounded-lg flex items-center justify-center text-[#464555]/30 hover:text-emerald-600 hover:bg-white transition-all">
-                          <MoreHorizontal className="w-5 h-5" />
+                        <button className="w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center text-[#464555]/30 hover:text-emerald-600 hover:bg-white transition-all min-tap">
+                          <MoreHorizontal className="w-4 h-4 md:w-5 md:h-5" />
                         </button>
                       </div>
                     </td>
@@ -226,7 +226,7 @@ export default function TeachersList() {
           </div>
 
           {/* Table Footer */}
-          <div className="px-8 py-6 border-t border-[#0b1c30]/5 flex items-center justify-between bg-[#f8f9ff]/30">
+          <div className="px-4 md:px-8 py-4 md:py-6 border-t border-[#0b1c30]/5 flex items-center justify-between bg-[#f8f9ff]/30">
             <p className="text-xs font-bold text-[#464555]/60">
               Showing <span className="text-[#0b1c30]">{filteredTeachers.length}</span> of <span className="text-[#0b1c30]">{teachers.length}</span> faculty members
             </p>

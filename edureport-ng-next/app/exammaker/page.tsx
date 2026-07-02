@@ -105,6 +105,9 @@ export default function ExamMaker() {
     topic: '',
     classLevel: 'SS 1',
     questionCount: 10,
+    mcqCount: 10,
+    theoryCount: 5,
+    difficulty: 'Medium',
     questionType: 'mcq',
     sourceMode: 'curriculum',
     sourceUrl: '',
@@ -457,7 +460,7 @@ export default function ExamMaker() {
     doc.text(`${sessionVal} ACADEMIC SESSION`, pageW - margin, 8, { align: "right" });
     doc.setFontSize(6.5);
     doc.setFont("helvetica", "normal");
-    doc.text("EduReport NG - AI Exam Maker", pageW / 2, 13, { align: "center" });
+    doc.text("ReportSheet NG - AI Exam Maker", pageW / 2, 13, { align: "center" });
     y = 24;
 
     // School details
@@ -762,9 +765,9 @@ export default function ExamMaker() {
 
   return (
     <DashboardLayout role={userRole} title="AI Exam Generator">
-      <div className="flex h-[calc(100vh-180px)] gap-6 overflow-hidden print:block print:h-auto">
+      <div className="flex flex-col lg:flex-row h-auto lg:h-[calc(100vh-180px)] gap-4 lg:gap-6 overflow-visible lg:overflow-hidden pb-24 lg:pb-0 print:block print:h-auto">
         {/* Left Pane: Configuration */}
-        <section className="w-[380px] flex-shrink-0 flex flex-col gap-4 print:hidden">
+        <section className="w-full lg:w-[380px] flex-shrink-0 flex flex-col gap-4 print:hidden">
           {/* Tab Switcher */}
           <div className="glass rounded-2xl p-1.5 flex gap-1 bg-white border border-[#0b1c30]/5">
             {([
@@ -814,7 +817,7 @@ export default function ExamMaker() {
                   {/* Source Mode */}
                   <div className="space-y-1.5">
                     <label className="text-[10px] font-extrabold text-[#464555]/50 uppercase tracking-widest ml-1">Source Mode</label>
-                    <div className="grid grid-cols-4 gap-2">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                       {([
                         { id: 'curriculum', label: 'Curriculum', icon: BookOpen },
                         { id: 'topic', label: 'Topic', icon: BookOpen },
@@ -825,14 +828,14 @@ export default function ExamMaker() {
                           key={mode.id}
                           onClick={() => setConfig({...config, sourceMode: mode.id})}
                           className={cn(
-                            "flex flex-col items-center justify-center gap-1.5 p-2.5 rounded-xl border transition-all",
+                            "flex flex-col items-center justify-center gap-1.5 p-2.5 md:p-2.5 rounded-xl border transition-all min-tap",
                             config.sourceMode === mode.id 
                               ? "bg-indigo-600 border-indigo-600 text-white shadow-lg shadow-indigo-600/20" 
                               : "bg-white border-[#0b1c30]/5 text-[#464555] hover:border-indigo-600/20"
                           )}
                         >
-                          <mode.icon className="w-3.5 h-3.5" />
-                          <span className="text-[10px] font-bold">{mode.label}</span>
+                          <mode.icon className="w-4 h-4 md:w-3.5 md:h-3.5" />
+                          <span className="text-[11px] md:text-[10px] font-bold">{mode.label}</span>
                         </button>
                       ))}
                     </div>
@@ -842,22 +845,24 @@ export default function ExamMaker() {
                   {config.sourceMode === 'curriculum' && (
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-extrabold text-[#464555]/50 uppercase tracking-widest ml-1">Approved Curriculum/Scheme</label>
-                      <input 
-                        list="curriculum-options"
-                        value={config.curriculum}
-                        onChange={(e) => setConfig({...config, curriculum: e.target.value})}
-                        placeholder="Select or type a custom curriculum..."
-                        className="w-full px-4 py-3.5 bg-[#f8f9ff] border border-[#0b1c30]/5 rounded-xl text-sm font-bold text-[#0b1c30] focus:outline-none focus:ring-2 focus:ring-indigo-600/10 transition-all"
-                      />
-                      <datalist id="curriculum-options">
-                        <option value="NERDC Scheme">NERDC (Nigerian Educational Research and Development Council)</option>
-                        <option value="NAPPS Scheme">NAPPS (National Association of Proprietors of Private Schools)</option>
-                        <option value="WAEC Syllabus">WAEC (West African Examinations Council) Syllabus</option>
-                        <option value="NECO Syllabus">NECO (National Examinations Council) Syllabus</option>
-                        <option value="Cambridge CAIE Scheme">Cambridge Assessment International Education (CAIE)</option>
-                        <option value="Lagos State Unified Scheme">Lagos State Unified Scheme</option>
-                        <option value="FCT Unified Scheme">FCT Unified Scheme</option>
-                      </datalist>
+                      <div className="relative">
+                        <select
+                          value={config.curriculum}
+                          onChange={(e) => setConfig({...config, curriculum: e.target.value})}
+                          className="w-full px-4 py-3.5 bg-[#f8f9ff] border border-[#0b1c30]/5 rounded-xl text-sm font-bold text-[#0b1c30] focus:outline-none focus:ring-2 focus:ring-indigo-600/10 transition-all appearance-none cursor-pointer min-tap"
+                        >
+                          <option value="NERDC Scheme">NERDC (Nigerian Educational R&amp;D Council)</option>
+                          <option value="NAPPS Scheme">NAPPS (National Assoc. of Private Schools)</option>
+                          <option value="WAEC Syllabus">WAEC (West African Examinations Council)</option>
+                          <option value="NECO Syllabus">NECO (National Examinations Council)</option>
+                          <option value="Cambridge CAIE Scheme">Cambridge Assessment (CAIE)</option>
+                          <option value="Lagos State Unified Scheme">Lagos State Unified Scheme</option>
+                          <option value="FCT Unified Scheme">FCT Unified Scheme</option>
+                        </select>
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#464555]/40">
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                        </div>
+                      </div>
                     </div>
                   )}
 
@@ -968,20 +973,20 @@ export default function ExamMaker() {
                           key={qt.id}
                           onClick={() => setConfig({...config, questionType: qt.id})}
                           className={cn(
-                            "flex flex-col items-center justify-center gap-1.5 p-2.5 rounded-xl border transition-all",
+                            "flex flex-col items-center justify-center gap-1.5 p-2.5 rounded-xl border transition-all min-tap",
                             config.questionType === qt.id
                               ? "bg-indigo-600 border-indigo-600 text-white shadow-lg shadow-indigo-600/20"
                               : "bg-white border-[#0b1c30]/5 text-[#464555] hover:border-indigo-600/20"
                           )}
                         >
-                          <qt.icon className="w-3.5 h-3.5" />
-                          <span className="text-[10px] font-bold">{qt.label}</span>
+                          <qt.icon className="w-4 h-4 md:w-3.5 md:h-3.5" />
+                          <span className="text-[11px] md:text-[10px] font-bold">{qt.label}</span>
                         </button>
                       ))}
                     </div>
                   </div>
 
-                  {/* Level + Count */}
+                  {/* Level + Difficulty */}
                   <div className="grid grid-cols-2 gap-3">
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-extrabold text-[#464555]/50 uppercase tracking-widest ml-1">Class Level</label>
@@ -1002,6 +1007,47 @@ export default function ExamMaker() {
                       </datalist>
                     </div>
                     <div className="space-y-1.5">
+                      <label className="text-[10px] font-extrabold text-[#464555]/50 uppercase tracking-widest ml-1">Difficulty</label>
+                      <select
+                        value={config.difficulty}
+                        onChange={(e) => setConfig({...config, difficulty: e.target.value})}
+                        className="w-full px-3 py-3 bg-[#f8f9ff] border border-[#0b1c30]/5 rounded-xl text-sm font-bold text-[#0b1c30] focus:outline-none transition-all appearance-none"
+                      >
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Question Count(s) */}
+                  {config.questionType === 'mixed' ? (
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-extrabold text-[#464555]/50 uppercase tracking-widest ml-1">No. of MCQ</label>
+                        <input 
+                          type="number" 
+                          min={1}
+                          max={50}
+                          value={config.mcqCount}
+                          onChange={(e) => setConfig({...config, mcqCount: Number(e.target.value)})}
+                          className="w-full px-3 py-3 bg-[#f8f9ff] border border-[#0b1c30]/5 rounded-xl text-sm font-bold text-[#0b1c30] focus:outline-none transition-all"
+                        />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-extrabold text-[#464555]/50 uppercase tracking-widest ml-1">No. of Theory</label>
+                        <input 
+                          type="number" 
+                          min={1}
+                          max={20}
+                          value={config.theoryCount}
+                          onChange={(e) => setConfig({...config, theoryCount: Number(e.target.value)})}
+                          className="w-full px-3 py-3 bg-[#f8f9ff] border border-[#0b1c30]/5 rounded-xl text-sm font-bold text-[#0b1c30] focus:outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-1.5">
                       <label className="text-[10px] font-extrabold text-[#464555]/50 uppercase tracking-widest ml-1">No. of Questions</label>
                       <input 
                         type="number" 
@@ -1012,7 +1058,7 @@ export default function ExamMaker() {
                         className="w-full px-3 py-3 bg-[#f8f9ff] border border-[#0b1c30]/5 rounded-xl text-sm font-bold text-[#0b1c30] focus:outline-none transition-all"
                       />
                     </div>
-                  </div>
+                  )}
 
                   {/* Term + Session */}
                   <div className="grid grid-cols-2 gap-3">
@@ -1299,7 +1345,7 @@ export default function ExamMaker() {
         </section>
 
         {/* Right Pane: Question Preview */}
-        <section className="flex-1 glass p-8 rounded-[2.5rem] shadow-elite overflow-y-auto custom-scrollbar bg-white border border-[#0b1c30]/5 print:bg-white print:p-0 print:shadow-none print:rounded-none">
+        <section className="flex-1 glass p-4 md:p-8 rounded-[1.5rem] md:rounded-[2.5rem] shadow-elite overflow-y-auto custom-scrollbar bg-white border border-[#0b1c30]/5 print:bg-white print:p-0 print:shadow-none print:rounded-none">
           <AnimatePresence mode="wait">
             {questions.length > 0 ? (
               <motion.div 
@@ -1309,84 +1355,86 @@ export default function ExamMaker() {
                 className="space-y-6"
               >
                 {/* Toolbar */}
-                <div className="flex items-center justify-between print:hidden gap-4 flex-wrap border-b border-[#0b1c30]/5 pb-4 mb-4">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between print:hidden gap-3 md:gap-4 border-b border-[#0b1c30]/5 pb-4 mb-4">
                    <div>
-                     <h3 className="text-xl font-black text-[#0b1c30] tracking-tight">Question Preview</h3>
+                     <h3 className="text-lg md:text-xl font-black text-[#0b1c30] tracking-tight">Question Preview</h3>
                      <p className="text-xs font-medium text-[#464555]/50 mt-0.5">
                        {questions.length} questions • {mcqQuestions.length > 0 && `${mcqQuestions.length} MCQ`}{isMixed && ' + '}{theoryQuestions.length > 0 && `${theoryQuestions.length} Theory`}
                      </p>
                    </div>
-                   <div className="flex items-center gap-2 flex-wrap">
+                   <div className="flex items-center gap-1.5 md:gap-2 flex-wrap w-full md:w-auto">
                       {currentExamId && (
                         <button 
                           onClick={handleSaveExam}
                           disabled={!isModified || isSaving}
                           className={cn(
-                            "flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all shadow-sm",
+                            "flex items-center gap-1 px-3 md:px-4 py-2 md:py-2.5 rounded-xl text-[10px] md:text-xs font-extrabold transition-all shadow-sm",
                             isModified 
                               ? "bg-amber-500 hover:bg-amber-600 text-white shadow-amber-500/10" 
                               : "bg-gray-100 text-gray-400 cursor-not-allowed"
                           )}
                         >
-                          {isSaving ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
-                          {isSaving ? "Saving..." : "Save Changes"}
+                          {isSaving ? <RefreshCw className="w-3 h-3 md:w-3.5 md:h-3.5 animate-spin" /> : <Save className="w-3 h-3 md:w-3.5 md:h-3.5" />}
+                          <span className="hidden sm:inline">{isSaving ? "Saving..." : "Save Changes"}</span>
+                          <span className="sm:hidden">{isSaving ? "..." : "Save"}</span>
                         </button>
                       )}
                       
                       <button 
                         onClick={() => setShowingAnswers(!showingAnswers)}
                         className={cn(
-                          "flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold transition-all border",
+                          "flex items-center gap-1 px-3 md:px-4 py-2 md:py-2.5 rounded-xl text-[10px] md:text-xs font-bold transition-all border",
                           showingAnswers 
                             ? "bg-emerald-50 border-emerald-200 text-emerald-700 hover:bg-emerald-100" 
                             : "bg-white border-[#0b1c30]/5 text-[#464555] hover:border-indigo-600/20"
                         )}
                       >
-                        {showingAnswers ? <Eye className="w-3.5 h-3.5 text-emerald-600" /> : <Eye className="w-3.5 h-3.5" />}
-                        {showingAnswers ? "Hide Answers" : "Show Answers"}
+                        <Eye className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                        <span className="hidden sm:inline">{showingAnswers ? "Hide Answers" : "Show Answers"}</span>
+                        <span className="sm:hidden">Ans</span>
                       </button>
 
                       <div className="flex bg-[#f8f9ff] border border-[#0b1c30]/5 rounded-xl p-1 gap-1">
                         <button 
                           onClick={shuffleQuestions}
                           title="Shuffle Questions"
-                          className="p-2 text-[#464555] hover:text-indigo-600 hover:bg-white rounded-lg transition-all"
+                          className="p-1.5 md:p-2 text-[#464555] hover:text-indigo-600 hover:bg-white rounded-lg transition-all"
                         >
-                          <Shuffle className="w-3.5 h-3.5" />
+                          <Shuffle className="w-3 h-3 md:w-3.5 md:h-3.5" />
                         </button>
                         {mcqQuestions.length > 0 && (
                           <button 
                             onClick={shuffleOptions}
                             title="Shuffle MCQ Options"
-                            className="p-2 text-[#464555] hover:text-indigo-600 hover:bg-white rounded-lg transition-all"
+                            className="p-1.5 md:p-2 text-[#464555] hover:text-indigo-600 hover:bg-white rounded-lg transition-all"
                           >
-                            <ListChecks className="w-3.5 h-3.5" />
+                            <ListChecks className="w-3 h-3 md:w-3.5 md:h-3.5" />
                           </button>
                         )}
                       </div>
 
                       <button 
                         onClick={handleExportPDF} 
-                        className="flex items-center gap-1.5 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-indigo-600/10"
+                        className="flex items-center gap-1 px-3 md:px-4 py-2 md:py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-[10px] md:text-xs font-bold transition-all shadow-md shadow-indigo-600/10"
                       >
-                        <Download className="w-3.5 h-3.5" />
-                        Export PDF
+                        <Download className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                        <span className="hidden sm:inline">PDF</span>
                       </button>
 
                       <button 
                         onClick={handleExportDOCX} 
-                        className="flex items-center gap-1.5 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-all shadow-md shadow-blue-600/10"
+                        className="flex items-center gap-1 px-3 md:px-4 py-2 md:py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-[10px] md:text-xs font-bold transition-all shadow-md shadow-blue-600/10"
                       >
-                        <Download className="w-3.5 h-3.5" />
-                        Export DOCX
+                        <Download className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                        <span className="hidden sm:inline">DOCX</span>
                       </button>
 
                       <button 
                         onClick={handlePrint} 
-                        className="flex items-center gap-1.5 px-4 py-2.5 bg-white border border-[#0b1c30]/5 rounded-xl text-xs font-bold text-[#464555] hover:text-indigo-600 hover:border-indigo-200 transition-all"
+                        className="flex items-center gap-1 px-3 md:px-4 py-2 md:py-2.5 bg-white border border-[#0b1c30]/5 rounded-xl text-[10px] md:text-xs font-bold text-[#464555] hover:text-indigo-600 hover:border-indigo-200 transition-all"
                       >
-                        <Printer className="w-3.5 h-3.5" />
-                        Print
+                        <Printer className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                        <span className="hidden sm:inline">Print</span>
                       </button>
                    </div>
                 </div>

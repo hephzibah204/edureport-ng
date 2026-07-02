@@ -30,7 +30,7 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const priceL = Number(config?.pricing?.lifetime || 25000).toLocaleString();
+  const priceL = Number(config?.pricing?.lifetime || 30000).toLocaleString();
 
   const containerVariants = {
     hidden: { opacity: 0 },

@@ -138,7 +138,7 @@ function RegisterContent() {
 
   const plans = [
     { id: 'starter', price: `₦${Number(config?.pricing?.starter || 15000).toLocaleString()}`, name: 'Starter / Year', desc: '100 students · PDF Report Cards · Basic Exams', highlight: false },
-    { id: 'lifetime', price: `₦${Number(config?.pricing?.lifetime || 25000).toLocaleString()}`, name: 'Lifetime Access', desc: 'Unlimited students · Full Broadsheets · AI Exams', highlight: true },
+    { id: 'lifetime', price: `₦${Number(config?.pricing?.lifetime || 30000).toLocaleString()}`, name: 'Lifetime Access', desc: 'Unlimited students · Full Broadsheets · AI Exams', highlight: true },
     { id: 'pro', price: `₦${Number(config?.pricing?.pro || 35000).toLocaleString()}`, name: 'Pro + AI (Lifetime)', desc: '2,000 AI credits · Advanced AI Exam Suite', highlight: false },
     { id: 'trial', price: 'Free', name: '7-Day Trial', desc: '50 students · Report Card Preview', highlight: false }
   ];
@@ -205,7 +205,7 @@ function RegisterContent() {
         setSuccess(`✅ Account created! Initiating Paystack checkout...`);
         const priceMap: Record<string, number> = {
           starter: Number(config?.pricing?.starter || 15000) * 100,
-          lifetime: Number(config?.pricing?.lifetime || 25000) * 100,
+          lifetime: Number(config?.pricing?.lifetime || 30000) * 100,
           pro: Number(config?.pricing?.pro || 35000) * 100
         };
         const amount = priceMap[plan] || 2500000;
@@ -218,6 +218,7 @@ function RegisterContent() {
           amount: amount,
           currency: 'NGN',
           ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+          callback_url: window.location.href,
           callback: function(response: any) {
             setSuccess(`✅ Payment successful! Reference: ${response.reference}`);
             setTimeout(() => router.push('/app'), 1200);

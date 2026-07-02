@@ -61,32 +61,32 @@ export function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="py-32 px-6 bg-[#f8f9ff] relative overflow-hidden">
+    <section id="pricing" className="py-20 md:py-32 px-4 md:px-6 bg-[#f8f9ff] relative overflow-hidden">
       {/* Background Orbs */}
-      <div className="absolute top-0 right-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-200/40 blur-[150px] -z-10" />
-      <div className="absolute bottom-0 left-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-100/40 blur-[150px] -z-10" />
+      <div className="absolute top-0 right-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-200/40 blur-[150px] -z-10 hidden md:block" />
+      <div className="absolute bottom-0 left-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-100/40 blur-[150px] -z-10 hidden md:block" />
 
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 text-sm font-extrabold tracking-wide mb-6">
+        <div className="text-center mb-12 md:mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 text-xs md:text-sm font-extrabold tracking-wide mb-6">
             <Sparkles className="w-4 h-4" />
             <span>SIMPLE PRICING</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-[#0b1c30] tracking-tight mb-6">
+          <h2 className="text-3xl md:text-5xl font-black text-[#0b1c30] tracking-tight mb-4 md:mb-6">
             Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-400">Growth Plan</span>
           </h2>
-          <p className="text-lg text-[#464555] max-w-2xl mx-auto font-medium">
+          <p className="text-base md:text-lg text-[#464555] max-w-2xl mx-auto font-medium px-2">
             Transparent pricing for schools of all sizes. No hidden fees. Upgrade, downgrade, or cancel anytime.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto items-start md:items-center">
           {plans.map((plan, idx) => (
             <div 
               key={idx} 
-              className={`relative bg-white rounded-[2.5rem] p-10 transition-all duration-300 hover:-translate-y-2 ${
+              className={`relative bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 transition-all duration-300 hover:-translate-y-2 ${
                 plan.popular 
-                  ? 'border-2 border-indigo-600 shadow-2xl shadow-indigo-600/20 scale-105 z-10' 
+                  ? 'border-2 border-indigo-600 shadow-2xl shadow-indigo-600/20 md:scale-105 z-10' 
                   : 'border border-indigo-50 shadow-xl shadow-indigo-100/50'
               }`}
             >
@@ -96,35 +96,35 @@ export function Pricing() {
                 </div>
               )}
               
-              <div className="mb-8">
-                <h3 className="text-xl font-extrabold text-[#0b1c30] mb-2">{plan.name}</h3>
-                <p className="text-[#464555]/80 text-sm font-medium h-10">{plan.description}</p>
+              <div className="mb-6 md:mb-8">
+                <h3 className="text-lg md:text-xl font-extrabold text-[#0b1c30] mb-2">{plan.name}</h3>
+                <p className="text-[#464555]/80 text-xs md:text-sm font-medium">{plan.description}</p>
               </div>
 
-              <div className="mb-8 flex items-baseline gap-2">
-                <span className="text-5xl font-black text-[#0b1c30] tracking-tighter">{plan.price}</span>
-                <span className="text-[#464555] font-bold">/{plan.duration}</span>
+              <div className="mb-6 md:mb-8 flex items-baseline gap-2">
+                <span className="text-3xl md:text-5xl font-black text-[#0b1c30] tracking-tighter">{plan.price}</span>
+                <span className="text-xs md:text-sm text-[#464555] font-bold">/{plan.duration}</span>
               </div>
 
-              <ul className="space-y-4 mb-10">
+              <ul className="space-y-3 md:space-y-4 mb-8 md:mb-10">
                 {plan.features.map((feature, fIdx) => (
                   <li key={fIdx} className="flex items-start gap-3">
-                    <div className={`p-1 rounded-full shrink-0 ${plan.popular ? 'bg-indigo-100 text-indigo-600' : 'bg-emerald-50 text-emerald-600'}`}>
+                    <div className={`p-1 rounded-full shrink-0 mt-0.5 ${plan.popular ? 'bg-indigo-100 text-indigo-600' : 'bg-emerald-50 text-emerald-600'}`}>
                       <Check className="w-3 h-3 font-bold" />
                     </div>
-                    <span className="text-sm font-bold text-[#464555]">{feature}</span>
+                    <span className="text-xs md:text-sm font-bold text-[#464555]">{feature}</span>
                   </li>
                 ))}
               </ul>
 
               {currentPlan === plan.id ? (
-                <div className="block w-full text-center py-4 rounded-2xl font-extrabold text-sm bg-emerald-50 text-emerald-700 cursor-default border border-emerald-200 shadow-sm">
+                <div className="block w-full text-center py-3 md:py-4 rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm bg-emerald-50 text-emerald-700 cursor-default border border-emerald-200 shadow-sm">
                   Current Plan
                 </div>
               ) : (
                 <Link 
                   href="/register" 
-                  className={`block w-full text-center py-4 rounded-2xl font-extrabold text-sm transition-all ${
+                  className={`block w-full text-center py-3 md:py-4 rounded-xl md:rounded-2xl font-extrabold text-xs md:text-sm transition-all ${
                     plan.popular 
                       ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-600/30' 
                       : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100'

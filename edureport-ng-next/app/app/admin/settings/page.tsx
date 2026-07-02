@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Settings, ShieldCheck, Mail, Save, Loader2, Database } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/src/lib/utils';
+import { toast } from 'sonner';
 
 export default function SuperAdminSettings() {
   const [activeTab, setActiveTab] = useState('general');
@@ -14,7 +15,7 @@ export default function SuperAdminSettings() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      alert('Settings saved successfully.');
+      toast.success('Settings saved successfully.');
     }, 1500);
   };
 

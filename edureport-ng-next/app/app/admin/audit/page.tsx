@@ -9,7 +9,7 @@ export default function AuditPage() {
     { id: "LOG-001", user: "Alice Freeman", action: "School Created", details: "Royal Academy onboarded with Enterprise plan", time: "10 mins ago", type: "system" },
     { id: "LOG-002", user: "System", action: "Invoice Paid", details: "Payment of $999.00 received for INV-2024-001", time: "1 hour ago", type: "billing" },
     { id: "LOG-003", user: "Bob Chen", action: "Settings Updated", details: "Global password policy updated", time: "3 hours ago", type: "settings" },
-    { id: "LOG-004", user: "Carol Davis", action: "User Invited", details: "Invited new support staff member (david@edureport.com)", time: "Yesterday", type: "user" },
+    { id: "LOG-004", user: "Carol Davis", action: "User Invited", details: "Invited new support staff member (david@reportsheet.com.ng)", time: "Yesterday", type: "user" },
     { id: "LOG-005", user: "System", action: "Database Backup", details: "Automated daily backup completed successfully", time: "Yesterday", type: "system" },
   ];
 

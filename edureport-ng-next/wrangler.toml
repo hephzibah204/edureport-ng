@@ -6,10 +6,6 @@ name = "edureport-ng"
 # Build configuration
 pages_build_output_dir = "out"
 
-# Pages Functions configuration
-[pages.functions]
-path = "/functions"
-
 # D1 Database binding
 [[d1_databases]]
 binding = "DB"

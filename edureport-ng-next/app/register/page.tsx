@@ -3,13 +3,14 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GraduationCap, ArrowRight, CheckCircle2, Building2, User, Lock, Mail, Phone, ChevronRight, Loader2 } from 'lucide-react';
+import { GraduationCap, ArrowRight, CheckCircle2, Building2, User, Lock, Mail, Phone, ChevronRight, Loader2, Eye, EyeOff } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function RegisterPage() {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     schoolName: '',
     subdomain: '',
@@ -142,6 +143,7 @@ export default function RegisterPage() {
                       <input 
                         type="text" 
                         placeholder="e.g. Royal International College"
+                        autoComplete="organization"
                         className="w-full pl-12 pr-4 py-4 bg-white border border-[#0b1c30]/5 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600/10 focus:border-indigo-600 transition-all font-medium text-sm"
                         value={formData.schoolName}
                         onChange={e => setFormData({...formData, schoolName: e.target.value})}
@@ -192,6 +194,7 @@ export default function RegisterPage() {
                       <input 
                         type="email" 
                         placeholder="admin@school.com"
+                        autoComplete="email"
                         className="w-full pl-12 pr-4 py-4 bg-white border border-[#0b1c30]/5 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600/10 focus:border-indigo-600 transition-all font-medium text-sm"
                         value={formData.email}
                         onChange={e => setFormData({...formData, email: e.target.value})}
@@ -202,16 +205,25 @@ export default function RegisterPage() {
                   <div className="space-y-2">
                     <label className="text-xs font-extrabold text-[#0b1c30] uppercase tracking-widest ml-1">Admin Password</label>
                     <div className="relative group">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#464555]/50 group-focus-within:text-indigo-600 transition-colors">
+                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#464555]/50 group-focus-within:text-indigo-600 transition-colors z-10">
                         <Lock className="w-5 h-5" />
                       </div>
                       <input 
-                        type="password" 
+                        type={showPassword ? "text" : "password"}
                         placeholder="Min. 8 characters"
-                        className="w-full pl-12 pr-4 py-4 bg-white border border-[#0b1c30]/5 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600/10 focus:border-indigo-600 transition-all font-medium text-sm"
+                        autoComplete="new-password"
+                        className="w-full pl-12 pr-12 py-4 bg-white border border-[#0b1c30]/5 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600/10 focus:border-indigo-600 transition-all font-medium text-sm"
                         value={formData.password}
                         onChange={e => setFormData({...formData, password: e.target.value})}
                       />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#464555]/40 hover:text-indigo-600 transition-colors min-tap"
+                        tabIndex={-1}
+                      >
+                        {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                      </button>
                     </div>
                   </div>
 

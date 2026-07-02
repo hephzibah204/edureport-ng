@@ -24,7 +24,9 @@ export default function SuperAdminOverview() {
     schoolsTotal: 0,
     schoolsActive: 0,
     studentsTotal: 0,
-    revenue: 0
+    revenue: 0,
+    recentPayments: [] as any[],
+    newRegistrationsCount: 0
   });
   const [logs, setLogs] = useState<any[]>([]);
 
@@ -54,7 +56,7 @@ export default function SuperAdminOverview() {
 
   const statCards = [
     { label: 'Total Schools', val: stats.schoolsTotal, sub: `${stats.schoolsActive} Active Licenses`, icon: School, color: 'indigo' },
-    { label: 'Platform Revenue', val: `$${stats.revenue.toLocaleString()}`, sub: 'Total processed', icon: CreditCard, color: 'emerald' },
+    { label: 'Platform Revenue', val: `₦${stats.revenue.toLocaleString()}`, sub: 'Total processed', icon: CreditCard, color: 'emerald' },
     { label: 'Total Students', val: stats.studentsTotal.toLocaleString(), sub: 'Across all institutions', icon: Users, color: 'violet' },
     { label: 'System Health', val: '99.9%', sub: 'All systems operational', icon: Activity, color: 'amber' },
   ];
@@ -124,33 +126,39 @@ export default function SuperAdminOverview() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="overflow-x-auto scroll-native -mx-4 md:mx-0 px-4 md:px-0">
               {loading ? (
-                [1,2,3,4,5].map(i => <div key={i} className="h-16 bg-[#f8f9ff] rounded-2xl animate-pulse" />)
-              ) : logs.length === 0 ? (
-                <p className="text-center py-10 text-[#464555]/40 font-bold italic">No logs found</p>
-              ) : logs.slice(0, 10).map((log, i) => (
-                <div key={log.id} className="flex items-center gap-6 p-5 rounded-2xl hover:bg-white transition-all group border border-transparent hover:border-[#0b1c30]/5">
-                   <div className={cn(
-                     "w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0",
-                     log.action.includes('DELETE') ? "bg-rose-50 text-rose-500" :
-                     log.action.includes('CREATE') ? "bg-emerald-50 text-emerald-500" :
-                     "bg-indigo-50 text-indigo-500"
-                   )}>
-                      {log.action.includes('DELETE') ? <AlertTriangle className="w-4 h-4" /> : <CheckCircle2 className="w-4 h-4" />}
-                   </div>
-                   <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-start mb-0.5">
-                         <span className="text-sm font-extrabold text-[#0b1c30] truncate">{log.action}</span>
-                         <span className="text-[10px] font-bold text-[#464555]/30 uppercase whitespace-nowrap">{new Date(log.createdAt).toLocaleString()}</span>
-                      </div>
-                      <p className="text-xs font-medium text-[#464555]/60 truncate">
-                        Actor: <span className="text-indigo-600 font-bold">{log.userEmail || 'System'}</span> • Data: {JSON.stringify(log.data).slice(0, 100)}...
-                      </p>
-                   </div>
-                   <ArrowRight className="w-4 h-4 text-[#464555]/10 group-hover:text-indigo-600 transition-all opacity-0 group-hover:opacity-100" />
+                <div className="space-y-4 min-w-[400px]">
+                  {[1,2,3,4,5].map(i => <div key={i} className="h-16 bg-[#f8f9ff] rounded-2xl animate-pulse" />)}
                 </div>
-              ))}
+              ) : logs.length === 0 ? (
+                <p className="text-center py-10 text-[#464555]/40 font-bold italic min-w-[400px]">No logs found</p>
+              ) : (
+                <div className="min-w-[500px] space-y-4">
+                  {logs.slice(0, 10).map((log, i) => (
+                    <div key={log.id} className="flex items-center gap-6 p-5 rounded-2xl hover:bg-white transition-all group border border-transparent hover:border-[#0b1c30]/5">
+                       <div className={cn(
+                         "w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0",
+                         log.action.includes('DELETE') ? "bg-rose-50 text-rose-500" :
+                         log.action.includes('CREATE') ? "bg-emerald-50 text-emerald-500" :
+                         "bg-indigo-50 text-indigo-500"
+                       )}>
+                          {log.action.includes('DELETE') ? <AlertTriangle className="w-4 h-4" /> : <CheckCircle2 className="w-4 h-4" />}
+                       </div>
+                       <div className="flex-1 min-w-0">
+                          <div className="flex justify-between items-start mb-0.5">
+                             <span className="text-sm font-extrabold text-[#0b1c30] truncate">{log.action}</span>
+                             <span className="text-[10px] font-bold text-[#464555]/30 uppercase whitespace-nowrap">{new Date(log.createdAt).toLocaleString()}</span>
+                          </div>
+                          <p className="text-xs font-medium text-[#464555]/60 truncate">
+                            Actor: <span className="text-indigo-600 font-bold">{log.userEmail || 'System'}</span> &bull; Data: {JSON.stringify(log.data).slice(0, 100)}...
+                          </p>
+                       </div>
+                       <ArrowRight className="w-4 h-4 text-[#464555]/10 group-hover:text-indigo-600 transition-all opacity-0 group-hover:opacity-100 flex-shrink-0" />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </section>
 
@@ -162,18 +170,20 @@ export default function SuperAdminOverview() {
                  Recent Payments
                </h3>
                <div className="space-y-4">
-                  {[1,2,3].map(i => (
-                    <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-[#f8f9ff]/50 border border-white">
+                  {stats.recentPayments && stats.recentPayments.length > 0 ? stats.recentPayments.map((payment: any) => (
+                    <div key={payment.id} className="flex items-center justify-between p-4 rounded-2xl bg-[#f8f9ff]/50 border border-white">
                        <div className="flex items-center gap-3">
                           <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-black text-[10px]">PAY</div>
                           <div>
-                             <div className="text-xs font-extrabold text-[#0b1c30]">School License #492{i}</div>
-                             <div className="text-[10px] font-bold text-[#464555]/50">Oct 2{i}, 2024</div>
+                             <div className="text-xs font-extrabold text-[#0b1c30]">{payment.schoolName || 'Unknown School'}</div>
+                             <div className="text-[10px] font-bold text-[#464555]/50">{new Date(payment.createdAt).toLocaleDateString()}</div>
                           </div>
                        </div>
-                       <div className="text-xs font-black text-emerald-600">+$120.00</div>
+                       <div className="text-xs font-black text-emerald-600">+₦{(payment.amountKobo / 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                     </div>
-                  ))}
+                  )) : (
+                    <p className="text-center py-4 text-[#464555]/40 font-bold italic text-xs">No recent payments</p>
+                  )}
                </div>
                <button className="w-full mt-6 py-4 bg-[#f8f9ff] text-[#464555] rounded-xl text-xs font-bold hover:bg-white transition-all border border-[#0b1c30]/5">
                  View All Transactions
@@ -184,7 +194,7 @@ export default function SuperAdminOverview() {
                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
                <div className="relative z-10">
                   <h3 className="text-xl font-extrabold tracking-tight mb-2">New Registrations</h3>
-                  <p className="text-white/60 text-xs font-medium mb-8 leading-relaxed">4 new schools pending verification and onboarding.</p>
+                  <p className="text-white/60 text-xs font-medium mb-8 leading-relaxed">{stats.newRegistrationsCount} new school{stats.newRegistrationsCount === 1 ? '' : 's'} registered in the last 7 days.</p>
                   <button className="flex items-center gap-2 text-white font-extrabold text-sm group">
                     Onboard Now
                     <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

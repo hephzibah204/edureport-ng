@@ -12,12 +12,30 @@ export const AICommandCenter = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [messages, setMessages] = useState<{ role: 'user' | 'assistant', content: string }[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
+
+  // Prevent body scroll when AI panel is open on mobile
+  useEffect(() => {
+    if (isOpen && isMobile) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen, isMobile]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,11 +73,13 @@ export const AICommandCenter = () => {
 
   return (
     <>
-      {/* Floating Toggle Button */}
+      {/* Floating Toggle Button - adjusts for bottom nav on mobile */}
       <button
         onClick={() => setIsOpen(true)}
         className={cn(
           "fixed bottom-8 right-8 w-14 h-14 rounded-2xl bg-[#0b1c30] text-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-[100] group",
+          "md:bottom-8 md:right-8",
+          "bottom-[88px] right-4 md:bottom-8 md:right-8",
           isOpen && "opacity-0 pointer-events-none"
         )}
       >
@@ -75,22 +95,43 @@ export const AICommandCenter = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setIsOpen(false)}
               className="fixed inset-0 bg-[#0b1c30]/10 backdrop-blur-[2px] z-[101]"
             />
 
-            {/* Chat Window */}
+            {/* Chat Window - full screen on mobile, panel on desktop */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20, x: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20, x: 20 }}
-              className="fixed bottom-8 right-8 w-full max-w-[400px] h-[550px] glass shadow-2xl rounded-[2.5rem] border-white/60 overflow-hidden flex flex-col z-[102]"
+              initial={isMobile ? 
+                { opacity: 0, y: '100%' } : 
+                { opacity: 0, scale: 0.9, y: 20, x: 20 }
+              }
+              animate={isMobile ? 
+                { opacity: 1, y: 0 } : 
+                { opacity: 1, scale: 1, y: 0, x: 0 }
+              }
+              exit={isMobile ? 
+                { opacity: 0, y: '100%' } : 
+                { opacity: 0, scale: 0.9, y: 20, x: 20 }
+              }
+              transition={isMobile ? 
+                { type: 'spring', damping: 30, stiffness: 300 } : 
+                { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
+              }
+              className={cn(
+                "glass shadow-2xl border-white/60 overflow-hidden flex flex-col z-[102]",
+                // Mobile: full screen with safe areas
+                "fixed inset-0 bottom-0 rounded-none md:rounded-[2.5rem]",
+                // Desktop: floating panel
+                "md:fixed md:bottom-8 md:right-8 md:w-full md:max-w-[400px] md:h-[550px] md:rounded-[2.5rem]",
+                "safe-top safe-bottom"
+              )}
             >
               {/* Header */}
-              <div className="p-6 bg-[#0b1c30] text-white flex items-center justify-between">
+              <div className="p-4 md:p-6 bg-[#0b1c30] text-white flex items-center justify-between flex-shrink-0 safe-top">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center border border-indigo-500/30">
-                    <Sparkles className="w-5 h-5 text-indigo-400" />
+                  <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center border border-indigo-500/30">
+                    <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
                   </div>
                   <div>
                     <h3 className="font-extrabold text-sm tracking-tight">AI Command Center</h3>
@@ -99,27 +140,27 @@ export const AICommandCenter = () => {
                 </div>
                 <button 
                   onClick={() => setIsOpen(false)}
-                  className="w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center transition-colors min-tap"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
               {/* Messages Area */}
-              <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50/30">
+              <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 bg-gray-50/30 scroll-native">
                 {messages.length === 0 && (
-                  <div className="h-full flex flex-col justify-center space-y-6 py-4">
-                    <div className="flex flex-col items-center justify-center text-center space-y-3 opacity-80">
+                  <div className="h-full flex flex-col justify-center py-4 max-w-md mx-auto w-full">
+                    <div className="flex flex-col items-center text-center space-y-3 opacity-80">
                       <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-sm border border-[#0b1c30]/5">
                         <Command className="w-6 h-6 text-indigo-600" />
                       </div>
                       <div>
-                        <p className="text-sm font-bold text-[#0b1c30]">How can I help you today?</p>
-                        <p className="text-[11px] font-medium text-[#464555]/60 mt-0.5">Click a quick command template below to get started:</p>
+                        <p className="text-sm font-bold text-[#0b1c30]">How can I help?</p>
+                        <p className="text-[11px] font-medium text-[#464555]/60 mt-0.5">Quick command templates:</p>
                       </div>
                     </div>
 
-                    <div className="space-y-2.5">
+                    <div className="space-y-2.5 mt-6">
                       {[
                         { label: "Record Score", cmd: "Record 85% in Mathematics for John" },
                         { label: "AI Comments", cmd: "Generate comments for JSS 1" },
@@ -130,7 +171,7 @@ export const AICommandCenter = () => {
                           key={idx}
                           type="button"
                           onClick={() => setCommand(tmpl.cmd)}
-                          className="w-full p-3.5 text-left bg-white border border-[#0b1c30]/5 rounded-xl shadow-sm hover:border-indigo-600/30 hover:bg-indigo-50/20 active:scale-[0.99] transition-all flex flex-col gap-0.5 group"
+                          className="w-full p-4 md:p-3.5 text-left bg-white border border-[#0b1c30]/5 rounded-xl shadow-sm hover:border-indigo-600/30 hover:bg-indigo-50/20 active:scale-[0.99] transition-all flex flex-col gap-0.5 group min-tap"
                         >
                           <span className="text-[10px] font-black text-indigo-600 uppercase tracking-widest">{tmpl.label}</span>
                           <span className="text-xs font-semibold text-[#0b1c30] group-hover:text-indigo-950 transition-colors">"{tmpl.cmd}"</span>
@@ -168,7 +209,7 @@ export const AICommandCenter = () => {
               </div>
 
               {/* Input Area */}
-              <div className="p-6 bg-white border-t border-gray-100">
+              <div className="p-4 md:p-6 bg-white border-t border-gray-100 flex-shrink-0 safe-bottom">
                 <form onSubmit={handleSubmit} className="relative group">
                   <input
                     autoFocus

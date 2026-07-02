@@ -24,7 +24,7 @@ async function testUpload(token: string) {
     body: formData
   });
   
-  const data = await response.json();
+  const data = await response.json() as any;
   console.log('Upload response:', data);
   
   // Now fetch it back

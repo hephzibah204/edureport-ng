@@ -1,7 +1,7 @@
 {
-  "name": "EduReport Elite",
-  "short_name": "EduReport",
-  "description": "Modern School Management & Report System",
+  "name": "reportsheet.com.ng",
+  "short_name": "ReportSheet",
+  "description": "reportsheet.com.ng - Modern School Management & Report System",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

@@ -16,6 +16,8 @@ interface Env {
   NEXT_PUBLIC_MAIN_DOMAIN?: string;
   PAYSTACK_SECRET_KEY?: string;
   PAYSTACK_PUBLIC_KEY?: string;
+  PAYVESSEL_API_KEY?: string;
+  PAYVESSEL_API_SECRET?: string;
   OPENROUTER_API_KEY?: string;
   GEMINI_API_KEY?: string;
   ALIBABA_API_KEY?: string;
@@ -155,8 +157,14 @@ export async function onRequest(context: {
       if (parts[1] === "schools" && parts.length === 3 && method === "GET") {
         return await handleAdminSchoolDetail(db, parts[2], origin);
       }
-      if (parts[1] === "schools" && parts[3] === "create" && method === "POST") {
+      if (parts[1] === "schools" && parts[2] === "create" && method === "POST") {
         return await handleCreateSchool(db, request, origin);
+      }
+      if (parts[1] === "schools" && parts.length === 4 && parts[3] === "toggle-status" && method === "PUT") {
+        return await handleAdminToggleSchoolStatus(db, parts[2], origin);
+      }
+      if (parts[1] === "schools" && parts.length === 4 && parts[3] === "reset-auth" && method === "PUT") {
+        return await handleAdminResetSchoolAuth(db, env, parts[2], origin);
       }
       if (parts[1] === "payments" && method === "GET") {
         return await handleAdminPayments(db, origin);
@@ -236,7 +244,7 @@ export async function onRequest(context: {
         return await handleSaveAttendanceSession(db, request, session, origin);
       }
       if (parts[1] === "api" && parts[2] === "attendance" && parts[3] === "submit" && method === "POST") {
-        return await handleSubmitAttendance(db, parts[4], origin);
+        return await handleSubmitAttendance(db, parts[4], session, origin);
       }
       if (parts[1] === "api" && parts[2] === "attendance" && parts[3] === "history" && method === "GET") {
         return await handleAttendanceHistory(db, request, session, origin);
@@ -423,8 +431,8 @@ async function generateAIResponse(env: Env, prompt: string, maxTokens = 4096): P
           headers: { 
             "Content-Type": "application/json", 
             "Authorization": `Bearer ${env.OPENROUTER_API_KEY}`,
-            "HTTP-Referer": "https://edureport.com.ng",
-            "X-Title": "EduReport NG"
+            "HTTP-Referer": "https://reportsheet.com.ng",
+            "X-Title": "ReportSheet NG"
           },
           body: JSON.stringify({
             model: model,
@@ -1029,17 +1037,41 @@ async function handleAdminStats(db: any, origin: string): Promise<Response> {
     .where(eq(schema.payments.status, "SUCCESS"))
     .get();
 
+  const recentPayments = await db
+    .select({
+      id: schema.payments.id,
+      amountKobo: schema.payments.amountKobo,
+      createdAt: schema.payments.createdAt,
+      schoolName: schema.schools.name
+    })
+    .from(schema.payments)
+    .leftJoin(schema.schools, eq(schema.payments.schoolId, schema.schools.id))
+    .where(eq(schema.payments.status, "SUCCESS"))
+    .orderBy(desc(schema.payments.createdAt))
+    .limit(5)
+    .all();
+
+  const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const newRegistrationsRow = await db
+    .select({ count: sql<number>`COUNT(*)` })
+    .from(schema.schools)
+    .where(gte(schema.schools.createdAt, lastWeek))
+    .get();
+
   return jsonResponse({
     stats: {
       schoolsTotal: schoolsTotal?.count || 0,
       schoolsActive: schoolsActive?.count || 0,
       studentsTotal: studentsTotal?.count || 0,
       revenue: (revenueRow?.sum || 0) / 100,
+      recentPayments,
+      newRegistrationsCount: newRegistrationsRow?.count || 0
     },
   }, 200, origin);
 }
 
 async function handleAdminSchools(db: any, origin: string): Promise<Response> {
+  // We need to fetch schools, their owner's status, and their student count.
   const schoolsList = await db
     .select({
       id: schema.schools.id,
@@ -1047,6 +1079,8 @@ async function handleAdminSchools(db: any, origin: string): Promise<Response> {
       plan: schema.schools.plan,
       createdAt: schema.schools.createdAt,
       ownerEmail: schema.users.email,
+      ownerStatus: schema.users.status,
+      studentsCount: sql<number>`(SELECT COUNT(*) FROM ${schema.students} WHERE ${schema.students.schoolId} = ${schema.schools.id})`
     })
     .from(schema.schools)
     .leftJoin(schema.users, eq(schema.schools.ownerId, schema.users.id))
@@ -1090,6 +1124,57 @@ async function handleAdminSchoolDetail(db: any, schoolId: string, origin: string
       studentCount: studentCount?.count || 0,
     },
   }, 200, origin);
+}
+
+async function handleAdminToggleSchoolStatus(db: any, schoolId: string, origin: string): Promise<Response> {
+  const school = await db.select().from(schema.schools).where(eq(schema.schools.id, schoolId)).get();
+  if (!school) return errorResponse("School not found", 404, origin);
+  
+  const owner = await db.select().from(schema.users).where(eq(schema.users.id, school.ownerId)).get();
+  if (!owner) return errorResponse("School owner not found", 404, origin);
+  
+  const newStatus = owner.status === "ACTIVE" ? "SUSPENDED" : "ACTIVE";
+  await db.update(schema.users).set({ status: newStatus, updatedAt: nowISO() }).where(eq(schema.users.id, owner.id)).run();
+  
+  return jsonResponse({ success: true, newStatus }, 200, origin);
+}
+
+async function handleAdminResetSchoolAuth(db: any, env: Env, schoolId: string, origin: string): Promise<Response> {
+  const school = await db.select().from(schema.schools).where(eq(schema.schools.id, schoolId)).get();
+  if (!school) return errorResponse("School not found", 404, origin);
+  
+  const owner = await db.select().from(schema.users).where(eq(schema.users.id, school.ownerId)).get();
+  if (!owner) return errorResponse("School owner not found", 404, origin);
+  
+  const newPassword = Math.random().toString(36).slice(-12);
+  const passwordHash = await hashPassword(newPassword);
+  
+  await db.update(schema.users).set({ 
+    passwordHash, 
+    forcePasswordChange: 1, 
+    updatedAt: nowISO() 
+  }).where(eq(schema.users.id, owner.id)).run();
+  
+  // Try sending email
+  try {
+    const mailer = new EmailService(env);
+    await mailer.send({
+      to: owner.email,
+      subject: `Admin Credential Reset - ${school.name}`,
+      html: `
+        <div style="font-family:sans-serif;color:#333;">
+          <h2>Admin Credential Reset</h2>
+          <p>The platform administrator has reset your master admin credentials for <b>${school.name}</b>.</p>
+          <p>Your new temporary password is: <code style="background:#eee;padding:4px 8px;font-size:16px;">${newPassword}</code></p>
+          <p>You will be required to change this password immediately upon your next login.</p>
+        </div>
+      `
+    });
+  } catch (err) {
+    console.error("Failed to send reset auth email:", err);
+  }
+  
+  return jsonResponse({ success: true }, 200, origin);
 }
 
 async function handleAdminPayments(db: any, origin: string): Promise<Response> {
@@ -1539,13 +1624,13 @@ async function handleSaveAttendanceSession(db: any, request: Request, session: a
   return jsonResponse({ session: sessionRecord, message: "Saved" }, 200, origin);
 }
 
-async function handleSubmitAttendance(db: any, sessionId: string, origin: string): Promise<Response> {
+async function handleSubmitAttendance(db: any, sessionId: string, session: any, origin: string): Promise<Response> {
   if (!sessionId) return errorResponse("Session ID required", 400, origin);
 
   let sessionRecord = await db
     .select()
     .from(schema.attendanceSessions)
-    .where(eq(schema.attendanceSessions.id, sessionId))
+    .where(and(eq(schema.attendanceSessions.id, sessionId), eq(schema.attendanceSessions.schoolId, session.schoolId!)))
     .get();
 
   if (!sessionRecord) return errorResponse("Session not found", 404, origin);
@@ -1676,16 +1761,31 @@ async function handleSaveTeacherScores(db: any, request: Request, session: any, 
   const { scores, session: reqSession, term: reqTerm } = body;
   if (!Array.isArray(scores)) return errorResponse("scores array required", 400, origin);
 
+  // Build the set of student IDs this teacher is authorised to grade (only their assigned classes)
+  const assignments = await db.select({ className: schema.teacherClassAssignments.className })
+    .from(schema.teacherClassAssignments)
+    .where(and(eq(schema.teacherClassAssignments.teacherUserId, session.userId), eq(schema.teacherClassAssignments.schoolId, session.schoolId!)))
+    .all();
+  const assignedClasses = new Set(assignments.map((a: any) => a.className));
+
+  const authorisedStudents = await db.select({ id: schema.students.id })
+    .from(schema.students)
+    .where(and(eq(schema.students.schoolId, session.schoolId!), inArray(schema.students.className, [...assignedClasses])))
+    .all();
+  const authorisedIds = new Set(authorisedStudents.map((s: any) => s.id));
+
   const school = await db.select().from(schema.schools).where(eq(schema.schools.id, session.schoolId!)).get();
   const qSession = reqSession || school?.session || '';
   const qTerm = reqTerm || school?.term || '';
 
   for (const s of scores) {
+    if (!authorisedIds.has(s.studentId)) continue;
+
     const existing = await db
       .select()
       .from(schema.scoreSheets)
       .where(and(
-        eq(schema.scoreSheets.studentId, s.studentId), 
+        eq(schema.scoreSheets.studentId, s.studentId),
         eq(schema.scoreSheets.schoolId, session.schoolId!),
         eq(schema.scoreSheets.session, qSession),
         eq(schema.scoreSheets.term, qTerm)
@@ -1743,6 +1843,8 @@ async function handleSaveTeacherComments(db: any, request: Request, session: any
   const { comments } = body;
   if (!Array.isArray(comments)) return errorResponse("comments array required", 400, origin);
 
+  const school = await db.select().from(schema.schools).where(eq(schema.schools.id, session.schoolId!)).get();
+
   for (const c of comments) {
     const existing = await db
       .select()
@@ -1767,8 +1869,8 @@ async function handleSaveTeacherComments(db: any, request: Request, session: any
           id: generateId(),
           schoolId: session.schoolId!,
           studentId: c.studentId,
-          session: "", // In a real app, get current session from school
-          term: "",
+          session: school?.session || "",
+          term: school?.term || "",
           ...data,
           createdAt: nowISO(),
         })
@@ -1880,12 +1982,13 @@ async function handleCreateStudent(db: any, request: Request, session: any, orig
         phone: parentPhone || null,
         passwordHash: pwdHash,
         role: 'PARENT',
+        schoolId: session.schoolId,
         forcePasswordChange: 1,
         createdAt: nowISO(),
         updatedAt: nowISO()
       }).run();
     }
-    
+
     const existingLink = await db.select().from(schema.studentLinks).where(and(eq(schema.studentLinks.studentId, id), eq(schema.studentLinks.userId, parentUserId))).get();
     if (!existingLink) {
       await db.insert(schema.studentLinks).values({
@@ -1933,12 +2036,13 @@ async function handleUpdateStudent(db: any, request: Request, studentId: string,
         phone: parentPhone || null,
         passwordHash: pwdHash,
         role: 'PARENT',
+        schoolId: session.schoolId,
         forcePasswordChange: 1,
         createdAt: nowISO(),
         updatedAt: nowISO()
       }).run();
     }
-    
+
     const existingLink = await db.select().from(schema.studentLinks).where(and(eq(schema.studentLinks.studentId, studentId), eq(schema.studentLinks.userId, parentUserId))).get();
     if (!existingLink) {
       await db.insert(schema.studentLinks).values({
@@ -2405,7 +2509,6 @@ async function handlePortalMe(db: any, session: any, origin: string): Promise<Re
   const studentIds = links.map((l: any) => l.studentId);
   let students: any[] = [];
   if (studentIds.length > 0) {
-    const placeholders = studentIds.map(() => "?").join(",");
     students = await db
       .select({
         id: schema.students.id,
@@ -2414,7 +2517,7 @@ async function handlePortalMe(db: any, session: any, origin: string): Promise<Re
         cls: schema.students.className,
       })
       .from(schema.students)
-      .where(sql`id IN (${sql.raw(placeholders)})`, ...studentIds)
+      .where(inArray(schema.students.id, studentIds))
       .all();
   }
 
@@ -2424,10 +2527,18 @@ async function handlePortalMe(db: any, session: any, origin: string): Promise<Re
 async function handlePortalStudent(db: any, studentId: string, session: any, origin: string): Promise<Response> {
   if (!studentId) return errorResponse("studentId required", 400, origin);
 
+  // SCHOOL role can view any student in their school; PARENT/STUDENT must have an explicit link
+  if (session.role !== "SCHOOL") {
+    const link = await db.select().from(schema.studentLinks)
+      .where(and(eq(schema.studentLinks.studentId, studentId), eq(schema.studentLinks.userId, session.userId)))
+      .get();
+    if (!link) return errorResponse("Not authorized", 403, origin);
+  }
+
   const student = await db
     .select()
     .from(schema.students)
-    .where(eq(schema.students.id, studentId))
+    .where(and(eq(schema.students.id, studentId), eq(schema.students.schoolId, session.schoolId!)))
     .get();
 
   if (!student) return errorResponse("Student not found", 404, origin);
@@ -2585,6 +2696,12 @@ async function handlePortalAttendanceDays(db: any, request: Request, session: an
 }
 
 async function handlePortalScores(db: any, studentId: string, session: any, origin: string): Promise<Response> {
+  if (session.role !== "SCHOOL") {
+    const link = await db.select().from(schema.studentLinks)
+      .where(and(eq(schema.studentLinks.studentId, studentId), eq(schema.studentLinks.userId, session.userId)))
+      .get();
+    if (!link) return errorResponse("Not authorized", 403, origin);
+  }
   const row = await db.select().from(schema.scoreSheets).where(and(eq(schema.scoreSheets.studentId, studentId), eq(schema.scoreSheets.schoolId, session.schoolId!))).get();
   const scores: Record<string, any> = {};
   if (row) {
@@ -2615,11 +2732,11 @@ async function handleGetExams(db: any, session: any, origin: string): Promise<Re
 
 async function handleGenerateExam(db: any, request: Request, session: any, env: Env, origin: string): Promise<Response> {
   const body = await request.json() as any;
-  const { subject, classLevel, curriculum, topic, questionCount, term, session: schoolSession, examType, questionType, sourceMode, documentText, sourceUrl, duration, isShared, fileUrl } = body;
+  const { subject, classLevel, curriculum, topic, questionCount, term, session: schoolSession, examType, questionType, sourceMode, documentText, sourceUrl, duration, isShared, fileUrl, mcqCount: reqMcqCount, theoryCount: reqTheoryCount, difficulty } = body;
   
   if (!subject || !classLevel) return errorResponse("Missing required fields: subject and classLevel", 400, origin);
-  
-  if (!env.AI) return errorResponse("AI binding not found", 500, origin);
+
+  if (!env.AI && !env.OPENROUTER_API_KEY && !env.GEMINI_API_KEY && !env.ALIBABA_API_KEY) return errorResponse("No AI providers configured", 500, origin);
 
   // Determine the source context for AI
   let contextText = topic || '';
@@ -2630,7 +2747,7 @@ async function handleGenerateExam(db: any, request: Request, session: any, env: 
   } else if (sourceMode === 'url' && sourceUrl) {
     try {
       const urlRes = await fetch(sourceUrl, {
-        headers: { 'User-Agent': 'EduReport-ExamMaker/1.0' },
+        headers: { 'User-Agent': 'ReportSheet-ExamMaker/1.0' },
         signal: AbortSignal.timeout(10000)
       });
       let html = await urlRes.text();
@@ -2655,6 +2772,7 @@ async function handleGenerateExam(db: any, request: Request, session: any, env: 
   const termLabel = term || '2nd Term';
   const sessionLabel = schoolSession || new Date().getFullYear() + '/' + (new Date().getFullYear() + 1);
   const examTypeLabel = examType || 'Terminal Exam';
+  const difficultyLabel = difficulty || 'Medium';
 
   let formatInstructions = '';
   if (qType === 'mcq') {
@@ -2680,8 +2798,8 @@ async function handleGenerateExam(db: any, request: Request, session: any, env: 
   }
 ]`;
   } else {
-    const mcqCount = Math.round(count * 0.6);
-    const theoryCount = count - mcqCount;
+    const mcqCount = reqMcqCount ?? Math.round(count * 0.6);
+    const theoryCount = reqTheoryCount ?? (count - mcqCount);
     formatInstructions = `Generate ${mcqCount} multiple choice questions followed by ${theoryCount} theory/essay questions. Use this JSON structure:
 [
   {
@@ -2705,6 +2823,7 @@ async function handleGenerateExam(db: any, request: Request, session: any, env: 
 
 Subject: ${subject}
 Class Level: ${classLevel}
+Target Difficulty: ${difficultyLabel}
 Exam Content/Context:
 ---
 ${contextText}
@@ -2717,12 +2836,12 @@ IMPORTANT RULES:
 2. Use clear, unambiguous language appropriate for ${classLevel} students
 3. Output ONLY valid JSON array with no markdown, no extra text, no comments.
 4. Questions should test understanding, not just memorisation
-5. Make questions progressively harder (easy, medium, hard)
+5. Ensure the overall difficulty strictly matches the selected level: ${difficultyLabel}
 6. CRITICAL: Escape any internal double quotes inside string values using a backslash (e.g., \\") to avoid JSON parsing errors. Do not use unescaped double quotes inside your strings.
 `;
 
   try {
-    const aiResponse = await generateAIResponse(env, prompt, 4096);
+    const aiResponse = await generateAIResponse(env, prompt, 16384);
 
     let questions: any;
     if (typeof aiResponse.response === 'object' && aiResponse.response !== null) {
@@ -2737,7 +2856,23 @@ IMPORTANT RULES:
       } else if (jsonStr.includes('```')) {
         jsonStr = jsonStr.split('```')[1].split('```')[0].trim();
       }
-      questions = JSON.parse(jsonStr);
+      
+      try {
+        questions = JSON.parse(jsonStr);
+      } catch (e: any) {
+        // Attempt basic truncation fix if AI stopped mid-generation
+        try {
+          const lastClosingBrace = jsonStr.lastIndexOf('}');
+          if (lastClosingBrace !== -1) {
+             const truncated = jsonStr.substring(0, lastClosingBrace + 1) + ']';
+             questions = JSON.parse(truncated);
+          } else {
+             throw e;
+          }
+        } catch (innerE) {
+          throw e; // Throw the original parse error if recovery fails
+        }
+      }
     }
     if (!Array.isArray(questions) || questions.length === 0) {
       throw new Error('AI returned invalid question format');
@@ -2854,10 +2989,10 @@ async function handleGenerateAiRemarks(db: any, request: Request, session: any, 
   if (!studentId) return errorResponse("studentId required", 400, origin);
   if (!env.AI && !env.OPENROUTER_API_KEY && !env.GEMINI_API_KEY && !env.ALIBABA_API_KEY) return errorResponse("No AI providers configured", 500, origin);
 
-  const student = await db.select().from(schema.students).where(eq(schema.students.id, studentId)).get();
+  const student = await db.select().from(schema.students).where(and(eq(schema.students.id, studentId), eq(schema.students.schoolId, session.schoolId!))).get();
   if (!student) return errorResponse("Student not found", 404, origin);
 
-  const scoresRow = await db.select().from(schema.scoreSheets).where(eq(schema.scoreSheets.studentId, studentId)).get();
+  const scoresRow = await db.select().from(schema.scoreSheets).where(and(eq(schema.scoreSheets.studentId, studentId), eq(schema.scoreSheets.schoolId, session.schoolId!))).get();
   const scores = scoresRow ? JSON.parse(scoresRow.data) : {};
 
   const subjects = Object.keys(scores);
@@ -2997,7 +3132,7 @@ async function handleImportExam(db: any, request: Request, session: any, env: En
   if (!subject || !classLevel || !textContent) {
     return errorResponse("Missing required fields: subject, classLevel, and textContent", 400, origin);
   }
-  if (!env.AI) return errorResponse("AI binding not found", 500, origin);
+  if (!env.AI && !env.OPENROUTER_API_KEY && !env.GEMINI_API_KEY && !env.ALIBABA_API_KEY) return errorResponse("No AI providers configured", 500, origin);
  
   const prompt = `You are an expert exam parser. Convert the following raw exam paper text into a structured JSON array of questions.
 Each question should be classified as either 'mcq' (multiple choice) or 'theory' (essay/written).
@@ -3141,7 +3276,7 @@ async function handleGetPublicConfig(db: any, origin: string): Promise<Response>
   return jsonResponse({
     pricing: {
       starter: map['price_starter'] || '15000',
-      lifetime: map['price_lifetime'] || '25000',
+      lifetime: map['price_lifetime'] || '30000',
       pro: map['price_pro'] || '35000',
     },
     support: {
@@ -3245,13 +3380,13 @@ async function handleBulkImportStudents(db: any, request: Request, session: any,
 async function handleAdminAICommand(db: any, request: Request, session: any, env: Env, origin: string): Promise<Response> {
   const { command } = await request.json() as any;
   if (!command) return errorResponse("Command required", 400, origin);
-  if (!env.AI) return errorResponse("AI binding not found", 500, origin);
+  if (!env.AI && !env.OPENROUTER_API_KEY && !env.GEMINI_API_KEY && !env.ALIBABA_API_KEY) return errorResponse("No AI providers configured", 500, origin);
 
-  const prompt = `You are a school management assistant for EduReport.
+  const prompt = `You are a school management assistant for ReportSheet.
 The user is a school admin and wants to perform an action or ask a question.
 Current School ID: ${session.schoolId}
 
-EduReport App Context:
+ReportSheet App Context:
 - A school report-card and management system.
 - Key features: Student Profiles & Management, Teacher Directory, Parent Portal, Scores & Broadsheet Entry (CA1, CA2, Exam scores), Report Card Generation (PDF exports), AI-assisted Report Card Remarks (Form Teacher & Principal remarks), and Billing/Subscription Plans (Basic, Premium, Elite).
 - Side menu/navigation items: Dashboard, Students, Teachers, Parents, Scores, Reports, Billing, Settings.
@@ -3392,10 +3527,13 @@ Examples:
         if (existing) {
           await db.update(schema.scoreSheets).set({ data: JSON.stringify(scoreData), updatedAt: nowISO() }).where(eq(schema.scoreSheets.id, existing.id)).run();
         } else {
+          const aiSchool = await db.select().from(schema.schools).where(eq(schema.schools.id, session.schoolId!)).get();
           await db.insert(schema.scoreSheets).values({
             id: generateId(),
             schoolId: session.schoolId!,
             studentId: student.id,
+            session: aiSchool?.session || "",
+            term: aiSchool?.term || "",
             data: JSON.stringify(scoreData),
             createdAt: nowISO(),
             updatedAt: nowISO()
@@ -3427,11 +3565,12 @@ Examples:
         .where(eq(schema.scoreSheets.schoolId, session.schoolId!))
         .all();
 
-      let successCount = 0;
-      for (const student of classStudents) {
+      const aiSchoolForComments = await db.select().from(schema.schools).where(eq(schema.schools.id, session.schoolId!)).get();
+
+      const commentResults = await Promise.all(classStudents.map(async (student: any) => {
         const studentScoreSheet = scoresRows.find((s: any) => s.studentId === student.id);
         const subjectsData = studentScoreSheet ? JSON.parse(studentScoreSheet.data) : {};
-        
+
         let total = 0;
         let count = 0;
         Object.keys(subjectsData).forEach(sub => {
@@ -3441,7 +3580,6 @@ Examples:
         });
         const average = count > 0 ? total / count : 0;
 
-        // Formulate prompt for AI comments
         const aiPrompt = `Generate a termly report card evaluation for a student.
 Student Name: ${student.name}
 Class: ${class_name}
@@ -3465,11 +3603,9 @@ Output ONLY a raw JSON object with keys:
 
         try {
           const aiResponse = await generateAIResponse(env, aiPrompt, 300);
-          let jsonStr = aiResponse.response || '';
+          const jsonStr: string = aiResponse.response || '';
           const jsonMatch = jsonStr.match(/\{[\s\S]*\}/);
-          if (jsonMatch) {
-            comments = JSON.parse(jsonMatch[0]);
-          }
+          if (jsonMatch) comments = JSON.parse(jsonMatch[0]);
         } catch (e) {
           console.error("Failed to generate AI comments for student", student.name, e);
         }
@@ -3493,14 +3629,16 @@ Output ONLY a raw JSON object with keys:
             id: generateId(),
             schoolId: session.schoolId!,
             studentId: student.id,
-            session: "",
-            term: "",
+            session: aiSchoolForComments?.session || "",
+            term: aiSchoolForComments?.term || "",
             ...data,
             createdAt: nowISO()
           }).run();
         }
-        successCount++;
-      }
+        return true;
+      }));
+
+      const successCount = commentResults.filter(Boolean).length;
 
       result.reply = `Successfully generated AI report card comments for ${successCount} students in ${class_name}. You can review and manually override them under the Reports Broadsheet.`;
     }
@@ -3513,13 +3651,17 @@ Output ONLY a raw JSON object with keys:
 }
 
 async function handleSchoolBillingCheckout(db: any, request: Request, session: any, origin: string): Promise<Response> {
-  const { plan } = await request.json() as any;
+  const { plan, provider } = await request.json() as any;
   if (!plan) return errorResponse("Plan is required", 400, origin);
   
-  const validPlans = ["BASIC", "PREMIUM", "ELITE"];
-  if (!validPlans.includes(plan.toUpperCase())) {
-    return errorResponse("Invalid plan", 400, origin);
-  }
+  const paymentProvider = provider === "PAYVESSEL" ? "PAYVESSEL" : "PAYSTACK";
+
+  let amountKobo = 0;
+  if (plan.toUpperCase() === "PER_TERM") amountKobo = 500000;
+  else if (plan.toUpperCase() === "PER_YEAR") amountKobo = 1500000;
+  else if (plan.toUpperCase() === "LIFETIME") amountKobo = 3000000;
+  else if (plan.toUpperCase() === "PREMIUM") amountKobo = 5000000;
+  else if (plan.toUpperCase() === "ELITE") amountKobo = 10000000;
   
   const school = await db.select().from(schema.schools).where(eq(schema.schools.id, session.schoolId)).get();
   if (!school) return errorResponse("School not found", 404, origin);
@@ -3527,17 +3669,12 @@ async function handleSchoolBillingCheckout(db: any, request: Request, session: a
   const user = await db.select().from(schema.users).where(eq(schema.users.id, school.ownerId)).get();
   if (!user) return errorResponse("School owner not found", 404, origin);
   
-  let amountKobo = 0;
-  if (plan.toUpperCase() === "BASIC") amountKobo = 2500000;
-  else if (plan.toUpperCase() === "PREMIUM") amountKobo = 5000000;
-  else if (plan.toUpperCase() === "ELITE") amountKobo = 10000000;
-  
   const reference = `ref_${generateId()}`;
   
   await db.insert(schema.payments).values({
     id: generateId(),
     schoolId: school.id,
-    provider: "PAYSTACK",
+    provider: paymentProvider,
     status: "PENDING",
     amountKobo,
     currency: "NGN",
@@ -3551,6 +3688,7 @@ async function handleSchoolBillingCheckout(db: any, request: Request, session: a
     reference,
     amountKobo,
     email: user.email,
+    phone: user.phone || school.contact || "",
     schoolName: school.name
   }, 200, origin);
 }
@@ -3566,34 +3704,64 @@ async function handleSchoolBillingVerify(db: any, request: Request, session: any
     return jsonResponse({ success: true, message: "Payment already verified", plan: JSON.parse(payment.metadata).plan }, 200, origin);
   }
   
-  const paystackSecret = env.PAYSTACK_SECRET_KEY || "sk_test_mockkey123456789";
-  
   let isVerified = false;
   let verifiedAmount = 0;
   
-  if (paystackSecret && !paystackSecret.startsWith("sk_test_mock")) {
-    try {
-      const res = await fetch(`https://api.paystack.co/transaction/verify/${reference}`, {
-        headers: {
-          Authorization: `Bearer ${paystackSecret}`
+  if (payment.provider === "PAYVESSEL") {
+    const payvesselKey = env.PAYVESSEL_API_KEY || "sk_test_mockkey123456789";
+    const payvesselSecret = env.PAYVESSEL_API_SECRET || "sk_test_mocksecret123456789";
+
+    if (payvesselKey && !payvesselKey.startsWith("sk_test_mock")) {
+      try {
+        const res = await fetch(`https://api.payvessel.com/transaction/verify/${reference}`, {
+          headers: {
+            "api-key": payvesselKey,
+            "api-secret": payvesselSecret,
+            "Content-Type": "application/json"
+          }
+        });
+        const data = await res.json() as any;
+        if (data?.status === true && data?.transaction?.status === "success") {
+          isVerified = true;
+          // Payvessel amount is likely in Naira, so times 100 for kobo comparison
+          verifiedAmount = Number(data?.transaction?.amount) * 100;
+        } else {
+          console.log("Payvessel verify response:", data);
         }
-      });
-      const data = await res.json() as any;
-      if (data?.status && data?.data?.status === "success") {
-        isVerified = true;
-        verifiedAmount = data.data.amount; // in kobo
+      } catch (err) {
+        console.error("Payvessel verification error:", err);
       }
-    } catch (err) {
-      console.error("Paystack verification error:", err);
+    } else {
+      isVerified = true;
+      verifiedAmount = payment.amountKobo;
     }
   } else {
-    // Development fallback simulation
-    isVerified = true;
-    verifiedAmount = payment.amountKobo;
+    // Default to Paystack
+    const paystackSecret = env.PAYSTACK_SECRET_KEY || "sk_test_mockkey123456789";
+    
+    if (paystackSecret && !paystackSecret.startsWith("sk_test_mock")) {
+      try {
+        const res = await fetch(`https://api.paystack.co/transaction/verify/${reference}`, {
+          headers: {
+            Authorization: `Bearer ${paystackSecret}`
+          }
+        });
+        const data = await res.json() as any;
+        if (data?.status && data?.data?.status === "success") {
+          isVerified = true;
+          verifiedAmount = data.data.amount;
+        }
+      } catch (err) {
+        console.error("Paystack verification error:", err);
+      }
+    } else {
+      isVerified = true;
+      verifiedAmount = payment.amountKobo;
+    }
   }
   
   if (!isVerified) {
-    return errorResponse("Payment verification failed", 400, origin);
+    return errorResponse("Payment could not be verified.", 400, origin);
   }
   
   if (verifiedAmount !== payment.amountKobo) {

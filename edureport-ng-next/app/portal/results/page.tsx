@@ -7,7 +7,7 @@ import {
   Award,
   BookOpen
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '@/src/lib/utils';
 import { motion } from 'framer-motion';
 import useSWR from "swr";
@@ -26,10 +26,12 @@ export default function StudentResults() {
   const students = portalData?.students || [];
   const [selectedStudentId, setSelectedStudentId] = useState<string | null>(null);
 
-  // Set default student
-  if (!selectedStudentId && students.length > 0) {
-    setSelectedStudentId(students[0].id);
-  }
+  // Set default student when data loads
+  useEffect(() => {
+    if (!selectedStudentId && students.length > 0) {
+      setSelectedStudentId(students[0].id);
+    }
+  }, [students, selectedStudentId]);
 
   const { data: scoreData, isLoading: scoresLoading } = useSWR(
     selectedStudentId ? `/api/portal/api/scores/${selectedStudentId}` : null,

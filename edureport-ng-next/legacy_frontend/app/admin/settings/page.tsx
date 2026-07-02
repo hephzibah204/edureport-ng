@@ -68,7 +68,7 @@ export default function AdminSettings() {
             <label className="block text-[0.82rem] font-bold text-ink2 mb-1.5">Lifetime Plan Price (₦)</label>
             <input 
               type="number" 
-              value={settings['price_lifetime'] || '25000'} 
+              value={settings['price_lifetime'] || '30000'} 
               onChange={e => updateKey('price_lifetime', e.target.value)}
               className="w-full py-2 px-3 border-[1.5px] border-border rounded-lg outline-none focus:border-green" 
             />

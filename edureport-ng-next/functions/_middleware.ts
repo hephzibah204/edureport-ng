@@ -13,12 +13,19 @@ export async function onRequest(context: {
   const { request, next } = context;
   const url = new URL(request.url);
 
+  // Always pass CORS preflight through so browsers can complete cross-origin requests
+  if (request.method === "OPTIONS") {
+    return next(request);
+  }
+
   // Skip auth for login, register, and public routes
   const publicPaths = [
     "/api/auth/login",
     "/api/auth/register",
     "/api/auth/check-domain",
     "/api/auth/school-public",
+    "/api/auth/forgot-password",
+    "/api/auth/reset-password",
     "/api/config",
     "/api/healthz",
     "/api/health",
