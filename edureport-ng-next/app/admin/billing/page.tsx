@@ -104,9 +104,8 @@ export default function SchoolBillingPage() {
           customer_name: checkoutData.schoolName || school?.name || "School",
           amount: (checkoutData.amountKobo / 100).toString(),
           currency: "NGN",
-          description: `ReportSheet ${planId} Plan Subscription`,
           reference: checkoutData.reference,
-          callback_url: window.location.href,
+          redirect_url: window.location.href,
           metadata: {
             schoolName: checkoutData.schoolName
           },
