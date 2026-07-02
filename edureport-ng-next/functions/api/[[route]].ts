@@ -220,11 +220,16 @@ export async function onRequest(context: {
         return errorResponse("Unauthorized", 401, origin);
       }
 
-      // Check if school trial is expired
+      // Check if school trial or subscription is expired
       if (session.schoolId) {
         const school = await db.select().from(schema.schools).where(eq(schema.schools.id, session.schoolId)).get();
         if (school && school.plan === "TRIAL" && school.trialEndsAt && new Date(school.trialEndsAt) < new Date()) {
           return errorResponse("School trial has expired. Access restricted.", 403, origin);
+        }
+        if (school && school.plan !== "TRIAL" && school.plan !== "LIFETIME" && school.plan !== "PREMIUM" && school.plan !== "ELITE") {
+          if (school.subscriptionEndsAt && new Date(school.subscriptionEndsAt) < new Date()) {
+            return errorResponse("Subscription has expired. Please renew your plan.", 403, origin);
+          }
         }
       }
 
@@ -274,11 +279,16 @@ export async function onRequest(context: {
         return errorResponse("Unauthorized", 401, origin);
       }
       
-      // Check if school trial is expired (except for billing routes, so they can still upgrade)
+      // Check if school trial or subscription is expired (except for billing routes, so they can still upgrade)
       if (session.schoolId && parts[0] !== "billing") {
         const school = await db.select().from(schema.schools).where(eq(schema.schools.id, session.schoolId)).get();
         if (school && school.plan === "TRIAL" && school.trialEndsAt && new Date(school.trialEndsAt) < new Date()) {
           return errorResponse("School trial has expired. Access restricted. Please upgrade your plan.", 403, origin);
+        }
+        if (school && school.plan !== "TRIAL" && school.plan !== "LIFETIME" && school.plan !== "PREMIUM" && school.plan !== "ELITE") {
+          if (school.subscriptionEndsAt && new Date(school.subscriptionEndsAt) < new Date()) {
+            return errorResponse("Subscription has expired. Please renew your plan.", 403, origin);
+          }
         }
       }
 
@@ -3779,9 +3789,21 @@ async function handleSchoolBillingVerify(db: any, request: Request, session: any
     updatedAt: nowISO()
   }).where(eq(schema.payments.id, payment.id)).run();
   
+  let subscriptionEndsAt = null;
+  if (plan === "PER_TERM") {
+    const d = new Date();
+    d.setMonth(d.getMonth() + 4);
+    subscriptionEndsAt = d.toISOString();
+  } else if (plan === "PER_YEAR") {
+    const d = new Date();
+    d.setFullYear(d.getFullYear() + 1);
+    subscriptionEndsAt = d.toISOString();
+  }
+  
   await db.update(schema.schools).set({
     plan: plan,
     trialEndsAt: null, // Clear trial limits
+    subscriptionEndsAt: subscriptionEndsAt,
     updatedAt: nowISO()
   }).where(eq(schema.schools.id, payment.schoolId)).run();
   

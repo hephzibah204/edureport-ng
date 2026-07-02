@@ -1,0 +1,1 @@
+ALTER TABLE `schools` ADD `subscription_ends_at` text;

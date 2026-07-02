@@ -44,6 +44,7 @@ export const schools = sqliteTable('schools', {
   currency: text('currency').notNull().default('NGN'),
   subdomain: text('subdomain').unique(),
   trialEndsAt: text('trial_ends_at'),
+  subscriptionEndsAt: text('subscription_ends_at'),
   lastReminderAt: text('last_reminder_at'),
   logoUrl: text('logo_url'),
   reportColor: text('report_color').notNull().default('#4f46e5'),
