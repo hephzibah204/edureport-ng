@@ -2,6 +2,8 @@
 # This configuration deploys the Next.js app to Cloudflare Pages
 
 name = "edureport-ng"
+compatibility_date = "2024-03-20"
+compatibility_flags = ["nodejs_compat"]
 
 # Build configuration
 pages_build_output_dir = "out"
