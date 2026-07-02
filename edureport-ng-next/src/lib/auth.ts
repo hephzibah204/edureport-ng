@@ -18,12 +18,12 @@ export interface SessionPayload extends JWTPayload {
   schoolId?: string;
 }
 
-export async function signToken(payload: Omit<SessionPayload, "exp" | "iat" | "iss">, secret?: string): Promise<string> {
+export async function signToken(payload: Omit<SessionPayload, "exp" | "iat" | "iss">, secret?: string, expiresIn: string = "7d"): Promise<string> {
   return new SignJWT(payload as unknown as JWTPayload)
     .setProtectedHeader({ alg: ALGORITHM })
     .setIssuedAt()
     .setIssuer(ISSUER)
-    .setExpirationTime("7d")
+    .setExpirationTime(expiresIn)
     .sign(getSecret(secret));
 }
 

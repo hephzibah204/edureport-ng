@@ -579,7 +579,7 @@ async function handleFileDownload(bucket: any, key: string, origin: string): Pro
 // ===== AUTH HANDLERS =====
 
 async function handleLogin(db: any, request: Request, origin: string, secret?: string): Promise<Response> {
-  const { email, password } = (await request.json()) as any;
+  const { email, password, rememberMe } = (await request.json()) as any;
   if (!email || !password) return errorResponse("Email and password required", 400, origin);
 
   const user = await db
@@ -634,7 +634,10 @@ async function handleLogin(db: any, request: Request, origin: string, secret?: s
     schoolId: schoolId,
   };
 
-  const token = await signToken(tokenPayload, secret);
+  const expiresIn = rememberMe ? "30d" : "1d";
+  const maxAge = rememberMe ? 30 * 24 * 60 * 60 : 24 * 60 * 60;
+
+  const token = await signToken(tokenPayload, secret, expiresIn);
 
   const resData = {
     user: {
@@ -657,7 +660,7 @@ async function handleLogin(db: any, request: Request, origin: string, secret?: s
     status: 200,
     headers: {
       "Content-Type": "application/json",
-      "Set-Cookie": `token=${token}; HttpOnly; Path=/; Max-Age=${7 * 24 * 60 * 60}; SameSite=Lax`,
+      "Set-Cookie": `token=${token}; HttpOnly; Path=/; Max-Age=${maxAge}; SameSite=Lax`,
       "Access-Control-Allow-Origin": origin,
       "Access-Control-Allow-Credentials": "true",
       "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",

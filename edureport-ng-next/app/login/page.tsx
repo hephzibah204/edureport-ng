@@ -12,7 +12,8 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
+    rememberMe: false
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -135,6 +136,19 @@ export default function LoginPage() {
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
+            </div>
+
+            <div className="flex items-center gap-2 ml-1">
+              <input
+                type="checkbox"
+                id="rememberMe"
+                checked={formData.rememberMe}
+                onChange={e => setFormData({...formData, rememberMe: e.target.checked})}
+                className="w-4 h-4 rounded border-[#0b1c30]/20 text-indigo-600 focus:ring-indigo-600/20 transition-all cursor-pointer"
+              />
+              <label htmlFor="rememberMe" className="text-xs font-bold text-[#464555] cursor-pointer select-none">
+                Remember me for 30 days
+              </label>
             </div>
 
             <button 
